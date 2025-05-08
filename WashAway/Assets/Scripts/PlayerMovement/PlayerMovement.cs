@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] protected float maxHorizontalSpeed = 10;
     [SerializeField] protected float accelerationScale = 10;
     [SerializeField] protected float gravityScale = 1;
+    [SerializeField] protected float brakingScale = 1;
 
     protected Vector3 _velocity;
 
@@ -21,22 +22,39 @@ public class PlayerMovement : MonoBehaviour
     {
         _velocity += ACCELERATION_DUE_TO_GRAVITY * Vector3.down * gravityScale * deltaTime;
 
+        Vector3 input = Vector3.zero;
         if (Input.GetKey(KeyCode.D))
         {
-            _velocity += accelerationScale * Vector3.right * deltaTime;
+            input += Vector3.right;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            _velocity += accelerationScale * Vector3.left * deltaTime;
+            input += Vector3.left;
         }
 
-        Vector2 horizontalVelocity = _velocity;
-        if (horizontalVelocity.magnitude > maxHorizontalSpeed)
+        _velocity += input * accelerationScale * deltaTime;
+
+        float horizontalVelocity = _velocity.x;
+        if (horizontalVelocity > maxHorizontalSpeed)
         {
-            horizontalVelocity = horizontalVelocity.normalized * maxHorizontalSpeed;
-            _velocity = new Vector3(horizontalVelocity.x, horizontalVelocity.y, _velocity.z);
+            horizontalVelocity = horizontalVelocity * maxHorizontalSpeed;
         }
+
+        if (input.magnitude <= 0)
+        {
+            float braking = brakingScale * horizontalVelocity * deltaTime;
+            if (braking > horizontalVelocity)
+            {
+                horizontalVelocity = 0;
+            }
+            else
+            {
+                horizontalVelocity -= braking;
+            }
+        }
+
+        _velocity.x = horizontalVelocity;
 
         transform.position += _velocity * deltaTime;
     }
