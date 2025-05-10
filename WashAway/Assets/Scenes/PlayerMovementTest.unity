@@ -391,10 +391,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _points:
-  - {x: 1.5442297, y: -1.8276616}
-  - {x: -2.0735734, y: 0.32183155}
-  - {x: -3.7941103, y: -1.03}
-  - {x: -4.665989, y: 1.5846585}
+  - {x: 1.5460051, y: -1.8278482}
+  - {x: -2.0760078, y: 0.32171285}
+  - {x: -3.798614, y: -1.0303586}
+  - {x: -4.2347717, y: 1.2808883}
 --- !u!4 &1445160864
 Transform:
   m_ObjectHideFlags: 0
@@ -403,13 +403,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445160862}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.1360404, z: -0, w: 0.99070334}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 15.638, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1456676420
 GameObject:
   m_ObjectHideFlags: 0
