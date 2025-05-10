@@ -22,8 +22,14 @@ public class LineColliderInspector : Editor
     {
         for(int i = 0; i < lineCollider.Length; i++)
         {
-            lineCollider.SetPointInWorldSpace(i, Handles.PositionHandle(lineCollider.GetPointWorldSpace(i), lineCollider.transform.rotation));
-        }
-    }
+            Vector3 position = lineCollider.GetPointWorldSpace(i);
+            Vector3 newPosition = Handles.PositionHandle(position, lineCollider.transform.rotation);
 
+            if(newPosition != position)
+            {
+                lineCollider.SetPointInWorldSpace(i, newPosition);
+            }
+        }
+
+    }
 }
