@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     protected const float ACCELERATION_DUE_TO_GRAVITY = 9.8f;
+    protected const float SMALL_NUMBER = .001f;
 
-    [SerializeField] protected float maxHorizontalSpeed = 10;
+    [SerializeField] protected float maxWalkSpeed = 10;
     [SerializeField] protected float accelerationScale = 10;
     [SerializeField] protected float gravityScale = 1;
     [SerializeField] protected float brakingScale = 1;
@@ -35,26 +36,28 @@ public class PlayerMovement : MonoBehaviour
 
         _velocity += input * accelerationScale * deltaTime;
 
-        float horizontalVelocity = _velocity.x;
-        if (horizontalVelocity > maxHorizontalSpeed)
+        float horizontalSpeed = Mathf.Abs(_velocity.x);
+        float horizontalDirection = horizontalSpeed <= SMALL_NUMBER ? input.x : horizontalSpeed / _velocity.x;
+
+        if (horizontalSpeed > maxWalkSpeed)
         {
-            horizontalVelocity = horizontalVelocity * maxHorizontalSpeed;
+            horizontalSpeed = maxWalkSpeed;
         }
 
         if (input.magnitude <= 0)
         {
-            float braking = brakingScale * horizontalVelocity * deltaTime;
-            if (braking > horizontalVelocity)
+            float braking = brakingScale * deltaTime;
+            if (braking > horizontalSpeed)
             {
-                horizontalVelocity = 0;
+                horizontalSpeed = 0;
             }
             else
             {
-                horizontalVelocity -= braking;
+                horizontalSpeed -= braking;
             }
         }
 
-        _velocity.x = horizontalVelocity;
+        _velocity.x = horizontalSpeed * horizontalDirection;
 
         transform.position += _velocity * deltaTime;
     }
