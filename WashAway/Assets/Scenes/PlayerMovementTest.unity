@@ -342,9 +342,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04464ec4e1ee5dd43938bbf38841add9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHorizontalSpeed: 0
-  accelerationScale: 0
-  gravityScale: 1
+  maxWalkSpeed: 10
+  accelerationScale: 10
+  gravityScale: 0
+  brakingScale: 10
 --- !u!4 &792674244
 Transform:
   m_ObjectHideFlags: 0
