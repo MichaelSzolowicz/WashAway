@@ -51,6 +51,14 @@ public class LineColllisionScene : MonoBehaviour
 
     private List<LineCollider> _lineColliders = new List<LineCollider>();
 
+    public void RegisterLineCollider(LineCollider lineCollider)
+    {
+        if (_lineColliders.Contains(lineCollider))
+            return;
+
+        _lineColliders.Add(lineCollider);
+    }
+
     public bool IntersectLine(Vector3 start, Vector3 end, out Vector3 intersection)
     {
         intersection = Vector3.positiveInfinity;
