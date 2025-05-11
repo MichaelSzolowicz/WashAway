@@ -28,7 +28,6 @@ public class LineCollider : MonoBehaviour
         }
 
         return transform.TransformPoint(_points[index]);
-
     }
 
     public void SetPointInWorldSpace(int index, Vector3 worldPoint)
