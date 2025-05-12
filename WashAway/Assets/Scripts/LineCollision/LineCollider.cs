@@ -10,7 +10,11 @@ public class LineCollider : MonoBehaviour
 
     [SerializeField] protected float rotation = 0;
 
-    [SerializeField] protected bool showLinesInEditor = true;
+    [SerializeField] protected bool visibleInGame = true;
+
+#if UNITY_EDITOR
+    [SerializeField] protected bool visibleInEditor = true;
+#endif
 
     public int Length
     {
@@ -67,17 +71,11 @@ public class LineCollider : MonoBehaviour
         _points[index] = rotatedPoint;
     }
 
-#if UNITY_EDITOR
     protected void OnDrawGizmos()
     {
-        ShowLines();
-    }
-#endif
-
-    protected void ShowLines()
-    {
-        if (!showLinesInEditor && !Application.isPlaying) return;
-
+        if (!visibleInEditor && !visibleInGame) return;
+        else if (SceneView.currentDrawingSceneView == null && !visibleInGame) return;
+        else if(SceneView.currentDrawingSceneView != null && !visibleInEditor) return;
 
         Handles.color = Color.blue;
         for (int i = 0; i < Length; i++)
@@ -93,3 +91,4 @@ public class LineCollider : MonoBehaviour
         }
     }
 }
+

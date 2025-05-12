@@ -422,13 +422,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _points:
-  - {x: 10.654011, y: 8.188046}
-  - {x: 4.9043465, y: 3.1419082}
-  - {x: 13.577508, y: -3.516879}
-  - {x: 27.913916, y: 2.0990808}
-  - {x: 38.8789, y: -7.984351}
+  - {x: -5.2081947, y: 1.7628484}
+  - {x: -4.9342375, y: -1.0076985}
+  - {x: -0.14296532, y: -1.9105792}
+  - {x: 3.0162754, y: -1.1135182}
+  - {x: 6.619053, y: 0.58257866}
   rotation: 0
-  showLinesInEditor: 1
+  visibleInGame: 1
+  visibleInEditor: 1
 --- !u!4 &1445160864
 Transform:
   m_ObjectHideFlags: 0
