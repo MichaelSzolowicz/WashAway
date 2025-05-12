@@ -59,6 +59,21 @@ public class PlayerMovement : MonoBehaviour
 
         _velocity.x = horizontalSpeed * horizontalDirection;
 
-        transform.position += _velocity * deltaTime;
+        Vector3 intersection = Vector3.zero;
+        bool foundIntersect = LineColllisionScene.Instance.IntersectLine(transform.position, transform.position + _velocity * deltaTime, out intersection);
+
+        if (foundIntersect)
+        {
+            transform.position = intersection - (_velocity.normalized);
+        }
+        else
+        {
+            transform.position += _velocity * deltaTime;
+        }
+    }
+
+    protected void CollisionTest(Vector3 deltaPos)
+    {
+
     }
 }
