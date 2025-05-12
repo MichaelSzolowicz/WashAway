@@ -77,13 +77,22 @@ public class LineColllisionScene : MonoBehaviour
                 float cm = (c1.y - c0.y) / (c1.x - c0.x);
                 float cc = c0.y - cm * c0.x;
 
-                if(pm == cm) continue;
-
                 Vector2 intersect = new Vector2();
-                intersect.x = (1 * cc - 1 * pc) / (pm * 1 - cm * 1);
-                intersect.y = (pc * cm - cc * pm) / (pm - cm);
 
-                if(intersect.x > Mathf.Min(start.x, end.x) && intersect.x < Mathf.Max(start.x, end.x))
+                if (pm == cm) continue;
+                else if (Mathf.Abs(end.x - start.x) < .001f)
+                {
+                    intersect.x = (end.x - start.x) / 2;
+                    intersect.y = cm * intersect.x + cc;
+                }
+                else
+                {
+                    intersect.x = (1 * cc - 1 * pc) / (pm * 1 - cm * 1);
+                    intersect.y = (pc * cm - cc * pm) / (pm - cm);
+                }
+
+                if(intersect.x >= Mathf.Min(start.x, end.x) && intersect.x <= Mathf.Max(start.x, end.x) &&
+                    intersect.y >= Mathf.Min(start.y, end.y) && intersect.y <= Mathf.Max(start.y, end.y))
                 {
                     foundIntesrection = true;
                     if (Vector2.Distance(start, intersect) < Vector2.Distance(start, outIntersect))
