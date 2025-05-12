@@ -20,16 +20,21 @@ public class LineColliderInspector : Editor
 
     private void OnSceneGUI()
     {
-        for(int i = 0; i < lineCollider.Length; i++)
+        Handles.color = Color.clear;
+        for (int i = 0; i < lineCollider.Length; i++)
         {
             Vector3 position = lineCollider.GetPointWorldSpace(i);
 
-            Handles.color = Color.clear;
+            EditorGUI.BeginChangeCheck();
             Vector3 newPosition = Handles.Slider2D(position, Vector3.forward, Vector3.right, Vector3.up, HandleUtility.GetHandleSize(position) * .1f, Handles.CircleHandleCap, 0);
 
-            if (position != newPosition)
+            if (EditorGUI.EndChangeCheck())
             {
-                lineCollider.SetPointWorldPosition(i, newPosition);
+                if (position != newPosition)
+                {
+                    Undo.RecordObject(lineCollider, "Move Line Collider Point");
+                    lineCollider.SetPointWorldPosition(i, newPosition);
+                }
             }
         }
     }
