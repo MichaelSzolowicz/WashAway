@@ -422,9 +422,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _points:
-  - {x: -2.4430583, y: 3.8015523}
-  - {x: 2.5823247, y: 3.0554998}
-  rotation: -6.24
+  - {x: 6.008162, y: -2.0991936}
+  rotation: 60.84
+  showLinesInEditor: 1
 --- !u!4 &1445160864
 Transform:
   m_ObjectHideFlags: 0

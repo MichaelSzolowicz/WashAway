@@ -10,6 +10,8 @@ public class LineCollider : MonoBehaviour
 
     [SerializeField] protected float rotation = 0;
 
+    [SerializeField] protected bool showLinesInEditor = true;
+
     public int Length
     {
         get
@@ -65,4 +67,23 @@ public class LineCollider : MonoBehaviour
         _points[index] = rotatedPoint;
     }
 
+#if UNITY_EDITOR
+    protected void OnDrawGizmos()
+    {
+        ShowLines();
+    }
+#endif
+
+    protected void ShowLines()
+    {
+        if (!showLinesInEditor && !Application.isPlaying) return;
+
+        for (int i = 0; i < Length; i++)
+        {
+            Vector3 position = GetPointWorldSpace(i);
+
+            Handles.color = Color.red;
+            Handles.DrawSolidDisc(position, -Vector3.forward, HandleUtility.GetHandleSize(position) * .1f);
+        }
+    }
 }
