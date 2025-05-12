@@ -78,12 +78,18 @@ public class LineCollider : MonoBehaviour
     {
         if (!showLinesInEditor && !Application.isPlaying) return;
 
+
+        Handles.color = Color.blue;
         for (int i = 0; i < Length; i++)
         {
             Vector3 position = GetPointWorldSpace(i);
 
-            Handles.color = Color.red;
             Handles.DrawSolidDisc(position, -Vector3.forward, HandleUtility.GetHandleSize(position) * .1f);
+        }
+
+        for (int p1 = 0, p2 = 1; p2 < Length; p1++, p2++)
+        {
+            Handles.DrawLine(GetPointWorldSpace(p1), GetPointWorldSpace(p2));
         }
     }
 }
