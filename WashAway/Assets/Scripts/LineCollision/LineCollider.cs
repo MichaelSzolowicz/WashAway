@@ -10,6 +10,8 @@ public class LineCollider : MonoBehaviour
 
     [SerializeField] protected float rotation = 0;
 
+    [SerializeField] protected float width = 0;
+
     [SerializeField] protected bool visibleInGame = true;
     [SerializeField] protected bool visibleInEditor = true;
 
@@ -26,6 +28,14 @@ public class LineCollider : MonoBehaviour
         get
         {
             return rotation;
+        }
+    }
+
+    public float Width
+    {
+        get
+        {
+            return width;
         }
     }
 
@@ -84,7 +94,7 @@ public class LineCollider : MonoBehaviour
 
         for (int p1 = 0, p2 = 1; p2 < Length; p1++, p2++)
         {
-            Handles.DrawLine(GetPointWorldSpace(p1), GetPointWorldSpace(p2));
+            Handles.DrawLine(GetPointWorldSpace(p1), GetPointWorldSpace(p2), width);
         }
     }
 }
