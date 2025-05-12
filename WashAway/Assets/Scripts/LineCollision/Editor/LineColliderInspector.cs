@@ -23,13 +23,17 @@ public class LineColliderInspector : Editor
         for(int i = 0; i < lineCollider.Length; i++)
         {
             Vector3 position = lineCollider.GetPointWorldSpace(i);
-            Vector3 newPosition = Handles.PositionHandle(position, lineCollider.transform.rotation);
 
-            if(newPosition != position)
+            Handles.color = Color.red;
+            Handles.DrawSolidDisc(position, -Vector3.forward, HandleUtility.GetHandleSize(position) * .1f);
+
+            Handles.color = Color.clear;
+            Vector3 newPosition = Handles.Slider2D(position, Vector3.forward, Vector3.right, Vector3.up, HandleUtility.GetHandleSize(position) * .1f, Handles.CircleHandleCap, 0);
+
+            if (position != newPosition)
             {
-                lineCollider.SetPointInWorldSpace(i, newPosition);
+                lineCollider.SetPointWorldPosition(i, newPosition);
             }
         }
-
     }
 }
