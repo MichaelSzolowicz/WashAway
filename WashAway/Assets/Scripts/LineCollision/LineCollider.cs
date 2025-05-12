@@ -11,10 +11,7 @@ public class LineCollider : MonoBehaviour
     [SerializeField] protected float rotation = 0;
 
     [SerializeField] protected bool visibleInGame = true;
-
-#if UNITY_EDITOR
     [SerializeField] protected bool visibleInEditor = true;
-#endif
 
     public int Length
     {
