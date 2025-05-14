@@ -61,45 +61,37 @@ public class LineColllisionScene : MonoBehaviour
 
     public bool IntersectLine(Vector3 start, Vector3 end, out Vector3 outIntersect)
     {
-        bool foundIntesrection = false;
+        bool result = false;
         outIntersect = Vector3.positiveInfinity;
+
+        if(start == end)
+        {
+            return false;
+        }
 
         foreach (var lineCollider in _lineColliders)
         {
             for (int i = 0, j = 1; j < lineCollider.Length; i++, j++)
             {
-                float pm = (end.y - start.y) / (end.x - start.x);
-                float pc = start.y - pm * start.x;
+                Vector2 colliderStart = lineCollider.GetPointWorldSpace(i);
+                Vector2 colliderEnd = lineCollider.GetPointWorldSpace(j);
 
-                Vector2 c0 = lineCollider.GetPointWorldSpace(i);
-                Vector2 c1 = lineCollider.GetPointWorldSpace(j);
+                Vector3 testIntersect = Vector3.zero;
+                bool validIntersection = LineIntersections.IntersectLineLine(start.x, end.x, colliderStart.x, colliderEnd.x, start.y, end.y, colliderStart.y, colliderEnd.y, out testIntersect);
 
-                float cm = (c1.y - c0.y) / (c1.x - c0.x);
-                float cc = c0.y - cm * c0.x;
-
-                Vector3 intersect = new Vector3();
-
-                //if (pm == cm) continue;
-
-                intersect.x = (pc - cc) / (cm - pm);
-                intersect.y = cm * ((pc - cc) / (cm - pm)) + cc;
-
-                if(intersect.x >= Mathf.Min(c0.x, c1.x) && intersect.x <= Mathf.Max(c0.x, c1.x) &&
-                    intersect.y >= Mathf.Min(c0.y, c1.y) && intersect.y <= Mathf.Max(c0.y, c1.y))
+                if(validIntersection)
                 {
-                    foundIntesrection = true;
-                    if (Vector2.Distance(start, intersect) < Vector2.Distance(start, outIntersect))
+                    result = true;
+
+                    if (Vector2.Distance(start, testIntersect) < Vector2.Distance(start, outIntersect))
                     {
-                        outIntersect = intersect;
+                        outIntersect = testIntersect;
                     }
                 }
-
-                Debug.DrawLine(start, end + (end - start).normalized * 1, Color.green);
-                Debug.DrawLine(c0, c1, Color.red);
-                Debug.DrawLine(intersect, intersect + (end - start).normalized);
             }
         }
 
-        return foundIntesrection;
+        return result;
     }
 }
+
