@@ -60,11 +60,11 @@ public class PlayerMovement : MonoBehaviour
         _velocity.x = horizontalSpeed * horizontalDirection;
 
         Vector3 intersection = Vector3.zero;
-        bool foundIntersect = LineColllisionScene.Instance.IntersectLine(transform.position, transform.position + _velocity * deltaTime + _velocity.normalized * .1f, out intersection);
+        bool foundIntersect = LineColllisionScene.Instance.IntersectLine(transform.position - _velocity.normalized * SMALL_NUMBER, transform.position + _velocity * deltaTime, out intersection);
 
         if (foundIntersect)
         {
-            transform.position = intersection - _velocity.normalized * .1f;
+            transform.position = intersection;
             _velocity = Vector3.zero;
         }
         else

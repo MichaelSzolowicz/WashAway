@@ -344,7 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxWalkSpeed: 10
   accelerationScale: 10
-  gravityScale: 0
+  gravityScale: 0.05
   brakingScale: 10
 --- !u!4 &792674244
 Transform:
