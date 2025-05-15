@@ -59,10 +59,39 @@ public class LineColllisionScene : MonoBehaviour
         _lineColliders.Add(lineCollider);
     }
 
-    public bool IntersectLine(Vector3 start, Vector3 end, out Vector3 intersection)
+    public bool IntersectLine(Vector3 start, Vector3 end, out Vector3 outIntersect)
     {
-        intersection = Vector3.positiveInfinity;
+        bool result = false;
+        outIntersect = Vector3.positiveInfinity;
 
-        return false;
+        if(start == end)
+        {
+            return false;
+        }
+
+        foreach (var lineCollider in _lineColliders)
+        {
+            for (int i = 0, j = 1; j < lineCollider.Length; i++, j++)
+            {
+                Vector2 colliderStart = lineCollider.GetPointWorldSpace(i);
+                Vector2 colliderEnd = lineCollider.GetPointWorldSpace(j);
+
+                Vector3 testIntersect = Vector3.zero;
+                bool validIntersection = LineIntersections.IntersectLineLine(start.x, end.x, colliderStart.x, colliderEnd.x, start.y, end.y, colliderStart.y, colliderEnd.y, out testIntersect);
+
+                if(validIntersection)
+                {
+                    result = true;
+
+                    if (Vector2.Distance(start, testIntersect) < Vector2.Distance(start, outIntersect))
+                    {
+                        outIntersect = testIntersect;
+                    }
+                }
+            }
+        }
+
+        return result;
     }
 }
+
