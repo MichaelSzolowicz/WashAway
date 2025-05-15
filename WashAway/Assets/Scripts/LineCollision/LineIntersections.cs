@@ -5,10 +5,8 @@ using UnityEngine;
 
 public static class LineIntersections
 {
-    public static bool IntersectLineLine(float x0, float x1, float x2, float x3, float y0, float y1, float y2, float y3, out Vector3 intersect)
+    public static bool IntersectLineLine(float x0, float x1, float x2, float x3, float y0, float y1, float y2, float y3, out Vector3 intersectPosition)
     {
-        intersect = Vector3.positiveInfinity;
-
         float m = (y1 - y0) / (x1 - x0);
         float c = y0 - (m * x0);
 
@@ -33,14 +31,16 @@ public static class LineIntersections
             testIntersect.y >= Mathf.Min(y0, y1) && testIntersect.y <= Mathf.Max(y0, y1) &&
             testIntersect.y >= Mathf.Min(y2, y3) && testIntersect.y <= Mathf.Max(y2, y3))
         {
-            intersect = testIntersect;
+            intersectPosition = testIntersect;
 
-            DrawDebugIntersect(x0, x1, x2, x3, m, n, c, b, intersect, true);
+            //DrawDebugIntersect(x0, x1, x2, x3, m, n, c, b, testIntersect, true);
 
             return true;
         }
 
-        DrawDebugIntersect(x0, x1, x2, x3, m, n , c, b, testIntersect, false);
+        intersectPosition = Vector3.positiveInfinity;
+
+        //DrawDebugIntersect(x0, x1, x2, x3, m, n , c, b, testIntersect, false);
 
         return false;
     }
