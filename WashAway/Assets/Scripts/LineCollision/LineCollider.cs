@@ -61,7 +61,7 @@ public class LineCollider : MonoBehaviour
 
     private void Start()
     {
-        LineColllisionScene.Instance.RegisterLineCollider(this);
+        LineCollisionScene.Instance.RegisterLineCollider(this);
     }
 
     public Vector3 GetPointWorldSpace(int index)
@@ -100,7 +100,7 @@ public class LineCollider : MonoBehaviour
 
     protected void OnDestroy()
     {
-        LineColllisionScene.Instance.RemoveLineCollider(this);
+        LineCollisionScene.Instance.RemoveLineCollider(this);
     }
 
     protected void OnDrawGizmos()
