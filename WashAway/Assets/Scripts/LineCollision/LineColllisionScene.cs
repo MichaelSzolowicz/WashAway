@@ -59,10 +59,10 @@ public class LineColllisionScene : MonoBehaviour
         _lineColliders.Add(lineCollider);
     }
 
-    public bool IntersectLine(Vector3 start, Vector3 end, out Vector3 outIntersect)
+    public bool IntersectLine(Vector3 start, Vector3 end, out LineIntersectionResult lineIntersectionResult)
     {
         bool result = false;
-        outIntersect = Vector3.positiveInfinity;
+        lineIntersectionResult = LineIntersectionResult.GetEmpty();
 
         if(start == end)
         {
@@ -83,9 +83,12 @@ public class LineColllisionScene : MonoBehaviour
                 {
                     result = true;
 
-                    if (Vector2.Distance(start, testIntersect) < Vector2.Distance(start, outIntersect))
+                    if (Vector2.Distance(start, testIntersect) < Vector2.Distance(start, lineIntersectionResult.intersectPosition))
                     {
-                        outIntersect = testIntersect;
+                        lineIntersectionResult.intersectPosition = testIntersect;
+                        lineIntersectionResult.intersectDistance = Vector2.Distance(start, testIntersect) / Vector2.Distance(start, end);
+                        lineIntersectionResult.surfaceNormal = (Quaternion.Euler(0, 0, 90) * (colliderStart - colliderEnd)).normalized;
+                        lineIntersectionResult.validIntersection = result;
                     }
                 }
             }

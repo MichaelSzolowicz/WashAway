@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
         Move(Time.deltaTime);
     }
 
+    LineIntersectionResult intersectionResult = new LineIntersectionResult();
     protected void Move(float deltaTime)
     {
         _velocity += ACCELERATION_DUE_TO_GRAVITY * Vector3.down * gravityScale * deltaTime;
@@ -59,12 +60,11 @@ public class PlayerMovement : MonoBehaviour
 
         _velocity.x = horizontalSpeed * horizontalDirection;
 
-        Vector3 intersection = Vector3.zero;
-        bool foundIntersect = LineColllisionScene.Instance.IntersectLine(transform.position - _velocity.normalized * SMALL_NUMBER, transform.position + _velocity * deltaTime, out intersection);
+        bool foundIntersect = LineColllisionScene.Instance.IntersectLine(transform.position - _velocity.normalized * SMALL_NUMBER, transform.position + _velocity * deltaTime, out intersectionResult);
 
         if (foundIntersect)
         {
-            transform.position = intersection;
+            transform.position = intersectionResult.intersectPosition;
             _velocity = Vector3.zero;
         }
         else
@@ -76,5 +76,16 @@ public class PlayerMovement : MonoBehaviour
     protected void CollisionTest(Vector3 deltaPos)
     {
 
+    }
+
+    public void OnDrawGizmos()
+    {
+        if (!intersectionResult.validIntersection) return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(intersectionResult.intersectPosition, .1f);
+
+        Gizmos.color = Color.white;
+        Gizmos.DrawLine(intersectionResult.intersectPosition, intersectionResult.intersectPosition + intersectionResult.surfaceNormal);
     }
 }
