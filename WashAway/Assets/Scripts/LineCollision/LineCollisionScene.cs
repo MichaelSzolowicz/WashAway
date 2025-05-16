@@ -20,7 +20,6 @@ public class LineCollisionScene : MonoBehaviour
                 }
 
                 GameObject go = new GameObject();
-                go = Instantiate(go);
                 go.name = "LineCollisionScene";
                 _instance = go.AddComponent<LineCollisionScene>();
             }
@@ -105,6 +104,11 @@ public class LineCollisionScene : MonoBehaviour
         }
 
         return result;
+    }
+
+    public void ShowCount()
+    {
+        Debug.Log(_lineColliders.Count);
     }
 }
 
