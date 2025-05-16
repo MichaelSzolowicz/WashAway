@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 [ExecuteInEditMode]
@@ -59,9 +60,10 @@ public class LineCollider : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        LineCollisionScene.Instance.RegisterLineCollider(this);
+        if(Application.isPlaying)
+            LineCollisionScene.Instance.RegisterLineCollider(this);
     }
 
     public Vector3 GetPointWorldSpace(int index)
@@ -98,9 +100,10 @@ public class LineCollider : MonoBehaviour
         _points[index] = rotatedPoint;
     }
 
-    protected void OnDestroy()
+    protected void OnDisable()
     {
-        LineCollisionScene.Instance.RemoveLineCollider(this);
+        if (Application.isPlaying && gameObject.scene.isLoaded)
+            LineCollisionScene.Instance.RemoveLineCollider(this);
     }
 
     protected void OnDrawGizmos()
@@ -123,4 +126,13 @@ public class LineCollider : MonoBehaviour
             Handles.DrawLine(GetPointWorldSpace(p1), GetPointWorldSpace(p2), lineWidth);
         }
     }
+
+    /*
+    public void Update()
+    {
+        if(Application.isPlaying)
+            LineCollisionScene.Instance.ShowCount();
+    }
+    */
 }
+
