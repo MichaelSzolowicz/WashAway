@@ -100,7 +100,7 @@ public class LineCollider : MonoBehaviour
 
     protected void OnDestroy()
     {
-        
+        LineColllisionScene.Instance.RemoveLineCollider(this);
     }
 
     protected void OnDrawGizmos()
