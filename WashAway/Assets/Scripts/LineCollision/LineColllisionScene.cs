@@ -59,6 +59,14 @@ public class LineColllisionScene : MonoBehaviour
         _lineColliders.Add(lineCollider);
     }
 
+    public void RemoveLineCollider(LineCollider lineCollider)
+    {
+        if(!_lineColliders.Contains(lineCollider))
+            return ;
+
+        _lineColliders.Remove(lineCollider);    
+    }
+
     public bool IntersectLine(Vector3 start, Vector3 end, out LineIntersectionResult lineIntersectionResult)
     {
         bool result = false;
@@ -71,6 +79,8 @@ public class LineColllisionScene : MonoBehaviour
 
         foreach (var lineCollider in _lineColliders)
         {
+            if(!lineCollider || !lineCollider.gameObject || !lineCollider.gameObject.activeInHierarchy) continue;
+
             for (int i = 0, j = 1; j < lineCollider.Length; i++, j++)
             {
                 Vector2 colliderStart = lineCollider.GetPointWorldSpace(i);
