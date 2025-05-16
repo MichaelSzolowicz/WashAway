@@ -11,6 +11,7 @@ public class LineColliderInspector : Editor
     private void OnEnable()
     {
         lineCollider = (LineCollider)target;
+        lineCollider.IsSelected = true;
     }
 
     public override void OnInspectorGUI()
@@ -37,5 +38,10 @@ public class LineColliderInspector : Editor
                 }
             }
         }
+    }
+
+    private void OnDisable()
+    {
+        lineCollider.IsSelected = false;
     }
 }
