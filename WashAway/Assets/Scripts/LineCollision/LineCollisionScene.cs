@@ -2,30 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LineColllisionScene : MonoBehaviour
+public class LineCollisionScene : MonoBehaviour
 {
-    private static LineColllisionScene _instance;
+    private static LineCollisionScene _instance;
 
-    public static LineColllisionScene Instance
+    public static LineCollisionScene Instance
     {
-        get 
-        { 
+        get
+        {
             if (_instance == null)
             {
-                _instance = FindAnyObjectByType<LineColllisionScene>();
+                _instance = FindAnyObjectByType<LineCollisionScene>();
 
-                if (_instance != null )
-                { 
+                if (_instance != null)
+                {
                     return _instance;
                 }
 
                 GameObject go = new GameObject();
                 go = Instantiate(go);
                 go.name = "LineCollisionScene";
-                _instance = go.AddComponent<LineColllisionScene>();
+                _instance = go.AddComponent<LineCollisionScene>();
             }
 
-            return _instance; 
+            return _instance;
         }
     }
 
@@ -43,7 +43,7 @@ public class LineColllisionScene : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(_instance != null)
+        if (_instance != null)
         {
             _instance = null;
         }
@@ -61,10 +61,10 @@ public class LineColllisionScene : MonoBehaviour
 
     public void RemoveLineCollider(LineCollider lineCollider)
     {
-        if(!_lineColliders.Contains(lineCollider))
-            return ;
+        if (!_lineColliders.Contains(lineCollider))
+            return;
 
-        _lineColliders.Remove(lineCollider);    
+        _lineColliders.Remove(lineCollider);
     }
 
     public bool IntersectLine(Vector3 start, Vector3 end, out LineIntersectionResult lineIntersectionResult)
@@ -72,14 +72,14 @@ public class LineColllisionScene : MonoBehaviour
         bool result = false;
         lineIntersectionResult = LineIntersectionResult.GetEmpty();
 
-        if(start == end)
+        if (start == end)
         {
             return false;
         }
 
         foreach (var lineCollider in _lineColliders)
         {
-            if(!lineCollider || !lineCollider.gameObject || !lineCollider.gameObject.activeInHierarchy) continue;
+            if (!lineCollider || !lineCollider.gameObject || !lineCollider.gameObject.activeInHierarchy) continue;
 
             for (int i = 0, j = 1; j < lineCollider.Length; i++, j++)
             {
@@ -89,7 +89,7 @@ public class LineColllisionScene : MonoBehaviour
                 Vector3 testIntersect = Vector3.zero;
                 bool validIntersection = LineIntersections.IntersectLineLine(start.x, end.x, colliderStart.x, colliderEnd.x, start.y, end.y, colliderStart.y, colliderEnd.y, out testIntersect);
 
-                if(validIntersection)
+                if (validIntersection)
                 {
                     result = true;
 

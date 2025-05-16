@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
         _velocity.x = horizontalSpeed * horizontalDirection;
 
-        bool foundIntersect = LineColllisionScene.Instance.IntersectLine(transform.position - _velocity.normalized * SMALL_NUMBER, transform.position + _velocity * deltaTime, out intersectionResult);
+        bool foundIntersect = LineCollisionScene.Instance.IntersectLine(transform.position - _velocity.normalized * SMALL_NUMBER, transform.position + _velocity * deltaTime, out intersectionResult);
 
         if (foundIntersect)
         {
