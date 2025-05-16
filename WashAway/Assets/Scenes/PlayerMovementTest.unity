@@ -361,7 +361,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1057658389
+--- !u!1 &1241358140
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -369,24 +369,54 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1057658390}
+  - component: {fileID: 1241358142}
+  - component: {fileID: 1241358141}
   m_Layer: 0
-  m_Name: New Game Object
+  m_Name: LineCollider (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1057658390
+--- !u!114 &1241358141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241358140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc21d90a573c774e9434d1c449402aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _points:
+  - {x: -5.064641, y: 0.15583515}
+  - {x: -2.480259, y: -1.7010834}
+  - {x: 0.02574277, y: -1.1593666}
+  - {x: 2.001413, y: 2.4660478}
+  - {x: 6.710734, y: 4.1093016}
+  - {x: 5.802701, y: 1.8359294}
+  - {x: 8.545532, y: 1.3743877}
+  - {x: 12.496874, y: 3.5412526}
+  rotation: 0
+  width: -0.04
+  visibleInGame: 1
+  visibleInEditor: 1
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.8000001, b: 0, a: 1}
+  pointSize: 2.17
+  lineWidth: 1
+--- !u!4 &1241358142
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1057658389}
+  m_GameObject: {fileID: 1241358140}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3.6, y: 5.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -427,12 +457,16 @@ MonoBehaviour:
   - {x: 2.0014133, y: -1.701083}
   - {x: 2.001413, y: 2.4660478}
   - {x: 6.710734, y: 4.1093016}
-  - {x: 8.771327, y: 0.7537082}
-  - {x: 0.5358643, y: -4.0808897}
+  - {x: 7.395984, y: 0.49757147}
+  - {x: 1.0571023, y: -3.8834457}
   rotation: 0
-  width: 0
+  width: -0.04
   visibleInGame: 1
   visibleInEditor: 1
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.8000001, b: 0, a: 1}
+  pointSize: 2.17
+  lineWidth: 1
 --- !u!4 &1445160864
 Transform:
   m_ObjectHideFlags: 0
@@ -566,50 +600,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!1 &2097166886
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2097166888}
-  - component: {fileID: 2097166887}
-  m_Layer: 0
-  m_Name: LineCollisionScene
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2097166887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097166886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66255a4193fddaa4ca4c17a0f897de39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &2097166888
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097166886}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -618,5 +608,4 @@ SceneRoots:
   - {fileID: 1456676422}
   - {fileID: 792674244}
   - {fileID: 1445160864}
-  - {fileID: 1057658390}
-  - {fileID: 2097166888}
+  - {fileID: 1241358142}
