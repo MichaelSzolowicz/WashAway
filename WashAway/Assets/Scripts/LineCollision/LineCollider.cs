@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 [ExecuteInEditMode]
 public class LineCollider : MonoBehaviour
 {
-    [SerializeField] protected List<Vector2> _points = new List<Vector2>();
+    [SerializeField] protected List<LinePoint> _points = new List<LinePoint>();
 
     [SerializeField] protected float rotation = 0;
 
@@ -97,7 +97,7 @@ public class LineCollider : MonoBehaviour
         rotatedPoint.x = (localPosition.x * Mathf.Cos(-rotation) - localPosition.y * Mathf.Sin(-rotation));
         rotatedPoint.y = (localPosition.y * Mathf.Cos(-rotation) + localPosition.x * Mathf.Sin(-rotation));
 
-        _points[index] = rotatedPoint;
+        _points[index].Position = rotatedPoint;
     }
 
     protected void OnDisable()
