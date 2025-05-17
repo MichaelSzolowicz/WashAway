@@ -344,8 +344,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxWalkSpeed: 10
   accelerationScale: 10
-  gravityScale: 0.05
+  gravityScale: 0.07
   brakingScale: 10
+  maxWalkableSlope: 67.4
 --- !u!4 &792674244
 Transform:
   m_ObjectHideFlags: 0
@@ -355,7 +356,7 @@ Transform:
   m_GameObject: {fileID: 792674241}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.36, y: 1.13, z: 0}
+  m_LocalPosition: {x: -0.47, y: -0.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -455,10 +456,10 @@ MonoBehaviour:
   - {x: -5.064641, y: 0.15583515}
   - {x: -2.480259, y: -1.7010834}
   - {x: 2.0014133, y: -1.701083}
-  - {x: 2.001413, y: 2.4660478}
-  - {x: 6.710734, y: 4.1093016}
-  - {x: 7.395984, y: 0.49757147}
-  - {x: 1.0571023, y: -3.8834457}
+  - {x: 2.9491096, y: -1.1018186}
+  - {x: 3.589982, y: -0.14446163}
+  - {x: 3.9373164, y: 0.5770811}
+  - {x: 6.1042786, y: 0.5582731}
   rotation: 0
   width: -0.04
   visibleInGame: 1
