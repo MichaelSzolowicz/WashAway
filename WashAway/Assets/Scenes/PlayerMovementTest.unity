@@ -346,6 +346,7 @@ MonoBehaviour:
   accelerationScale: 10
   gravityScale: 0.05
   brakingScale: 10
+  maxWalkableSlope: 67.4
 --- !u!4 &792674244
 Transform:
   m_ObjectHideFlags: 0
@@ -355,7 +356,7 @@ Transform:
   m_GameObject: {fileID: 792674241}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.36, y: 1.13, z: 0}
+  m_LocalPosition: {x: -0.37, y: 1.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -455,7 +456,7 @@ MonoBehaviour:
   - {x: -5.064641, y: 0.15583515}
   - {x: -2.480259, y: -1.7010834}
   - {x: 2.0014133, y: -1.701083}
-  - {x: 2.001413, y: 2.4660478}
+  - {x: 2.631071, y: 2.0785656}
   - {x: 6.710734, y: 4.1093016}
   - {x: 7.395984, y: 0.49757147}
   - {x: 1.0571023, y: -3.8834457}

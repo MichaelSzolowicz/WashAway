@@ -7,6 +7,8 @@ public static class LineIntersections
 {
     public static bool IntersectLineLine(float x0, float x1, float x2, float x3, float y0, float y1, float y2, float y3, out Vector3 intersectPosition)
     {
+        intersectPosition = Vector3.positiveInfinity;
+
         float m = (y1 - y0) / (x1 - x0);
         float c = y0 - (m * x0);
 
@@ -15,6 +17,10 @@ public static class LineIntersections
 
         Vector3 testIntersect = Vector3.zero;
 
+        if(Mathf.Abs(m - n) <= .001f)
+        {
+            return false;
+        }
         if (Mathf.Abs(x1 - x0) <= .001f)
         {
             testIntersect.x = x0 + (x1 - x0) / 2;
@@ -37,8 +43,6 @@ public static class LineIntersections
 
             return true;
         }
-
-        intersectPosition = Vector3.positiveInfinity;
 
         //DrawDebugIntersect(x0, x1, x2, x3, m, n , c, b, testIntersect, false);
 
