@@ -109,6 +109,16 @@ public class LineCollider : MonoBehaviour
         }
     }
 
+    public LinePoint GetLinePointInternal(int index)
+    {
+        if (index < 0 || index >= _points.Count)
+        {
+            throw new IndexOutOfRangeException("Index out of range.");
+        }
+
+        return _points[index];
+    }
+
     protected void OnDisable()
     {
         if (Application.isPlaying && gameObject.scene.isLoaded)
