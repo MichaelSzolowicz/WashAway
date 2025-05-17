@@ -27,7 +27,10 @@ public class PlayerMovement : MonoBehaviour
     protected void Move(float deltaTime)
     {
         LineIntersectionResult groundIntersection = LineIntersectionResult.GetEmpty();
-        grounded = CheckGrounded(out groundIntersection);
+        if (grounded)
+        {
+            grounded = CheckGrounded(out groundIntersection);
+        }
 
         if(!grounded)
             _verticalVelocity -= ACCELERATION_DUE_TO_GRAVITY * gravityScale * deltaTime;
@@ -65,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
         Debug.DrawLine(transform.position, transform.position + velocity.normalized, Color.magenta);
 
-        bool foundIntersect = LineCollisionScene.Instance.IntersectLine(transform.position - velocity.normalized * SMALL_NUMBER, transform.position + velocity * deltaTime, out intersectionResult);
+        bool foundIntersect = LineCollisionScene.Instance.IntersectLine(transform.position, transform.position + velocity * deltaTime, out intersectionResult);
 
         if (foundIntersect)
         {
@@ -102,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
 
     protected bool CheckGrounded(out LineIntersectionResult intersectionResult)
     {
-        bool validIntersection = LineCollisionScene.Instance.IntersectLine(transform.position + Vector3.up * SMALL_NUMBER, transform.position + Vector3.down * SMALL_NUMBER, out intersectionResult);
+        bool validIntersection = LineCollisionScene.Instance.IntersectLine(transform.position + Vector3.up * .1f, transform.position + Vector3.down * .1f, out intersectionResult);
 
         if (!validIntersection) return false;
 
@@ -110,7 +113,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (Vector2.Angle(Vector3.up, intersectionResult.surfaceNormal) > maxWalkableSlope) return false;
 
-        return true;
+        //if (Vector2.Dot((_walkVelocity + _verticalVelocity * Vector2.up).normalized, intersectionResult.surfaceNormal) > 0) return false;
+
+         return true;
     }
 
     protected void OnDrawGizmos()
