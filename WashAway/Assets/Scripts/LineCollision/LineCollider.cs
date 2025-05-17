@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 public class LineCollider : MonoBehaviour
 {
     [SerializeField] protected List<LinePoint> _points = new List<LinePoint>();
+    protected int length = 0;
 
     [SerializeField] protected float rotation = 0;
 
@@ -62,7 +63,8 @@ public class LineCollider : MonoBehaviour
 
     private void OnEnable()
     {
-        if(Application.isPlaying)
+        SantizePoints();
+        if (Application.isPlaying)
             LineCollisionScene.Instance.RegisterLineCollider(this);
     }
 
@@ -98,6 +100,13 @@ public class LineCollider : MonoBehaviour
         rotatedPoint.y = (localPosition.y * Mathf.Cos(-rotation) + localPosition.x * Mathf.Sin(-rotation));
 
         _points[index].Position = rotatedPoint;
+
+
+        FaceNormalUp(_points[index]);
+        if(index - 1 > 0)
+        {
+            FaceNormalUp(_points[index - 1]);
+        }
     }
 
     protected void OnDisable()
@@ -123,7 +132,59 @@ public class LineCollider : MonoBehaviour
 
         for (int p1 = 0, p2 = 1; p2 < Length; p1++, p2++)
         {
-            Handles.DrawLine(GetPointWorldSpace(p1), GetPointWorldSpace(p2), lineWidth);
+            Vector3 lineStart = GetPointWorldSpace(p1);
+            Vector3 lineEnd = GetPointWorldSpace(p2);
+
+            Handles.DrawLine(lineStart, lineEnd, lineWidth);
+        }
+
+        Handles.color = Color.white;
+        for (int p1 = 0, p2 = 1; p2 < Length; p1++, p2++)
+        {
+            Vector3 lineStart = GetPointWorldSpace(p1);
+            Vector3 lineEnd = GetPointWorldSpace(p2);
+
+            Vector3 normalStart = (lineStart + lineEnd) / 2;
+            Handles.DrawLine(normalStart, normalStart + _points[p1].Normal);
+        }
+    }
+
+    protected void OnValidate()
+    {
+        SantizePoints();
+    }
+
+    protected void SantizePoints()
+    {
+        if (_points.Count == 1)
+        {
+            LinePoint point1 = _points[0];
+            LinePoint point2 = new LinePoint();
+            _points.Add(point2);
+        }
+
+        for (int i = 0, j = 1; j < _points.Count; i++, j++)
+        {
+            LinePoint p1 = _points[i];
+            LinePoint p2 = _points[j];
+
+            p1.Next = p2;
+
+            FaceNormalUp(p1);
+        }
+
+        length = _points.Count;
+    }
+
+    protected void FaceNormalUp(LinePoint point)
+    {
+        if (Vector2.Dot(point.GetNormalUnflipped(), Vector2.up) < 0)
+        {
+            point.FlipNormal = true;
+        }
+        else
+        {
+            point.FlipNormal = false;
         }
     }
 
@@ -135,4 +196,3 @@ public class LineCollider : MonoBehaviour
     }
     */
 }
-
