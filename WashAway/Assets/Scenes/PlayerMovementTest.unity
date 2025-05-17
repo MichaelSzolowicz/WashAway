@@ -392,8 +392,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _points:
-  - _position: {x: -1.77, y: 0}
-  - _position: {x: 2.0590525, y: 0.92486656}
+  - _position: {x: -1.8887119, y: -0.3345261}
+  - _position: {x: -0.26001823, y: -0.7379255}
+  - _position: {x: 2.0954738, y: 0.6887305}
+  - _position: {x: 3.2042043, y: 0.5862971}
+  - _position: {x: 4.046448, y: -0.10586795}
+  - _position: {x: 6.3094206, y: -0.036994815}
+  - _position: {x: 5.296003, y: -1.2078364}
+  - _position: {x: 3.8103127, y: -1.9064059}
+  - _position: {x: 1.9605794, y: -1.7194645}
   rotation: 0
   width: 0
   visibleInGame: 1
