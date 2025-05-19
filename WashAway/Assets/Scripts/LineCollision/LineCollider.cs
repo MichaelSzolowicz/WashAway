@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 public class LineCollider : MonoBehaviour
 {
     [SerializeField] protected List<LinePoint> _points = new List<LinePoint>();
-    protected int length = 0;
+    [HideInInspector] [SerializeField] protected int length = 0;
 
     [SerializeField] protected float rotation = 0;
 
@@ -25,7 +25,7 @@ public class LineCollider : MonoBehaviour
 
     protected bool isSelected = false;
 
-    private Vector3 previousPosition = Vector3.zero;
+    [HideInInspector] [SerializeField] private Vector3 previousPosition = Vector3.zero;
 
     public int Length
     {
@@ -65,10 +65,6 @@ public class LineCollider : MonoBehaviour
 
     private void OnEnable()
     {
-        previousPosition = transform.position;
-
-        SantizePoints();
-
         if (Application.isPlaying)
             LineCollisionScene.Instance.RegisterLineCollider(this);
     }
@@ -92,9 +88,9 @@ public class LineCollider : MonoBehaviour
 
         _points[index].Position = worldPosition;
 
-        FaceNormalUp(_points[index]);
+        SetNormal(index);
         if (index - 1 >= 0)
-            FaceNormalUp(_points[index - 1]);
+            SetNormal(index - 1);
     }
 
     protected void OnDisable()
@@ -139,7 +135,8 @@ public class LineCollider : MonoBehaviour
 
     protected void OnValidate()
     {
-        SantizePoints();
+        //if(!Application.isPlaying)
+            SantizePoints();
     }
 
     protected void SantizePoints()
@@ -148,27 +145,50 @@ public class LineCollider : MonoBehaviour
         {
             LinePoint point1 = _points[0];
             LinePoint point2 = new LinePoint();
+            point2.Position = point1.Position + Vector2.right;
+            SetNormal(0);
             _points.Add(point2);
         }
 
-        for (int i = 0, j = 1; j < _points.Count; i++, j++)
+        for (int p0 = length - 2, p1 = length - 1, p2 = length; p2 < _points.Count; p0++, p1++, p2++)
         {
-            LinePoint p1 = _points[i];
-            LinePoint p2 = _points[j];
+            if(p1 < 0) continue;
 
-            p1.Next = p2;
+            Vector2 deltaPosition = Vector2.zero;
 
-            FaceNormalUp(p1);
+            if (p0 >= 0)
+            {
+                deltaPosition = (_points[p1].Position - _points[p0].Position).normalized;
+            }
+
+            if (deltaPosition.magnitude <= .1f)
+                deltaPosition = Vector2.right;
+
+            _points[p2].Position = _points[p1].Position + deltaPosition;
+            SetNormal(p1);
         }
 
         length = _points.Count;
     }
 
-    protected void FaceNormalUp(LinePoint point)
+    protected void SetNormal(int index)
     {
-        if (Vector2.Dot(point.Normal, Vector2.up) < 0)
+        LinePoint p1 = _points[index];
+
+        if (index + 1 < _points.Count)
         {
-            point.FlipNormal();
+            LinePoint p2 = _points[index + 1];
+
+            p1.Normal = Quaternion.Euler(0, 0, 90) * (p2.Position - p1.Position).normalized;
+        }
+        else
+        {
+            p1.Normal = Vector3.up;
+        }
+
+        if (Vector2.Dot(p1.Normal, Vector2.up) < 0)
+        {
+            p1.Normal = -1 * p1.Normal;
         }
     }
 
@@ -191,3 +211,4 @@ public class LineCollider : MonoBehaviour
         previousPosition = transform.position;
     }
 }
+
