@@ -25,6 +25,8 @@ public class LineCollider : MonoBehaviour
 
     protected bool isSelected = false;
 
+    private Vector3 previousPosition = Vector3.zero;
+
     public int Length
     {
         get
@@ -63,7 +65,10 @@ public class LineCollider : MonoBehaviour
 
     private void OnEnable()
     {
+        previousPosition = transform.position;
+
         SantizePoints();
+
         if (Application.isPlaying)
             LineCollisionScene.Instance.RegisterLineCollider(this);
     }
@@ -87,7 +92,9 @@ public class LineCollider : MonoBehaviour
 
         _points[index].Position = worldPosition;
 
-        SantizePoints();
+        FaceNormalUp(_points[index]);
+        if (index - 1 >= 0)
+            FaceNormalUp(_points[index - 1]);
     }
 
     protected void OnDisable()
@@ -164,8 +171,6 @@ public class LineCollider : MonoBehaviour
             point.FlipNormal();
         }
     }
-
-    private Vector3 previousPosition = Vector3.zero;
 
     public void Update()
     {
