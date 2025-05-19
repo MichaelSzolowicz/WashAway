@@ -82,8 +82,8 @@ public class LineCollisionScene : MonoBehaviour
 
             for (int i = 0, j = 1; j < lineCollider.Length; i++, j++)
             {
-                Vector2 colliderStart = lineCollider.GetPointWorldSpace(i);
-                Vector2 colliderEnd = lineCollider.GetPointWorldSpace(j);
+                LinePoint colliderStart = lineCollider.GetPoint(i);
+                LinePoint colliderEnd = lineCollider.GetPoint(j);
 
                 Vector3 testIntersect = Vector3.zero;
                 bool validIntersection = LineIntersections.IntersectLineLine(start.x, end.x, colliderStart.x, colliderEnd.x, start.y, end.y, colliderStart.y, colliderEnd.y, out testIntersect);
@@ -96,7 +96,7 @@ public class LineCollisionScene : MonoBehaviour
                     {
                         lineIntersectionResult.intersectPosition = testIntersect;
                         lineIntersectionResult.intersectDistance = Vector2.Distance(start, testIntersect) / Vector2.Distance(start, end);
-                        lineIntersectionResult.surfaceNormal = lineCollider.GetLinePointInternal(i).Normal;
+                        lineIntersectionResult.surfaceNormal = colliderStart.Normal;
                         lineIntersectionResult.validIntersection = result;
                     }
                 }

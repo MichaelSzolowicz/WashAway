@@ -61,15 +61,8 @@ public class LinePoint
         }
     }
 
-    public bool FlipNormal
-        { get { return _flipNormal; } set { _flipNormal = value; } }
-
-    public Vector3 GetNormalUnflipped()
+    public void FlipNormal()
     {
-        if (_next == null)
-        {
-            return Vector3.zero;
-        }
-        return Quaternion.Euler(0, 0, -90) * (_next.Position - _position).normalized;
+        _flipNormal = !_flipNormal;
     }
 }
