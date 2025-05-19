@@ -1,21 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 [System.Serializable]
 public class LinePoint
 {
-    private LinePoint _next;
-
     [SerializeField] private Vector2 _position;
-    private bool _flipNormal;
-
-    public LinePoint Next
-    {
-
-        get { return _next; }
-        set { _next = value; }
-    }
+    
+    [HideInInspector] [SerializeField] private Vector2 _normal = Vector2.up;
 
     public Vector2 Position
     {
@@ -51,18 +44,11 @@ public class LinePoint
     {
         get
         {
-            if(_next == null)
-            {
-                return Vector3.zero;
-            }
-
-            int direction = _flipNormal ? -1 : 1;
-            return Quaternion.Euler(0, 0, -90 * direction) * (_next.Position - _position).normalized; 
+            return _normal;
         }
-    }
-
-    public void FlipNormal()
-    {
-        _flipNormal = !_flipNormal;
+        set
+        {
+            _normal = value;
+        }
     }
 }
