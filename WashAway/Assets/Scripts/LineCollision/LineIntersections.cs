@@ -39,12 +39,12 @@ public static class LineIntersections
         {
             intersectPosition = testIntersect;
 
-            DrawDebugIntersect(x0, x1, x2, x3, m, n, c, b, testIntersect, true);
+            //DrawDebugIntersect(x0, x1, x2, x3, m, n, c, b, testIntersect, true);
 
             return true;
         }
 
-        DrawDebugIntersect(x0, x1, x2, x3, m, n , c, b, testIntersect, false);
+        //DrawDebugIntersect(x0, x1, x2, x3, m, n , c, b, testIntersect, false);
 
         return false;
     }
