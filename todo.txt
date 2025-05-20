@@ -1,1 +1,1 @@
-1. Standarize use of Line Point in line collider and line collision scene. 2. Adjust collision algorithm to account for the same line overlapping itself (IE sweep / collide and slide).
+2. Adjust collision algorithm to account for the same line overlapping itself (IE sweep / collide and slide).
