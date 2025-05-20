@@ -16,9 +16,6 @@ public class PlayerMovement : MonoBehaviour
     protected float _verticalVelocity;
     protected Vector2 _walkVelocity;
 
-    protected LineIntersectionResult groundIntersection = new LineIntersectionResult();
-    protected bool grounded = false;
-
     protected void Start()
     {
         Application.targetFrameRate = 0;
@@ -29,16 +26,14 @@ public class PlayerMovement : MonoBehaviour
         Move2(Time.deltaTime);
     }
 
+    protected LineIntersectionResult intersection = LineIntersectionResult.GetEmpty();
+
     protected void Move2(float deltaTime)
     {
-        if(!CheckGrounded())
-        {
-            _verticalVelocity -= ACCELERATION_DUE_TO_GRAVITY * gravityScale * deltaTime; 
-        }
+        if(!intersection.validIntersection) 
+            _verticalVelocity -= ACCELERATION_DUE_TO_GRAVITY * gravityScale * deltaTime;
         else
-        {
             _verticalVelocity = 0;
-        }
 
         Vector2 input = GetInput();
 
@@ -62,45 +57,46 @@ public class PlayerMovement : MonoBehaviour
             _walkVelocity = _walkVelocity.normalized * walkSpeed;
         }
 
-        Vector3 velocity = _walkVelocity + _verticalVelocity * Vector2.up;
+        Vector2 velocity = _walkVelocity + _verticalVelocity * Vector2.up;
 
         Vector2 remainingMove = velocity * deltaTime;
 
-        if(groundIntersection.validIntersection)
-        {
-            remainingMove = Vector3.ProjectOnPlane(remainingMove, groundIntersection.surfaceNormal).normalized * remainingMove.magnitude;
-        }
+        print(remainingMove);
 
         int maxIterations = 5;
         for (int iterations = 0; iterations < maxIterations && remainingMove.magnitude > .001f; iterations++)
         {
-            LineIntersectionResult intersection = LineIntersectionResult.GetEmpty();
+            Vector2 lineStart = transform.position;
+            Vector2 lineEnd = lineStart + remainingMove;
 
-            Vector2 position = transform.position;
-            Vector3 lineStart = groundIntersection.validIntersection && iterations == 0 ? position + groundIntersection.surfaceNormal * .01f : position;
-            Vector3 lineEnd = groundIntersection.validIntersection && iterations == 0 ? position + remainingMove - groundIntersection.surfaceNormal * .01f : position + remainingMove;
+            if(intersection.validIntersection)
+            {
+                lineStart = lineStart + intersection.surfaceNormal * .01f;
+                lineEnd = lineEnd - intersection.surfaceNormal * .01f + remainingMove.normalized * .01f;
+            }
 
             bool validItersection = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out intersection);
 
             if(validItersection &&
                 Vector2.Dot(intersection.surfaceNormal, remainingMove.normalized) <= 0)
             {
-                transform.position = intersection.intersectPosition + intersection.surfaceNormal * .01f;
+                transform.position = intersection.intersectPosition;
 
                 float remainingDistance = remainingMove.magnitude * (1 - intersection.intersectDistance);
 
                 Vector2 projection = Vector3.ProjectOnPlane(remainingMove, intersection.surfaceNormal).normalized * remainingDistance;
-                remainingMove = projection - intersection.surfaceNormal * .01f;
 
-                grounded = true;
+                remainingMove = projection;
+
+                _verticalVelocity = 0;
             }
             else
             {
                 Vector3 remainder = remainingMove;
-                transform.position += remainder;
-                remainingMove = Vector2.zero;
 
-                grounded = false;
+                transform.position += remainder;
+
+                remainingMove = Vector2.zero;
             }
         }
     }
@@ -121,6 +117,7 @@ public class PlayerMovement : MonoBehaviour
         return input;
     }
 
+    /*
     protected bool CheckGrounded()
     {
         bool validIntersection = LineCollisionScene.Instance.IntersectLine(transform.position, transform.position + Vector3.down * .01f, out groundIntersection);
@@ -135,7 +132,9 @@ public class PlayerMovement : MonoBehaviour
 
          return true;
     }
+    */
 
+    /*
     protected void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -147,4 +146,5 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.color = Color.white;
         Gizmos.DrawLine(groundIntersection.intersectPosition, groundIntersection.intersectPosition + groundIntersection.surfaceNormal);
     }
+    */
 }
