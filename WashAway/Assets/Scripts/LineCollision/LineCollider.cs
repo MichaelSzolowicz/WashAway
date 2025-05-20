@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 [ExecuteInEditMode]
-public class LineCollider : MonoBehaviour
+public class LineCollider : MonoBehaviour, ILineColliderInterface
 {
     [SerializeField] protected List<LinePoint> _points = new List<LinePoint>();
     [HideInInspector] [SerializeField] protected int length = 0;
