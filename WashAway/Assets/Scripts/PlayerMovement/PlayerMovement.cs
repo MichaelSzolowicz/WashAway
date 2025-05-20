@@ -21,7 +21,74 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Move(Time.deltaTime);
+        Move2(Time.deltaTime);
+    }
+
+    protected void Move2(float deltaTime)
+    {
+        if(!grounded)
+        {
+            _verticalVelocity -= ACCELERATION_DUE_TO_GRAVITY * gravityScale * deltaTime; 
+        }
+        else
+        {
+            _verticalVelocity = 0;
+        }
+
+        Vector2 input = GetInput();
+
+        _walkVelocity += input * accelerationScale * deltaTime;
+
+        float walkSpeed = _walkVelocity.magnitude;
+
+        if (walkSpeed > maxWalkSpeed)
+        {
+            walkSpeed = maxWalkSpeed;
+        }
+
+        if(input.magnitude <= .001f)
+        {
+            walkSpeed -= brakingScale * deltaTime;
+            if(walkSpeed < 0)
+            {
+                walkSpeed = 0;
+            }
+
+            _walkVelocity = _walkVelocity.normalized * walkSpeed;
+        }
+
+        Vector3 velocity = _walkVelocity + _verticalVelocity * Vector2.up;
+
+        Vector3 remainingMove = velocity * deltaTime;
+
+        int maxIterations = 5;
+        for (int iterations = 0; iterations < maxIterations && remainingMove.magnitude > .001f; iterations++)
+        {
+            LineIntersectionResult intersection = LineIntersectionResult.GetEmpty();
+
+            Vector3 lineStart = transform.position;
+            Vector3 lineEnd = transform.position + remainingMove;
+
+            bool validItersection = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out intersection);
+
+            if(validItersection)
+            {
+                transform.position = intersection.intersectPosition + intersection.surfaceNormal * .01f;
+
+                float remainingDistance = remainingMove.magnitude * (1 - intersection.intersectDistance);
+
+                remainingMove = Vector3.ProjectOnPlane(remainingMove, intersection.surfaceNormal).normalized * remainingDistance;
+
+                grounded = true;
+            }
+            else
+            {
+                transform.position += remainingMove;
+                remainingMove = Vector2.zero;
+
+                grounded = false;
+            }
+        }
     }
 
     protected void Move(float deltaTime)
