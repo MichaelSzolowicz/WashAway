@@ -1,0 +1,1 @@
+2. Adjust collision algorithm to account for the same line overlapping itself (IE sweep / collide and slide).
