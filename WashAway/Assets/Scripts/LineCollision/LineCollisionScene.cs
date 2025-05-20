@@ -48,22 +48,22 @@ public class LineCollisionScene : MonoBehaviour
         }
     }
 
-    private List<LineCollider> _lineColliders = new List<LineCollider>();
+    private List<ILineColliderInterface> _lineColliders = new List<ILineColliderInterface>();
 
-    public void RegisterLineCollider(LineCollider lineCollider)
+    public void RegisterLineCollider(ILineColliderInterface lineColliderInterface)
     {
-        if (_lineColliders.Contains(lineCollider))
+        if (_lineColliders.Contains(lineColliderInterface))
             return;
 
-        _lineColliders.Add(lineCollider);
+        _lineColliders.Add(lineColliderInterface);
     }
 
-    public void RemoveLineCollider(LineCollider lineCollider)
+    public void RemoveLineCollider(ILineColliderInterface lineColliderInterface)
     {
-        if (!_lineColliders.Contains(lineCollider))
+        if (!_lineColliders.Contains(lineColliderInterface))
             return;
 
-        _lineColliders.Remove(lineCollider);
+        _lineColliders.Remove(lineColliderInterface);
     }
 
     public bool IntersectLine(Vector3 lineStart, Vector3 lineEnd, out LineIntersectionResult lineIntersectionResult)
