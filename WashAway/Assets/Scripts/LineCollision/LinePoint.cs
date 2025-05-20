@@ -6,49 +6,25 @@ using UnityEngine;
 [System.Serializable]
 public class LinePoint
 {
-    [SerializeField] private Vector2 _position;
+    [SerializeField] public Vector2 position;
     
-    [HideInInspector] [SerializeField] private Vector2 _normal = Vector2.up;
-
-    public Vector2 Position
-    {
-        get
-        {
-            return _position;
-        }
-        set
-        {
-            _position = value;
-        }
-    }
+    [HideInInspector] [SerializeField] public Vector2 normal = Vector2.up;
 
     public float x
     {
-        get { return _position.x; }
+        get { return position.x; }
         set
         {
-            _position.x = value;
+            position.x = value;
         }
     }
 
     public float y
     {
-        get { return _position.y; }
+        get { return position.y; }
         set
         {
-            _position.y = value;
-        }
-    }
-
-    public Vector3 Normal
-    {
-        get
-        {
-            return _normal;
-        }
-        set
-        {
-            _normal = value;
+            position.y = value;
         }
     }
 }

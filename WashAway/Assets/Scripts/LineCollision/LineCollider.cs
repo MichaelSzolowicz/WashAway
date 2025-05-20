@@ -71,22 +71,12 @@ public class LineCollider : MonoBehaviour
 
     public LinePoint GetPoint(int index)
     {
-        if (index < 0 || index >= _points.Count)
-        {
-            throw new IndexOutOfRangeException("Index out of range.");
-        }
-
         return _points[index];
     }
 
     public void SetPointWorldPosition(int index, Vector3 worldPosition)
     {
-        if (index < 0 || index >= _points.Count)
-        {
-            throw new IndexOutOfRangeException("Index out of range.");
-        }
-
-        _points[index].Position = worldPosition;
+        _points[index].position = worldPosition;
 
         SetNormal(index);
         if (index - 1 >= 0)
@@ -111,7 +101,7 @@ public class LineCollider : MonoBehaviour
         {
             LinePoint point = GetPoint(i);
 
-            Gizmos.DrawIcon(point.Position, "point", false, useColor);
+            Gizmos.DrawIcon(point.position, "point", false, useColor);
         }
 
         for (int p1 = 0, p2 = 1; p2 < Length; p1++, p2++)
@@ -119,7 +109,7 @@ public class LineCollider : MonoBehaviour
             LinePoint lineStart = GetPoint(p1);
             LinePoint lineEnd = GetPoint(p2);
 
-            Handles.DrawLine(lineStart.Position, lineEnd.Position, lineWidth);
+            Handles.DrawLine(lineStart.position, lineEnd.position, lineWidth);
         }
 
         Handles.color = Color.white;
@@ -128,27 +118,23 @@ public class LineCollider : MonoBehaviour
             LinePoint lineStart = GetPoint(p1);
             LinePoint lineEnd = GetPoint(p2);
 
-            Vector3 normalStart = (lineStart.Position + lineEnd.Position) / 2;
-            Handles.DrawLine(normalStart, normalStart + _points[p1].Normal);
+            Vector2 normalStart = (lineStart.position + lineEnd.position) / 2;
+            Handles.DrawLine(normalStart, normalStart + _points[p1].normal);
         }
     }
 
     protected void OnValidate()
     {
-        //if(!Application.isPlaying)
-            SantizePoints();
+        SantizePoints();
     }
 
     protected void SantizePoints()
     {
-        if (_points.Count == 1)
+        if (length == 0 && _points.Count > 0)
         {
-            LinePoint point1 = _points[0];
-            LinePoint point2 = new LinePoint();
-            point2.Position = point1.Position + Vector2.right;
-            SetNormal(0);
-            _points.Add(point2);
+            _points[0].position = transform.position;
         }
+
 
         for (int p0 = length - 2, p1 = length - 1, p2 = length; p2 < _points.Count; p0++, p1++, p2++)
         {
@@ -158,13 +144,13 @@ public class LineCollider : MonoBehaviour
 
             if (p0 >= 0)
             {
-                deltaPosition = (_points[p1].Position - _points[p0].Position).normalized;
+                deltaPosition = (_points[p1].position - _points[p0].position).normalized;
             }
 
             if (deltaPosition.magnitude <= .1f)
                 deltaPosition = Vector2.right;
 
-            _points[p2].Position = _points[p1].Position + deltaPosition;
+            _points[p2].position = _points[p1].position + deltaPosition;
             SetNormal(p1);
         }
 
@@ -179,16 +165,16 @@ public class LineCollider : MonoBehaviour
         {
             LinePoint p2 = _points[index + 1];
 
-            p1.Normal = Quaternion.Euler(0, 0, 90) * (p2.Position - p1.Position).normalized;
+            p1.normal = Quaternion.Euler(0, 0, 90) * (p2.position - p1.position).normalized;
         }
         else
         {
-            p1.Normal = Vector3.up;
+            p1.normal = Vector3.up;
         }
 
-        if (Vector2.Dot(p1.Normal, Vector2.up) < 0)
+        if (Vector2.Dot(p1.normal, Vector2.up) < 0)
         {
-            p1.Normal = -1 * p1.Normal;
+            p1.normal = -1 * p1.normal;
         }
     }
 
@@ -204,7 +190,7 @@ public class LineCollider : MonoBehaviour
             for (int i = 0; i < _points.Count; i++)
             {
                 Vector2 deltaPosition = transform.position - previousPosition;
-                _points[i].Position = _points[i].Position + deltaPosition;
+                _points[i].position = _points[i].position + deltaPosition;
             }
         }
 
