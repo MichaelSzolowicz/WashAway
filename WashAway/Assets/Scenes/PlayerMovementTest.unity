@@ -344,7 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxWalkSpeed: 10
   accelerationScale: 10
-  gravityScale: 0.07
+  gravityScale: 0.05
   brakingScale: 10
   maxWalkableSlope: 67.4
 --- !u!4 &792674244
@@ -362,7 +362,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &942900730
+--- !u!1 &1063858117
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -370,8 +370,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 942900732}
-  - component: {fileID: 942900731}
+  - component: {fileID: 1063858119}
+  - component: {fileID: 1063858118}
   m_Layer: 0
   m_Name: LineCollider (1)
   m_TagString: Untagged
@@ -379,32 +379,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &942900731
+--- !u!114 &1063858118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 942900730}
+  m_GameObject: {fileID: 1063858117}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfc21d90a573c774e9434d1c449402aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _points:
-  - position: {x: 0.44, y: -2.29}
-    normal: {x: 0.7804267, y: 0.62524724}
-  - position: {x: 1.1501958, y: -3.1764598}
-    normal: {x: -0.9083011, y: 0.41831705}
-  - position: {x: 2.013817, y: -1.3012573}
-    normal: {x: 0.898311, y: 0.43936008}
-  - position: {x: 2.6558237, y: -2.6138983}
-    normal: {x: 0.53330374, y: 0.8459238}
-  - position: {x: 3.3535154, y: -3.0537505}
-    normal: {x: -0.3353528, y: 0.94209254}
-  - position: {x: 5.2786145, y: -2.3684819}
-    normal: {x: -0.95814294, y: 0.28629023}
-  length: 6
+  - position: {x: -1.71, y: -3.02}
+    normal: {x: 0.000000059604645, y: 0.99999994}
+  - position: {x: -0.70999956, y: -3.02}
+    normal: {x: 0.18401198, y: 0.982924}
+  - position: {x: 0.18352294, y: -3.1872752}
+    normal: {x: 0.47493446, y: 0.8800211}
+  - position: {x: 2.3631432, y: -4.363584}
+    normal: {x: 0, y: 1}
+  length: 4
   rotation: 0
   width: 0
   visibleInGame: 1
@@ -413,17 +409,17 @@ MonoBehaviour:
   selectedColor: {r: 1, g: 0.8000001, b: 0, a: 1}
   pointSize: 12
   lineWidth: 0.2
-  previousPosition: {x: 0.44, y: -2.29, z: 0}
---- !u!4 &942900732
+  previousPosition: {x: -1.71, y: -3.02, z: 0}
+--- !u!4 &1063858119
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 942900730}
+  m_GameObject: {fileID: 1063858117}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.44, y: -2.29, z: 0}
+  m_LocalPosition: {x: -1.71, y: -3.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -459,19 +455,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _points:
-  - position: {x: -2.02, y: -0.28}
-    normal: {x: 0.7804267, y: 0.62524724}
-  - position: {x: -1.3098038, y: -1.1664591}
-    normal: {x: 0.06689606, y: 0.9977599}
-  - position: {x: -0.29275656, y: -1.2346482}
-    normal: {x: -0.6000323, y: 0.7999757}
-  - position: {x: 0.98, y: -0.28}
-    normal: {x: -0.6000324, y: 0.7999757}
-  - position: {x: 1.7799757, y: 0.32003245}
-    normal: {x: 0.54691327, y: 0.8371892}
-  - position: {x: 2.8186133, y: -0.35848173}
-    normal: {x: -0.95814294, y: 0.28629023}
-  length: 6
+  - position: {x: -0.76, y: -0.98}
+    normal: {x: 0.000000059604645, y: 0.99999994}
+  - position: {x: 0.24000049, y: -0.98}
+    normal: {x: 0.8096999, y: 0.58684415}
+  - position: {x: 1.0183861, y: -2.0539782}
+    normal: {x: -0.30750915, y: 0.951545}
+  - position: {x: 3.2076762, y: -1.3464694}
+    normal: {x: 0.5159301, y: 0.8566306}
+  - position: {x: 4.940669, y: -2.3902135}
+    normal: {x: 0.9999861, y: 0.005251233}
+  - position: {x: 4.950731, y: -4.306237}
+    normal: {x: 0.18721962, y: 0.98231804}
+  - position: {x: 2.2534761, y: -3.7921686}
+    normal: {x: -0.28598535, y: 0.9582339}
+  - position: {x: -0.11400938, y: -4.498746}
+    normal: {x: 0, y: 1}
+  length: 8
   rotation: 0
   width: 0
   visibleInGame: 1
@@ -480,7 +480,7 @@ MonoBehaviour:
   selectedColor: {r: 1, g: 0.8000001, b: 0, a: 1}
   pointSize: 12
   lineWidth: 0.2
-  previousPosition: {x: -2.02, y: -0.28, z: 0}
+  previousPosition: {x: -0.76, y: -0.98, z: 0}
 --- !u!4 &1445160864
 Transform:
   m_ObjectHideFlags: 0
@@ -490,7 +490,7 @@ Transform:
   m_GameObject: {fileID: 1445160862}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.02, y: -0.28, z: 0}
+  m_LocalPosition: {x: -0.76, y: -0.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -622,4 +622,4 @@ SceneRoots:
   - {fileID: 1456676422}
   - {fileID: 792674244}
   - {fileID: 1445160864}
-  - {fileID: 942900732}
+  - {fileID: 1063858119}

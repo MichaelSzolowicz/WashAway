@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -63,12 +64,6 @@ public class LineCollider : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        if (Application.isPlaying)
-            LineCollisionScene.Instance.RegisterLineCollider(this);
-    }
-
     public LinePoint GetPoint(int index)
     {
         return _points[index];
@@ -81,6 +76,42 @@ public class LineCollider : MonoBehaviour
         SetNormal(index);
         if (index - 1 >= 0)
             SetNormal(index - 1);
+    }
+
+    public bool IntersectLine(Vector3 lineStart, Vector3 lineEnd, out LineIntersectionResult intersectionResult)
+    {
+        bool result = false;
+        intersectionResult = LineIntersectionResult.GetEmpty();
+
+        for (int i = 0, j = 1; j < length; i++, j++)
+        {
+            LinePoint colliderStart = _points[i];
+            LinePoint colliderEnd = _points[j];
+
+            Vector3 testIntersect = Vector3.zero;
+            bool validIntersection = LineIntersections.IntersectLineLine(lineStart.x, lineEnd.x, colliderStart.x, colliderEnd.x, lineStart.y, lineEnd.y, colliderStart.y, colliderEnd.y, out testIntersect);
+
+            if (validIntersection)
+            {
+                result = true;
+
+                if (Vector2.Distance(lineStart, testIntersect) < Vector2.Distance(lineStart, intersectionResult.intersectPosition))
+                {
+                    intersectionResult.intersectPosition = testIntersect;
+                    intersectionResult.intersectDistance = Vector2.Distance(lineStart, testIntersect) / Vector2.Distance(lineStart, lineEnd);
+                    intersectionResult.surfaceNormal = colliderStart.normal;
+                    intersectionResult.validIntersection = result;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private void OnEnable()
+    {
+        if (Application.isPlaying)
+            LineCollisionScene.Instance.RegisterLineCollider(this);
     }
 
     protected void OnDisable()
