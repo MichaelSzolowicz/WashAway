@@ -1,14 +1,16 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 [ExecuteInEditMode]
-public class LineCollider : MonoBehaviour
+public class LineCollider : MonoBehaviour, ILineColliderInterface
 {
-    [SerializeField] protected List<Vector2> _points = new List<Vector2>();
+    [SerializeField] protected List<LinePoint> _points = new List<LinePoint>();
+    [HideInInspector] [SerializeField] protected int length = 0;
 
     [SerializeField] protected float rotation = 0;
 
@@ -23,6 +25,8 @@ public class LineCollider : MonoBehaviour
     [SerializeField] protected float lineWidth = 1;
 
     protected bool isSelected = false;
+
+    [HideInInspector] [SerializeField] private Vector3 previousPosition = Vector3.zero;
 
     public int Length
     {
@@ -60,44 +64,54 @@ public class LineCollider : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    public LinePoint GetPoint(int index)
     {
-        if(Application.isPlaying)
-            LineCollisionScene.Instance.RegisterLineCollider(this);
-    }
-
-    public Vector3 GetPointWorldSpace(int index)
-    {
-        if(index < 0 || index >= _points.Count)
-        {
-            throw new IndexOutOfRangeException("Index out of range.");
-        }
-
-        Vector3 rotatedPoint = new Vector3();
-
-        float rotation = Mathf.Deg2Rad * this.rotation;
-        rotatedPoint.x = _points[index].x * Mathf.Cos(rotation) - _points[index].y * Mathf.Sin(rotation);
-        rotatedPoint.y = _points[index].x * Mathf.Sin(rotation) + _points[index].y * Mathf.Cos(rotation);
-
-        return transform.position + rotatedPoint;
+        return _points[index];
     }
 
     public void SetPointWorldPosition(int index, Vector3 worldPosition)
     {
-        if (index < 0 || index >= _points.Count)
+        _points[index].position = worldPosition;
+
+        SetNormal(index);
+        if (index - 1 >= 0)
+            SetNormal(index - 1);
+    }
+
+    public bool IntersectLine(Vector3 lineStart, Vector3 lineEnd, out LineIntersectionResult intersectionResult)
+    {
+        bool result = false;
+        intersectionResult = LineIntersectionResult.GetEmpty();
+
+        for (int i = 0, j = 1; j < length; i++, j++)
         {
-            throw new IndexOutOfRangeException("Index out of range.");
+            LinePoint colliderStart = _points[i];
+            LinePoint colliderEnd = _points[j];
+
+            Vector3 testIntersect = Vector3.zero;
+            bool validIntersection = LineIntersections.IntersectLineLine(lineStart.x, lineEnd.x, colliderStart.x, colliderEnd.x, lineStart.y, lineEnd.y, colliderStart.y, colliderEnd.y, out testIntersect);
+
+            if (validIntersection)
+            {
+                result = true;
+
+                if (Vector2.Distance(lineStart, testIntersect) < Vector2.Distance(lineStart, intersectionResult.intersectPosition))
+                {
+                    intersectionResult.intersectPosition = testIntersect;
+                    intersectionResult.intersectDistance = Vector2.Distance(lineStart, testIntersect) / Vector2.Distance(lineStart, lineEnd);
+                    intersectionResult.surfaceNormal = colliderStart.normal;
+                    intersectionResult.validIntersection = result;
+                }
+            }
         }
 
-        Vector3 localPosition = worldPosition - transform.position;
+        return result;
+    }
 
-        Vector3 rotatedPoint = new Vector3();
-
-        float rotation = Mathf.Deg2Rad * this.rotation;
-        rotatedPoint.x = (localPosition.x * Mathf.Cos(-rotation) - localPosition.y * Mathf.Sin(-rotation));
-        rotatedPoint.y = (localPosition.y * Mathf.Cos(-rotation) + localPosition.x * Mathf.Sin(-rotation));
-
-        _points[index] = rotatedPoint;
+    private void OnEnable()
+    {
+        if (Application.isPlaying)
+            LineCollisionScene.Instance.RegisterLineCollider(this);
     }
 
     protected void OnDisable()
@@ -116,23 +130,102 @@ public class LineCollider : MonoBehaviour
         Handles.color = useColor;
         for (int i = 0; i < Length; i++)
         {
-            Vector3 position = GetPointWorldSpace(i);
+            LinePoint point = GetPoint(i);
 
-            Gizmos.DrawIcon(position, "point", false, useColor);
+            Gizmos.DrawIcon(point.position, "point", false, useColor);
         }
 
         for (int p1 = 0, p2 = 1; p2 < Length; p1++, p2++)
         {
-            Handles.DrawLine(GetPointWorldSpace(p1), GetPointWorldSpace(p2), lineWidth);
+            LinePoint lineStart = GetPoint(p1);
+            LinePoint lineEnd = GetPoint(p2);
+
+            Handles.DrawLine(lineStart.position, lineEnd.position, lineWidth);
+        }
+
+        Handles.color = Color.white;
+        for (int p1 = 0, p2 = 1; p2 < Length; p1++, p2++)
+        {
+            LinePoint lineStart = GetPoint(p1);
+            LinePoint lineEnd = GetPoint(p2);
+
+            Vector2 normalStart = (lineStart.position + lineEnd.position) / 2;
+            Handles.DrawLine(normalStart, normalStart + _points[p1].normal);
         }
     }
 
-    /*
+    protected void OnValidate()
+    {
+        SantizePoints();
+    }
+
+    protected void SantizePoints()
+    {
+        if (length == 0 && _points.Count > 0)
+        {
+            _points[0].position = transform.position;
+        }
+
+
+        for (int p0 = length - 2, p1 = length - 1, p2 = length; p2 < _points.Count; p0++, p1++, p2++)
+        {
+            if(p1 < 0) continue;
+
+            Vector2 deltaPosition = Vector2.zero;
+
+            if (p0 >= 0)
+            {
+                deltaPosition = (_points[p1].position - _points[p0].position).normalized;
+            }
+
+            if (deltaPosition.magnitude <= .1f)
+                deltaPosition = Vector2.right;
+
+            _points[p2].position = _points[p1].position + deltaPosition;
+            SetNormal(p1);
+        }
+
+        length = _points.Count;
+    }
+
+    protected void SetNormal(int index)
+    {
+        LinePoint p1 = _points[index];
+
+        if (index + 1 < _points.Count)
+        {
+            LinePoint p2 = _points[index + 1];
+
+            p1.normal = Quaternion.Euler(0, 0, 90) * (p2.position - p1.position).normalized;
+        }
+        else
+        {
+            p1.normal = Vector3.up;
+        }
+
+        if (Vector2.Dot(p1.normal, Vector2.up) < 0)
+        {
+            p1.normal = -1 * p1.normal;
+        }
+    }
+
     public void Update()
     {
+        /*
         if(Application.isPlaying)
             LineCollisionScene.Instance.ShowCount();
+        */
+
+        if (previousPosition != transform.position)
+        {
+            for (int i = 0; i < _points.Count; i++)
+            {
+                Vector2 deltaPosition = transform.position - previousPosition;
+                _points[i].position = _points[i].position + deltaPosition;
+            }
+        }
+
+        previousPosition = transform.position;
     }
-    */
 }
 

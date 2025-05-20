@@ -48,57 +48,46 @@ public class LineCollisionScene : MonoBehaviour
         }
     }
 
-    private List<LineCollider> _lineColliders = new List<LineCollider>();
+    private List<ILineColliderInterface> _lineColliders = new List<ILineColliderInterface>();
 
-    public void RegisterLineCollider(LineCollider lineCollider)
+    public void RegisterLineCollider(ILineColliderInterface lineColliderInterface)
     {
-        if (_lineColliders.Contains(lineCollider))
+        if (_lineColliders.Contains(lineColliderInterface))
             return;
 
-        _lineColliders.Add(lineCollider);
+        _lineColliders.Add(lineColliderInterface);
     }
 
-    public void RemoveLineCollider(LineCollider lineCollider)
+    public void RemoveLineCollider(ILineColliderInterface lineColliderInterface)
     {
-        if (!_lineColliders.Contains(lineCollider))
+        if (!_lineColliders.Contains(lineColliderInterface))
             return;
 
-        _lineColliders.Remove(lineCollider);
+        _lineColliders.Remove(lineColliderInterface);
     }
 
-    public bool IntersectLine(Vector3 start, Vector3 end, out LineIntersectionResult lineIntersectionResult)
+    public bool IntersectLine(Vector3 lineStart, Vector3 lineEnd, out LineIntersectionResult lineIntersectionResult)
     {
         bool result = false;
         lineIntersectionResult = LineIntersectionResult.GetEmpty();
 
-        if (start == end)
+        if (lineStart == lineEnd)
         {
             return false;
         }
 
         foreach (var lineCollider in _lineColliders)
         {
-            if (!lineCollider || !lineCollider.gameObject || !lineCollider.gameObject.activeInHierarchy) continue;
+            LineIntersectionResult testIntersect = LineIntersectionResult.GetEmpty();
+            bool validIntersect = lineCollider.IntersectLine(lineStart, lineEnd, out testIntersect);
 
-            for (int i = 0, j = 1; j < lineCollider.Length; i++, j++)
+            if(validIntersect)
             {
-                Vector2 colliderStart = lineCollider.GetPointWorldSpace(i);
-                Vector2 colliderEnd = lineCollider.GetPointWorldSpace(j);
+                result = true;
 
-                Vector3 testIntersect = Vector3.zero;
-                bool validIntersection = LineIntersections.IntersectLineLine(start.x, end.x, colliderStart.x, colliderEnd.x, start.y, end.y, colliderStart.y, colliderEnd.y, out testIntersect);
-
-                if (validIntersection)
+                if(Vector2.Distance(lineStart, testIntersect.intersectPosition) < Vector2.Distance(lineStart, lineIntersectionResult.intersectPosition))
                 {
-                    result = true;
-
-                    if (Vector2.Distance(start, testIntersect) < Vector2.Distance(start, lineIntersectionResult.intersectPosition))
-                    {
-                        lineIntersectionResult.intersectPosition = testIntersect;
-                        lineIntersectionResult.intersectDistance = Vector2.Distance(start, testIntersect) / Vector2.Distance(start, end);
-                        lineIntersectionResult.surfaceNormal = (Quaternion.Euler(0, 0, -90) * (colliderStart - colliderEnd)).normalized;
-                        lineIntersectionResult.validIntersection = result;
-                    }
+                    lineIntersectionResult = testIntersect;
                 }
             }
         }
