@@ -96,7 +96,7 @@ public class LineCollisionScene : MonoBehaviour
                     {
                         lineIntersectionResult.intersectPosition = testIntersect;
                         lineIntersectionResult.intersectDistance = Vector2.Distance(start, testIntersect) / Vector2.Distance(start, end);
-                        lineIntersectionResult.surfaceNormal = colliderStart.Normal;
+                        lineIntersectionResult.surfaceNormal = colliderStart.normal;
                         lineIntersectionResult.validIntersection = result;
                     }
                 }

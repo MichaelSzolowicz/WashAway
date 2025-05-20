@@ -362,6 +362,73 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &942900730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 942900732}
+  - component: {fileID: 942900731}
+  m_Layer: 0
+  m_Name: LineCollider (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &942900731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942900730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc21d90a573c774e9434d1c449402aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _points:
+  - position: {x: 0.44, y: -2.29}
+    normal: {x: 0.7804267, y: 0.62524724}
+  - position: {x: 1.1501958, y: -3.1764598}
+    normal: {x: -0.9083011, y: 0.41831705}
+  - position: {x: 2.013817, y: -1.3012573}
+    normal: {x: 0.898311, y: 0.43936008}
+  - position: {x: 2.6558237, y: -2.6138983}
+    normal: {x: 0.53330374, y: 0.8459238}
+  - position: {x: 3.3535154, y: -3.0537505}
+    normal: {x: -0.3353528, y: 0.94209254}
+  - position: {x: 5.2786145, y: -2.3684819}
+    normal: {x: -0.95814294, y: 0.28629023}
+  length: 6
+  rotation: 0
+  width: 0
+  visibleInGame: 1
+  visibleInEditor: 1
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.8000001, b: 0, a: 1}
+  pointSize: 12
+  lineWidth: 0.2
+  previousPosition: {x: 0.44, y: -2.29, z: 0}
+--- !u!4 &942900732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942900730}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.44, y: -2.29, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1445160862
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,18 +459,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _points:
-  - _position: {x: 0, y: 0}
-    _normal: {x: 0.93801033, y: 0.3466071}
-  - _position: {x: 0.494291, y: -1.3376818}
-    _normal: {x: 0.020136949, y: 0.99979717}
-  - _position: {x: 2.1141922, y: -1.3703082}
-    _normal: {x: 0.3940223, y: 0.9191008}
-  - _position: {x: 3.8645992, y: -2.1207147}
-    _normal: {x: -0.9069434, y: 0.42125255}
-  - _position: {x: 4.4404564, y: -0.88091236}
-    _normal: {x: -0.8441112, y: 0.53616804}
-  - _position: {x: 5, y: 0}
-    _normal: {x: 0, y: 0}
+  - position: {x: -2.02, y: -0.28}
+    normal: {x: 0.7804267, y: 0.62524724}
+  - position: {x: -1.3098038, y: -1.1664591}
+    normal: {x: 0.06689606, y: 0.9977599}
+  - position: {x: -0.29275656, y: -1.2346482}
+    normal: {x: -0.6000323, y: 0.7999757}
+  - position: {x: 0.98, y: -0.28}
+    normal: {x: -0.6000324, y: 0.7999757}
+  - position: {x: 1.7799757, y: 0.32003245}
+    normal: {x: 0.54691327, y: 0.8371892}
+  - position: {x: 2.8186133, y: -0.35848173}
+    normal: {x: -0.95814294, y: 0.28629023}
   length: 6
   rotation: 0
   width: 0
@@ -411,9 +478,9 @@ MonoBehaviour:
   visibleInEditor: 1
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   selectedColor: {r: 1, g: 0.8000001, b: 0, a: 1}
-  pointSize: 2.17
-  lineWidth: 1
-  previousPosition: {x: -2.21, y: -0.24, z: 0}
+  pointSize: 12
+  lineWidth: 0.2
+  previousPosition: {x: -2.02, y: -0.28, z: 0}
 --- !u!4 &1445160864
 Transform:
   m_ObjectHideFlags: 0
@@ -423,7 +490,7 @@ Transform:
   m_GameObject: {fileID: 1445160862}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.21, y: -0.24, z: 0}
+  m_LocalPosition: {x: -2.02, y: -0.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -555,3 +622,4 @@ SceneRoots:
   - {fileID: 1456676422}
   - {fileID: 792674244}
   - {fileID: 1445160864}
+  - {fileID: 942900732}

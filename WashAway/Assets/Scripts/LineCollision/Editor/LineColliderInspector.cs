@@ -25,7 +25,7 @@ public class LineColliderInspector : Editor
         for (int i = 0; i < lineCollider.Length; i++)
         {
             LinePoint point = lineCollider.GetPoint(i);
-            Vector3 position = point.Position;
+            Vector3 position = point.position;
 
             EditorGUI.BeginChangeCheck();
             Vector3 newPosition = Handles.Slider2D(position, Vector3.forward, Vector3.right, Vector3.up, HandleUtility.GetHandleSize(position) * .1f, Handles.CircleHandleCap, 0);
