@@ -21,7 +21,7 @@ public static class LineIntersections
         float o2 = Orientation(x2, x3, x1, y2, y3, y1);
         float o3 = Orientation(x2, x3, x0, y2, y3, y0);
 
-        Debug.Log(o0 + " " + o1 + " " + o2 +  " " + o3);
+        //Debug.Log(o0 + " " + o1 + " " + o2 +  " " + o3);
 
         if(o0 * o1 < 0 && o2 * o3 < 0)
         {

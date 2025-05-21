@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     protected const float ACCELERATION_DUE_TO_GRAVITY = 9.8f;
-    protected const float SMALL_NUMBER = .001f;
+    protected const float SMALL_NUMBER = .01f;
 
     [SerializeField] protected float maxWalkSpeed = 10;
     [SerializeField] protected float accelerationScale = 10;
@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     protected void Start()
     {
-        Application.targetFrameRate = 0;
+        Application.targetFrameRate = 30;
     }
 
     void Update()
@@ -30,10 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     protected void Move2(float deltaTime)
     {
-        if(!intersection.validIntersection) 
-            _verticalVelocity -= ACCELERATION_DUE_TO_GRAVITY * gravityScale * deltaTime;
-        else
-            _verticalVelocity = 0;
+        _verticalVelocity -= ACCELERATION_DUE_TO_GRAVITY * gravityScale * deltaTime;
 
         Vector2 input = GetInput();
 
@@ -53,36 +50,41 @@ public class PlayerMovement : MonoBehaviour
             {
                 walkSpeed = 0;
             }
-
-            _walkVelocity = _walkVelocity.normalized * walkSpeed;
         }
+
+        _walkVelocity = _walkVelocity.normalized * walkSpeed;
 
         Vector2 velocity = _walkVelocity + _verticalVelocity * Vector2.up;
 
         Vector2 remainingMove = velocity * deltaTime;
 
-        //print(remainingMove);
-
         int maxIterations = 5;
-        for (int iterations = 0; iterations < maxIterations && remainingMove.magnitude > .001f; iterations++)
+        for (int iterations = 0; iterations < maxIterations && remainingMove.magnitude > 0; iterations++)
         {
             Vector2 lineStart = transform.position;
             Vector2 lineEnd = lineStart + remainingMove;
 
             if(intersection.validIntersection)
             {
-                lineStart = lineStart + intersection.surfaceNormal * .01f;
-                lineEnd = lineEnd - intersection.surfaceNormal * .01f + remainingMove.normalized * .01f;
+                lineStart += intersection.surfaceNormal * SMALL_NUMBER;
+                lineEnd -= intersection.surfaceNormal * SMALL_NUMBER;
             }
 
-            bool validItersection = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out intersection);
+            LineIntersectionResult testIntersection = LineIntersectionResult.GetEmpty();
+            bool validItersection = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out testIntersection);
 
-            //if(validItersection)
-                print(intersection.surfaceNormal);
+            Vector3 remainingMove3 = remainingMove;
+            Debug.DrawLine(lineStart, lineStart - intersection.surfaceNormal * SMALL_NUMBER, Color.magenta);
+            Debug.DrawLine(lineEnd, lineEnd + intersection.surfaceNormal * SMALL_NUMBER, Color.magenta);
+            Debug.DrawLine(lineStart, lineEnd, Color.green);
 
             if (validItersection &&
-                Vector2.Dot(intersection.surfaceNormal, remainingMove.normalized) <= 0)
+                Vector2.Dot(testIntersection.surfaceNormal, remainingMove.normalized) <= 0)
             {
+                intersection = testIntersection;
+
+                Debug.DrawLine(transform.position, transform.position + remainingMove3, Color.red);
+
                 transform.position = intersection.intersectPosition;
 
                 float remainingDistance = remainingMove.magnitude * (1 - intersection.intersectDistance);
@@ -95,9 +97,9 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                Vector3 remainder = remainingMove;
+                transform.Translate(remainingMove);
 
-                transform.position += remainder;
+                Debug.DrawLine(transform.position, transform.position + remainingMove3, Color.red);
 
                 remainingMove = Vector2.zero;
             }
