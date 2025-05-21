@@ -19,8 +19,8 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
     [SerializeField] protected bool visibleInGame = true;
     [SerializeField] protected bool visibleInEditor = true;
 
-    [SerializeField] protected Color defaultColor = Color.white;
-    [SerializeField] protected Color selectedColor = Color.yellow;
+    [SerializeField] public Color defaultColor = Color.white;
+    [SerializeField] public Color selectedColor = Color.yellow;
     [SerializeField] protected float pointSize = .01f;
     [SerializeField] protected float lineWidth = 1;
 
@@ -89,7 +89,7 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
             LinePoint colliderEnd = _points[j];
 
             Vector3 testIntersect = Vector3.zero;
-            bool validIntersection = LineIntersections.IntersectLineLine(lineStart.x, lineEnd.x, colliderStart.x, colliderEnd.x, lineStart.y, lineEnd.y, colliderStart.y, colliderEnd.y, out testIntersect);
+            bool validIntersection = LineIntersections.IntersectLineLine2(lineStart.x, lineEnd.x, colliderStart.x, colliderEnd.x, lineStart.y, lineEnd.y, colliderStart.y, colliderEnd.y, out testIntersect);
 
             if (validIntersection)
             {
