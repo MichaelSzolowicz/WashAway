@@ -1,10 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public static class LineIntersections
 {
+    private static float Orientation(float x0, float x1, float x2, float y0, float y1, float y2)
+    {
+        return (y1 - y0) * (x2 - x1) - (x1 - x0) * (y2 - y1);
+    }
+
+    public static bool IntersectLineLine2(float x0, float x1, float x2, float x3, float y0, float y1, float y2, float y3, out Vector3 intersectPoisition)
+    {
+        intersectPoisition = Vector3.positiveInfinity;
+
+        float o0 = Orientation(x0, x1, x2, y0, y1, y2);
+        float o1 = Orientation(x0, x1, x3, y0, y1, y3);
+        float o2 = Orientation(x2, x3, x1, y2, y3, y1);
+        float o3 = Orientation(x2, x3, x0, y2, y3, y0);
+
+        Debug.Log(o0 + " " + o1 + " " + o2 +  " " + o3);
+
+        if(o0 * o1 < 0 && o2 * o3 < 0)
+        {
+            float t = ((x0 - x2) * (y2 - y3) - (y0 - y2) * (x2 - x3)) / ((x0 - x1) * (y2 - y3) - (y0 - y1) * (x2 - x3));
+
+            intersectPoisition.x = x0 + t * (x1 - x0);
+            intersectPoisition.y = y0 + t * (y1 - y0);
+
+            return true;
+        }
+
+        return false;
+    }
+
     public static bool IntersectLineLine(float x0, float x1, float x2, float x3, float y0, float y1, float y2, float y3, out Vector3 intersectPosition)
     {
         intersectPosition = Vector3.positiveInfinity;

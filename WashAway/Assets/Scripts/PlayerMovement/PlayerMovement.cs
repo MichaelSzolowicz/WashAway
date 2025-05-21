@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 remainingMove = velocity * deltaTime;
 
-        print(remainingMove);
+        //print(remainingMove);
 
         int maxIterations = 5;
         for (int iterations = 0; iterations < maxIterations && remainingMove.magnitude > .001f; iterations++)
@@ -77,7 +77,10 @@ public class PlayerMovement : MonoBehaviour
 
             bool validItersection = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out intersection);
 
-            if(validItersection &&
+            //if(validItersection)
+                print(intersection.surfaceNormal);
+
+            if (validItersection &&
                 Vector2.Dot(intersection.surfaceNormal, remainingMove.normalized) <= 0)
             {
                 transform.position = intersection.intersectPosition;
