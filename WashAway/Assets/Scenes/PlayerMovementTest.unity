@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 60797172}
   - component: {fileID: 60797174}
   m_Layer: 0
-  m_Name: LineCollider (1)
+  m_Name: DebugLine
   m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -154,9 +154,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _points:
-  - position: {x: 3.28, y: -2.31}
+  - position: {x: 1.91, y: -2.69}
     normal: {x: 0.7154678, y: 0.6986456}
-  - position: {x: 1.3025444, y: -0.28493178}
+  - position: {x: -0.06745565, y: -0.6649319}
     normal: {x: 0, y: 1}
   length: 2
   rotation: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   pointSize: 12
   lineWidth: 0.2
-  previousPosition: {x: 3.28, y: -2.31, z: 0}
+  previousPosition: {x: 1.91, y: -2.69, z: 0}
 --- !u!4 &60797173
 Transform:
   m_ObjectHideFlags: 0
@@ -177,7 +177,7 @@ Transform:
   m_GameObject: {fileID: 60797171}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.28, y: -2.31, z: 0}
+  m_LocalPosition: {x: 1.91, y: -2.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineCollider: {fileID: 60797172}
---- !u!1 &78095300
+--- !u!1 &148084546
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -204,37 +204,52 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 78095302}
-  - component: {fileID: 78095301}
+  - component: {fileID: 148084548}
+  - component: {fileID: 148084547}
   m_Layer: 0
-  m_Name: LineCollisionScene
+  m_Name: LineCollider (2)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &78095301
+--- !u!114 &148084547
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 78095300}
+  m_GameObject: {fileID: 148084546}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d21447f603571374fb913248fdcd169c, type: 3}
+  m_Script: {fileID: 11500000, guid: dfc21d90a573c774e9434d1c449402aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &78095302
+  _points:
+  - position: {x: 1.759, y: 1.681}
+    normal: {x: 0.9946079, y: 0.10370605}
+  - position: {x: 1.9087187, y: 0.24510133}
+    normal: {x: 0, y: 1}
+  length: 2
+  rotation: 0
+  width: 0
+  visibleInGame: 1
+  visibleInEditor: 1
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.8000001, b: 0, a: 1}
+  pointSize: 12
+  lineWidth: 0.2
+  previousPosition: {x: 1.759, y: 1.681, z: 0}
+--- !u!4 &148084548
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 78095300}
+  m_GameObject: {fileID: 148084546}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.759, y: 1.681, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -394,7 +409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &792674242
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -460,9 +475,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxWalkSpeed: 10
-  accelerationScale: 10
+  accelerationScale: 90
   gravityScale: 1
-  brakingScale: 10
+  brakingScale: 40
   maxWalkableSlope: 90
 --- !u!4 &792674244
 Transform:
@@ -473,7 +488,66 @@ Transform:
   m_GameObject: {fileID: 792674241}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.922, y: 1, z: 0}
+  m_LocalPosition: {x: 6.846, y: -0.062, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1067533726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1067533728}
+  - component: {fileID: 1067533727}
+  m_Layer: 0
+  m_Name: LineCollider (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1067533727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067533726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc21d90a573c774e9434d1c449402aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _points:
+  - position: {x: 6.727, y: -1.018}
+    normal: {x: -0.83179957, y: 0.55507594}
+  - position: {x: 7.647742, y: 0.36176163}
+    normal: {x: 0, y: 1}
+  length: 2
+  rotation: 0
+  width: 0
+  visibleInGame: 1
+  visibleInEditor: 1
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0.8000001, b: 0, a: 1}
+  pointSize: 12
+  lineWidth: 0.2
+  previousPosition: {x: 6.727, y: -1.018, z: 0}
+--- !u!4 &1067533728
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067533726}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.727, y: -1.018, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -509,11 +583,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _points:
-  - position: {x: 0, y: 0}
-    normal: {x: 0.000000059604645, y: 0.99999994}
-  - position: {x: 5.1100025, y: 0}
-    normal: {x: 0, y: 0}
-  length: 2
+  - position: {x: 0.357, y: -0.128}
+    normal: {x: -0.35316226, y: 0.935562}
+  - position: {x: 4.9056134, y: 1.5890416}
+    normal: {x: 0.69868094, y: 0.71543336}
+  - position: {x: 8.866157, y: -2.2787619}
+    normal: {x: -0.25020045, y: 0.96819395}
+  - position: {x: 14.329411, y: -0.86694884}
+    normal: {x: 0, y: 1}
+  length: 4
   rotation: 0
   width: 0
   visibleInGame: 1
@@ -522,7 +600,7 @@ MonoBehaviour:
   selectedColor: {r: 1, g: 0.8000001, b: 0, a: 1}
   pointSize: 12
   lineWidth: 0.2
-  previousPosition: {x: 0, y: 0, z: 0}
+  previousPosition: {x: 0.357, y: -0.128, z: 0}
 --- !u!4 &1445160864
 Transform:
   m_ObjectHideFlags: 0
@@ -532,7 +610,7 @@ Transform:
   m_GameObject: {fileID: 1445160862}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.357, y: -0.128, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -664,5 +742,6 @@ SceneRoots:
   - {fileID: 1456676422}
   - {fileID: 792674244}
   - {fileID: 1445160864}
+  - {fileID: 1067533728}
+  - {fileID: 148084548}
   - {fileID: 60797173}
-  - {fileID: 78095302}
