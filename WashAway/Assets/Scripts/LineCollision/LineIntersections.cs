@@ -25,7 +25,7 @@ public static class LineIntersections
         float orientation203 = Orientation(x2, x0, x3, y2, y0, y3);
         float orientation213 = Orientation(x2, x1, x3, y2, y1, y3);
 
-        float tolerance = .00001f;
+        float tolerance = .001f;
         if ((Mathf.Abs(orientation203) <= tolerance && Mathf.Abs(orientation213) > tolerance) ||
             (Mathf.Abs(orientation213) <= tolerance && Mathf.Abs(orientation203) > tolerance))
         {

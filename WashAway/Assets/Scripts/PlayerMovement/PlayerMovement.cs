@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 remainingMove = velocity * deltaTime;
 
         // Move
-        int maxIterations = 5;
+        int maxIterations = 3;
         for (int iterations = 0; iterations < maxIterations && remainingMove.magnitude > 0; iterations++)
         {
             Vector2 lineStart = transform.position;
@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
             if (validItersection &&
                 Vector2.Dot(testIntersection.surfaceNormal, remainingMove.normalized) <= 0)
             {
-                //transform.position = testIntersection.intersectPosition;
+                transform.position = testIntersection.intersectPosition - remainingMove.normalized * .01f;
 
                 float remainingDistance = remainingMove.magnitude * (1 - testIntersection.intersectDistance);
                 Vector2 projection = Vector3.ProjectOnPlane(remainingMove, testIntersection.surfaceNormal).normalized * remainingMove.magnitude;
