@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     protected void Start()
     {
-        Application.targetFrameRate = 30;
+        Application.targetFrameRate = 120;
     }
 
     void Update()
@@ -27,16 +27,17 @@ public class PlayerMovement : MonoBehaviour
         Move2(Time.deltaTime);
     }
 
-    protected LineIntersectionResult intersection = LineIntersectionResult.GetEmpty();
-
     protected void Move2(float deltaTime)
     {
+        // Gravity
         _verticalVelocity -= ACCELERATION_DUE_TO_GRAVITY * gravityScale * deltaTime;
 
+        // Raw input
         Vector2 input = GetInput();
 
         _walkVelocity += input * accelerationScale * deltaTime;
 
+        // Max speed
         float walkSpeed = _walkVelocity.magnitude;
 
         if (walkSpeed > maxWalkSpeed)
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
             walkSpeed = maxWalkSpeed;
         }
 
+        // Braking
         if(input.magnitude <= .001f)
         {
             walkSpeed -= brakingScale * deltaTime;
@@ -53,45 +55,35 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        // Finalize movement
         _walkVelocity = _walkVelocity.normalized * walkSpeed;
 
         Vector2 velocity = _walkVelocity + _verticalVelocity * Vector2.up;
 
         Vector2 remainingMove = velocity * deltaTime;
 
+        // Move
         int maxIterations = 5;
         for (int iterations = 0; iterations < maxIterations && remainingMove.magnitude > 0; iterations++)
         {
             Vector2 lineStart = transform.position;
             Vector2 lineEnd = lineStart + remainingMove;
 
-            if(intersection.validIntersection)
-            {
-                lineStart += intersection.surfaceNormal * SMALL_NUMBER;
-                lineEnd -= intersection.surfaceNormal * SMALL_NUMBER;
-            }
-
-            LineIntersectionResult testIntersection = LineIntersectionResult.GetEmpty();
+            testIntersection = LineIntersectionResult.GetEmpty();
             bool validItersection = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out testIntersection);
 
+            Color[] colors = { Color.red, Color.cyan, Color.green, Color.blue, Color.gray };
             Vector3 remainingMove3 = remainingMove;
-            Debug.DrawLine(lineStart, lineStart - intersection.surfaceNormal * SMALL_NUMBER, Color.magenta);
-            Debug.DrawLine(lineEnd, lineEnd + intersection.surfaceNormal * SMALL_NUMBER, Color.magenta);
-            Debug.DrawLine(lineStart, lineEnd, Color.green);
+            Debug.DrawLine(transform.position, transform.position + remainingMove3, colors[iterations]);
+            print(remainingMove);
 
             if (validItersection &&
                 Vector2.Dot(testIntersection.surfaceNormal, remainingMove.normalized) <= 0)
             {
-                intersection = testIntersection;
+                //transform.position = testIntersection.intersectPosition;
 
-                Debug.DrawLine(transform.position, transform.position + remainingMove3, Color.red);
-
-                transform.position = intersection.intersectPosition;
-
-                float remainingDistance = remainingMove.magnitude * (1 - intersection.intersectDistance);
-
-                Vector2 projection = Vector3.ProjectOnPlane(remainingMove, intersection.surfaceNormal).normalized * remainingDistance;
-
+                float remainingDistance = remainingMove.magnitude * (1 - testIntersection.intersectDistance);
+                Vector2 projection = Vector3.ProjectOnPlane(remainingMove, testIntersection.surfaceNormal).normalized * remainingMove.magnitude;
                 remainingMove = projection;
 
                 _verticalVelocity = 0;
@@ -100,12 +92,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.Translate(remainingMove);
 
-                Debug.DrawLine(transform.position, transform.position + remainingMove3, Color.red);
-
                 remainingMove = Vector2.zero;
             }
         }
     }
+
+    LineIntersectionResult testIntersection;
 
     protected Vector2 GetInput()
     {

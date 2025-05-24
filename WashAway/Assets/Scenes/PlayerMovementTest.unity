@@ -137,10 +137,10 @@ GameObject:
   m_Layer: 0
   m_Name: DebugLine
   m_TagString: Untagged
-  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &60797172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,9 +154,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _points:
-  - position: {x: 1.91, y: -2.69}
-    normal: {x: 0.7154678, y: 0.6986456}
-  - position: {x: -0.06745565, y: -0.6649319}
+  - position: {x: 4.2908473, y: -0.22396185}
+    normal: {x: 0.6164195, y: 0.7874178}
+  - position: {x: 4.27763, y: -0.21361478}
     normal: {x: 0, y: 1}
   length: 2
   rotation: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   pointSize: 12
   lineWidth: 0.2
-  previousPosition: {x: 1.91, y: -2.69, z: 0}
+  previousPosition: {x: 4.29, y: -0.21, z: 0}
 --- !u!4 &60797173
 Transform:
   m_ObjectHideFlags: 0
@@ -177,7 +177,7 @@ Transform:
   m_GameObject: {fileID: 60797171}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.91, y: -2.69, z: 0}
+  m_LocalPosition: {x: 4.29, y: -0.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -209,7 +209,7 @@ GameObject:
   m_Layer: 0
   m_Name: LineCollider (2)
   m_TagString: Untagged
-  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -226,11 +226,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _points:
-  - position: {x: 1.759, y: 1.681}
-    normal: {x: 0.9946079, y: 0.10370605}
-  - position: {x: 1.9087187, y: 0.24510133}
+  - position: {x: 9, y: -2.93}
+    normal: {x: -0.18836662, y: 0.9820987}
+  - position: {x: 13.478791, y: -2.0709672}
+    normal: {x: -0.4096536, y: 0.9122411}
+  - position: {x: 13.480776, y: -2.070076}
+    normal: {x: -0.49808505, y: 0.8671281}
+  - position: {x: 13.482628, y: -2.0690122}
+    normal: {x: -0.6298456, y: 0.7767203}
+  - position: {x: 13.48401, y: -2.0678916}
+    normal: {x: -0.72495943, y: 0.6887915}
+  - position: {x: 13.485549, y: -2.0662715}
+    normal: {x: -0.99430496, y: 0.10657197}
+  - position: {x: 13.4860115, y: -2.0619562}
+    normal: {x: -0.99920684, y: 0.03981866}
+  - position: {x: 13.486146, y: -2.0585818}
+    normal: {x: -0.9999722, y: 0.00743776}
+  - position: {x: 13.486173, y: -2.0549917}
+    normal: {x: -0.9994894, y: 0.031950507}
+  - position: {x: 13.486341, y: -2.0497112}
     normal: {x: 0, y: 1}
-  length: 2
+  length: 10
   rotation: 0
   width: 0
   visibleInGame: 1
@@ -239,7 +255,7 @@ MonoBehaviour:
   selectedColor: {r: 1, g: 0.8000001, b: 0, a: 1}
   pointSize: 12
   lineWidth: 0.2
-  previousPosition: {x: 1.759, y: 1.681, z: 0}
+  previousPosition: {x: 9, y: -2.93, z: 0}
 --- !u!4 &148084548
 Transform:
   m_ObjectHideFlags: 0
@@ -249,7 +265,7 @@ Transform:
   m_GameObject: {fileID: 148084546}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.759, y: 1.681, z: 0}
+  m_LocalPosition: {x: 9, y: -2.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -476,7 +492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxWalkSpeed: 10
   accelerationScale: 90
-  gravityScale: 1
+  gravityScale: 200
   brakingScale: 40
   maxWalkableSlope: 90
 --- !u!4 &792674244
@@ -488,7 +504,7 @@ Transform:
   m_GameObject: {fileID: 792674241}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.846, y: -0.062, z: 0}
+  m_LocalPosition: {x: 11.89, y: -1.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -507,7 +523,7 @@ GameObject:
   m_Layer: 0
   m_Name: LineCollider (1)
   m_TagString: Untagged
-  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -524,9 +540,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _points:
-  - position: {x: 6.727, y: -1.018}
-    normal: {x: -0.83179957, y: 0.55507594}
-  - position: {x: 7.647742, y: 0.36176163}
+  - position: {x: 6.76, y: -2.98}
+    normal: {x: -0.97617763, y: 0.21697275}
+  - position: {x: 7.4749923, y: 0.23680657}
     normal: {x: 0, y: 1}
   length: 2
   rotation: 0
@@ -537,7 +553,7 @@ MonoBehaviour:
   selectedColor: {r: 1, g: 0.8000001, b: 0, a: 1}
   pointSize: 12
   lineWidth: 0.2
-  previousPosition: {x: 6.727, y: -1.018, z: 0}
+  previousPosition: {x: 6.76, y: -2.98, z: 0}
 --- !u!4 &1067533728
 Transform:
   m_ObjectHideFlags: 0
@@ -547,7 +563,7 @@ Transform:
   m_GameObject: {fileID: 1067533726}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.727, y: -1.018, z: 0}
+  m_LocalPosition: {x: 6.76, y: -2.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -566,7 +582,7 @@ GameObject:
   m_Layer: 0
   m_Name: LineCollider
   m_TagString: Untagged
-  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -583,15 +599,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _points:
-  - position: {x: 0.357, y: -0.128}
-    normal: {x: -0.35316226, y: 0.935562}
-  - position: {x: 4.9056134, y: 1.5890416}
-    normal: {x: 0.69868094, y: 0.71543336}
-  - position: {x: 8.866157, y: -2.2787619}
-    normal: {x: -0.25020045, y: 0.96819395}
-  - position: {x: 14.329411, y: -0.86694884}
+  - position: {x: 0, y: 0}
+    normal: {x: 0.40356535, y: 0.9149507}
+  - position: {x: 2.4163148, y: -1.065785}
+    normal: {x: -0.19941601, y: 0.9799149}
+  - position: {x: 4.837045, y: -0.573158}
+    normal: {x: 0.54791796, y: 0.836532}
+  - position: {x: 7.6458015, y: -2.412858}
+    normal: {x: 0.049731623, y: 0.9987626}
+  - position: {x: 12.512376, y: -2.6551802}
+    normal: {x: -0.07393746, y: 0.9972628}
+  - position: {x: 20.98705, y: -2.026864}
     normal: {x: 0, y: 1}
-  length: 4
+  length: 6
   rotation: 0
   width: 0
   visibleInGame: 1
@@ -600,7 +620,7 @@ MonoBehaviour:
   selectedColor: {r: 1, g: 0.8000001, b: 0, a: 1}
   pointSize: 12
   lineWidth: 0.2
-  previousPosition: {x: 0.357, y: -0.128, z: 0}
+  previousPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &1445160864
 Transform:
   m_ObjectHideFlags: 0
@@ -610,7 +630,7 @@ Transform:
   m_GameObject: {fileID: 1445160862}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.357, y: -0.128, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

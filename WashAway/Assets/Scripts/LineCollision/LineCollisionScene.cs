@@ -85,7 +85,13 @@ public class LineCollisionScene : MonoBehaviour
             {
                 result = true;
 
-                if(Vector2.Distance(lineStart, testIntersect.intersectPosition) < Vector2.Distance(lineStart, lineIntersectionResult.intersectPosition))
+                float distance0 = Vector2.Distance(lineStart, testIntersect.intersectPosition);
+                float distance1 = Vector2.Distance(lineStart, lineIntersectionResult.intersectPosition);
+
+                float dot0 = Vector2.Dot((lineEnd - lineStart).normalized, testIntersect.surfaceNormal);
+                float dot1 = lineIntersectionResult.validIntersection ? Vector2.Dot((lineEnd - lineStart).normalized, lineIntersectionResult.surfaceNormal) : float.PositiveInfinity;
+
+                if (dot0 < dot1)
                 {
                     lineIntersectionResult = testIntersect;
                 }
