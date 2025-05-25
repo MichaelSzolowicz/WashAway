@@ -89,7 +89,7 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
             LinePoint colliderEnd = _points[j];
 
             Vector3 testIntersect = Vector3.zero;
-            bool validIntersection = LineIntersections.IntersectLineLine2(lineStart.x, lineEnd.x, colliderStart.x, colliderEnd.x, lineStart.y, lineEnd.y, colliderStart.y, colliderEnd.y, out testIntersect);
+            bool validIntersection = LineIntersections.IntersectLineLine(lineStart.x, lineEnd.x, colliderStart.x, colliderEnd.x, lineStart.y, lineEnd.y, colliderStart.y, colliderEnd.y, out testIntersect);
 
             if (validIntersection)
             {
@@ -101,8 +101,6 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
                     intersectionResult.intersectDistance = Vector2.Distance(lineStart, testIntersect) / Vector2.Distance(lineStart, lineEnd);
                     intersectionResult.surfaceNormal = colliderStart.normal;
                     intersectionResult.validIntersection = result;
-                    intersectionResult.colliderStart = _points[i].position;
-                    intersectionResult.colliderEnd = _points[j].position;
                 }
             }
         }

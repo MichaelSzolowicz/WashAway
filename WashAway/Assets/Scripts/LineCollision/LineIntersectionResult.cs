@@ -6,8 +6,6 @@ public struct LineIntersectionResult
     public Vector2 surfaceNormal;
     public float intersectDistance;
     public bool validIntersection;
-    public Vector2 colliderStart;
-    public Vector2 colliderEnd;
 
     public static LineIntersectionResult Get(Vector2 intersectPosition, Vector2 surfaceNormal, float intersectDistance, bool validIntersection = false)
     {
