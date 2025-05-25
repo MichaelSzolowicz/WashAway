@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     protected void Start()
     {
-        Application.targetFrameRate = 120;
+        Application.targetFrameRate = 30;
     }
 
     void Update()
@@ -72,18 +72,20 @@ public class PlayerMovement : MonoBehaviour
             testIntersection = LineIntersectionResult.GetEmpty();
             bool validItersection = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out testIntersection);
 
-            Color[] colors = { Color.red, Color.cyan, Color.green, Color.blue, Color.gray };
-            Vector3 remainingMove3 = remainingMove;
-            Debug.DrawLine(transform.position, transform.position + remainingMove3, colors[iterations]);
-            print(remainingMove);
-
             if (validItersection &&
                 Vector2.Dot(testIntersection.surfaceNormal, remainingMove.normalized) <= 0)
             {
+                Color[] colors = { Color.red, Color.cyan, Color.green, Color.blue, Color.gray };
+                Vector3 remainingMove3 = remainingMove;
+                Debug.DrawLine(transform.position, transform.position + remainingMove3, colors[iterations]);
+                Debug.DrawLine(testIntersection.intersectPosition, testIntersection.intersectPosition + testIntersection.surfaceNormal * .01f, colors[iterations]);
+                print(remainingMove);
+
+                //Vector2 backwardProject = remainingMove.magnitude > .01f ? remainingMove.normalized * .01f : 
                 transform.position = testIntersection.intersectPosition - remainingMove.normalized * .01f;
 
                 float remainingDistance = remainingMove.magnitude * (1 - testIntersection.intersectDistance);
-                Vector2 projection = Vector3.ProjectOnPlane(remainingMove, testIntersection.surfaceNormal).normalized * remainingMove.magnitude;
+                Vector2 projection = Vector3.ProjectOnPlane(remainingMove, testIntersection.surfaceNormal).normalized * remainingDistance;
                 remainingMove = projection;
 
                 _verticalVelocity = 0;

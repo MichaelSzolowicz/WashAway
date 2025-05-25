@@ -91,7 +91,8 @@ public class LineCollisionScene : MonoBehaviour
                 float dot0 = Vector2.Dot((lineEnd - lineStart).normalized, testIntersect.surfaceNormal);
                 float dot1 = lineIntersectionResult.validIntersection ? Vector2.Dot((lineEnd - lineStart).normalized, lineIntersectionResult.surfaceNormal) : float.PositiveInfinity;
 
-                if (dot0 < dot1)
+                // Because this is a slow paced game I am assuming any two intersections will be very close to eachother, in which case we take the one that opposes movement more.
+                if(dot0 < dot1)
                 {
                     lineIntersectionResult = testIntersect;
                 }
