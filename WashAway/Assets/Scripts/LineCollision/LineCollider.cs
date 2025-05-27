@@ -93,10 +93,16 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
 
             if (validIntersection)
             {
-                result = true;
+                float distance0 = Vector2.Distance(lineStart, testIntersect);
+                float distance1 = Vector2.Distance(lineStart, intersectionResult.intersectPosition);
 
-                if (Vector2.Distance(lineStart, testIntersect) < Vector2.Distance(lineStart, intersectionResult.intersectPosition))
+                float dot0 = Vector2.Dot((lineEnd - lineStart).normalized, colliderStart.normal);
+
+                if (distance0 < distance1 &&
+                    dot0 < 0)
                 {
+                    result = true;
+
                     intersectionResult.intersectPosition = testIntersect;
                     intersectionResult.intersectDistance = Vector2.Distance(lineStart, testIntersect) / Vector2.Distance(lineStart, lineEnd);
                     intersectionResult.surfaceNormal = colliderStart.normal;

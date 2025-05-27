@@ -14,12 +14,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] protected float brakingScale = 1;
     [SerializeField, Range(0f, 90f)] protected float maxWalkableSlope;
 
-    protected float _verticalVelocity;
-    protected Vector2 _walkVelocity;
+    protected Vector3 _verticalVelocity;
+    protected Vector3 _walkVelocity;
 
     protected void Start()
     {
-        Application.targetFrameRate = 30;
+        Application.targetFrameRate = 0;
     }
 
     void Update()
@@ -30,10 +30,10 @@ public class PlayerMovement : MonoBehaviour
     protected void Move2(float deltaTime)
     {
         // Gravity
-        _verticalVelocity -= ACCELERATION_DUE_TO_GRAVITY * gravityScale * deltaTime;
+        _verticalVelocity += ACCELERATION_DUE_TO_GRAVITY * Vector3.down * gravityScale * deltaTime;
 
         // Raw input
-        Vector2 input = GetInput();
+        Vector3 input = GetInput();
 
         _walkVelocity += input * accelerationScale * deltaTime;
 
@@ -58,48 +58,51 @@ public class PlayerMovement : MonoBehaviour
         // Finalize movement
         _walkVelocity = _walkVelocity.normalized * walkSpeed;
 
-        Vector2 velocity = _walkVelocity + _verticalVelocity * Vector2.up;
+        Vector3 velocity = _walkVelocity + _verticalVelocity;
 
-        Vector2 remainingMove = velocity * deltaTime;
+        Vector3 remainingMove = velocity * deltaTime;
 
         // Move
         int maxIterations = 3;
         for (int iterations = 0; iterations < maxIterations && remainingMove.magnitude > 0; iterations++)
         {
-            Vector2 lineStart = transform.position;
-            Vector2 lineEnd = lineStart + remainingMove;
+            Vector3 lineStart = transform.position;
+            Vector3 lineEnd = lineStart + remainingMove;
 
-            testIntersection = LineIntersectionResult.GetEmpty();
+            LineIntersectionResult testIntersection = LineIntersectionResult.GetEmpty();
             bool validItersection = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out testIntersection);
 
             if (validItersection &&
                 Vector2.Dot(testIntersection.surfaceNormal, remainingMove.normalized) <= 0)
             {
+                /*
                 Color[] colors = { Color.red, Color.cyan, Color.green, Color.blue, Color.gray };
                 Vector3 remainingMove3 = remainingMove;
                 Debug.DrawLine(transform.position, transform.position + remainingMove3, colors[iterations]);
                 Debug.DrawLine(testIntersection.intersectPosition, testIntersection.intersectPosition + testIntersection.surfaceNormal * .01f, colors[iterations]);
                 print(remainingMove);
+                */
 
                 //Vector2 backwardProject = remainingMove.magnitude > .01f ? remainingMove.normalized * .01f : 
+                //print(testIntersection.intersectPosition);
                 transform.position = testIntersection.intersectPosition - remainingMove.normalized * .01f;
 
                 float remainingDistance = remainingMove.magnitude * (1 - testIntersection.intersectDistance);
                 Vector2 projection = Vector3.ProjectOnPlane(remainingMove, testIntersection.surfaceNormal).normalized * remainingDistance;
                 remainingMove = projection;
 
-                _verticalVelocity = 0;
+                _verticalVelocity = Vector3.zero;
             }
             else
             {
                 transform.Translate(remainingMove);
 
-                remainingMove = Vector2.zero;
+                remainingMove = Vector3.zero;
             }
         }
     }
 
-    LineIntersectionResult testIntersection;
+    //LineIntersectionResult testIntersection;
 
     protected Vector2 GetInput()
     {

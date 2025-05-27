@@ -88,11 +88,10 @@ public class LineCollisionScene : MonoBehaviour
                 float distance0 = Vector2.Distance(lineStart, testIntersect.intersectPosition);
                 float distance1 = Vector2.Distance(lineStart, lineIntersectionResult.intersectPosition);
 
-                float dot0 = Vector2.Dot((lineEnd - lineStart).normalized, testIntersect.surfaceNormal);
-                float dot1 = lineIntersectionResult.validIntersection ? Vector2.Dot((lineEnd - lineStart).normalized, lineIntersectionResult.surfaceNormal) : float.PositiveInfinity;
+                //float dot0 = Vector2.Dot((lineEnd - lineStart).normalized, testIntersect.surfaceNormal);
+                //float dot1 = lineIntersectionResult.validIntersection ? Vector2.Dot((lineEnd - lineStart).normalized, lineIntersectionResult.surfaceNormal) : float.PositiveInfinity;
 
-                // Because this is a slow paced game I am assuming any two intersections will be very close to eachother, in which case we take the one that opposes movement more.
-                if(dot0 < dot1)
+                if(distance0 < distance1)
                 {
                     lineIntersectionResult = testIntersect;
                 }
