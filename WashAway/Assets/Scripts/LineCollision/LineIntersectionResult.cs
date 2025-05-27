@@ -2,8 +2,8 @@ using UnityEngine;
 
 public struct LineIntersectionResult
 {
-    public Vector2 intersectPosition;
-    public Vector2 surfaceNormal;
+    public Vector3 intersectPosition;
+    public Vector3 surfaceNormal;
     public float intersectDistance;
     public bool validIntersection;
 
@@ -20,8 +20,8 @@ public struct LineIntersectionResult
     public static LineIntersectionResult GetEmpty()
     {
         LineIntersectionResult result = new LineIntersectionResult();
-        result.intersectPosition = Vector3.positiveInfinity;
-        result.surfaceNormal = Vector2.zero;
+        result.intersectPosition = new Vector3(float.PositiveInfinity, float.PositiveInfinity, 0);
+        result.surfaceNormal = Vector3.zero;
         result.intersectDistance = -1;
         result.validIntersection = false;
         return result;

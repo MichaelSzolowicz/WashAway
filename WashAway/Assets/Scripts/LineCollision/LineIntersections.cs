@@ -15,7 +15,7 @@ public static class LineIntersections
 
     public static bool IntersectLineLine(float x0, float x1, float x2, float x3, float y0, float y1, float y2, float y3, out Vector3 intersectPoisition)
     {
-        intersectPoisition = Vector3.positiveInfinity;
+        intersectPoisition = new Vector3(float.PositiveInfinity, float.PositiveInfinity, 0);
 
         float orientation203 = Orientation(x2, x0, x3, y2, y0, y3);
         float orientation213 = Orientation(x2, x1, x3, y2, y1, y3);
