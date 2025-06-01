@@ -5,40 +5,48 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    protected const float ACCELERATION_DUE_TO_GRAVITY = 9.8f;
-    protected const float SMALL_NUMBER = .01f;
+    private const float ACCELERATION_DUE_TO_GRAVITY = 9.8f;
+    private const float SMALL_NUMBER = .0015f;
 
-    [SerializeField] protected float maxWalkSpeed = 10;
-    [SerializeField] protected float accelerationScale = 10;
-    [SerializeField] protected float gravityScale = 1;
-    [SerializeField] protected float brakingScale = 1;
-    [SerializeField, Range(0f, 90f)] protected float maxWalkableSlope;
+    [Header("Movement")]
+    [SerializeField] private float maxWalkSpeed = 10;
+    [SerializeField] private float accelerationScale = 10;
+    [SerializeField] private float gravityScale = 1;
+    [SerializeField] private float brakingScale = 1;
+    [SerializeField, Range(0f, 90f)] private float maxWalkableSlope;
 
-    protected Vector3 _verticalVelocity;
-    protected Vector3 _walkVelocity;
+    private Vector3 verticalVelocity;
+    private Vector3 walkVelocity;
 
+    public Vector3 Velocity
+    {
+        get {  return verticalVelocity + walkVelocity; }
+    }
+
+    /* TESTONLY */
     protected void Start()
     {
-        Application.targetFrameRate = 0;
+        Application.targetFrameRate = 30;
     }
+    /* ENDTEST */
 
     void Update()
     {
-        Move2(Time.deltaTime);
+        UpdatePhysicsState(Time.deltaTime);
     }
 
-    protected void Move2(float deltaTime)
+    private void UpdatePhysicsState(float deltaTime)
     {
         // Gravity
-        _verticalVelocity += ACCELERATION_DUE_TO_GRAVITY * Vector3.down * gravityScale * deltaTime;
+        verticalVelocity += ACCELERATION_DUE_TO_GRAVITY * Vector3.down * gravityScale * deltaTime;
 
         // Raw input
         Vector3 input = GetInput();
 
-        _walkVelocity += input * accelerationScale * deltaTime;
+        walkVelocity += input * accelerationScale * deltaTime;
 
         // Max speed
-        float walkSpeed = _walkVelocity.magnitude;
+        float walkSpeed = walkVelocity.magnitude;
 
         if (walkSpeed > maxWalkSpeed)
         {
@@ -46,21 +54,24 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Braking
-        if(input.magnitude <= .001f)
+        if (input.magnitude <= SMALL_NUMBER)
         {
             walkSpeed -= brakingScale * deltaTime;
-            if(walkSpeed < 0)
+            if (walkSpeed < 0)
             {
                 walkSpeed = 0;
             }
         }
 
         // Finalize movement
-        _walkVelocity = _walkVelocity.normalized * walkSpeed;
+        walkVelocity = walkVelocity.normalized * walkSpeed;
 
-        Vector3 velocity = _walkVelocity + _verticalVelocity;
+        Move(deltaTime);
+    }
 
-        Vector3 remainingMove = velocity * deltaTime;
+    protected void Move(float deltaTime)
+    {
+        Vector3 remainingMove = Velocity * deltaTime;
 
         // Move
         int maxIterations = 3;
@@ -83,26 +94,21 @@ public class PlayerMovement : MonoBehaviour
                 print(remainingMove);
                 */
 
-                //Vector2 backwardProject = remainingMove.magnitude > .01f ? remainingMove.normalized * .01f : 
-                //print(testIntersection.intersectPosition);
-                transform.position = testIntersection.intersectPosition - remainingMove.normalized * .01f;
+                transform.position = testIntersection.intersectPosition - remainingMove.normalized * SMALL_NUMBER;
 
                 float remainingDistance = remainingMove.magnitude * (1 - testIntersection.intersectDistance);
-                Vector2 projection = Vector3.ProjectOnPlane(remainingMove, testIntersection.surfaceNormal).normalized * remainingDistance;
-                remainingMove = projection;
+                remainingMove = Vector3.ProjectOnPlane(remainingMove, testIntersection.surfaceNormal).normalized * remainingDistance;
 
-                _verticalVelocity = Vector3.zero;
+                verticalVelocity = Vector3.zero;
             }
             else
             {
-                transform.Translate(remainingMove);
+                transform.position += remainingMove;
 
                 remainingMove = Vector3.zero;
             }
         }
     }
-
-    //LineIntersectionResult testIntersection;
 
     protected Vector2 GetInput()
     {
@@ -119,35 +125,4 @@ public class PlayerMovement : MonoBehaviour
 
         return input;
     }
-
-    /*
-    protected bool CheckGrounded()
-    {
-        bool validIntersection = LineCollisionScene.Instance.IntersectLine(transform.position, transform.position + Vector3.down * .01f, out groundIntersection);
-
-        if (!validIntersection) return false;
-
-        //print(Vector2.Angle(Vector3.up, intersectionResult.surfaceNormal));
-
-        if (Vector2.Angle(Vector3.up, groundIntersection.surfaceNormal) > maxWalkableSlope) return false;
-
-        //if (Vector2.Dot((_walkVelocity + _verticalVelocity * Vector2.up).normalized, intersectionResult.surfaceNormal) > 0) return false;
-
-         return true;
-    }
-    */
-
-    /*
-    protected void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        if (grounded)
-            Gizmos.DrawSphere(transform.position, .1f);
-
-        if (!groundIntersection.validIntersection) return;
-
-        Gizmos.color = Color.white;
-        Gizmos.DrawLine(groundIntersection.intersectPosition, groundIntersection.intersectPosition + groundIntersection.surfaceNormal);
-    }
-    */
 }
