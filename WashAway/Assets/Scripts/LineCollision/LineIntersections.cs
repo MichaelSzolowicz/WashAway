@@ -1,9 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using Unity.VisualScripting.FullSerializer;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public static class LineIntersections
@@ -17,6 +11,7 @@ public static class LineIntersections
     {
         intersectPoisition = new Vector3(float.PositiveInfinity, float.PositiveInfinity, 0);
 
+        // Check if the end points of line 1 lay on or near line 2. Note this doesn't check if the ends of line 2 lay on line 1.
         float orientation203 = Orientation(x2, x0, x3, y2, y0, y3);
         float orientation213 = Orientation(x2, x1, x3, y2, y1, y3);
 
@@ -26,7 +21,6 @@ public static class LineIntersections
         {
             float u = -((x0 - x1) * (y0 - y2) - (y0 - y1) * (x0 - x2)) / ((x0 - x1) * (y2 - y3) - (y0 - y1) * (x2 - x3));
 
-            tolerance = .00001f;
             if (u <= -tolerance || u >= tolerance + 1)
             {
                 return false;
@@ -35,11 +29,12 @@ public static class LineIntersections
             intersectPoisition.x = x2 + u * (x3 - x2);
             intersectPoisition.y = y2 + u * (y3 - y2);
 
-            Debug.Log("Point on end");
+            //Debug.Log("Point on end");
 
             return true;
         }
 
+        // Check if line 1 and line 2 intersect between their end points.
         float orientation012 = Orientation(x0, x1, x2, y0, y1, y2);
         float orientation013 = Orientation(x0, x1, x3, y0, y1, y3);
         float orientation231 = Orientation(x2, x3, x1, y2, y3, y1);
@@ -52,7 +47,7 @@ public static class LineIntersections
             intersectPoisition.x = x0 + t * (x1 - x0);
             intersectPoisition.y = y0 + t * (y1 - y0);
 
-            Debug.Log("Point on line");
+            //Debug.Log("Point on line");
 
             return true;
         }
@@ -73,6 +68,5 @@ public static class LineIntersections
         Debug.DrawLine(start1, end1, Color.white);
         Debug.DrawLine(start2, end2, Color.magenta);
         Debug.DrawLine(intersect, intersect + normal, normalColor);
-
     }
 };
