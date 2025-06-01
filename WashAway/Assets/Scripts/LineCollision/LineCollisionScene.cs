@@ -4,66 +4,58 @@ using UnityEngine;
 
 public class LineCollisionScene : MonoBehaviour
 {
-    private static LineCollisionScene _instance;
+    private static LineCollisionScene instance;
+
+    private List<ILineColliderInterface> lineColliders = new List<ILineColliderInterface>();
 
     public static LineCollisionScene Instance
     {
         get
         {
-            if (_instance == null)
+            if (instance == null)
             {
-                _instance = FindAnyObjectByType<LineCollisionScene>();
+                instance = FindAnyObjectByType<LineCollisionScene>();
 
-                if (_instance != null)
+                if (instance != null)
                 {
-                    return _instance;
+                    return instance;
                 }
 
                 GameObject go = new GameObject();
                 go.name = "LineCollisionScene";
-                _instance = go.AddComponent<LineCollisionScene>();
+                instance = go.AddComponent<LineCollisionScene>();
             }
 
-            return _instance;
+            return instance;
         }
     }
 
     private void OnEnable()
     {
-        if (_instance != null)
+        if (instance != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            _instance = this;
+            instance = this;
         }
     }
-
-    private void OnDestroy()
-    {
-        if (_instance != null)
-        {
-            _instance = null;
-        }
-    }
-
-    private List<ILineColliderInterface> _lineColliders = new List<ILineColliderInterface>();
 
     public void RegisterLineCollider(ILineColliderInterface lineColliderInterface)
     {
-        if (_lineColliders.Contains(lineColliderInterface))
+        if (lineColliders.Contains(lineColliderInterface))
             return;
 
-        _lineColliders.Add(lineColliderInterface);
+        lineColliders.Add(lineColliderInterface);
     }
 
     public void RemoveLineCollider(ILineColliderInterface lineColliderInterface)
     {
-        if (!_lineColliders.Contains(lineColliderInterface))
+        if (!lineColliders.Contains(lineColliderInterface))
             return;
 
-        _lineColliders.Remove(lineColliderInterface);
+        lineColliders.Remove(lineColliderInterface);
     }
 
     public bool IntersectLine(Vector3 lineStart, Vector3 lineEnd, out LineIntersectionResult lineIntersectionResult)
@@ -73,10 +65,12 @@ public class LineCollisionScene : MonoBehaviour
 
         if (lineStart == lineEnd)
         {
-            return false;
+            return result;
         }
 
-        foreach (var lineCollider in _lineColliders)
+        float minDistance = float.PositiveInfinity;
+
+        foreach (var lineCollider in lineColliders)
         {
             LineIntersectionResult testIntersect = LineIntersectionResult.GetEmpty();
             bool validIntersect = lineCollider.IntersectLine(lineStart, lineEnd, out testIntersect);
@@ -85,14 +79,11 @@ public class LineCollisionScene : MonoBehaviour
             {
                 result = true;
 
-                float distance0 = Vector2.Distance(lineStart, testIntersect.intersectPosition);
-                float distance1 = Vector2.Distance(lineStart, lineIntersectionResult.intersectPosition);
+                float testDistance = Vector2.Distance(lineStart, testIntersect.intersectPosition);
 
-                //float dot0 = Vector2.Dot((lineEnd - lineStart).normalized, testIntersect.surfaceNormal);
-                //float dot1 = lineIntersectionResult.validIntersection ? Vector2.Dot((lineEnd - lineStart).normalized, lineIntersectionResult.surfaceNormal) : float.PositiveInfinity;
-
-                if(distance0 < distance1)
+                if(testDistance < minDistance)
                 {
+                    minDistance = testDistance;
                     lineIntersectionResult = testIntersect;
                 }
             }
@@ -103,7 +94,6 @@ public class LineCollisionScene : MonoBehaviour
 
     public void ShowCount()
     {
-        Debug.Log(_lineColliders.Count);
+        Debug.Log(lineColliders.Count);
     }
 }
-
