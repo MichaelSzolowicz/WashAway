@@ -103,10 +103,8 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
                 {
                     result = true;
 
-                    intersectionResult.intersectPosition = testIntersect;
-                    intersectionResult.intersectDistance = Vector2.Distance(lineStart, testIntersect) / Vector2.Distance(lineStart, lineEnd);
-                    intersectionResult.surfaceNormal = colliderStart.normal;
-                    intersectionResult.validIntersection = result;
+                    float intersectDistance = Vector2.Distance(lineStart, testIntersect) / Vector2.Distance(lineStart, lineEnd);
+                    intersectionResult.Init(testIntersect, colliderStart.normal, intersectDistance, true);
                 }
             }
         }

@@ -7,14 +7,12 @@ public struct LineIntersectionResult
     public float intersectDistance;
     public bool validIntersection;
 
-    public static LineIntersectionResult Get(Vector2 intersectPosition, Vector2 surfaceNormal, float intersectDistance, bool validIntersection = false)
+    public void Init(Vector2 intersectPosition, Vector2 surfaceNormal, float intersectDistance, bool validIntersection = false)
     {
-        LineIntersectionResult result = new LineIntersectionResult();
-        result.intersectPosition = intersectPosition;
-        result.surfaceNormal = surfaceNormal;
-        result.intersectDistance = intersectDistance;
-        result.validIntersection = validIntersection;
-        return result;
+        this.intersectPosition = intersectPosition;
+        this.surfaceNormal = surfaceNormal;
+        this.intersectDistance = intersectDistance;
+        this.validIntersection = validIntersection;
     }
 
     public static LineIntersectionResult GetEmpty()
