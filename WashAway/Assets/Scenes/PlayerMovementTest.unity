@@ -370,8 +370,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldPoints:
   - position: {x: 3.677, y: 0.66}
-    normal: {x: -0.17479515, y: 0.9846047}
-  - position: {x: 5.800252, y: 1.0369374}
+    normal: {x: -0.14972602, y: 0.98872745}
+  - position: {x: 5.495652, y: 0.9354042}
     normal: {x: 0, y: 1}
   numPoints: 2
   defaultColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
