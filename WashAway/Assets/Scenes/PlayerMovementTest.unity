@@ -369,9 +369,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldPoints:
-  - position: {x: 3.609, y: 2.327}
-    normal: {x: 0.72211725, y: 0.6917706}
-  - position: {x: 5.2499695, y: 0.6140463}
+  - position: {x: 3.677, y: 0.66}
+    normal: {x: -0.17479515, y: 0.9846047}
+  - position: {x: 5.800252, y: 1.0369374}
     normal: {x: 0, y: 1}
   numPoints: 2
   defaultColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -380,7 +380,7 @@ MonoBehaviour:
   normalLength: 0.25
   visibleInGame: 1
   visibleInEditor: 1
-  previousPosition: {x: 3.609, y: 2.327, z: 0}
+  previousPosition: {x: 3.677, y: 0.66, z: 0}
 --- !u!4 &563941851
 Transform:
   m_ObjectHideFlags: 0
@@ -390,7 +390,7 @@ Transform:
   m_GameObject: {fileID: 563941848}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.609, y: 2.327, z: 0}
+  m_LocalPosition: {x: 3.677, y: 0.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
