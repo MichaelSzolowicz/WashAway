@@ -1,10 +1,6 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 [ExecuteInEditMode]
 public class LineCollider : MonoBehaviour, ILineColliderInterface
