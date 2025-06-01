@@ -1,54 +1,29 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 [ExecuteInEditMode]
 public class LineCollider : MonoBehaviour, ILineColliderInterface
 {
-    [SerializeField] protected List<LinePoint> _points = new List<LinePoint>();
-    [HideInInspector] [SerializeField] protected int length = 0;
+    [SerializeField] private List<LinePoint> worldPoints = new List<LinePoint>();
+    [HideInInspector] [SerializeField] private int numPoints = 0;
 
-    [SerializeField] protected float rotation = 0;
-
-    [SerializeField] protected float width = 0;
-
-    [SerializeField] protected bool visibleInGame = true;
-    [SerializeField] protected bool visibleInEditor = true;
-
-    [SerializeField] protected Color defaultColor = Color.white;
-    [SerializeField] protected Color selectedColor = Color.yellow;
-    [SerializeField] protected float pointSize = .01f;
-    [SerializeField] protected float lineWidth = 1;
-
-    protected bool isSelected = false;
+    [Header("Rendering")]
+    [SerializeField] public Color defaultColor = Color.white;
+    [SerializeField] public Color selectedColor = Color.yellow;
+    [SerializeField] private float lineWidth = 1;
+    [SerializeField] private float normalLength = .25f;
+    [SerializeField] private bool visibleInGame = true;
+    [SerializeField] private bool visibleInEditor = true;
+    private bool isSelected = false;
 
     [HideInInspector] [SerializeField] private Vector3 previousPosition = Vector3.zero;
 
-    public int Length
+    public int NumPoints
     {
         get
         {
-            return _points.Count;
-        }
-    }
-
-    public float Rotation
-    {
-        get
-        {
-            return rotation;
-        }
-    }
-
-    public float Width
-    {
-        get
-        {
-            return width;
+            return numPoints;
         }
     }
 
@@ -66,12 +41,12 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
 
     public LinePoint GetPoint(int index)
     {
-        return _points[index];
+        return worldPoints[index];
     }
 
     public void SetPointWorldPosition(int index, Vector3 worldPosition)
     {
-        _points[index].position = worldPosition;
+        worldPoints[index].position = worldPosition;
 
         SetNormal(index);
         if (index - 1 >= 0)
@@ -83,24 +58,29 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
         bool result = false;
         intersectionResult = LineIntersectionResult.GetEmpty();
 
-        for (int i = 0, j = 1; j < length; i++, j++)
+        float minDistance = float.MaxValue;
+        for (int i = 0, j = 1; j < numPoints; i++, j++)
         {
-            LinePoint colliderStart = _points[i];
-            LinePoint colliderEnd = _points[j];
+            LinePoint colliderStart = worldPoints[i];
+            LinePoint colliderEnd = worldPoints[j];
 
             Vector3 testIntersect = Vector3.zero;
             bool validIntersection = LineIntersections.IntersectLineLine(lineStart.x, lineEnd.x, colliderStart.x, colliderEnd.x, lineStart.y, lineEnd.y, colliderStart.y, colliderEnd.y, out testIntersect);
 
             if (validIntersection)
             {
-                result = true;
+                float testDistance = Vector2.Distance(lineStart, testIntersect);
 
-                if (Vector2.Distance(lineStart, testIntersect) < Vector2.Distance(lineStart, intersectionResult.intersectPosition))
+                float dot = Vector2.Dot((lineEnd - lineStart).normalized, colliderStart.normal);
+
+                if (testDistance < minDistance &&
+                    dot < 0)
                 {
-                    intersectionResult.intersectPosition = testIntersect;
-                    intersectionResult.intersectDistance = Vector2.Distance(lineStart, testIntersect) / Vector2.Distance(lineStart, lineEnd);
-                    intersectionResult.surfaceNormal = colliderStart.normal;
-                    intersectionResult.validIntersection = result;
+                    result = true;
+                    minDistance = testDistance;
+
+                    float intersectDistance = Vector2.Distance(lineStart, testIntersect) / Vector2.Distance(lineStart, lineEnd);
+                    intersectionResult.Init(testIntersect, colliderStart.normal, intersectDistance, true);
                 }
             }
         }
@@ -116,6 +96,7 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
 
     protected void OnDisable()
     {
+        // Do not access the singleton if the scene is being destroyed.
         if (Application.isPlaying && gameObject.scene.isLoaded)
             LineCollisionScene.Instance.RemoveLineCollider(this);
     }
@@ -128,46 +109,43 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
 
         Color useColor = isSelected ? selectedColor : defaultColor;
         Handles.color = useColor;
-        for (int i = 0; i < Length; i++)
+        for (int i = 0; i < numPoints; i++)
         {
             LinePoint point = GetPoint(i);
 
             Gizmos.DrawIcon(point.position, "point", false, useColor);
         }
 
-        for (int p1 = 0, p2 = 1; p2 < Length; p1++, p2++)
+        for (int p1 = 0, p2 = 1; p2 < numPoints; p1++, p2++)
         {
             LinePoint lineStart = GetPoint(p1);
             LinePoint lineEnd = GetPoint(p2);
 
+            Handles.color = useColor;
             Handles.DrawLine(lineStart.position, lineEnd.position, lineWidth);
-        }
 
-        Handles.color = Color.white;
-        for (int p1 = 0, p2 = 1; p2 < Length; p1++, p2++)
-        {
-            LinePoint lineStart = GetPoint(p1);
-            LinePoint lineEnd = GetPoint(p2);
-
+            Handles.color = Color.white;
             Vector2 normalStart = (lineStart.position + lineEnd.position) / 2;
-            Handles.DrawLine(normalStart, normalStart + _points[p1].normal);
+            Handles.DrawLine(normalStart, normalStart + worldPoints[p1].normal * normalLength);
         }
     }
 
     protected void OnValidate()
     {
-        SantizePoints();
+        if (worldPoints.Count != numPoints)
+            InitializePoint();
+        else
+            SanitizePoints();
     }
 
-    protected void SantizePoints()
+    protected void InitializePoint()
     {
-        if (length == 0 && _points.Count > 0)
+        if (numPoints == 0 && worldPoints.Count > 0)
         {
-            _points[0].position = transform.position;
+            worldPoints[0].position = transform.position;
         }
 
-
-        for (int p0 = length - 2, p1 = length - 1, p2 = length; p2 < _points.Count; p0++, p1++, p2++)
+        for (int p0 = numPoints - 2, p1 = numPoints - 1, p2 = numPoints; p2 < worldPoints.Count; p0++, p1++, p2++)
         {
             if(p1 < 0) continue;
 
@@ -175,26 +153,34 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
 
             if (p0 >= 0)
             {
-                deltaPosition = (_points[p1].position - _points[p0].position).normalized;
+                deltaPosition = (worldPoints[p1].position - worldPoints[p0].position).normalized;
             }
 
             if (deltaPosition.magnitude <= .1f)
                 deltaPosition = Vector2.right;
 
-            _points[p2].position = _points[p1].position + deltaPosition;
+            worldPoints[p2].position = worldPoints[p1].position + deltaPosition;
             SetNormal(p1);
         }
 
-        length = _points.Count;
+        numPoints = worldPoints.Count;
+    }
+
+    private void SanitizePoints()
+    {
+        for(int i = 0; i < numPoints; i++)
+        {
+            SetNormal(i);  
+        }
     }
 
     protected void SetNormal(int index)
     {
-        LinePoint p1 = _points[index];
+        LinePoint p1 = worldPoints[index];
 
-        if (index + 1 < _points.Count)
+        if (index + 1 < worldPoints.Count)
         {
-            LinePoint p2 = _points[index + 1];
+            LinePoint p2 = worldPoints[index + 1];
 
             p1.normal = Quaternion.Euler(0, 0, 90) * (p2.position - p1.position).normalized;
         }
@@ -211,17 +197,12 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
 
     public void Update()
     {
-        /*
-        if(Application.isPlaying)
-            LineCollisionScene.Instance.ShowCount();
-        */
-
         if (previousPosition != transform.position)
         {
-            for (int i = 0; i < _points.Count; i++)
+            Vector2 deltaPosition = transform.position - previousPosition;
+            for (int i = 0; i < numPoints; i++)
             {
-                Vector2 deltaPosition = transform.position - previousPosition;
-                _points[i].position = _points[i].position + deltaPosition;
+                worldPoints[i].position = worldPoints[i].position + deltaPosition;
             }
         }
 

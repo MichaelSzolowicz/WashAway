@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
@@ -22,7 +20,7 @@ public class LineColliderInspector : Editor
     private void OnSceneGUI()
     {
         Handles.color = Color.clear;
-        for (int i = 0; i < lineCollider.Length; i++)
+        for (int i = 0; i < lineCollider.NumPoints; i++)
         {
             LinePoint point = lineCollider.GetPoint(i);
             Vector3 position = point.position;
