@@ -5,29 +5,27 @@ public class PlayerMovement : MonoBehaviour
     private const float ACCELERATION_DUE_TO_GRAVITY = 9.8f;
     private const float SMALL_NUMBER = .0015f;
 
-    [Header("Movement")]
+    [Header("Walking")]
     [SerializeField] private float maxWalkSpeed = 10;
     [SerializeField] private float accelerationScale = 10;
     [SerializeField] private float gravityScale = 1;
     [SerializeField] private float brakingScale = 1;
     [SerializeField, Range(0f, 90f)] private float maxWalkableSlope;
 
+    [Header("Jumping")]
+    [SerializeField] private float jumpScale = 1;   
+
     private Vector3 verticalVelocity;
     private Vector3 walkVelocity;
 
-    public Vector3 Velocity
-    {
-        get {  return verticalVelocity + walkVelocity; }
-    }
-
     /* TESTONLY */
-    protected void Start()
+    private void Start()
     {
         Application.targetFrameRate = 30;
     }
     /* ENDTEST */
 
-    void Update()
+    private void Update()
     {
         UpdatePhysicsState(Time.deltaTime);
     }
@@ -36,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
     {
         // Gravity
         verticalVelocity += ACCELERATION_DUE_TO_GRAVITY * Vector3.down * gravityScale * deltaTime;
+
+        CheckJumping();
 
         // Raw input
         Vector3 input = GetInput();
@@ -66,9 +66,35 @@ public class PlayerMovement : MonoBehaviour
         Move(deltaTime);
     }
 
-    protected void Move(float deltaTime)
+    private void CheckJumping()
     {
-        Vector3 remainingMove = Velocity * deltaTime;
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            verticalVelocity += jumpScale * Vector3.up;
+        }
+    }
+
+    private Vector2 GetInput()
+    {
+        Vector3 input = Vector3.zero;
+        if (Input.GetKey(KeyCode.D))
+        {
+            input += Vector3.right;
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            input += Vector3.left;
+        }
+
+        return input;
+    }
+
+    private void Move(float deltaTime)
+    {
+        Vector3 velocity = verticalVelocity + walkVelocity;
+
+        Vector3 remainingMove = velocity * deltaTime;
 
         // Move
         int maxIterations = 3;
@@ -105,21 +131,5 @@ public class PlayerMovement : MonoBehaviour
                 remainingMove = Vector3.zero;
             }
         }
-    }
-
-    protected Vector2 GetInput()
-    {
-        Vector3 input = Vector3.zero;
-        if (Input.GetKey(KeyCode.D))
-        {
-            input += Vector3.right;
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            input += Vector3.left;
-        }
-
-        return input;
     }
 }
