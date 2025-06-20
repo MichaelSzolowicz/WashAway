@@ -796,6 +796,7 @@ MonoBehaviour:
   gravityScale: 5
   brakingScale: 40
   maxWalkableSlope: 90
+  jumpScale: 17
 --- !u!4 &792674244
 Transform:
   m_ObjectHideFlags: 0
