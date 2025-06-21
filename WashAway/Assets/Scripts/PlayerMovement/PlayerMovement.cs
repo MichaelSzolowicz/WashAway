@@ -18,6 +18,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 verticalVelocity;
     private Vector3 walkVelocity;
 
+    private bool grounded;
+    private LineIntersectionResult groundIntersection;
+    public float probeDepth;
+
     /* TESTONLY */
     private void Start()
     {
@@ -34,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
     {
         // Gravity
         verticalVelocity += ACCELERATION_DUE_TO_GRAVITY * Vector3.down * gravityScale * deltaTime;
+
+        CheckGrounded();
 
         CheckJumping();
 
@@ -66,9 +72,22 @@ public class PlayerMovement : MonoBehaviour
         Move(deltaTime);
     }
 
+    private void CheckGrounded()
+    {
+        Vector3 lineStart = transform.position + probeDepth * Vector3.up;
+        Vector3 lineEnd = transform.position + probeDepth * Vector3.down;
+
+        //print(lineStart + ", " + lineEnd);
+        //Debug.DrawLine(lineStart, lineEnd, Color.red, 1);
+
+        grounded = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out groundIntersection);
+
+        //print(grounded);
+    }
+
     private void CheckJumping()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             verticalVelocity += jumpScale * Vector3.up;
         }
@@ -133,4 +152,3 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
-
