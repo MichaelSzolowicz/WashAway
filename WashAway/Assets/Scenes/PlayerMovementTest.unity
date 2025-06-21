@@ -797,6 +797,7 @@ MonoBehaviour:
   brakingScale: 40
   maxWalkableSlope: 90
   jumpScale: 17
+  probeDepth: 0.015
 --- !u!4 &792674244
 Transform:
   m_ObjectHideFlags: 0
