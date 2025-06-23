@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -22,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     private LineIntersectionResult groundIntersection;
     public float probeDepth;
 
+    private bool collisionEnabled = true;
+
     /* TESTONLY */
     private void Start()
     {
@@ -42,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
         CheckGrounded();
 
         CheckJumping();
+
+        CheckFallThrough();
 
         // Raw input
         Vector3 input = GetInput();
@@ -80,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
         //print(lineStart + ", " + lineEnd);
         //Debug.DrawLine(lineStart, lineEnd, Color.red, 1);
 
-        grounded = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out groundIntersection);
+        grounded = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out groundIntersection) && collisionEnabled;
 
         //print(grounded);
     }
@@ -90,6 +96,18 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             verticalVelocity += jumpScale * Vector3.up;
+        }
+    }
+
+    private void CheckFallThrough()
+    {
+        if(Input.GetKey(KeyCode.S))
+        {
+            collisionEnabled = false;
+        }
+        else
+        {
+            collisionEnabled = true;
         }
     }
 
@@ -123,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
             Vector3 lineEnd = lineStart + remainingMove;
 
             LineIntersectionResult testIntersection = LineIntersectionResult.GetEmpty();
-            bool validItersection = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out testIntersection);
+            bool validItersection = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out testIntersection) && collisionEnabled;
 
             if (validItersection &&
                 Vector2.Dot(testIntersection.surfaceNormal, remainingMove.normalized) <= 0)
