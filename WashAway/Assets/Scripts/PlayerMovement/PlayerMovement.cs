@@ -24,7 +24,8 @@ public class PlayerMovement : MonoBehaviour
     private LineIntersectionResult groundIntersection;
     public float probeDepth;
 
-    private bool collisionEnabled = true;
+    private bool isFallingThrough = false;
+    private Coroutine fallThroughCoroutine;
 
     /* TESTONLY */
     private void Start()
@@ -86,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
         //print(lineStart + ", " + lineEnd);
         //Debug.DrawLine(lineStart, lineEnd, Color.red, 1);
 
-        grounded = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out groundIntersection) && collisionEnabled;
+        grounded = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out groundIntersection);
 
         //print(grounded);
     }
@@ -101,14 +102,42 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckFallThrough()
     {
-        if(Input.GetKey(KeyCode.S))
+        if(Input.GetKeyDown(KeyCode.S))
         {
-            collisionEnabled = false;
+            StartFallThrough();
         }
-        else
+        
+        if(Input.GetKeyUp(KeyCode.S))
         {
-            collisionEnabled = true;
+            StopFallThrough();
         }
+    }
+
+    private void StartFallThrough()
+    {
+        StopFallThrough();  
+
+        fallThroughCoroutine = StartCoroutine("FallThrough");
+    }
+
+    private void StopFallThrough()
+    {
+        if(fallThroughCoroutine != null)
+        {
+            StopCoroutine(fallThroughCoroutine);
+            fallThroughCoroutine = null;
+        }
+
+        isFallingThrough = false;
+    }
+
+    private IEnumerator FallThrough()
+    {
+        isFallingThrough = true;
+
+        yield return new WaitForEndOfFrame();
+
+        isFallingThrough = false;
     }
 
     private Vector2 GetInput()
@@ -141,7 +170,12 @@ public class PlayerMovement : MonoBehaviour
             Vector3 lineEnd = lineStart + remainingMove;
 
             LineIntersectionResult testIntersection = LineIntersectionResult.GetEmpty();
-            bool validItersection = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out testIntersection) && collisionEnabled;
+            bool validItersection = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out testIntersection);
+
+            // Ideally, if falling through we would do a multi intersect and discard only the nearest intersection.
+            // I am too lazy to implement multi-intersection right now so instead you will fall through multiple platforms if they are very close.
+            validItersection = validItersection && !isFallingThrough;
+            StopFallThrough();
 
             if (validItersection &&
                 Vector2.Dot(testIntersection.surfaceNormal, remainingMove.normalized) <= 0)
