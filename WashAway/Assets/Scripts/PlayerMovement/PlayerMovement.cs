@@ -106,18 +106,16 @@ public class PlayerMovement : MonoBehaviour
         {
             StartFallThrough();
         }
-        
-        if(Input.GetKeyUp(KeyCode.S))
-        {
-            StopFallThrough();
-        }
     }
 
     private void StartFallThrough()
     {
         StopFallThrough();  
 
-        fallThroughCoroutine = StartCoroutine("FallThrough");
+        if(grounded)
+        {
+            isFallingThrough = true;
+        }
     }
 
     private void StopFallThrough()
@@ -127,15 +125,6 @@ public class PlayerMovement : MonoBehaviour
             StopCoroutine(fallThroughCoroutine);
             fallThroughCoroutine = null;
         }
-
-        isFallingThrough = false;
-    }
-
-    private IEnumerator FallThrough()
-    {
-        isFallingThrough = true;
-
-        yield return new WaitForEndOfFrame();
 
         isFallingThrough = false;
     }
@@ -170,14 +159,18 @@ public class PlayerMovement : MonoBehaviour
             Vector3 lineEnd = lineStart + remainingMove;
 
             LineIntersectionResult testIntersection = LineIntersectionResult.GetEmpty();
-            bool validItersection = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out testIntersection);
+            bool validIntersection = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out testIntersection);
 
             // Ideally, if falling through we would do a multi intersect and discard only the nearest intersection.
             // I am too lazy to implement multi-intersection right now so instead you will fall through multiple platforms if they are very close.
-            validItersection = validItersection && !isFallingThrough;
-            StopFallThrough();
+            if(isFallingThrough && validIntersection)
+            {
+                validIntersection = false;
 
-            if (validItersection &&
+                StopFallThrough();
+            }
+
+            if (validIntersection &&
                 Vector2.Dot(testIntersection.surfaceNormal, remainingMove.normalized) <= 0)
             {
                 /*
