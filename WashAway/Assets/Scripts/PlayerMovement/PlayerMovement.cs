@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -22,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
     private LineIntersectionResult groundIntersection;
     public float probeDepth;
 
+    private bool isFallingThrough = false;
+    private Coroutine fallThroughCoroutine;
+
     /* TESTONLY */
     private void Start()
     {
@@ -42,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
         CheckGrounded();
 
         CheckJumping();
+
+        CheckFallThrough();
 
         // Raw input
         Vector3 input = GetInput();
@@ -93,6 +100,35 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void CheckFallThrough()
+    {
+        if(Input.GetKeyDown(KeyCode.S))
+        {
+            StartFallThrough();
+        }
+    }
+
+    private void StartFallThrough()
+    {
+        StopFallThrough();  
+
+        if(grounded)
+        {
+            isFallingThrough = true;
+        }
+    }
+
+    private void StopFallThrough()
+    {
+        if(fallThroughCoroutine != null)
+        {
+            StopCoroutine(fallThroughCoroutine);
+            fallThroughCoroutine = null;
+        }
+
+        isFallingThrough = false;
+    }
+
     private Vector2 GetInput()
     {
         Vector3 input = Vector3.zero;
@@ -123,9 +159,18 @@ public class PlayerMovement : MonoBehaviour
             Vector3 lineEnd = lineStart + remainingMove;
 
             LineIntersectionResult testIntersection = LineIntersectionResult.GetEmpty();
-            bool validItersection = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out testIntersection);
+            bool validIntersection = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out testIntersection);
 
-            if (validItersection &&
+            // Ideally, if falling through we would do a multi intersect and discard only the nearest intersection.
+            // I am too lazy to implement multi-intersection right now so instead you will fall through multiple platforms if they are very close.
+            if(isFallingThrough && validIntersection)
+            {
+                validIntersection = false;
+
+                StopFallThrough();
+            }
+
+            if (validIntersection &&
                 Vector2.Dot(testIntersection.surfaceNormal, remainingMove.normalized) <= 0)
             {
                 /*
