@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FinishLine : MonoBehaviour
+namespace QuickTest
 {
-    private void OnTriggerEnter2D(Collider2D other)
+    public class FinishLine : MonoBehaviour
     {
-        print(name + ": " + other.name);
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if(other.GetComponent<QuickTest.Character>() != null)
+            {
+                print(name + ": " + other.name);
+            }
+        }
     }
 }
