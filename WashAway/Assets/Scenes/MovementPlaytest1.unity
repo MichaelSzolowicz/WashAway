@@ -134,8 +134,9 @@ GameObject:
   - component: {fileID: 154407830}
   - component: {fileID: 154407831}
   - component: {fileID: 154407832}
+  - component: {fileID: 154407833}
   m_Layer: 0
-  m_Name: Trigger
+  m_Name: CharacterTrigger
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -150,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 154407828}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.02, y: 0, z: 0}
+  m_LocalPosition: {x: -6.14, y: -0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -228,6 +229,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &154407833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154407828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97ea156fc75a865448f2c8639e4a00a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &495058331
 GameObject:
   m_ObjectHideFlags: 0
