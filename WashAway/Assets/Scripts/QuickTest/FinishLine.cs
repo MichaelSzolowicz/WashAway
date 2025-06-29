@@ -8,10 +8,7 @@ namespace QuickTest
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if(other.GetComponent<QuickTest.Character>() != null)
-            {
-                print(name + ": " + other.name);
-            }
+            print(name + ": " + other.name);
         }
     }
 }
