@@ -1,1 +1,1 @@
-Create victory screen.
+Pause game on finish line reached.
