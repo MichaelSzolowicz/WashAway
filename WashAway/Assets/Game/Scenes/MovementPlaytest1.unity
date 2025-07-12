@@ -715,7 +715,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -776,6 +776,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: VictoryPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475947023196615932, guid: 3c5e58e1457ffd245b05ff08b2f67dfe,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4555494226631471082, guid: 3c5e58e1457ffd245b05ff08b2f67dfe,
         type: 3}
