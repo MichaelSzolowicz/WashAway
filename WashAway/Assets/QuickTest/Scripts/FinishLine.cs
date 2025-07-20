@@ -8,7 +8,7 @@ namespace QuickTest
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
-            print(name + ": " + other.name);
+            GameState.Paused = true;
         }
     }
 }
