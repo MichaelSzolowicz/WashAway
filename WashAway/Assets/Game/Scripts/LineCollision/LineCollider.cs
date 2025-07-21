@@ -101,6 +101,7 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
             LineCollisionScene.Instance.RemoveLineCollider(this);
     }
 
+#if UNITY_EDITOR
     protected void OnDrawGizmos()
     {
         if (!visibleInEditor && !visibleInGame) return;
@@ -129,6 +130,7 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
             Handles.DrawLine(normalStart, normalStart + worldPoints[p1].normal * normalLength);
         }
     }
+#endif
 
     protected void OnValidate()
     {
