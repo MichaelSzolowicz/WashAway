@@ -2,16 +2,14 @@ using UnityEngine;
 
 public class GameRuler : MonoBehaviour
 {
-    [SerializeField] private GameRules gameRules;
-
-    [SerializeField] [HideInInspector] private GameObject canvas;
-    [SerializeField] [HideInInspector] private GameObject pauseScreen;
+    [SerializeField] private GameObject canvas;
+    [SerializeField] private GameObject pauseScreen;
 
 
     private void Start()
     {
-        canvas = Instantiate(gameRules.Canvas);
-        pauseScreen = Instantiate(gameRules.PauseScreen, canvas.transform, false);
+        canvas.SetActive(true);
+        pauseScreen.SetActive(false);
     }
 
     private void Update()
