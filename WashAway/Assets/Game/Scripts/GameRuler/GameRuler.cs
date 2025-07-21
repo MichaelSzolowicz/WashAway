@@ -10,22 +10,8 @@ public class GameRuler : MonoBehaviour
 
     private void Start()
     {
-        if(gameRules != null)
-        {
-            canvas = Instantiate(gameRules.Canvas);
-            if(canvas == null)
-            {
-                canvas = new GameObject();
-                canvas.name = "Canvas";
-            }
-
-            pauseScreen = Instantiate(gameRules.PauseScreen, canvas.transform, false);
-            if(pauseScreen == null)
-            {
-                pauseScreen = new GameObject();
-                pauseScreen.name = "PauseScreen";
-            }
-        }
+        canvas = Instantiate(gameRules.Canvas);
+        pauseScreen = Instantiate(gameRules.PauseScreen, canvas.transform, false);
     }
 
     private void Update()
