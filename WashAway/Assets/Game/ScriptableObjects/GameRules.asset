@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e2751866c715142867923a4a48f9a5, type: 3}
   m_Name: GameRules
   m_EditorClassIdentifier: 
-  pauseScreen: {fileID: 4475947023196615932, guid: 3c5e58e1457ffd245b05ff08b2f67dfe,
+  pauseScreen: {fileID: 4475947023196615932, guid: 018d0799dd8d48a49893b6c76b578c3a,
     type: 3}
