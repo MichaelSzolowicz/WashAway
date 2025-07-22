@@ -4,6 +4,6 @@ public class FinishLine : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        GameState.Paused = true;
+        GameState.CurrentLevelClear = true;
     }
 }

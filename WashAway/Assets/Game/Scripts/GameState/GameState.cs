@@ -4,11 +4,10 @@ using UnityEngine;
 
 public static class GameState
 {
-    public delegate void OnTogglePause();
-    public static event OnTogglePause onTogglePause;
+    public delegate void OnStateChange();
 
     private static bool paused = false;
-
+    public static event OnStateChange onTogglePause;
     public static bool  Paused 
     { 
         get 
@@ -26,5 +25,23 @@ public static class GameState
                 onTogglePause?.Invoke();
             }
         } 
+    }
+
+    private static bool currentLevelClear = false;
+    public static event OnStateChange onToggleCurrentLevelClear;
+    public static bool CurrentLevelClear
+    {
+        get { return currentLevelClear; }
+        set
+        {
+            bool previousValue = currentLevelClear;
+
+            currentLevelClear = value;
+
+            if(previousValue != currentLevelClear)
+            {
+                onToggleCurrentLevelClear?.Invoke();
+            }
+        }
     }
 }
