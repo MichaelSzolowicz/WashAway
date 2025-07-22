@@ -3,32 +3,32 @@ using UnityEngine;
 public class GameRuler : MonoBehaviour
 {
     [SerializeField] private GameObject canvas;
-    [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject levelClearScreen;
 
 
     private void Start()
     {
         canvas.SetActive(true);
-        pauseScreen.SetActive(false);
+        levelClearScreen.SetActive(false);
 
-        GameState.onTogglePause += OnTogglePause;
+        GameState.onToggleCurrentLevelClear += OnLevelClear;
     }
 
-    private void OnTogglePause()
+    private void OnLevelClear()
     {
-        if (GameState.Paused)
+        if (GameState.CurrentLevelClear)
         {
-            pauseScreen.SetActive(true);
+            levelClearScreen.SetActive(true);
         }
         else
         {
-            pauseScreen.SetActive(false);
+            levelClearScreen.SetActive(false);
         }
     }
 
     private void OnDestroy()
     {
-        GameState.onTogglePause -= OnTogglePause;
+        GameState.onToggleCurrentLevelClear -= OnLevelClear;
     }
 }
 
