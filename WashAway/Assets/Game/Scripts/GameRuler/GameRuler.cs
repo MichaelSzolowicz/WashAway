@@ -11,10 +11,10 @@ public class GameRuler : MonoBehaviour
         canvas.SetActive(true);
         levelClearScreen.SetActive(false);
 
-        GameState.onToggleCurrentLevelClear += OnLevelClear;
+        GameState.onToggleCurrentLevelClear += OnToggleLevelClear;
     }
 
-    private void OnLevelClear()
+    private void OnToggleLevelClear()
     {
         if (GameState.CurrentLevelClear)
         {
@@ -28,7 +28,7 @@ public class GameRuler : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameState.onToggleCurrentLevelClear -= OnLevelClear;
+        GameState.onToggleCurrentLevelClear -= OnToggleLevelClear;
     }
 }
 
