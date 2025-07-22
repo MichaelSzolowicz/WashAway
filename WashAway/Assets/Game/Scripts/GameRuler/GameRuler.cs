@@ -10,9 +10,11 @@ public class GameRuler : MonoBehaviour
     {
         canvas.SetActive(true);
         pauseScreen.SetActive(false);
+
+        GameState.onTogglePause += OnTogglePause;
     }
 
-    private void Update()
+    private void OnTogglePause()
     {
         if (GameState.Paused)
         {
@@ -22,6 +24,11 @@ public class GameRuler : MonoBehaviour
         {
             pauseScreen.SetActive(false);
         }
+    }
+
+    private void OnDestroy()
+    {
+        GameState.onTogglePause -= OnTogglePause;
     }
 }
 

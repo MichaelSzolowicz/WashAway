@@ -4,12 +4,27 @@ using UnityEngine;
 
 public static class GameState
 {
+    public delegate void OnTogglePause();
+    public static event OnTogglePause onTogglePause;
+
     private static bool paused = false;
 
-    public static bool  Paused { get { return paused; } set { paused = value; } }
+    public static bool  Paused 
+    { 
+        get 
+        { 
+            return paused; 
+        } 
+        set 
+        {
+            bool previousValue = paused;
 
-    public static void Pause()
-    {
+            paused = value;
 
+            if(previousValue != paused)
+            {
+                onTogglePause?.Invoke();
+            }
+        } 
     }
 }
