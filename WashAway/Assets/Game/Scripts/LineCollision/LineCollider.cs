@@ -11,7 +11,7 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
     [Header("Rendering")]
     [SerializeField] public Color defaultColor = Color.white;
     [SerializeField] public Color selectedColor = Color.yellow;
-    [SerializeField] private float lineWidth = 1;
+    //[SerializeField] private float lineWidth = 1;
     [SerializeField] private float normalLength = .25f;
     [SerializeField] private bool visibleInGame = true;
     [SerializeField] private bool visibleInEditor = true;
@@ -109,7 +109,7 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
         else if(SceneView.currentDrawingSceneView != null && !visibleInEditor) return;
 
         Color useColor = isSelected ? selectedColor : defaultColor;
-        Handles.color = useColor;
+        Gizmos.color = useColor;
         for (int i = 0; i < numPoints; i++)
         {
             LinePoint point = GetPoint(i);
@@ -122,12 +122,12 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
             LinePoint lineStart = GetPoint(p1);
             LinePoint lineEnd = GetPoint(p2);
 
-            Handles.color = useColor;
-            Handles.DrawLine(lineStart.position, lineEnd.position, lineWidth);
+            Gizmos.color = useColor;
+            Gizmos.DrawLine(lineStart.position, lineEnd.position);
 
-            Handles.color = Color.white;
+            Gizmos.color = Color.white;
             Vector2 normalStart = (lineStart.position + lineEnd.position) / 2;
-            Handles.DrawLine(normalStart, normalStart + worldPoints[p1].normal * normalLength);
+            Gizmos.DrawLine(normalStart, normalStart + worldPoints[p1].normal * normalLength);
         }
     }
 #endif
