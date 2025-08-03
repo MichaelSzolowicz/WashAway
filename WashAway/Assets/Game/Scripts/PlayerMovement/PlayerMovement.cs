@@ -36,7 +36,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!GameState.Paused)
+        if (
+            !GameState.Paused 
+            && !GameState.CurrentLevelClear
+            )
         {
             UpdatePhysicsState(Time.deltaTime);
         }
