@@ -1,8 +1,8 @@
 using System.Collections;
-using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class CharacterMovement : MonoBehaviour
 {
     private const float ACCELERATION_DUE_TO_GRAVITY = 9.8f;
     private const float SMALL_NUMBER = .0015f;
@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, Range(0f, 90f)] private float maxWalkableSlope;
 
     [Header("Jumping")]
-    [SerializeField] private float jumpScale = 1;   
+    [SerializeField] private float jumpScale = 1;
 
     private Vector3 verticalVelocity;
     private Vector3 walkVelocity;
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         if (
-            !GameState.Paused 
+            !GameState.Paused
             && !GameState.CurrentLevelClear
             )
         {
@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckJumping()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && grounded)
+        if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             verticalVelocity += jumpScale * Vector3.up;
         }
@@ -108,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckFallThrough()
     {
-        if(Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S))
         {
             StartFallThrough();
         }
@@ -116,9 +116,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void StartFallThrough()
     {
-        StopFallThrough();  
+        StopFallThrough();
 
-        if(grounded)
+        if (grounded)
         {
             isFallingThrough = true;
         }
@@ -126,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void StopFallThrough()
     {
-        if(fallThroughCoroutine != null)
+        if (fallThroughCoroutine != null)
         {
             StopCoroutine(fallThroughCoroutine);
             fallThroughCoroutine = null;
@@ -169,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
 
             // Ideally, if falling through we would do a multi intersect and discard only the nearest intersection.
             // I am too lazy to implement multi-intersection right now so instead you will fall through multiple platforms if they are very close.
-            if(isFallingThrough && validIntersection)
+            if (isFallingThrough && validIntersection)
             {
                 validIntersection = false;
 
