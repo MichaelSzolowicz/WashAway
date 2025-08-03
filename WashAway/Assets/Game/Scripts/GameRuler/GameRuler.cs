@@ -5,7 +5,6 @@ public class GameRuler : MonoBehaviour
     [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject levelClearScreen;
 
-
     private void Start()
     {
         canvas.SetActive(true);
