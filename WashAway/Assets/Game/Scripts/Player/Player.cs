@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class GameRuler : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject levelClearScreen;
@@ -44,4 +46,3 @@ public class GameRuler : MonoBehaviour
         GameState.onTogglePause -= OnTogglePause;
     }
 }
-
