@@ -443,7 +443,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 288004205}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04464ec4e1ee5dd43938bbf38841add9, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c4618b20fef3a940b1c9d1511447daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxWalkSpeed: 10
