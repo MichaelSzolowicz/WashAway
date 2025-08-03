@@ -16,6 +16,17 @@ public class GameRuler : MonoBehaviour
         GameState.onTogglePause += OnTogglePause;
     }
 
+    void Update()
+    {
+        if (
+            Input.GetKeyDown(KeyCode.Escape)
+            && !GameState.CurrentLevelClear
+            )
+        {
+            GameState.Paused = !GameState.Paused;
+        }
+    }
+
     private void OnToggleLevelClear()
     {
         levelClearScreen.SetActive(GameState.CurrentLevelClear);
