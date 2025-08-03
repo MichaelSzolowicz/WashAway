@@ -6,6 +6,9 @@ public class Player : MonoBehaviour
 {
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameState.Paused = !GameState.Paused;
+        }
     }
 }
