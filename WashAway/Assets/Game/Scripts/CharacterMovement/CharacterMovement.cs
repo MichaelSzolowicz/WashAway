@@ -213,6 +213,10 @@ public class CharacterMovement : MonoBehaviour
         if (other.gameObject.CompareTag("DamageCauser"))
         {
             transform.position = startPosition;
+
+            StopFallThrough();
+            walkVelocity = Vector3.zero;
+            verticalVelocity = Vector3.zero;
         }
     }
 }
