@@ -27,15 +27,11 @@ public class CharacterMovement : MonoBehaviour
     private bool isFallingThrough = false;
     private Coroutine fallThroughCoroutine;
 
-    private Vector3 startPosition;
-
     private void Start()
     {
         /* TESTONLY */
         Application.targetFrameRate = 30;
         /* ENDTEST */
-
-        startPosition = transform.position;
     }
 
 
@@ -208,15 +204,18 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    public void ResetPhysicsState()
+    {
+        StopFallThrough();
+        walkVelocity = Vector3.zero;
+        verticalVelocity = Vector3.zero;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("DamageCauser"))
         {
-            transform.position = startPosition;
 
-            StopFallThrough();
-            walkVelocity = Vector3.zero;
-            verticalVelocity = Vector3.zero;
         }
     }
 }
