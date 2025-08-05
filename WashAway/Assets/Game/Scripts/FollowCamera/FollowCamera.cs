@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
 {
-    [SerializeField] private Transform followTransform;
+    [SerializeField] private Transform target;
+    [SerializeField] private float speed;
 
     private Vector3 startOffest;
 
     void Start()
     {
-        startOffest = transform.position - followTransform.position;
+        startOffest = transform.position - target.position;
     }
 
     void LateUpdate()
     {
-        transform.position = followTransform.position + startOffest;
+        Vector3 delta = target.position - (transform.position);
+        delta.z = 0;
+
+        transform.position = transform.position + delta * speed;
     }
 }
