@@ -27,12 +27,17 @@ public class CharacterMovement : MonoBehaviour
     private bool isFallingThrough = false;
     private Coroutine fallThroughCoroutine;
 
-    /* TESTONLY */
+    private Vector3 startPosition;
+
     private void Start()
     {
+        /* TESTONLY */
         Application.targetFrameRate = 30;
+        /* ENDTEST */
+
+        startPosition = transform.position;
     }
-    /* ENDTEST */
+
 
     private void Update()
     {
@@ -200,6 +205,14 @@ public class CharacterMovement : MonoBehaviour
 
                 remainingMove = Vector3.zero;
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("DamageCauser"))
+        {
+            transform.position = startPosition;
         }
     }
 }
