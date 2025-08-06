@@ -26,6 +26,6 @@ public class ButtonUtilities : MonoBehaviour
 
     public void Feedback()
     {
-        Application.OpenURL("www.michaelszolowicz.com");
+        Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSdKa0xOPazMho4pofddiCM6PvyUd9Gn6w2nzH0zEsnEyDj0YQ/viewform?usp=dialog");
     }
 }
