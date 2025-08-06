@@ -308,6 +308,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2969670447029445607, guid: fb2a90ccb856af4459d5dc150af9f528,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969670447029445607, guid: fb2a90ccb856af4459d5dc150af9f528,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969670447029445607, guid: fb2a90ccb856af4459d5dc150af9f528,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4936465184634054338, guid: fb2a90ccb856af4459d5dc150af9f528,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -377,7 +392,7 @@ GameObject:
   - component: {fileID: 288004210}
   - component: {fileID: 288004209}
   m_Layer: 6
-  m_Name: PlayerCharacter
+  m_Name: PlatformerCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
