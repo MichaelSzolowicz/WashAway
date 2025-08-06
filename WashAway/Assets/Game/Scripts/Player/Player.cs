@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
 
         GameState.onToggleCurrentLevelClear += OnToggleLevelClear;
         GameState.onTogglePause += OnTogglePause;
+
+        GameState.Paused = false;
+        GameState.CurrentLevelClear = false;
     }
 
     void Update()
