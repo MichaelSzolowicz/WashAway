@@ -1,24 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
 {
     [SerializeField] private Transform target;
-    [SerializeField] private float speed;
+    [SerializeField] private float lagTime;
 
-    private Vector3 startOffest;
+    private Vector3 startOffet;
+
+    private Vector3 velocity = Vector3.zero;
 
     void Start()
     {
-        startOffest = transform.position - target.position;
+        startOffet = transform.position - target.position;
     }
 
     void LateUpdate()
     {
-        Vector3 delta = target.position - (transform.position);
-        delta.z = 0;
-
-        transform.position = transform.position + delta * speed;
+        Vector3 newPosition = Vector3.SmoothDamp(transform.position, target.position + startOffet, ref velocity, lagTime);
+        newPosition.z = transform.position.z;
+        transform.position = newPosition;
     }
 }
