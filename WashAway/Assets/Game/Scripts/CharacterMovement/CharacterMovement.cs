@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
@@ -18,6 +19,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float jumpScale = 1;
 
     private Vector3 verticalVelocity;
+
     private Vector3 walkVelocity;
 
     private bool grounded;
@@ -59,13 +61,7 @@ public class CharacterMovement : MonoBehaviour
 
         // Raw input
         Vector3 input = GetInput();
-
-        // Stick to slopes
-        if (grounded)
-        {
-            input = Vector3.ProjectOnPlane(input, groundIntersection.surfaceNormal);
-            walkVelocity = Vector3.ProjectOnPlane(walkVelocity, groundIntersection.surfaceNormal);
-        }
+        Vector3 inputCopy = input;
 
         walkVelocity += input * accelerationScale * deltaTime;
 
@@ -90,22 +86,34 @@ public class CharacterMovement : MonoBehaviour
         // Finalize movement
         walkVelocity = walkVelocity.normalized * walkSpeed;
 
-        Move(deltaTime);
+        Move(deltaTime, inputCopy);
     }
 
     private void CheckGrounded()
     {
-        Vector3 lineStart = transform.position + probeDepth * Vector3.up;
+        if(isFallingThrough)
+        {
+            grounded = false;
+            return;
+        }
+
+        Vector3 lineStart = transform.position; // + probeDepth * Vector3.up;
         Vector3 lineEnd = transform.position + probeDepth * Vector3.down;
 
-        //print(lineStart + ", " + lineEnd);
-        //Debug.DrawLine(lineStart, lineEnd, Color.red, 1);
-
-        grounded = LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out groundIntersection);
-
-        //print(grounded);
+        if(
+            LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out groundIntersection)
+            && Vector2.Dot(groundIntersection.surfaceNormal, Vector3.down) <= 0
+            && Mathf.Acos(Vector3.Dot(groundIntersection.surfaceNormal, Vector3.up)) * Mathf.Rad2Deg < maxWalkableSlope
+            )
+        {
+            grounded = true;
+        }
+        else
+        {
+            grounded= false;
+        }
     }
-
+    
     private void CheckJumping()
     {
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
@@ -159,9 +167,24 @@ public class CharacterMovement : MonoBehaviour
         return input;
     }
 
-    private void Move(float deltaTime)
+    private void Move(float deltaTime, Vector3 input)
     {
-        Vector3 velocity = verticalVelocity + walkVelocity;
+        Debug.DrawLine(transform.position, transform.position + walkVelocity.normalized, Color.blue, .1f);
+
+        Vector3 velocity = verticalVelocity;
+
+        // Stick to slopes
+        if (grounded)
+        {
+            Vector3 direction = Vector3.ProjectOnPlane(walkVelocity, groundIntersection.surfaceNormal).normalized;
+
+            velocity = direction * walkVelocity.magnitude;
+            velocity += verticalVelocity;
+        }
+        else
+        {
+            velocity = walkVelocity + verticalVelocity;
+        }
 
         Vector3 remainingMove = velocity * deltaTime;
 
@@ -187,20 +210,22 @@ public class CharacterMovement : MonoBehaviour
             if (validIntersection &&
                 Vector2.Dot(testIntersection.surfaceNormal, remainingMove.normalized) <= 0)
             {
-                /*
-                Color[] colors = { Color.red, Color.cyan, Color.green, Color.blue, Color.gray };
-                Vector3 remainingMove3 = remainingMove;
-                Debug.DrawLine(transform.position, transform.position + remainingMove3, colors[iterations]);
-                Debug.DrawLine(testIntersection.intersectPosition, testIntersection.intersectPosition + testIntersection.surfaceNormal * .01f, colors[iterations]);
-                print(remainingMove);
-                */
-
                 transform.position = testIntersection.intersectPosition - remainingMove.normalized * SMALL_NUMBER;
 
                 float remainingDistance = remainingMove.magnitude * (1 - testIntersection.intersectDistance);
-                remainingMove = Vector3.ProjectOnPlane(remainingMove, testIntersection.surfaceNormal).normalized * remainingDistance;
 
-                verticalVelocity = Vector3.zero;
+                if (Mathf.Acos(Vector3.Dot(testIntersection.surfaceNormal, Vector3.up)) * Mathf.Rad2Deg < maxWalkableSlope)
+                {
+                    remainingMove = Vector3.ProjectOnPlane(walkVelocity, testIntersection.surfaceNormal).normalized * remainingDistance;
+                    
+                    verticalVelocity = Vector3.zero;
+                }
+                else
+                {
+                    remainingMove = Vector3.ProjectOnPlane(remainingMove, testIntersection.surfaceNormal).normalized * remainingDistance;
+                }
+
+                Debug.DrawLine(transform.position, transform.position + remainingMove, Color.blue, .5f);
             }
             else
             {
@@ -209,6 +234,7 @@ public class CharacterMovement : MonoBehaviour
                 remainingMove = Vector3.zero;
             }
         }
+
     }
 
     public void ResetPhysicsState()
@@ -218,11 +244,4 @@ public class CharacterMovement : MonoBehaviour
         verticalVelocity = Vector3.zero;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("DamageCauser"))
-        {
-
-        }
-    }
 }
