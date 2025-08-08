@@ -414,7 +414,7 @@ MonoBehaviour:
   accelerationScale: 45
   gravityScale: 5
   brakingScale: 40
-  maxWalkableSlope: 90
+  maxWalkableSlope: 30
   jumpScale: 19
   probeDepth: 0.015
 --- !u!4 &288004208

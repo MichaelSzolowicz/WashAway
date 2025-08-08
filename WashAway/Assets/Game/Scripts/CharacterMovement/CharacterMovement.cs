@@ -19,7 +19,6 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float jumpScale = 1;
 
     private Vector3 verticalVelocity;
-
     private Vector3 walkVelocity;
 
     private bool grounded;
@@ -32,7 +31,7 @@ public class CharacterMovement : MonoBehaviour
     private void Start()
     {
         /* TESTONLY */
-        //Application.targetFrameRate = 30;
+        Application.targetFrameRate = 30;
         /* ENDTEST */
     }
 
@@ -103,7 +102,7 @@ public class CharacterMovement : MonoBehaviour
         if(
             LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out groundIntersection)
             && Vector2.Dot(groundIntersection.surfaceNormal, Vector3.down) <= 0
-            && Mathf.Acos(Vector3.Dot(groundIntersection.surfaceNormal, Vector3.up)) * Mathf.Rad2Deg < maxWalkableSlope
+            //&& Mathf.Acos(Vector3.Dot(groundIntersection.surfaceNormal, Vector3.up)) * Mathf.Rad2Deg < maxWalkableSlope
             )
         {
             grounded = true;
@@ -116,39 +115,26 @@ public class CharacterMovement : MonoBehaviour
     
     private void CheckJumping()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        if (
+            Input.GetKeyDown(KeyCode.Space) 
+            && grounded
+            )
         {
-            verticalVelocity += jumpScale * Vector3.up;
+
+            verticalVelocity = jumpScale * Vector3.up;
         }
     }
 
     private void CheckFallThrough()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (
+            Input.GetKeyDown(KeyCode.S)
+            && grounded
+            )
         {
-            StartFallThrough();
-        }
-    }
 
-    private void StartFallThrough()
-    {
-        StopFallThrough();
-
-        if (grounded)
-        {
             isFallingThrough = true;
         }
-    }
-
-    private void StopFallThrough()
-    {
-        if (fallThroughCoroutine != null)
-        {
-            StopCoroutine(fallThroughCoroutine);
-            fallThroughCoroutine = null;
-        }
-
-        isFallingThrough = false;
     }
 
     private Vector2 GetInput()
@@ -204,7 +190,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 validIntersection = false;
 
-                StopFallThrough();
+                isFallingThrough = false;
             }
 
             if (validIntersection &&
@@ -213,19 +199,9 @@ public class CharacterMovement : MonoBehaviour
                 transform.position = testIntersection.intersectPosition - remainingMove.normalized * SMALL_NUMBER;
 
                 float remainingDistance = remainingMove.magnitude * (1 - testIntersection.intersectDistance);
-
-                if (Mathf.Acos(Vector3.Dot(testIntersection.surfaceNormal, Vector3.up)) * Mathf.Rad2Deg < maxWalkableSlope)
-                {
-                    remainingMove = Vector3.ProjectOnPlane(walkVelocity, testIntersection.surfaceNormal).normalized * remainingDistance;
+                remainingMove = Vector3.ProjectOnPlane(walkVelocity, testIntersection.surfaceNormal).normalized * remainingDistance;
                     
-                    verticalVelocity = Vector3.zero;
-                }
-                else
-                {
-                    remainingMove = Vector3.ProjectOnPlane(remainingMove, testIntersection.surfaceNormal).normalized * remainingDistance;
-                }
-
-                Debug.DrawLine(transform.position, transform.position + remainingMove, Color.blue, .5f);
+                verticalVelocity = Vector3.zero;
             }
             else
             {
@@ -239,7 +215,7 @@ public class CharacterMovement : MonoBehaviour
 
     public void ResetPhysicsState()
     {
-        StopFallThrough();
+        isFallingThrough = false;
         walkVelocity = Vector3.zero;
         verticalVelocity = Vector3.zero;
     }
