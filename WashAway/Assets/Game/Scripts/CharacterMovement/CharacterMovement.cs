@@ -60,6 +60,13 @@ public class CharacterMovement : MonoBehaviour
         // Raw input
         Vector3 input = GetInput();
 
+        // Stick to slopes
+        if (grounded)
+        {
+            input = Vector3.ProjectOnPlane(input, groundIntersection.surfaceNormal);
+            walkVelocity = Vector3.ProjectOnPlane(walkVelocity, groundIntersection.surfaceNormal);
+        }
+
         walkVelocity += input * accelerationScale * deltaTime;
 
         // Max speed
