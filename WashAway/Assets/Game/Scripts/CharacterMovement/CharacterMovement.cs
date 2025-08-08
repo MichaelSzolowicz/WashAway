@@ -31,7 +31,7 @@ public class CharacterMovement : MonoBehaviour
     private void Start()
     {
         /* TESTONLY */
-        //Application.targetFrameRate = 30;
+        Application.targetFrameRate = 30;
         /* ENDTEST */
     }
 
