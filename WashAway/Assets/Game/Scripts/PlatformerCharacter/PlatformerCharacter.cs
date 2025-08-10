@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlatformerCharacter : MonoBehaviour
 {
-    [SerializeField] private CharacterMovement lineCharacterMovement;
+    [SerializeField] private PlatformerMovement platformerMovement;
     [SerializeField] private FollowCamera followCamera;
 
     private Vector3 startPosition;
@@ -16,15 +16,17 @@ public class PlatformerCharacter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+
         if (other.gameObject.CompareTag("DamageCauser"))
         {
             Respawn();
+            print(name + " on trigger enter 2d.");
         }
     }
 
     private void Respawn()
     {
-        transform.position = startPosition;
-        lineCharacterMovement.ResetPhysicsState();
+        platformerMovement.transform.position = startPosition;
+        platformerMovement.ResetPhysicsState();
     }
 }
