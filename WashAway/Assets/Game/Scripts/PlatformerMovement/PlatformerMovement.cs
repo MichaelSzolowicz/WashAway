@@ -190,8 +190,7 @@ public class PlatformerMovement : MonoBehaviour
                 isFallingThrough = false;
             }
 
-            if (validIntersection &&
-                Vector2.Dot(testIntersection.surfaceNormal, remainingMove.normalized) <= 0)
+            if (validIntersection)
             {
                 transform.position = testIntersection.intersectPosition - remainingMove.normalized * SMALL_NUMBER;
 
