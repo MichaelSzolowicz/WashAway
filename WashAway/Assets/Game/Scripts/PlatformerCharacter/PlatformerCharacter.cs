@@ -16,15 +16,17 @@ public class PlatformerCharacter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+
         if (other.gameObject.CompareTag("DamageCauser"))
         {
             Respawn();
+            print(name + " on trigger enter 2d.");
         }
     }
 
     private void Respawn()
     {
-        transform.position = startPosition;
+        platformerMovement.transform.position = startPosition;
         platformerMovement.ResetPhysicsState();
     }
 }

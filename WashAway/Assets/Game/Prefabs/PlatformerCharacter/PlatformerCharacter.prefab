@@ -57,7 +57,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8927672094789748330}
   - component: {fileID: 3786901577825990408}
-  - component: {fileID: 83824515046306986}
   - component: {fileID: 1201838256028822508}
   m_Layer: 6
   m_Name: PlatformerMovment
@@ -102,33 +101,6 @@ MonoBehaviour:
   jumpScale: 19
   probeDepth: 0.5
   targetFramerate: 0
---- !u!50 &83824515046306986
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3712603452275241170}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &1201838256028822508
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -184,6 +156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3216117592984667365}
   - component: {fileID: 4248487411455644778}
+  - component: {fileID: 8222318881938983064}
   m_Layer: 6
   m_Name: PlatformerCharacter
   m_TagString: Untagged
@@ -222,6 +195,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformerMovement: {fileID: 3786901577825990408}
   followCamera: {fileID: 3321738086205761991}
+--- !u!50 &8222318881938983064
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4406575685451234514}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7880120621908811663
 GameObject:
   m_ObjectHideFlags: 0
