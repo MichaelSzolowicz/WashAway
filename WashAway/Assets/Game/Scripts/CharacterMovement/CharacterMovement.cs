@@ -28,10 +28,13 @@ public class CharacterMovement : MonoBehaviour
     private bool isFallingThrough = false;
     private Coroutine fallThroughCoroutine;
 
+    // Test values
+    public int targetFramerate = 30;
+
     private void Start()
     {
         /* TESTONLY */
-        Application.targetFrameRate = 30;
+        Application.targetFrameRate = targetFramerate;
         /* ENDTEST */
     }
 
