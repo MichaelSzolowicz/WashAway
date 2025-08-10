@@ -164,12 +164,11 @@ public class PlatformerMovement : MonoBehaviour
         {
             Vector3 direction = Vector3.ProjectOnPlane(walkVelocity, groundIntersection.surfaceNormal).normalized;
 
-            velocity = direction * walkVelocity.magnitude;
-            velocity += verticalVelocity;
+            velocity += direction * walkVelocity.magnitude;
         }
         else
         {
-            velocity = walkVelocity + verticalVelocity;
+            velocity += walkVelocity;
         }
 
         Vector3 remainingMove = velocity * deltaTime;

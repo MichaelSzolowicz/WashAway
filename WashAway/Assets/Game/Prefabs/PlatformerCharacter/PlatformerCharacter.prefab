@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6603370332572647833}
   - component: {fileID: 3321738086205761991}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FollowCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3216117592984667365}
   - component: {fileID: 4248487411455644778}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlatformerCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 8408851939034030583}
   - component: {fileID: 3308043718678318202}
   - component: {fileID: 2624950337656691407}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3191204406534728750}
   - component: {fileID: 3126169585623501104}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
