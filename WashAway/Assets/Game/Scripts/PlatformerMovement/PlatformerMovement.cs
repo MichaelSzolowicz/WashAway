@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class CharacterMovement : MonoBehaviour
+public class PlatformerMovement : MonoBehaviour
 {
     private const float ACCELERATION_DUE_TO_GRAVITY = 9.8f;
     private const float SMALL_NUMBER = .0015f;
@@ -93,7 +90,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void CheckGrounded()
     {
-        if(isFallingThrough)
+        if (isFallingThrough)
         {
             grounded = false;
             return;
@@ -102,7 +99,7 @@ public class CharacterMovement : MonoBehaviour
         Vector3 lineStart = transform.position; // + probeDepth * Vector3.up;
         Vector3 lineEnd = transform.position + probeDepth * Vector3.down;
 
-        if(
+        if (
             LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out groundIntersection)
             && Vector2.Dot(groundIntersection.surfaceNormal, Vector3.down) <= 0
             //&& Mathf.Acos(Vector3.Dot(groundIntersection.surfaceNormal, Vector3.up)) * Mathf.Rad2Deg < maxWalkableSlope
@@ -112,14 +109,14 @@ public class CharacterMovement : MonoBehaviour
         }
         else
         {
-            grounded= false;
+            grounded = false;
         }
     }
-    
+
     private void CheckJumping()
     {
         if (
-            Input.GetKeyDown(KeyCode.Space) 
+            Input.GetKeyDown(KeyCode.Space)
             && grounded
             )
         {
@@ -203,7 +200,7 @@ public class CharacterMovement : MonoBehaviour
 
                 float remainingDistance = remainingMove.magnitude * (1 - testIntersection.intersectDistance);
                 remainingMove = Vector3.ProjectOnPlane(walkVelocity, testIntersection.surfaceNormal).normalized * remainingDistance;
-                    
+
                 verticalVelocity = Vector3.zero;
             }
             else
