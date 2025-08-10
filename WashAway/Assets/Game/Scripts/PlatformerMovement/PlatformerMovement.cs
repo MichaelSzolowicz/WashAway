@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class CharacterMovement : MonoBehaviour
+public class PlatformerMovement : MonoBehaviour
 {
     private const float ACCELERATION_DUE_TO_GRAVITY = 9.8f;
     private const float SMALL_NUMBER = .0015f;
@@ -28,10 +25,13 @@ public class CharacterMovement : MonoBehaviour
     private bool isFallingThrough = false;
     private Coroutine fallThroughCoroutine;
 
+    // Test values
+    public int targetFramerate = 30;
+
     private void Start()
     {
         /* TESTONLY */
-        Application.targetFrameRate = 30;
+        Application.targetFrameRate = targetFramerate;
         /* ENDTEST */
     }
 
@@ -90,7 +90,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void CheckGrounded()
     {
-        if(isFallingThrough)
+        if (isFallingThrough)
         {
             grounded = false;
             return;
@@ -99,7 +99,7 @@ public class CharacterMovement : MonoBehaviour
         Vector3 lineStart = transform.position; // + probeDepth * Vector3.up;
         Vector3 lineEnd = transform.position + probeDepth * Vector3.down;
 
-        if(
+        if (
             LineCollisionScene.Instance.IntersectLine(lineStart, lineEnd, out groundIntersection)
             && Vector2.Dot(groundIntersection.surfaceNormal, Vector3.down) <= 0
             //&& Mathf.Acos(Vector3.Dot(groundIntersection.surfaceNormal, Vector3.up)) * Mathf.Rad2Deg < maxWalkableSlope
@@ -109,14 +109,14 @@ public class CharacterMovement : MonoBehaviour
         }
         else
         {
-            grounded= false;
+            grounded = false;
         }
     }
-    
+
     private void CheckJumping()
     {
         if (
-            Input.GetKeyDown(KeyCode.Space) 
+            Input.GetKeyDown(KeyCode.Space)
             && grounded
             )
         {
@@ -155,8 +155,6 @@ public class CharacterMovement : MonoBehaviour
 
     private void Move(float deltaTime, Vector3 input)
     {
-        Debug.DrawLine(transform.position, transform.position + walkVelocity.normalized, Color.blue, .1f);
-
         Vector3 velocity = verticalVelocity;
 
         // Stick to slopes
@@ -164,12 +162,11 @@ public class CharacterMovement : MonoBehaviour
         {
             Vector3 direction = Vector3.ProjectOnPlane(walkVelocity, groundIntersection.surfaceNormal).normalized;
 
-            velocity = direction * walkVelocity.magnitude;
-            velocity += verticalVelocity;
+            velocity += direction * walkVelocity.magnitude;
         }
         else
         {
-            velocity = walkVelocity + verticalVelocity;
+            velocity += walkVelocity;
         }
 
         Vector3 remainingMove = velocity * deltaTime;
@@ -193,14 +190,13 @@ public class CharacterMovement : MonoBehaviour
                 isFallingThrough = false;
             }
 
-            if (validIntersection &&
-                Vector2.Dot(testIntersection.surfaceNormal, remainingMove.normalized) <= 0)
+            if (validIntersection)
             {
                 transform.position = testIntersection.intersectPosition - remainingMove.normalized * SMALL_NUMBER;
 
                 float remainingDistance = remainingMove.magnitude * (1 - testIntersection.intersectDistance);
                 remainingMove = Vector3.ProjectOnPlane(walkVelocity, testIntersection.surfaceNormal).normalized * remainingDistance;
-                    
+
                 verticalVelocity = Vector3.zero;
             }
             else
@@ -219,5 +215,4 @@ public class CharacterMovement : MonoBehaviour
         walkVelocity = Vector3.zero;
         verticalVelocity = Vector3.zero;
     }
-
 }
