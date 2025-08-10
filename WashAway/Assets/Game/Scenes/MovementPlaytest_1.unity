@@ -416,7 +416,7 @@ MonoBehaviour:
   brakingScale: 40
   maxWalkableSlope: 30
   jumpScale: 19
-  probeDepth: 0.015
+  probeDepth: 0.5
 --- !u!4 &288004208
 Transform:
   m_ObjectHideFlags: 0
@@ -2759,22 +2759,22 @@ PrefabInstance:
     - target: {fileID: 4274950371948118634, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: worldPoints.Array.data[0].normal.x
-      value: 0.88310266
+      value: 0.9985742
       objectReference: {fileID: 0}
     - target: {fileID: 4274950371948118634, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: worldPoints.Array.data[0].normal.y
-      value: 0.46917978
+      value: 0.05337979
       objectReference: {fileID: 0}
     - target: {fileID: 4274950371948118634, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: worldPoints.Array.data[0].position.x
-      value: -2.4330869
+      value: 0.573689
       objectReference: {fileID: 0}
     - target: {fileID: 4274950371948118634, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: worldPoints.Array.data[0].position.y
-      value: 0.03885269
+      value: 1.0411115
       objectReference: {fileID: 0}
     - target: {fileID: 4274950371948118634, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
