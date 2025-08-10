@@ -155,8 +155,6 @@ public class PlatformerMovement : MonoBehaviour
 
     private void Move(float deltaTime, Vector3 input)
     {
-        Debug.DrawLine(transform.position, transform.position + walkVelocity.normalized, Color.blue, .1f);
-
         Vector3 velocity = verticalVelocity;
 
         // Stick to slopes
@@ -218,5 +216,4 @@ public class PlatformerMovement : MonoBehaviour
         walkVelocity = Vector3.zero;
         verticalVelocity = Vector3.zero;
     }
-
 }
