@@ -1,0 +1,63 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Rendering;
+
+[ExecuteInEditMode]
+public class WAArtist : MonoBehaviour
+{
+    [SerializeField] private RenderTexture painting;
+    [SerializeField] private List<PaintedSprite> layers = new List<PaintedSprite>();
+    
+    private RenderTexture layerBuffer;
+    private CommandBuffer commandBuffer;
+    private Material blendMaterial;
+
+    private void OnValidate()
+    {
+        Init();
+    }
+
+    private void Start()
+    {
+        Init();
+    }
+
+    private void Init()
+    {
+        if(painting == null)
+        {
+            return;
+        }
+
+        layerBuffer = new RenderTexture(painting.width, painting.height, 0);
+        commandBuffer = new CommandBuffer();
+        blendMaterial = new Material(Shader.Find("Unlit/Blend"));
+    }
+
+    private void Update()
+    {
+        Paint();
+    }
+
+    private void Paint()
+    {
+        if (painting == null)
+        {
+            return;
+        }
+
+        Graphics.SetRenderTarget(painting);
+        commandBuffer.ClearRenderTarget(true, true, Color.clear);
+
+        foreach (PaintedSprite layer in layers)
+        {
+            commandBuffer.Blit(layer.sourceTexture, layerBuffer, scale: layer.scale, offset: layer.offset);
+            commandBuffer.Blit(layerBuffer, painting, blendMaterial, 0);
+        }
+
+        Graphics.ExecuteCommandBuffer(commandBuffer);
+        commandBuffer.Clear();
+        Graphics.SetRenderTarget(null);
+    }
+}
