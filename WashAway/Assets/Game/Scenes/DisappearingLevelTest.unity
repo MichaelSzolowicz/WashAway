@@ -754,8 +754,8 @@ Transform:
   m_GameObject: {fileID: 2036911461}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.082, y: -0.008, z: 0}
-  m_LocalScale: {x: 2.28, y: 2.28, z: 2.28}
+  m_LocalPosition: {x: 0.108, y: 0.014, z: 0}
+  m_LocalScale: {x: 1.28, y: 1.28, z: 1.28}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -773,7 +773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paintLayer: {fileID: 8400000, guid: 09b4320ec3abd7a42afe63fbb0dd0282, type: 2}
-  sourceTexture: {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
+  sourceTexture: {fileID: 2800000, guid: 1a24fe9773a5a534c9819dcd2e92f795, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
