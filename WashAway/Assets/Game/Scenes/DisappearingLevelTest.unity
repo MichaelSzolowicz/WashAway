@@ -361,22 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   painting: {fileID: 8400000, guid: 09b4320ec3abd7a42afe63fbb0dd0282, type: 2}
-  layers:
-  - sourceTexture: {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
-    offset: {x: -0.09, y: -0.17}
-    scale: {x: 1, y: 1}
-  - sourceTexture: {fileID: 2800000, guid: 1a24fe9773a5a534c9819dcd2e92f795, type: 3}
-    offset: {x: -0.25, y: 0}
-    scale: {x: 1, y: 1}
-  - sourceTexture: {fileID: 2800000, guid: 1a24fe9773a5a534c9819dcd2e92f795, type: 3}
-    offset: {x: -0.25, y: 0.04}
-    scale: {x: 3, y: 3}
-  - sourceTexture: {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
-    offset: {x: -3.34, y: -0.11}
-    scale: {x: 6, y: 6}
-  - sourceTexture: {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
-    offset: {x: -8.61, y: -0.74}
-    scale: {x: 12, y: 16.2}
+  layers: []
 --- !u!1 &1910578756
 GameObject:
   m_ObjectHideFlags: 0
