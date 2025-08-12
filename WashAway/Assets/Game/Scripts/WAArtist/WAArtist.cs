@@ -61,7 +61,7 @@ public class WAArtist : MonoBehaviour
         Graphics.SetRenderTarget(null);
     }
 
-    private PaintedSprite FindSpriteByTag(string tag)
+    public PaintedSprite FindSpriteByTag(string tag)
     {
         PaintedSprite sprite = null;
 
