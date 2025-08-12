@@ -60,4 +60,19 @@ public class WAArtist : MonoBehaviour
         commandBuffer.Clear();
         Graphics.SetRenderTarget(null);
     }
+
+    private PaintedSprite FindSpriteByTag(string tag)
+    {
+        PaintedSprite sprite = null;
+
+        foreach (PaintedSprite layer in layers)
+        {
+            if(layer.tag == tag)
+            {
+                sprite = layer;
+            }
+        }
+
+        return sprite;
+    }
 }
