@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class PaintedSpriteConstraint : MonoBehaviour
 {
     [SerializeField] private Transform parentTransform;
@@ -11,6 +12,11 @@ public class PaintedSpriteConstraint : MonoBehaviour
     private PaintedSprite paintedSprite;
     private Vector2 referenceOffset;
     private Vector2 referenceScale;
+
+    private void OnValidate()
+    {
+        BindSprite();
+    }
 
     private void Start()
     {
@@ -26,12 +32,17 @@ public class PaintedSpriteConstraint : MonoBehaviour
     {
         if(artist == null)
         {
+            paintedSprite = null;
             return;
         }
 
         paintedSprite = artist.FindSpriteByTag(paintedSpriteTag);
 
-        if(paintedSprite == null) return;
+        if(paintedSprite == null)
+        {
+            Debug.LogWarning(name + " did not find sprite with tag " + paintedSpriteTag + " in " + artist.name);
+            return;
+        }
 
         referenceOffset = paintedSprite.offset;
         referenceScale = paintedSprite.scale;
@@ -39,6 +50,7 @@ public class PaintedSpriteConstraint : MonoBehaviour
 
     private void UpdateSprite()
     {
+        if (parentTransform == null) return;
         if (artist == null) return;
         if(paintedSprite == null) return;
 
