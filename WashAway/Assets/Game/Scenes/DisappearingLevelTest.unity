@@ -164,9 +164,9 @@ Transform:
   m_GameObject: {fileID: 178272282}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -1.38, y: 0.48, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -316,13 +316,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665449151}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!64 &1665449153
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -409,9 +409,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   painting: {fileID: 8400000, guid: 09b4320ec3abd7a42afe63fbb0dd0282, type: 2}
   layers:
-  - sourceTexture: {fileID: 2800000, guid: 96c04f6afc17f6b45bd4ac9d183cde7a, type: 3}
-    offset: {x: 0, y: 0}
-    scale: {x: 1, y: 1}
+  - sourceTexture: {fileID: 2800000, guid: d6d7e7d4d3e38aa49bb7abb43cffd62f, type: 3}
+    offset: {x: 2.26, y: -1.46}
+    scale: {x: 2, y: 2}
     tag: Character
 --- !u!1 &1910578756
 GameObject:

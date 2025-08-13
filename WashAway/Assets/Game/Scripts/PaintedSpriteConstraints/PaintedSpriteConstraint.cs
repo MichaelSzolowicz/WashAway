@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Scales a texture by transform's x,y local scale and offsets the texture
+/// to be centered on transform's x,y world position. Works in texture space,
+/// does not account for UV space or the transform of any object the artist's resulting texture might
+/// be applied to. For best results, make sure the UV layout of the object receiving 
+/// the artist's resulting texture is right side up and the object faces the viewing camera.
+/// </summary>
 [ExecuteInEditMode]
 public class PaintedSpriteConstraint : MonoBehaviour
 {
@@ -10,8 +17,6 @@ public class PaintedSpriteConstraint : MonoBehaviour
     [SerializeField] private string paintedSpriteTag;
 
     private PaintedSprite paintedSprite;
-    private Vector2 referenceOffset;
-    private Vector2 referenceScale;
 
     private void OnValidate()
     {
@@ -43,23 +48,23 @@ public class PaintedSpriteConstraint : MonoBehaviour
             Debug.LogWarning(name + " did not find sprite with tag " + paintedSpriteTag + " in " + artist.name);
             return;
         }
-
-        referenceOffset = paintedSprite.offset;
-        referenceScale = paintedSprite.scale;
     }
 
     private void UpdateSprite()
     {
         if (parentTransform == null) return;
         if (artist == null) return;
-        if(paintedSprite == null) return;
+        if (paintedSprite == null) return;
 
-        Vector2 scale = referenceScale * new Vector2(1 / parentTransform.localScale.x, 1 / parentTransform.localScale.y);
+        Vector2 scale = parentTransform.localScale;
+        scale.x = scale.x == 0 ? 0 : 1 / scale.x;
+        scale.y = scale.y == 0 ? 0 : 1 / scale.y;
+        
         Vector2 offset = new Vector2(parentTransform.position.x, parentTransform.position.y);
         offset *= scale;
-        offset -= (scale / 2) - new Vector2(0.5f, 0.5f);
+        offset += (scale / 2) - new Vector2(0.5f, 0.5f);
 
         paintedSprite.scale = scale;
-        paintedSprite.offset = offset;
+        paintedSprite.offset = -offset;
     }
 }
