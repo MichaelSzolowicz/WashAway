@@ -123,6 +123,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &178272282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 178272284}
+  - component: {fileID: 178272283}
+  m_Layer: 0
+  m_Name: Character
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &178272283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178272282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b246062ac0328ff40bc7f844df0c4a5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentTransform: {fileID: 178272284}
+  artist: {fileID: 1665449156}
+  paintedSpriteTag: Character
+--- !u!4 &178272284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178272282}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1269407506
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +316,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665449151}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -347,7 +394,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665449151}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &1665449156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +408,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   painting: {fileID: 8400000, guid: 09b4320ec3abd7a42afe63fbb0dd0282, type: 2}
-  layers: []
+  layers:
+  - sourceTexture: {fileID: 2800000, guid: 96c04f6afc17f6b45bd4ac9d183cde7a, type: 3}
+    offset: {x: 0, y: 0}
+    scale: {x: 1, y: 1}
+    tag: Character
 --- !u!1 &1910578756
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,3 +557,4 @@ SceneRoots:
   - {fileID: 1910578759}
   - {fileID: 1269407508}
   - {fileID: 1665449152}
+  - {fileID: 178272284}
