@@ -9,6 +9,8 @@ public class PaintedSpriteConstraint : MonoBehaviour
     [SerializeField] private string paintedSpriteTag;
 
     private PaintedSprite paintedSprite;
+    private Vector2 referenceOffset;
+    private Vector2 referenceScale;
 
     private void Start()
     {
@@ -28,6 +30,11 @@ public class PaintedSpriteConstraint : MonoBehaviour
         }
 
         paintedSprite = artist.FindSpriteByTag(paintedSpriteTag);
+
+        if(paintedSprite == null) return;
+
+        referenceOffset = paintedSprite.offset;
+        referenceScale = paintedSprite.scale;
     }
 
     private void UpdateSprite()
@@ -35,11 +42,10 @@ public class PaintedSpriteConstraint : MonoBehaviour
         if (artist == null) return;
         if(paintedSprite == null) return;
 
-        Vector2 scale = new Vector2(paintedSprite.scale.x * parentTransform.localScale.x, 
-            paintedSprite.scale.y * parentTransform.localScale.y);
-        Vector2 offset = paintedSprite.offset;
+        Vector2 scale = referenceScale * new Vector2(1 / parentTransform.localScale.x, 1 / parentTransform.localScale.y);
+        Vector2 offset = new Vector2(parentTransform.position.x, parentTransform.position.y);
         offset *= scale;
-        offset -= (scale / 2) + new Vector2(.5f, .5f);
+        offset -= (scale / 2) - new Vector2(0.5f, 0.5f);
 
         paintedSprite.scale = scale;
         paintedSprite.offset = offset;
