@@ -13,6 +13,15 @@ public class WAArtist : MonoBehaviour
     private CommandBuffer commandBuffer;
     private Material blendMaterial;
 
+    public int Size 
+    { 
+        get 
+        { 
+            if(painting == null) return 0;
+            return painting.width; 
+        } 
+    }
+
     private void OnValidate()
     {
         Init();
@@ -59,5 +68,20 @@ public class WAArtist : MonoBehaviour
         Graphics.ExecuteCommandBuffer(commandBuffer);
         commandBuffer.Clear();
         Graphics.SetRenderTarget(null);
+    }
+
+    public PaintedSprite FindSpriteByTag(string tag)
+    {
+        PaintedSprite sprite = null;
+
+        foreach (PaintedSprite layer in layers)
+        {
+            if(layer.tag == tag)
+            {
+                sprite = layer;
+            }
+        }
+
+        return sprite;
     }
 }
