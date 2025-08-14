@@ -14,6 +14,7 @@ public class PaintedSpriteConstraint : MonoBehaviour
 {
     [SerializeField] private Transform parentTransform;
     [SerializeField] private WAArtist artist;
+    [SerializeField] private int pixelsPerMeter;
     [SerializeField] private string paintedSpriteTag;
 
     private PaintedSprite paintedSprite;
@@ -60,7 +61,7 @@ public class PaintedSpriteConstraint : MonoBehaviour
         scale.x = scale.x == 0 ? 0 : 1 / scale.x;
         scale.y = scale.y == 0 ? 0 : 1 / scale.y;
         
-        Vector2 offset = new Vector2(parentTransform.position.x, parentTransform.position.y);
+        Vector2 offset = new Vector2(parentTransform.position.x, parentTransform.position.y) * pixelsPerMeter / artist.Size;
         offset *= scale;
         offset += (scale / 2) - new Vector2(0.5f, 0.5f);
 

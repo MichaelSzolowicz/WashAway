@@ -13,6 +13,15 @@ public class WAArtist : MonoBehaviour
     private CommandBuffer commandBuffer;
     private Material blendMaterial;
 
+    public int Size 
+    { 
+        get 
+        { 
+            if(painting == null) return 0;
+            return painting.width; 
+        } 
+    }
+
     private void OnValidate()
     {
         Init();
