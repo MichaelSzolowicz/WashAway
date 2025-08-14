@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// Scales a texture by transform's x,y local scale and offsets the texture
-/// to be centered on transform's x,y world position. Works in texture space,
+/// to be centered on transform's x,y local position. Works in texture space,
 /// does not account for UV space or the transform of any object the artist's resulting texture might
 /// be applied to. For best results, make sure the UV layout of the object receiving 
 /// the artist's resulting texture is right side up and the object faces the viewing camera.
@@ -61,7 +61,7 @@ public class PaintedSpriteConstraint : MonoBehaviour
         scale.x = scale.x == 0 ? 0 : 1 / scale.x;
         scale.y = scale.y == 0 ? 0 : 1 / scale.y;
         
-        Vector2 offset = new Vector2(parentTransform.position.x, parentTransform.position.y) * pixelsPerMeter / artist.Size;
+        Vector2 offset = new Vector2(parentTransform.localPosition.x, parentTransform.localPosition.y) * pixelsPerMeter / artist.Size;
         offset *= scale;
         offset += (scale / 2) - new Vector2(0.5f, 0.5f);
 
