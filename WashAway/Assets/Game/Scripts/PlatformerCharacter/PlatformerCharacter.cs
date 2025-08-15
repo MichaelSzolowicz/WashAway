@@ -11,7 +11,7 @@ public class PlatformerCharacter : MonoBehaviour
 
     private void Start()
     {
-        startPosition = transform.position;
+        startPosition = platformerMovement.transform.position;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
