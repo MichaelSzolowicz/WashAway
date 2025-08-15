@@ -17,7 +17,7 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
     [SerializeField] private bool visibleInEditor = true;
     private bool isSelected = false;
 
-    [HideInInspector] [SerializeField] private Vector3 previousPosition = Vector3.zero;
+    [HideInInspector] private Vector3 previousPosition = Vector3.zero;
 
     public int NumPoints
     {
@@ -46,7 +46,10 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
 
     public void SetPointWorldPosition(int index, Vector3 worldPosition)
     {
-        worldPoints[index].position = worldPosition;
+        var so = new SerializedObject(this);
+
+        so.FindProperty("worldPoints").GetArrayElementAtIndex(index).FindPropertyRelative("position").vector2Value = worldPosition;
+        so.ApplyModifiedProperties();
 
         SetNormal(index);
         if (index - 1 >= 0)
@@ -92,6 +95,7 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
     {
         if (Application.isPlaying)
             LineCollisionScene.Instance.RegisterLineCollider(this);
+        previousPosition = transform.position;
     }
 
     protected void OnDisable()
@@ -161,7 +165,8 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
             if (deltaPosition.magnitude <= .1f)
                 deltaPosition = Vector2.right;
 
-            worldPoints[p2].position = worldPoints[p1].position + deltaPosition;
+            SetPointWorldPosition(p2, worldPoints[p1].position + deltaPosition);
+            //worldPoints[p2].position = worldPoints[p1].position + deltaPosition;
             SetNormal(p1);
         }
 
@@ -204,7 +209,8 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
             Vector2 deltaPosition = transform.position - previousPosition;
             for (int i = 0; i < numPoints; i++)
             {
-                worldPoints[i].position = worldPoints[i].position + deltaPosition;
+                //worldPoints[i].position = worldPoints[i].position + deltaPosition;
+                SetPointWorldPosition(i, worldPoints[i].position + deltaPosition);
             }
         }
 
