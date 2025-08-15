@@ -46,10 +46,14 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
 
     public void SetPointWorldPosition(int index, Vector3 worldPosition)
     {
+#if UNITY_EDITOR
         var so = new SerializedObject(this);
 
         so.FindProperty("worldPoints").GetArrayElementAtIndex(index).FindPropertyRelative("position").vector2Value = worldPosition;
         so.ApplyModifiedProperties();
+#else
+        worldPoints[index].position = worldPosition;
+#endif
 
         SetNormal(index);
         if (index - 1 >= 0)
