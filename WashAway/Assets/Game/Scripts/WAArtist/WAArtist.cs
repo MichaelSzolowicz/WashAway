@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-[ExecuteInEditMode]
+[ExecuteAlways]
 public class WAArtist : MonoBehaviour
 {
     [SerializeField] private RenderTexture painting;

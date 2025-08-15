@@ -26,6 +26,7 @@ public class PlatformerMovement : MonoBehaviour
     private Coroutine fallThroughCoroutine;
 
     // Test values
+    [Header("Test")]
     public int targetFramerate = 30;
 
     private void Start()
@@ -86,7 +87,12 @@ public class PlatformerMovement : MonoBehaviour
         walkVelocity = walkVelocity.normalized * walkSpeed;
 
         Move(deltaTime, inputCopy);
+
+        //print("Velocity: " + (transform.position.x - previousPosition.x) / deltaTime);
+        previousPosition = transform.position;
     }
+
+    private Vector3 previousPosition = Vector3.zero;
 
     private void CheckGrounded()
     {
@@ -206,7 +212,6 @@ public class PlatformerMovement : MonoBehaviour
                 remainingMove = Vector3.zero;
             }
         }
-
     }
 
     public void ResetPhysicsState()
