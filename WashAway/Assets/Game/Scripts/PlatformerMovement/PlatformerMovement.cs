@@ -26,6 +26,7 @@ public class PlatformerMovement : MonoBehaviour
     private Coroutine fallThroughCoroutine;
 
     // Test values
+    [Header("Test")]
     public int targetFramerate = 30;
 
     private void Start()
