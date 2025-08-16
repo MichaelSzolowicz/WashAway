@@ -84,4 +84,9 @@ public class WAArtist : MonoBehaviour
 
         return sprite;
     }
+
+    public void AddLayer(PaintedSprite layer)
+    {
+        layers.Add(layer);
+    }
 }
