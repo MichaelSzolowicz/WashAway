@@ -7,7 +7,7 @@ public class WaterDrop : MonoBehaviour
     private Vector3 initialPosition;
     private Vector3 initialScale;
     private Quaternion initialRotation;
-    private float growRate = .1f;
+    private float growRate = .02f;
     private float timeAlive = 0.0f;
 
     public float TimeAlive
@@ -15,7 +15,7 @@ public class WaterDrop : MonoBehaviour
         get {  return timeAlive; }
     }
 
-    private void Start()
+    public void Init()
     {
         initialPosition = transform.position;
         initialScale = transform.localScale;
@@ -24,6 +24,8 @@ public class WaterDrop : MonoBehaviour
 
     void Update()
     {
+        if (GameState.Paused) return;
+
         transform.localScale = transform.localScale + growRate * Time.deltaTime * Vector3.one;
         timeAlive += Time.deltaTime;
     }
