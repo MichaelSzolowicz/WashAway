@@ -28,6 +28,7 @@ public class WaterDrops : MonoBehaviour
             newDrop.transform.position = transform.position;
             WaterDrop newDropComponent = newDrop.AddComponent<WaterDrop>();
             drops.Add(newDropComponent);
+            newDropComponent.Init();
 
             PaintedSprite newPaintedSprite = new PaintedSprite();
             newPaintedSprite.tag = spriteName;
@@ -48,6 +49,8 @@ public class WaterDrops : MonoBehaviour
 
     private void Update()
     {
+        if(GameState.Paused) return;
+
         elapsedTime += Time.deltaTime;
 
         if(elapsedTime >= spawnDelay && numEnabledDrops < numDrops)
