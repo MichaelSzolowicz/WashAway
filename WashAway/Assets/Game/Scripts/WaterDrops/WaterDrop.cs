@@ -25,6 +25,7 @@ public class WaterDrop : MonoBehaviour
     void Update()
     {
         if (GameState.Paused) return;
+        if (GameState.CurrentLevelClear) return;
 
         transform.localScale = transform.localScale + growRate * Time.deltaTime * Vector3.one;
         timeAlive += Time.deltaTime;
