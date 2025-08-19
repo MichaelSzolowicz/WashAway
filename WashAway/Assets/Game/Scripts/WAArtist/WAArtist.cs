@@ -8,7 +8,9 @@ public class WAArtist : MonoBehaviour
 {
     [SerializeField] private RenderTexture painting;
     [SerializeField] private List<PaintedSprite> layers = new List<PaintedSprite>();
-    
+    public string blendShader = "Unlit/Blend";
+
+
     private RenderTexture layerBuffer;
     private CommandBuffer commandBuffer;
     private Material blendMaterial;
@@ -41,7 +43,7 @@ public class WAArtist : MonoBehaviour
 
         layerBuffer = new RenderTexture(painting.width, painting.height, 0);
         commandBuffer = new CommandBuffer();
-        blendMaterial = new Material(Shader.Find("Unlit/Blend"));
+        blendMaterial = new Material(Shader.Find(blendShader));
     }
 
     private void Update()
