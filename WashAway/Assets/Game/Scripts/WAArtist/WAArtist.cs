@@ -6,10 +6,10 @@ using UnityEngine.Rendering;
 [ExecuteAlways]
 public class WAArtist : MonoBehaviour
 {
-    [SerializeField] private RenderTexture painting;
-    [SerializeField] private List<PaintedSprite> layers = new List<PaintedSprite>();
+    public RenderTexture painting;
+    public List<PaintedSprite> layers = new List<PaintedSprite>();
     public string blendShader = "Unlit/Blend";
-
+    public bool additive = false;
 
     private RenderTexture layerBuffer;
     private CommandBuffer commandBuffer;
@@ -58,8 +58,11 @@ public class WAArtist : MonoBehaviour
             return;
         }
 
-        Graphics.SetRenderTarget(painting);
-        commandBuffer.ClearRenderTarget(true, true, Color.clear);
+        if(!additive)
+        {
+            Graphics.SetRenderTarget(painting);
+            commandBuffer.ClearRenderTarget(true, true, Color.clear);
+        }
 
         foreach (PaintedSprite layer in layers)
         {

@@ -2213,6 +2213,7 @@ MonoBehaviour:
   painting: {fileID: 8400000, guid: db8c7020f14330f4fb57b20d6f6dc07e, type: 2}
   layers: []
   blendShader: Unlit/AdditiveBlend
+  additive: 1
 --- !u!4 &1602239494
 Transform:
   m_ObjectHideFlags: 0
@@ -2274,6 +2275,7 @@ MonoBehaviour:
     scale: {x: 93.24783, y: 93.24783}
     tag: Character
   blendShader: Unlit/Blend
+  additive: 0
 --- !u!4 &1605034162
 Transform:
   m_ObjectHideFlags: 0
