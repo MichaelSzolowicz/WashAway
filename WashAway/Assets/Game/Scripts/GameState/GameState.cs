@@ -45,6 +45,24 @@ public static class GameState
         }
     }
 
+    private static bool feedbackViewed = false;
+    public static event OnStateChange onToggleFeedbackViewed;
+    public static bool FeedbackViewed
+    {
+        get { return feedbackViewed; }
+        set
+        {
+            bool previousValue = feedbackViewed;
+
+            feedbackViewed = value;
+
+            if (previousValue != feedbackViewed)
+            {
+                onToggleFeedbackViewed?.Invoke();
+            }
+        }
+    }
+
     private static bool startScreenRead = false;
     public static bool StartScreenRead { get { return startScreenRead; } set {  startScreenRead = value; } }
 }

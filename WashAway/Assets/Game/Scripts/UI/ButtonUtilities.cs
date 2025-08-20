@@ -27,5 +27,6 @@ public class ButtonUtilities : MonoBehaviour
     public void Feedback()
     {
         Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSdumFWm7Qtra5huqvl9IesvvXo8C6Qc7E1qzpjM2an08NBINg/viewform?usp=sharing&ouid=116477818506344356711");
+        GameState.FeedbackViewed = true;
     }
 }
