@@ -14,10 +14,20 @@ public class PaintedSpriteConstraint : MonoBehaviour
 {
     [SerializeField] private Transform parentTransform;
     [SerializeField] private WAArtist artist;
-    [SerializeField] private int pixelsPerMeter;
+    [SerializeField] private float pixelsPerMeter;
     [SerializeField] private string paintedSpriteTag;
 
     private PaintedSprite paintedSprite;
+
+    public void Init(WAArtist artist, string paintedSpriteTag, float pixelsPerMeter, Transform parentTransform)
+    {
+        this.parentTransform = parentTransform;
+        this.artist = artist;
+        this.pixelsPerMeter = pixelsPerMeter;
+        this.paintedSpriteTag = paintedSpriteTag;
+
+        BindSprite();
+    }
 
     private void OnValidate()
     {
