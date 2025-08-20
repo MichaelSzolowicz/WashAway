@@ -2214,6 +2214,8 @@ MonoBehaviour:
   layers: []
   blendShader: Unlit/AdditiveBlend
   additive: 1
+  clearOnStart: 1
+  clearOnDestroy: 1
 --- !u!4 &1602239494
 Transform:
   m_ObjectHideFlags: 0
@@ -2275,7 +2277,9 @@ MonoBehaviour:
     scale: {x: 93.24783, y: 93.24783}
     tag: Character
   blendShader: Unlit/Blend
-  additive: 0
+  additive: 1
+  clearOnStart: 0
+  clearOnDestroy: 0
 --- !u!4 &1605034162
 Transform:
   m_ObjectHideFlags: 0
