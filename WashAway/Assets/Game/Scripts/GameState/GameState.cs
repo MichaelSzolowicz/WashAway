@@ -44,4 +44,7 @@ public static class GameState
             }
         }
     }
+
+    private static bool startScreenRead = false;
+    public static bool StartScreenRead { get { return startScreenRead; } set {  startScreenRead = value; } }
 }
