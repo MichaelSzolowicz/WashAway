@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -7,8 +8,12 @@ using UnityEngine.Rendering;
 public class WAArtist : MonoBehaviour
 {
     [SerializeField] private RenderTexture painting;
-    [SerializeField] private List<PaintedSprite> layers = new List<PaintedSprite>();
-    
+    [SerializeField] public List<PaintedSprite> layers = new List<PaintedSprite>();
+    [SerializeField] private string blendShader = "Unlit/Blend";
+    [SerializeField] private bool additive = false;
+    [SerializeField] private bool clearOnStart = false;
+    [SerializeField] private bool clearOnDestroy = false;
+ 
     private RenderTexture layerBuffer;
     private CommandBuffer commandBuffer;
     private Material blendMaterial;
@@ -30,6 +35,13 @@ public class WAArtist : MonoBehaviour
     private void Start()
     {
         Init();
+
+        if (clearOnStart)
+        {
+            Graphics.SetRenderTarget(painting);
+            commandBuffer.ClearRenderTarget(true, true, Color.clear);
+            Graphics.ExecuteCommandBuffer(commandBuffer);
+        }
     }
 
     private void Init()
@@ -41,11 +53,19 @@ public class WAArtist : MonoBehaviour
 
         layerBuffer = new RenderTexture(painting.width, painting.height, 0);
         commandBuffer = new CommandBuffer();
-        blendMaterial = new Material(Shader.Find("Unlit/Blend"));
+        blendMaterial = new Material(Shader.Find(blendShader));
     }
 
     private void Update()
     {
+#if UNITY_EDITOR
+        if(Application.isPlaying)
+        {
+            if (GameState.Paused) return;
+            if (GameState.CurrentLevelClear) return;
+        }
+#endif
+
         Paint();
     }
 
@@ -56,8 +76,11 @@ public class WAArtist : MonoBehaviour
             return;
         }
 
-        Graphics.SetRenderTarget(painting);
-        commandBuffer.ClearRenderTarget(true, true, Color.clear);
+        if(!additive)
+        {
+            Graphics.SetRenderTarget(painting);
+            commandBuffer.ClearRenderTarget(true, true, Color.clear);
+        }
 
         foreach (PaintedSprite layer in layers)
         {
@@ -83,5 +106,20 @@ public class WAArtist : MonoBehaviour
         }
 
         return sprite;
+    }
+
+    public void AddLayer(PaintedSprite layer)
+    {
+        layers.Add(layer);
+    }
+
+    private void OnDestroy()
+    {
+        if (clearOnDestroy)
+        {
+            Graphics.SetRenderTarget(painting);
+            commandBuffer.ClearRenderTarget(true, true, Color.clear);
+            Graphics.ExecuteCommandBuffer(commandBuffer);
+        }
     }
 }
