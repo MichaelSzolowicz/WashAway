@@ -307,56 +307,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1621135391}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &455501953
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 455501954}
-  - component: {fileID: 455501955}
-  m_Layer: 6
-  m_Name: WaterDrops
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &455501954
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455501953}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 8927672096232717909}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &455501955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455501953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c47019059a7cfe4898533b99ca3ba86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  artist: {fileID: 1602239493}
-  texture: {fileID: 2800000, guid: 62c352e1bae82474b8986f125d8884ef, type: 3}
-  numDrops: 40
-  dropLifetime: 4
-  pixelsPerMeter: 13.65333
-  spawnDelay: 0.1
 --- !u!1 &482255110
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,11 +2130,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   painting: {fileID: 8400000, guid: db8c7020f14330f4fb57b20d6f6dc07e, type: 2}
-  layers: []
+  layers:
+  - sourceTexture: {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
+    offset: {x: -2.04, y: -0.96}
+    scale: {x: 5, y: 5}
+    tag: 
   blendShader: Unlit/AdditiveBlend
-  additive: 1
-  clearOnStart: 1
-  clearOnDestroy: 1
+  additive: 0
+  clearOnStart: 0
+  clearOnDestroy: 0
 --- !u!4 &1602239494
 Transform:
   m_ObjectHideFlags: 0
@@ -3370,7 +3324,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3191204407977677841}
-  - {fileID: 455501954}
   m_Father: {fileID: 3216117593756548314}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807

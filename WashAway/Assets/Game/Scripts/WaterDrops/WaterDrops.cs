@@ -24,7 +24,7 @@ public class WaterDrops : MonoBehaviour
 
             GameObject newDrop = new GameObject();
             newDrop.name = spriteName;
-            newDrop.transform.localScale = transform.lossyScale;
+            newDrop.transform.localScale = transform.localScale;
             newDrop.transform.position = transform.position;
             WaterDrop newDropComponent = newDrop.AddComponent<WaterDrop>();
             drops.Add(newDropComponent);
