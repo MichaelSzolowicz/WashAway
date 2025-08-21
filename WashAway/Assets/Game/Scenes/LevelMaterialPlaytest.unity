@@ -2458,7 +2458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1891997216
 Transform:
   m_ObjectHideFlags: 0
@@ -3043,7 +3043,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 100, y: 100}
   m_EdgeRadius: 0
 --- !u!4 &2278011153271948553
 Transform:
@@ -3282,7 +3282,7 @@ MonoBehaviour:
   followCamera: {fileID: 3321738087648481784}
   mask: {fileID: 8400000, guid: db8c7020f14330f4fb57b20d6f6dc07e, type: 2}
   maskGenerator: {fileID: 1602239493}
-  pixelsPerMeter: 13.653
+  pixelsPerMeter: 13.65333
 --- !u!1 &4406575686692881645
 GameObject:
   m_ObjectHideFlags: 0
