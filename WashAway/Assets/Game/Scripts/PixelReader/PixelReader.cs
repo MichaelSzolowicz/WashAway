@@ -19,7 +19,6 @@ public class PixelReader
     {
         if(request.hasError)
         {
-
             Debug.LogError("Async GPU Readback error detected.");
             return;
         }
@@ -28,14 +27,14 @@ public class PixelReader
 
         if(data.Length <= 0)
         {
-            Debug.LogWarning("Async GPU Readback data length is less than 1.");
+            Debug.LogError("Async GPU Readback data length is less than 1.");
         }
 
         uint c = data[0];
-        result.b = (byte)((c) & 0xFF);
-        result.g = (byte)((c >> 8) & 0xFF);
-        result.r = (byte)((c >> 16) & 0xFF);
-        result.a = (byte)((c >> 24) & 0xFF);
+        result.b = (byte)(c);
+        result.g = (byte)(c >> 8);
+        result.r = (byte)(c >> 16);
+        result.a = (byte)(c >> 24);
 
         available = true;
     }
