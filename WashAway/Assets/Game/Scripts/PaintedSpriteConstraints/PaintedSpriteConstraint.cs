@@ -72,6 +72,7 @@ public class PaintedSpriteConstraint : MonoBehaviour
         scale.y = scale.y == 0 ? 0 : 1 / scale.y;
         
         Vector2 offset = new Vector2(parentTransform.localPosition.x, parentTransform.localPosition.y) * pixelsPerMeter / artist.Size;
+        //print(offset);
         offset *= scale;
         offset += (scale / 2) - new Vector2(0.5f, 0.5f);
 

@@ -421,7 +421,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455501953}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c47019059a7cfe4898533b99ca3ba86, type: 3}
   m_Name: 
@@ -3254,7 +3254,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3712603451436517613}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c8efe9b3ad5d8f499308fda1c0d152f, type: 3}
   m_Name: 
@@ -3281,6 +3281,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformerMovement: {fileID: 3786901576584351543}
   followCamera: {fileID: 3321738087648481784}
+  mask: {fileID: 8400000, guid: db8c7020f14330f4fb57b20d6f6dc07e, type: 2}
+  maskGenerator: {fileID: 1602239493}
+  pixelsPerMeter: 13.653
 --- !u!1 &4406575686692881645
 GameObject:
   m_ObjectHideFlags: 0
