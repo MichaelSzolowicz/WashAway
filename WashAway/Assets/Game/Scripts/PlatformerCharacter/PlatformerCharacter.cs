@@ -39,17 +39,15 @@ public class PlatformerCharacter : MonoBehaviour
 
     private void Update()
     {
-        if (!pixelReader.dirty)
+        if (pixelReader.Available)
         {
             float x = (platformerMovement.transform.localPosition.x * pixelsPerMeter / maskGenerator.Size) + .5f;
             float y = (platformerMovement.transform.localPosition.y * pixelsPerMeter / maskGenerator.Size) + .5f;
             pixelReader.ReadPixelAsync(mask, 0, (int)(x*mask.width), 1, (int)(y*mask.height), 1);
-            pixelReader.dirty = true;
         }
         else
         {
             Debug.Log(pixelReader.result);
-            pixelReader.dirty = false;
         }
     }
 }
