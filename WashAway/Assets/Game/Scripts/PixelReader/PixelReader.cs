@@ -4,11 +4,14 @@ using UnityEngine.Rendering;
 
 public class PixelReader
 {
-    public bool dirty = false;
+    private bool available = true;
     public Color32 result;
+
+    public bool Available { get { return available; } }
 
     public void ReadPixelAsync(Texture src, int mipIndex, int x, int width, int y, int height, int z = 0, int depth = 1)
     {
+        available = false;
         AsyncGPUReadback.Request(src, mipIndex, x, width, y, height, z, depth, OnCompleteReadback);
     }
 
@@ -33,6 +36,7 @@ public class PixelReader
         result.g = (byte)((c >> 8) & 0xFF);
         result.r = (byte)((c >> 16) & 0xFF);
         result.a = (byte)((c >> 24) & 0xFF);
-        ;
+
+        available = true;
     }
 }
