@@ -47,7 +47,10 @@ public class PlatformerCharacter : MonoBehaviour
         }
         else
         {
-            Debug.Log(pixelReader.result);
+            if(pixelReader.result.a >= 255 / 2)
+            {
+                Respawn();
+            }
         }
     }
 }
