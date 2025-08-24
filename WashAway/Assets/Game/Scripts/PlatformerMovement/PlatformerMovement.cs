@@ -31,6 +31,10 @@ public class PlatformerMovement : MonoBehaviour
     [Header("Test")]
     public int targetFramerate = 30;
 
+    public bool FacingLeft { get { return facingLeft; } }
+
+    public bool blockInput = false;
+
     private void Start()
     {
         /* TESTONLY */
@@ -147,6 +151,8 @@ public class PlatformerMovement : MonoBehaviour
 
     private Vector2 GetInput()
     {
+        if (blockInput) return Vector3.zero;
+
         Vector3 input = Vector3.zero;
         if (Input.GetKey(KeyCode.D))
         {
@@ -171,7 +177,7 @@ public class PlatformerMovement : MonoBehaviour
         return input;
     }
 
-    private void TurnAround()
+    public void TurnAround()
     {
         transform.Rotate(new Vector3(0, 180));
         facingLeft = !facingLeft;
