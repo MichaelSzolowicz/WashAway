@@ -65,4 +65,22 @@ public static class GameState
 
     private static bool startScreenRead = false;
     public static bool StartScreenRead { get { return startScreenRead; } set {  startScreenRead = value; } }
+
+    private static bool characterDead = false;
+    public static event OnStateChange onToggleCharacterDead;
+    public static bool CharacterDead
+    {
+        get { return characterDead; }
+        set
+        {
+            bool previousValue = characterDead;
+
+            characterDead = value;
+
+            if (previousValue != characterDead)
+            {
+                onToggleCharacterDead?.Invoke();
+            }
+        }
+    }
 }

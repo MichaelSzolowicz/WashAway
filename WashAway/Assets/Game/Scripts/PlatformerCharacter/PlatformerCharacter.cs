@@ -9,8 +9,10 @@ public class PlatformerCharacter : MonoBehaviour
     [SerializeField] private RenderTexture mask;
     [SerializeField] private WAArtist maskGenerator;
     [SerializeField] private float pixelsPerMeter;
+    [SerializeField] private float blockInputRespawnDuration = .5f;
 
     private Vector3 startPosition;
+    private bool startFacingLeft = false;
 
     private PixelReader pixelReader;
 
@@ -19,6 +21,7 @@ public class PlatformerCharacter : MonoBehaviour
         pixelReader = new PixelReader();
 
         startPosition = platformerMovement.transform.position;
+        startFacingLeft = platformerMovement.FacingLeft;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -33,24 +36,33 @@ public class PlatformerCharacter : MonoBehaviour
 
     private void Respawn()
     {
+        GameState.CharacterDead = true;
         platformerMovement.transform.position = startPosition;
         platformerMovement.ResetPhysicsState();
+        if(platformerMovement.FacingLeft != startFacingLeft)
+        {
+            platformerMovement.TurnAround();
+        }
+        platformerMovement.blockInput = true;
+        GameState.CharacterDead = false;
     }
 
     private void Update()
     {
         if (pixelReader.Available)
         {
+            if (pixelReader.result.a >= 255 / 2)
+            {
+                Respawn();
+            }
+
             float x = (platformerMovement.transform.localPosition.x * pixelsPerMeter / maskGenerator.Size) + .5f;
             float y = (platformerMovement.transform.localPosition.y * pixelsPerMeter / maskGenerator.Size) + .5f;
             pixelReader.ReadPixelAsync(mask, 0, (int)(x*mask.width), 1, (int)(y*mask.height), 1);
         }
-        else
-        {
-            if(pixelReader.result.a >= 255 / 2)
-            {
-                Respawn();
-            }
+
+        if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
+            platformerMovement.blockInput = false;
         }
     }
 }
