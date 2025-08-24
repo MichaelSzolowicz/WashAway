@@ -4,41 +4,38 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class DebugLine : MonoBehaviour
 {
-    private LineCollider lineCollider;
-    private LineCollider[] lineColliders;
+    private LineCollider thisLineCollider;
+    private LineCollider[] lineCollidersInScene;
 
-    public void Start()
+    public void OnValidate()
     {
-        lineCollider = GetComponent<LineCollider>();
-
-        if(Application.isPlaying)
-            LineCollisionScene.Instance.RemoveLineCollider(lineCollider);
+        thisLineCollider = GetComponent<LineCollider>();
     }
 
     public void Update()
     {
-        lineColliders = FindObjectsOfType<LineCollider>();
+        lineCollidersInScene = FindObjectsOfType<LineCollider>();
 
-        for (int i = 0; i < lineColliders.Length; i++)
+        for (int i = 0; i < lineCollidersInScene.Length; i++)
         {
-            LineCollider collider = lineColliders[i];
+            LineCollider testCollider = lineCollidersInScene[i];
 
-            if(collider != this)
+            if(testCollider != thisLineCollider)
             {
                 LineIntersectionResult result = new LineIntersectionResult();
-                bool intersect = collider.IntersectLine(lineCollider.GetPoint(0).position, lineCollider.GetPoint(1).position, out result);
+                bool intersect = testCollider.IntersectLine(thisLineCollider.GetPoint(0).position, thisLineCollider.GetPoint(1).position, out result);
 
                 if (intersect)
                 {
-                    lineCollider.selectedColor = Color.red;
-                    lineCollider.defaultColor = Color.red;
+                    thisLineCollider.selectedColor = Color.red;
+                    thisLineCollider.defaultColor = Color.red;
 
                     Debug.DrawLine(result.intersectPosition, result.intersectPosition + result.surfaceNormal, Color.magenta);
                 }
                 else
                 {
-                    lineCollider.selectedColor = Color.cyan;
-                    lineCollider.defaultColor = Color.gray;
+                    thisLineCollider.selectedColor = Color.cyan;
+                    thisLineCollider.defaultColor = Color.gray;
                 }
             }
         }
