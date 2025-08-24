@@ -7,16 +7,16 @@ using UnityEngine.Rendering;
 [ExecuteAlways]
 public class WAArtist : MonoBehaviour
 {
-    [SerializeField] private RenderTexture painting;
+    [SerializeField] protected RenderTexture painting;
     [SerializeField] public List<PaintedSprite> layers = new List<PaintedSprite>();
-    [SerializeField] private string blendShader = "Unlit/Blend";
-    [SerializeField] private bool additive = false;
-    [SerializeField] private bool clearOnStart = false;
-    [SerializeField] private bool clearOnDestroy = false;
+    [SerializeField] protected string blendShader = "Unlit/Blend";
+    [SerializeField] protected bool additive = false;
+    [SerializeField] protected bool clearOnStart = false;
+    [SerializeField] protected bool clearOnDestroy = false;
  
-    private RenderTexture layerBuffer;
-    private CommandBuffer commandBuffer;
-    private Material blendMaterial;
+    protected RenderTexture layerBuffer;
+    protected CommandBuffer commandBuffer;
+    protected Material blendMaterial;
 
     public int Size 
     { 
@@ -32,7 +32,7 @@ public class WAArtist : MonoBehaviour
         Init();
     }
 
-    private void Start()
+    protected void Start()
     {
         Init();
 
@@ -113,7 +113,7 @@ public class WAArtist : MonoBehaviour
         layers.Add(layer);
     }
 
-    private void OnDestroy()
+    protected void OnDestroy()
     {
         if (clearOnDestroy)
         {

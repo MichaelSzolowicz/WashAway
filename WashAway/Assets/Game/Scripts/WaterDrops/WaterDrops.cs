@@ -45,6 +45,8 @@ public class WaterDrops : MonoBehaviour
 
         //drops[0].enabled = true;
         //++numEnabledDrops;
+
+        GameState.onToggleCharacterDead += ResetDrops;
     }
 
     private void Update()
@@ -73,5 +75,24 @@ public class WaterDrops : MonoBehaviour
                 drop.transform.position = transform.position;
             }
         }
+    }
+
+    private void ResetDrops()
+    {
+        if(!GameState.CharacterDead) return;
+
+        for (int i = 0;i < drops.Count;i++)
+        {
+            drops[i].gameObject.SetActive(false);
+            paintedSprites[i].scale = Vector2.zero;
+        }
+
+        elapsedTime = 0;
+        numEnabledDrops = 0;
+    }
+
+    private void OnDestroy()
+    {
+        GameState.onToggleCharacterDead -= ResetDrops;
     }
 }

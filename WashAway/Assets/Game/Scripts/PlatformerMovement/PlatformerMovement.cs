@@ -25,9 +25,15 @@ public class PlatformerMovement : MonoBehaviour
     private bool isFallingThrough = false;
     private Coroutine fallThroughCoroutine;
 
+    private bool facingLeft = false;
+
     // Test values
     [Header("Test")]
     public int targetFramerate = 30;
+
+    public bool FacingLeft { get { return facingLeft; } }
+
+    public bool blockInput = false;
 
     private void Start()
     {
@@ -145,18 +151,36 @@ public class PlatformerMovement : MonoBehaviour
 
     private Vector2 GetInput()
     {
+        if (blockInput) return Vector3.zero;
+
         Vector3 input = Vector3.zero;
         if (Input.GetKey(KeyCode.D))
         {
             input += Vector3.right;
+
+            if (facingLeft)
+            {
+                TurnAround();
+            }
         }
 
         if (Input.GetKey(KeyCode.A))
         {
             input += Vector3.left;
+
+            if (!facingLeft)
+            {
+                TurnAround();
+            }
         }
 
         return input;
+    }
+
+    public void TurnAround()
+    {
+        transform.Rotate(new Vector3(0, 180));
+        facingLeft = !facingLeft;
     }
 
     private void Move(float deltaTime, Vector3 input)
