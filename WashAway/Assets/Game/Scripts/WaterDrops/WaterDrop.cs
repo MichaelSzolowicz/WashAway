@@ -38,4 +38,9 @@ public class WaterDrop : MonoBehaviour
         transform.rotation = initialRotation;
         timeAlive = 0.0f;
     }
+
+    private void OnDisable()
+    {
+        transform.localScale = Vector3.zero;
+    }
 }

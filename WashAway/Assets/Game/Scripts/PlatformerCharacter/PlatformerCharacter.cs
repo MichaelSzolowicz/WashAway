@@ -33,24 +33,24 @@ public class PlatformerCharacter : MonoBehaviour
 
     private void Respawn()
     {
+        GameState.CharacterDead = true;
         platformerMovement.transform.position = startPosition;
         platformerMovement.ResetPhysicsState();
+        GameState.CharacterDead = false;
     }
 
     private void Update()
     {
         if (pixelReader.Available)
         {
-            float x = (platformerMovement.transform.localPosition.x * pixelsPerMeter / maskGenerator.Size) + .5f;
-            float y = (platformerMovement.transform.localPosition.y * pixelsPerMeter / maskGenerator.Size) + .5f;
-            pixelReader.ReadPixelAsync(mask, 0, (int)(x*mask.width), 1, (int)(y*mask.height), 1);
-        }
-        else
-        {
-            if(pixelReader.result.a >= 255 / 2)
+            if (pixelReader.result.a >= 255 / 2)
             {
                 Respawn();
             }
+
+            float x = (platformerMovement.transform.localPosition.x * pixelsPerMeter / maskGenerator.Size) + .5f;
+            float y = (platformerMovement.transform.localPosition.y * pixelsPerMeter / maskGenerator.Size) + .5f;
+            pixelReader.ReadPixelAsync(mask, 0, (int)(x*mask.width), 1, (int)(y*mask.height), 1);
         }
     }
 }
