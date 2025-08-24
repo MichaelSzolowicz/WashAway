@@ -3191,6 +3191,7 @@ MonoBehaviour:
   jumpScale: 19
   probeDepth: 0.5
   targetFramerate: 0
+  blockInput: 0
 --- !u!114 &4248487412361735253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3208,6 +3209,7 @@ MonoBehaviour:
   mask: {fileID: 8400000, guid: db8c7020f14330f4fb57b20d6f6dc07e, type: 2}
   maskGenerator: {fileID: 1602239495}
   pixelsPerMeter: 13.65333
+  blockInputRespawnDuration: 0.5
 --- !u!1 &4406575686692881645
 GameObject:
   m_ObjectHideFlags: 0
