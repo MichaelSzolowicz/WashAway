@@ -6,16 +6,33 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
 {
     [SerializeField] private List<LinePoint> points = new List<LinePoint>();
 
-    [Header("Rendering")]
-    [SerializeField] public Color deselectedColor = Color.white;
-    [SerializeField] public Color selectedColor = Color.yellow;
-    [SerializeField] private float normalLength = .25f;
-    [SerializeField] private bool visibleInGame = true;
-    [SerializeField] private bool visibleInEditor = true;
+    [System.Serializable]
+    private class LineColliderAppearance
+    {
+        public Color deselectedColor;
+        public Color selectedColor;
+        public float normalLength;
+        public bool visibleInGame;
+        public bool visibleInEditor;
+
+        public LineColliderAppearance()
+        {
+            deselectedColor = Color.grey;
+            selectedColor = Color.yellow;
+            normalLength = .25f;
+            visibleInGame = true;   
+            visibleInEditor = true;
+        }
+    }
+
+    [SerializeField] private LineColliderAppearance appearance;
+
     private bool isSelected = false;
 
     public int NumPoints { get { return points.Count; } }
     public bool IsSelected { get { return isSelected; } set { isSelected = value; } }
+    public Color DeselectedColor { get { return appearance.deselectedColor; } set { appearance.deselectedColor = value; } }
+    public Color SelectedColor { get { return appearance.selectedColor; } set { appearance.selectedColor = value; } }
 
     public Vector2 GetPointWorldPosition(int index)
     {
@@ -84,18 +101,18 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
 
     protected void OnDrawGizmos()
     {
-        if (!visibleInEditor && !visibleInGame) return;
-        else if (SceneView.currentDrawingSceneView == null && !visibleInGame) return;
-        else if (SceneView.currentDrawingSceneView != null && !visibleInEditor) return;
+        if (!appearance.visibleInEditor && !appearance.visibleInGame) return;
+        else if (SceneView.currentDrawingSceneView == null && !appearance.visibleInGame) return;
+        else if (SceneView.currentDrawingSceneView != null && !appearance.visibleInEditor) return;
 
-        Color displayColor = isSelected ? selectedColor : deselectedColor;
+        Color displayColor = isSelected ? appearance.selectedColor : appearance.deselectedColor;
 
         for (int i = 0; i < NumPoints; i++)
         {
             Vector2 point = GetPointWorldPosition(i);
 
             Gizmos.color = displayColor;
-            Gizmos.DrawIcon(point, "point", false, isSelected ? selectedColor : deselectedColor);
+            Gizmos.DrawIcon(point, "point", false, displayColor);
         }
 
         for (int p1 = 0, p2 = 1; p2 < NumPoints; p1++, p2++)
@@ -110,7 +127,7 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
             Vector2 normalStart = (lineStart + lineEnd) / 2;
 
             Gizmos.color = Color.white;
-            Gizmos.DrawLine(normalStart, normalStart + normal * normalLength);
+            Gizmos.DrawLine(normalStart, normalStart + normal * appearance.normalLength);
         }
     }
 }

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5597261600302132309}
-  - component: {fileID: 4274950371948118634}
+  - component: {fileID: 1481630921498895750}
   m_Layer: 0
   m_Name: LineCollider
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4274950371948118634
+--- !u!114 &1481630921498895750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,8 +49,9 @@ MonoBehaviour:
     normal: {x: 0.000000059604645, y: 0.99999994}
   - position: {x: 1, y: 0}
     normal: {x: 0, y: 0}
-  deselectedColor: {r: 1, g: 1, b: 0, a: 1}
-  selectedColor: {r: 1, g: 0.49803922, b: 0, a: 1}
-  normalLength: 0.25
-  visibleInGame: 1
-  visibleInEditor: 1
+  appearance:
+    deselectedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    normalLength: 0.25
+    visibleInGame: 1
+    visibleInEditor: 1

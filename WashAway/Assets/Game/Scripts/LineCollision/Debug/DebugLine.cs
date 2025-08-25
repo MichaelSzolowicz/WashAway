@@ -12,13 +12,14 @@ public class DebugLine : MonoBehaviour
     public void OnValidate()
     {
         thisLineCollider = GetComponent<LineCollider>();
-        defaultColors[0] = thisLineCollider.selectedColor;
-        defaultColors[1] = thisLineCollider.deselectedColor;
+        defaultColors[0] = thisLineCollider.SelectedColor;
+        defaultColors[1] = thisLineCollider.DeselectedColor;
     }
 
     public void Update()
     {
         lineCollidersInScene = FindObjectsOfType<LineCollider>();
+        bool foundIntersect = false;
 
         for (int i = 0; i < lineCollidersInScene.Length; i++)
         {
@@ -31,17 +32,27 @@ public class DebugLine : MonoBehaviour
 
                 if (intersect)
                 {
-                    thisLineCollider.deselectedColor = Color.red;
-                    thisLineCollider.selectedColor = Color.red;
+                    foundIntersect = true;
+
 
                     Debug.DrawLine(result.intersectPosition, result.intersectPosition + result.surfaceNormal, Color.magenta);
                 }
                 else
                 {
-                    thisLineCollider.selectedColor = defaultColors[0];
-                    thisLineCollider.deselectedColor = defaultColors[1];
+
                 }
             }
+        }
+
+        if(foundIntersect )
+        {
+            thisLineCollider.DeselectedColor = Color.red;
+            thisLineCollider.SelectedColor = Color.red;
+        }
+        else
+        {
+            thisLineCollider.SelectedColor = defaultColors[0];
+            thisLineCollider.DeselectedColor = defaultColors[1];
         }
     }
 }
