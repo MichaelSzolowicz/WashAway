@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5305638340184347731}
-  - component: {fileID: 9069985962616602709}
-  - component: {fileID: 6460127865065453691}
+  - component: {fileID: 3826867948518708505}
+  - component: {fileID: 2620962699069972707}
   m_Layer: 0
   m_Name: DebugLine
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9069985962616602709
+--- !u!114 &3826867948518708505
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,7 +56,7 @@ MonoBehaviour:
     normalLength: 0.25
     visibleInGame: 1
     visibleInEditor: 1
---- !u!114 &6460127865065453691
+--- !u!114 &2620962699069972707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

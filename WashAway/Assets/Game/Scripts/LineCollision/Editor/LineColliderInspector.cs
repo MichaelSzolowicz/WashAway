@@ -1,9 +1,9 @@
-using System.Drawing.Printing;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.UIElements;
 
+/// <summary>
+/// Modifies line colliders using serialized object to ensure data is saved and reloaded correctly. 
+/// </summary>
 [CustomEditor(typeof(LineCollider)), CanEditMultipleObjects]
 public class LineColliderInspector : Editor
 {
@@ -34,8 +34,6 @@ public class LineColliderInspector : Editor
                 int newNumPoints = serializedObject.FindProperty("points").arraySize;
                 if (numPoints < newNumPoints)
                 {
-                    Debug.Log("Added points");
-
                     for(int i = numPoints; i < newNumPoints; i++)
                     {
                         Vector2 newPointPosition = Vector3.zero;
@@ -84,7 +82,6 @@ public class LineColliderInspector : Editor
         
             if(position != newPosition)
             {
-                Undo.RecordObject(lineCollider, "Move line collider point");
                 SetPointWorldPosition(serializedLineCollider, i, newPosition);
                 serializedLineCollider.ApplyModifiedProperties();
             }
