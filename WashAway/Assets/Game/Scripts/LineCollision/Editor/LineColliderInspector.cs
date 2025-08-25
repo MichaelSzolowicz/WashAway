@@ -1,122 +1,136 @@
-using UnityEngine;
-using UnityEditor;
-using UnityEngine.Assertions;
 using System.Drawing.Printing;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.Assertions;
+using UnityEngine.UIElements;
 
-[CustomEditor(typeof(LineCollider))]
+[CustomEditor(typeof(LineCollider)), CanEditMultipleObjects]
 public class LineColliderInspector : Editor
 {
     private LineCollider lineCollider;
     private SerializedObject serializedLineCollider;
-    private SerializedProperty serializedPoints;
 
     private void OnEnable()
     {
         lineCollider = (LineCollider)target;
-        lineCollider.IsSelected = true;
-
-        Init();
-    }
-
-    private void Init()
-    {
-        string pointsPropertyName = "points";
-
-        serializedLineCollider = CreateSerializedObjectWithAssert(lineCollider);
-        serializedPoints = FindPropertyWithAssert(serializedLineCollider, pointsPropertyName);    
+        serializedLineCollider = new SerializedObject(lineCollider);
+        for (int i = 0; i < targets.Length; i++)
+        {
+            ((LineCollider)targets[i]).IsSelected = true;
+        }
     }
 
     public override void OnInspectorGUI()
     {
-        DrawDefaultInspector();
+        serializedObject.Update();
+
+        if(targets.Length == 1 )
+        {
+            int numPoints = serializedObject.FindProperty("points").arraySize;
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("points"));
+
+            if (serializedObject.ApplyModifiedProperties())
+            {
+                int newNumPoints = serializedObject.FindProperty("points").arraySize;
+                if (numPoints < newNumPoints)
+                {
+                    Debug.Log("Added points");
+
+                    for(int i = numPoints; i < newNumPoints; i++)
+                    {
+                        Vector2 newPointPosition = Vector3.zero;
+
+                        if(i > 1)
+                        {
+                            Vector3 p1 = serializedObject.FindProperty("points").GetArrayElementAtIndex(i - 2).FindPropertyRelative("position").vector2Value;
+                            Vector3 p2 = serializedObject.FindProperty("points").GetArrayElementAtIndex(i - 1).FindPropertyRelative("position").vector2Value;
+
+                            newPointPosition = p2 + (p2 - p1).normalized;
+                        }
+                        else if (i > 0)
+                        {
+                            Vector3 p1 = serializedObject.FindProperty("points").GetArrayElementAtIndex(i - 1).FindPropertyRelative("position").vector2Value;
+
+                            newPointPosition = p1 + Vector3.right;
+                        }
+
+                        serializedObject.FindProperty("points").GetArrayElementAtIndex(i).FindPropertyRelative("position").vector2Value = newPointPosition;
+                    }
+                }
+
+                for (int i = 0; i < serializedObject.FindProperty("points").arraySize; i++)
+                {
+                    SanitizePoint(serializedObject, i);
+                }
+            }
+        }
+
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("appearance"));
+
+        serializedObject.ApplyModifiedProperties();
     }
 
     private void OnSceneGUI()
     {
-        Init();
-        Handles.color = Color.yellow;
+        serializedLineCollider.Update();
+
+        Handles.color = lineCollider.SelectedColor;
         for (int i = 0; i < lineCollider.NumPoints; i++)
         {
-            Vector3 position = FindRelativePropertyWithAssert(serializedPoints.GetArrayElementAtIndex(i), "position").vector2Value;
-            position = position + lineCollider.transform.position;
-
-            EditorGUI.BeginChangeCheck();
+            Vector3 position = serializedLineCollider.FindProperty("points").GetArrayElementAtIndex(i).FindPropertyRelative("position").vector2Value;
+            position = lineCollider.transform.position + position;
 
             Vector3 newPosition = Handles.Slider2D(position, Vector3.forward, Vector3.right, Vector3.up, HandleUtility.GetHandleSize(position) * .1f, Handles.CircleHandleCap, 0);
-
-            if (EditorGUI.EndChangeCheck())
+        
+            if(position != newPosition)
             {
-                if (position != newPosition)
-                {
-                    Undo.RecordObject(lineCollider, "Move Line Collider Point");
-                    SetPointWorldPosition(i, newPosition);
-                    serializedLineCollider.ApplyModifiedProperties();
-                }
+                Undo.RecordObject(lineCollider, "Move line collider point");
+                SetPointWorldPosition(serializedLineCollider, i, newPosition);
+                serializedLineCollider.ApplyModifiedProperties();
             }
-
         }
     }
 
-    private void SetPointWorldPosition(int index, Vector3 worldPosition)
+    private void SetPointWorldPosition(SerializedObject serializedObject, int index, Vector3 worldPosition)
     {
-        var serializedPoint = serializedPoints.GetArrayElementAtIndex(index);
-
-        var serializedPosition = FindRelativePropertyWithAssert(serializedPoint, "position");
+        var serializedPosition = serializedObject.FindProperty("points").GetArrayElementAtIndex(index).FindPropertyRelative("position");
 
         serializedPosition.vector2Value = worldPosition - lineCollider.transform.position;
 
-        SanitizePoint(index);
+        SanitizePoint(serializedObject, index);
     }
 
-    private void SanitizePoint(int index)
+    private void SanitizePoint(SerializedObject serializedObject, int index)
     {
+        var serializedPoints = serializedObject.FindProperty("points");
         if (serializedPoints.arraySize > index + 1)
         {
-            UpdateNormal(index);
+            UpdateNormal(serializedPoints, index);
         }
         if(index - 1 >= 0)
         {
-            UpdateNormal(index - 1);
+            UpdateNormal(serializedPoints, index - 1);
         }
     }
 
-    private void UpdateNormal(int index)
+    private void UpdateNormal(SerializedProperty serializedPoints, int index)
     {
         if (serializedPoints.arraySize <= index) return;
 
-        var p1 = FindRelativePropertyWithAssert(serializedPoints.GetArrayElementAtIndex(index), "position");
-        var p2 = FindRelativePropertyWithAssert(serializedPoints.GetArrayElementAtIndex (index + 1), "position");
+        var p1 = serializedPoints.GetArrayElementAtIndex(index).FindPropertyRelative("position");
+        var p2 = serializedPoints.GetArrayElementAtIndex(index + 1).FindPropertyRelative("position");
 
         Vector2 normal = Quaternion.Euler(0, 0, 90) * (p2.vector2Value - p1.vector2Value).normalized;
         if (Vector2.Dot(normal, Vector2.up) < 0) normal *= -1;
 
-        FindRelativePropertyWithAssert(serializedPoints.GetArrayElementAtIndex(index), "normal").vector2Value = normal;
+        serializedPoints.GetArrayElementAtIndex(index).FindPropertyRelative("normal").vector2Value = normal;
     }
 
     private void OnDisable()
     {
-        lineCollider.IsSelected = false;
-    }
-
-    private SerializedObject CreateSerializedObjectWithAssert(Object src)
-    {
-        var result = new SerializedObject(src);
-        string srcTypeName = src.GetType().Name;
-        Assert.IsTrue(result != null, "Failed to create serialized object for object of type \"" + srcTypeName + "\"");
-        return result;
-    }
-
-    private SerializedProperty FindPropertyWithAssert(SerializedObject serializedObject, string propertyName)
-    {
-        var result = serializedObject.FindProperty(propertyName);
-        Assert.IsTrue(result != null, "Could not find property \"" + propertyName + "\" on on serialized object from object type " + serializedObject.targetObject.GetType().Name);
-        return result;
-    }
-
-    private SerializedProperty FindRelativePropertyWithAssert(SerializedProperty serializedProperty, string propertyName)
-    {
-        var result = serializedProperty.FindPropertyRelative(propertyName);
-        Assert.IsTrue(result != null, "Could not find realtive property \"" + propertyName + "\" on serialized property \"" + serializedProperty.name + "\"");
-        return result;
+        for (int i = 0; i < targets.Length; i++)
+        {
+            ((LineCollider)targets[i]).IsSelected = false;
+        }
     }
 }
