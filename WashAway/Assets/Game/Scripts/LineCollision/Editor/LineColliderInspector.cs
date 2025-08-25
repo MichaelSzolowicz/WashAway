@@ -1,19 +1,19 @@
+using System.Drawing.Printing;
 using UnityEditor;
 using UnityEngine;
 
 /// <summary>
-/// Modifies line colliders using serialized object to ensure data is saved and reloaded correctly. 
+/// Generates interface for editing line colliders.
+/// Uses serialized property to ensure changes are saved and reconstructed properly.
 /// </summary>
 [CustomEditor(typeof(LineCollider)), CanEditMultipleObjects]
 public class LineColliderInspector : Editor
 {
     private LineCollider lineCollider;
-    private SerializedObject serializedLineCollider;
 
     private void OnEnable()
     {
         lineCollider = (LineCollider)target;
-        serializedLineCollider = new SerializedObject(lineCollider);
         for (int i = 0; i < targets.Length; i++)
         {
             ((LineCollider)targets[i]).IsSelected = true;
@@ -24,89 +24,108 @@ public class LineColliderInspector : Editor
     {
         serializedObject.Update();
 
-        if(targets.Length == 1 )
+        var it = serializedObject.GetIterator();
+        it.Next(true);
+
+        while (it.NextVisible(false))
         {
-            int numPoints = serializedObject.FindProperty("points").arraySize;
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("points"));
-
-            if (serializedObject.ApplyModifiedProperties())
+            switch (it.name)
             {
-                int newNumPoints = serializedObject.FindProperty("points").arraySize;
-                if (numPoints < newNumPoints)
-                {
-                    for(int i = numPoints; i < newNumPoints; i++)
-                    {
-                        Vector2 newPointPosition = Vector3.zero;
-
-                        if(i > 1)
-                        {
-                            Vector3 p1 = serializedObject.FindProperty("points").GetArrayElementAtIndex(i - 2).FindPropertyRelative("position").vector2Value;
-                            Vector3 p2 = serializedObject.FindProperty("points").GetArrayElementAtIndex(i - 1).FindPropertyRelative("position").vector2Value;
-
-                            newPointPosition = p2 + (p2 - p1).normalized;
-                        }
-                        else if (i > 0)
-                        {
-                            Vector3 p1 = serializedObject.FindProperty("points").GetArrayElementAtIndex(i - 1).FindPropertyRelative("position").vector2Value;
-
-                            newPointPosition = p1 + Vector3.right;
-                        }
-
-                        serializedObject.FindProperty("points").GetArrayElementAtIndex(i).FindPropertyRelative("position").vector2Value = newPointPosition;
-                    }
-                }
-
-                for (int i = 0; i < serializedObject.FindProperty("points").arraySize; i++)
-                {
-                    SanitizePoint(serializedObject, i);
-                }
+                case "points":
+                    HandlePoints(it);
+                    break;
+                case "m_Script":
+                    GUI.enabled = false;
+                    EditorGUILayout.PropertyField(it);
+                    GUI.enabled = true;
+                    break;
+                default:
+                    EditorGUILayout.PropertyField(it);
+                    break;
             }
         }
-
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("appearance"));
 
         serializedObject.ApplyModifiedProperties();
     }
 
+    private void HandlePoints(SerializedProperty points)
+    {
+        if (targets.Length != 1) return;
+
+        int numPoints = points.arraySize;
+
+        EditorGUILayout.PropertyField(points);
+
+        if (!serializedObject.ApplyModifiedProperties()) return;
+
+        int newNumPoints = points.arraySize;
+
+        for (int i = numPoints; i < newNumPoints; i++)
+        {
+            Vector2 newPointPosition = Vector3.zero;
+
+            if (i > 1)
+            {
+                Vector3 p1 = points.GetArrayElementAtIndex(i - 2).FindPropertyRelative("position").vector2Value;
+                Vector3 p2 = points.GetArrayElementAtIndex(i - 1).FindPropertyRelative("position").vector2Value;
+
+                newPointPosition = p2 + (p2 - p1).normalized;
+            }
+            else if (i > 0)
+            {
+                Vector3 p1 = points.GetArrayElementAtIndex(i - 1).FindPropertyRelative("position").vector2Value;
+
+                newPointPosition = p1 + Vector3.right;
+            }
+
+            points.GetArrayElementAtIndex(i).FindPropertyRelative("position").vector2Value = newPointPosition;
+        }
+
+        SanitizePoints(points);
+    }
+
     private void OnSceneGUI()
     {
-        serializedLineCollider.Update();
+        var slc = new SerializedObject(lineCollider);
 
         Handles.color = lineCollider.SelectedColor;
         for (int i = 0; i < lineCollider.NumPoints; i++)
         {
-            Vector3 position = serializedLineCollider.FindProperty("points").GetArrayElementAtIndex(i).FindPropertyRelative("position").vector2Value;
-            position = lineCollider.transform.position + position;
+            var points = slc.FindProperty("points");
+            var position = points.GetArrayElementAtIndex(i).FindPropertyRelative("position");
 
-            Vector3 newPosition = Handles.Slider2D(position, Vector3.forward, Vector3.right, Vector3.up, HandleUtility.GetHandleSize(position) * .1f, Handles.CircleHandleCap, 0);
+            Vector3 drawPos = position.vector2Value;
+            drawPos = drawPos + lineCollider.transform.position;
+
+            Vector3 newPosition = Handles.Slider2D(drawPos, Vector3.forward, Vector3.right, 
+                Vector3.up, HandleUtility.GetHandleSize(drawPos) * .1f, Handles.CircleHandleCap, 0);
         
-            if(position != newPosition)
+            if(drawPos != newPosition)
             {
-                SetPointWorldPosition(serializedLineCollider, i, newPosition);
-                serializedLineCollider.ApplyModifiedProperties();
+                position.vector2Value = newPosition - lineCollider.transform.position;
+                SanitizePoint(points, i);
+                slc.ApplyModifiedProperties();
             }
         }
     }
 
-    private void SetPointWorldPosition(SerializedObject serializedObject, int index, Vector3 worldPosition)
+    private void SanitizePoints(SerializedProperty points)
     {
-        var serializedPosition = serializedObject.FindProperty("points").GetArrayElementAtIndex(index).FindPropertyRelative("position");
-
-        serializedPosition.vector2Value = worldPosition - lineCollider.transform.position;
-
-        SanitizePoint(serializedObject, index);
+        for (int i = 0; i < points.arraySize; i++)
+        {
+            SanitizePoint(points, i);
+        }
     }
 
-    private void SanitizePoint(SerializedObject serializedObject, int index)
+    private void SanitizePoint(SerializedProperty points, int index)
     {
-        var serializedPoints = serializedObject.FindProperty("points");
-        if (serializedPoints.arraySize > index + 1)
+        if (points.arraySize > index + 1)
         {
-            UpdateNormal(serializedPoints, index);
+            UpdateNormal(points, index);
         }
-        if(index - 1 >= 0)
+        if (index - 1 >= 0)
         {
-            UpdateNormal(serializedPoints, index - 1);
+            UpdateNormal(points, index - 1);
         }
     }
 

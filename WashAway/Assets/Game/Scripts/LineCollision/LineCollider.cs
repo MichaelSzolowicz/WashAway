@@ -4,11 +4,11 @@ using UnityEngine;
 
 /// <summary>
 /// Scene representation of a set of points that can be traced for intersection.
-/// Responsible for adding / removing itself from LineIntersectionScene for intersection tests at runtime.
+/// Responsible for adding itself to LineIntersectionScene to be traced against in intersection tests.
 /// </summary>
 public class LineCollider : MonoBehaviour, ILineColliderInterface
 {
-    [SerializeField] private List<LinePoint> points = new List<LinePoint>();
+    [SerializeField] public List<LinePoint> points = new List<LinePoint>();
     public int NumPoints { get { return points.Count; } }
 
     [System.Serializable]
