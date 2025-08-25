@@ -2,9 +2,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// Scene representation of a set of points that can be traced for intersection.
+/// Responsible for adding / removing itself from LineIntersectionScene for intersection tests at runtime.
+/// </summary>
 public class LineCollider : MonoBehaviour, ILineColliderInterface
 {
     [SerializeField] private List<LinePoint> points = new List<LinePoint>();
+    public int NumPoints { get { return points.Count; } }
 
     [System.Serializable]
     private class LineColliderAppearance
@@ -26,30 +31,22 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
     }
 
     [SerializeField] private LineColliderAppearance appearance;
-
-    private bool isSelected = false;
-
-    public int NumPoints { get { return points.Count; } }
-    public bool IsSelected { get { return isSelected; } set { isSelected = value; } }
     public Color DeselectedColor { get { return appearance.deselectedColor; } set { appearance.deselectedColor = value; } }
     public Color SelectedColor { get { return appearance.selectedColor; } set { appearance.selectedColor = value; } }
 
-    public Vector2 GetPointWorldPosition(int index)
+    private bool isSelected = false;
+    public bool IsSelected { get { return isSelected; } set { isSelected = value; } }
+
+    public Vector3 GetPointWorldPosition(int index)
     {
         Vector3 localPosition = points[index].position;
         return transform.position + localPosition;
-    }
-
-    public void SetPointWorldPosition(int index, Vector3 worldPosition)
-    {
-        points[index].position = worldPosition - transform.position;
     }
 
     public Vector2 GetWorldNormal(int index)
     {
         return points[index].normal;
     }
-
 
     public bool IntersectLine(Vector3 lineStart, Vector3 lineEnd, out LineIntersectionResult intersectionResult)
     {
@@ -109,22 +106,21 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
 
         for (int i = 0; i < NumPoints; i++)
         {
-            Vector2 point = GetPointWorldPosition(i);
+            Vector3 point = GetPointWorldPosition(i);
 
-            Gizmos.color = displayColor;
             Gizmos.DrawIcon(point, "point", false, displayColor);
         }
 
         for (int p1 = 0, p2 = 1; p2 < NumPoints; p1++, p2++)
         {
-            Vector2 lineStart = GetPointWorldPosition(p1);
-            Vector2 lineEnd = GetPointWorldPosition(p2);
-            Vector2 normal = GetWorldNormal(p1);
+            Vector3 lineStart = GetPointWorldPosition(p1);
+            Vector3 lineEnd = GetPointWorldPosition(p2);
+            Vector3 normal = GetWorldNormal(p1);
 
             Gizmos.color = displayColor;
             Gizmos.DrawLine(lineStart, lineEnd);
 
-            Vector2 normalStart = (lineStart + lineEnd) / 2;
+            Vector3 normalStart = (lineStart + lineEnd) / 2;
 
             Gizmos.color = Color.white;
             Gizmos.DrawLine(normalStart, normalStart + normal * appearance.normalLength);

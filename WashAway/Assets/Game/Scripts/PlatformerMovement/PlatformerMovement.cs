@@ -27,13 +27,13 @@ public class PlatformerMovement : MonoBehaviour
 
     private bool facingLeft = false;
 
-    // Test values
-    [Header("Test")]
-    public int targetFramerate = 30;
-
     public bool FacingLeft { get { return facingLeft; } }
 
     public bool blockInput = false;
+
+    // Test values
+    [Header("Test")]
+    public int targetFramerate = 30;
 
     private void Start()
     {

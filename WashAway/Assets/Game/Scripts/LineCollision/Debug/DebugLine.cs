@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Horribly inefficient little thing that shows line intersections in editor. Do not include in a shipping scene.
+/// </summary>
 [RequireComponent(typeof(LineCollider))]
 [ExecuteInEditMode]
 public class DebugLine : MonoBehaviour
@@ -7,17 +10,15 @@ public class DebugLine : MonoBehaviour
     private LineCollider thisLineCollider;
     private LineCollider[] lineCollidersInScene;
 
-    private Color[] defaultColors = { Color.white, Color.white };
-
     public void OnValidate()
     {
         thisLineCollider = GetComponent<LineCollider>();
-        defaultColors[0] = thisLineCollider.SelectedColor;
-        defaultColors[1] = thisLineCollider.DeselectedColor;
     }
 
     public void Update()
     {
+        if(thisLineCollider.NumPoints < 2) return; 
+
         lineCollidersInScene = FindObjectsOfType<LineCollider>();
         bool foundIntersect = false;
 
@@ -34,8 +35,10 @@ public class DebugLine : MonoBehaviour
                 {
                     foundIntersect = true;
 
-
-                    Debug.DrawLine(result.intersectPosition, result.intersectPosition + result.surfaceNormal, Color.magenta);
+                    Vector3 start = result.intersectPosition;
+                    start.z = transform.position.z;
+                    Vector3 end = start + result.surfaceNormal;
+                    Debug.DrawLine(start, end, Color.magenta);
                 }
                 else
                 {
@@ -44,15 +47,17 @@ public class DebugLine : MonoBehaviour
             }
         }
 
-        if(foundIntersect )
+        if(foundIntersect)
         {
             thisLineCollider.DeselectedColor = Color.red;
             thisLineCollider.SelectedColor = Color.red;
         }
         else
         {
-            thisLineCollider.SelectedColor = defaultColors[0];
-            thisLineCollider.DeselectedColor = defaultColors[1];
+            thisLineCollider.SelectedColor = Color.yellow;
+            thisLineCollider.DeselectedColor = Color.grey;
         }
     }
 }
+
+
