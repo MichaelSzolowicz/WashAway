@@ -5,7 +5,7 @@ public class LinePoint
 {
     [SerializeField] public Vector2 position;
     
-    [HideInInspector] [SerializeField] public Vector2 normal = Vector2.up;
+    [SerializeField] public Vector2 normal = Vector2.up;
 
     public float x
     {

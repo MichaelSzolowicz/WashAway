@@ -44,14 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfc21d90a573c774e9434d1c449402aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldPoints:
+  points:
   - position: {x: 0, y: 0}
     normal: {x: 0.000000059604645, y: 0.99999994}
   - position: {x: 1, y: 0}
-    normal: {x: 0, y: 1}
-  numPoints: 2
-  defaultColor: {r: 1, g: 0.98393744, b: 0, a: 1}
-  selectedColor: {r: 1, g: 0.5125961, b: 0.015686274, a: 1}
+    normal: {x: 0, y: 0}
+  deselectedColor: {r: 1, g: 1, b: 0, a: 1}
+  selectedColor: {r: 1, g: 0.49803922, b: 0, a: 1}
   normalLength: 0.25
   visibleInGame: 1
   visibleInEditor: 1

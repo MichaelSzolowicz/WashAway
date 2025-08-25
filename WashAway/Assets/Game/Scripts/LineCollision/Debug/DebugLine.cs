@@ -7,9 +7,13 @@ public class DebugLine : MonoBehaviour
     private LineCollider thisLineCollider;
     private LineCollider[] lineCollidersInScene;
 
+    private Color[] defaultColors = { Color.white, Color.white };
+
     public void OnValidate()
     {
         thisLineCollider = GetComponent<LineCollider>();
+        defaultColors[0] = thisLineCollider.selectedColor;
+        defaultColors[1] = thisLineCollider.deselectedColor;
     }
 
     public void Update()
@@ -23,19 +27,19 @@ public class DebugLine : MonoBehaviour
             if(testCollider != thisLineCollider)
             {
                 LineIntersectionResult result = new LineIntersectionResult();
-                bool intersect = testCollider.IntersectLine(thisLineCollider.GetPoint(0).position, thisLineCollider.GetPoint(1).position, out result);
+                bool intersect = testCollider.IntersectLine(thisLineCollider.GetPointWorldPosition(0), thisLineCollider.GetPointWorldPosition(1), out result);
 
                 if (intersect)
                 {
+                    thisLineCollider.deselectedColor = Color.red;
                     thisLineCollider.selectedColor = Color.red;
-                    thisLineCollider.defaultColor = Color.red;
 
                     Debug.DrawLine(result.intersectPosition, result.intersectPosition + result.surfaceNormal, Color.magenta);
                 }
                 else
                 {
-                    thisLineCollider.selectedColor = Color.cyan;
-                    thisLineCollider.defaultColor = Color.gray;
+                    thisLineCollider.selectedColor = defaultColors[0];
+                    thisLineCollider.deselectedColor = defaultColors[1];
                 }
             }
         }

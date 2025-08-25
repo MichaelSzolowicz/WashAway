@@ -1048,12 +1048,12 @@ PrefabInstance:
     - target: {fileID: 4274950371948118634, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: worldPoints.Array.data[0].position.x
-      value: -13.35
+      value: -7.744753
       objectReference: {fileID: 0}
     - target: {fileID: 4274950371948118634, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: worldPoints.Array.data[0].position.y
-      value: -5.880001
+      value: -7.5567837
       objectReference: {fileID: 0}
     - target: {fileID: 4274950371948118634, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
@@ -1108,12 +1108,12 @@ PrefabInstance:
     - target: {fileID: 4274950371948118634, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: worldPoints.Array.data[6].position.x
-      value: 2.3381758
+      value: 2.3600883
       objectReference: {fileID: 0}
     - target: {fileID: 4274950371948118634, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: worldPoints.Array.data[6].position.y
-      value: -15.215779
+      value: -15.154305
       objectReference: {fileID: 0}
     - target: {fileID: 4274950371948118634, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
