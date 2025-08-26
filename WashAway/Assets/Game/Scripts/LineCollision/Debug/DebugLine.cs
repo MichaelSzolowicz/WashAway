@@ -1,46 +1,58 @@
 using UnityEngine;
 
+/// <summary>
+/// Horribly inefficient little thing that shows line intersections in editor. Do not include in a shipping scene.
+/// </summary>
 [RequireComponent(typeof(LineCollider))]
 [ExecuteInEditMode]
 public class DebugLine : MonoBehaviour
 {
-    private LineCollider lineCollider;
-    private LineCollider[] lineColliders;
+    private LineCollider thisLineCollider;
+    private LineCollider[] lineCollidersInScene;
 
-    public void Start()
+    public void OnValidate()
     {
-        lineCollider = GetComponent<LineCollider>();
-
-        if(Application.isPlaying)
-            LineCollisionScene.Instance.RemoveLineCollider(lineCollider);
+        thisLineCollider = GetComponent<LineCollider>();
     }
 
     public void Update()
     {
-        lineColliders = FindObjectsOfType<LineCollider>();
+        if(thisLineCollider.NumPoints < 2) return; 
 
-        for (int i = 0; i < lineColliders.Length; i++)
+        lineCollidersInScene = FindObjectsOfType<LineCollider>();
+
+        bool foundIntersect = false;
+        for (int i = 0; i < lineCollidersInScene.Length; i++)
         {
-            LineCollider collider = lineColliders[i];
+            LineCollider testCollider = lineCollidersInScene[i];
 
-            if(collider != this)
+            if (testCollider != thisLineCollider)
             {
                 LineIntersectionResult result = new LineIntersectionResult();
-                bool intersect = collider.IntersectLine(lineCollider.GetPoint(0).position, lineCollider.GetPoint(1).position, out result);
+                bool intersect = testCollider.IntersectLine(thisLineCollider.GetPointWorldPosition(0), thisLineCollider.GetPointWorldPosition(1), out result);
 
                 if (intersect)
                 {
-                    lineCollider.selectedColor = Color.red;
-                    lineCollider.defaultColor = Color.red;
+                    foundIntersect = true;
 
-                    Debug.DrawLine(result.intersectPosition, result.intersectPosition + result.surfaceNormal, Color.magenta);
-                }
-                else
-                {
-                    lineCollider.selectedColor = Color.cyan;
-                    lineCollider.defaultColor = Color.gray;
+                    Vector3 start = result.intersectPosition;
+                    start.z = transform.position.z;
+                    Debug.DrawLine(start, start + result.surfaceNormal, Color.magenta);
                 }
             }
         }
+
+        if(foundIntersect)
+        {
+            thisLineCollider.DeselectedColor = Color.red;
+            thisLineCollider.SelectedColor = Color.red;
+        }
+        else
+        {
+            thisLineCollider.SelectedColor = Color.yellow;
+            thisLineCollider.DeselectedColor = Color.grey;
+        }
     }
 }
+
+

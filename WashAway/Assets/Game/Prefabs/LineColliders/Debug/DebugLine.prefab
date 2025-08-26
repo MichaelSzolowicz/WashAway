@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &456194792071843299
+--- !u!1 &8707451766315553967
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5597261600302132309}
-  - component: {fileID: 1481630921498895750}
+  - component: {fileID: 5305638340184347731}
+  - component: {fileID: 3826867948518708505}
+  - component: {fileID: 2620962699069972707}
   m_Layer: 0
-  m_Name: LineCollider
+  m_Name: DebugLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5597261600302132309
+--- !u!4 &5305638340184347731
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 456194792071843299}
+  m_GameObject: {fileID: 8707451766315553967}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,13 +33,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1481630921498895750
+--- !u!114 &3826867948518708505
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 456194792071843299}
+  m_GameObject: {fileID: 8707451766315553967}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfc21d90a573c774e9434d1c449402aa, type: 3}
@@ -55,3 +56,15 @@ MonoBehaviour:
     normalLength: 0.25
     visibleInGame: 1
     visibleInEditor: 1
+--- !u!114 &2620962699069972707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8707451766315553967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c959e91f90c2e49acd5c35fbf62ea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

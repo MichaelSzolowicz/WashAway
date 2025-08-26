@@ -2,62 +2,54 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[ExecuteInEditMode]
+/// <summary>
+/// Scene representation of a set of points that can be traced for intersection.
+/// Responsible for adding itself to LineIntersectionScene to be traced against in intersection tests.
+/// </summary>
 public class LineCollider : MonoBehaviour, ILineColliderInterface
 {
-    [SerializeField] private List<LinePoint> worldPoints = new List<LinePoint>();
-    [HideInInspector] [SerializeField] private int numPoints = 0;
+    // Internal class
+    [System.Serializable]
+    private class LineColliderAppearance
+    {
+        public Color deselectedColor;
+        public Color selectedColor;
+        public float normalLength;
+        public bool visibleInGame;
+        public bool visibleInEditor;
 
-    [Header("Rendering")]
-    [SerializeField] public Color defaultColor = Color.white;
-    [SerializeField] public Color selectedColor = Color.yellow;
-    //[SerializeField] private float lineWidth = 1;
-    [SerializeField] private float normalLength = .25f;
-    [SerializeField] private bool visibleInGame = true;
-    [SerializeField] private bool visibleInEditor = true;
+        public LineColliderAppearance()
+        {
+            deselectedColor = Color.grey;
+            selectedColor = Color.yellow;
+            normalLength = .25f;
+            visibleInGame = true;
+            visibleInEditor = true;
+        }
+    }
+
+    // Points
+    [SerializeField] public List<LinePoint> points = new List<LinePoint>();
+    public int NumPoints { get { return points.Count; } }
+
+    // Appearance config
+    [SerializeField] private LineColliderAppearance appearance;
+    public Color DeselectedColor { get { return appearance.deselectedColor; } set { appearance.deselectedColor = value; } }
+    public Color SelectedColor { get { return appearance.selectedColor; } set { appearance.selectedColor = value; } }
+
+    // Selection state
     private bool isSelected = false;
+    public bool IsSelected { get { return isSelected; } set { isSelected = value; } }
 
-    [HideInInspector] private Vector3 previousPosition = Vector3.zero;
-
-    public int NumPoints
+    public Vector3 GetPointWorldPosition(int index)
     {
-        get
-        {
-            return numPoints;
-        }
+        Vector3 localPosition = points[index].position;
+        return transform.position + localPosition;
     }
 
-    public bool IsSelected
+    public Vector2 GetWorldNormal(int index)
     {
-        get
-        {
-            return isSelected;
-        }
-        set
-        {
-            isSelected = value;
-        }
-    }
-
-    public LinePoint GetPoint(int index)
-    {
-        return worldPoints[index];
-    }
-
-    public void SetPointWorldPosition(int index, Vector3 worldPosition)
-    {
-#if UNITY_EDITOR
-        var so = new SerializedObject(this);
-
-        so.FindProperty("worldPoints").GetArrayElementAtIndex(index).FindPropertyRelative("position").vector2Value = worldPosition;
-        so.ApplyModifiedProperties();
-#else
-        worldPoints[index].position = worldPosition;
-#endif
-
-        SetNormal(index);
-        if (index - 1 >= 0)
-            SetNormal(index - 1);
+        return points[index].normal;
     }
 
     public bool IntersectLine(Vector3 lineStart, Vector3 lineEnd, out LineIntersectionResult intersectionResult)
@@ -66,10 +58,11 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
         intersectionResult = LineIntersectionResult.GetEmpty();
 
         float minDistance = float.MaxValue;
-        for (int i = 0, j = 1; j < numPoints; i++, j++)
+        for (int i = 0, j = 1; j < NumPoints; i++, j++)
         {
-            LinePoint colliderStart = worldPoints[i];
-            LinePoint colliderEnd = worldPoints[j];
+            Vector2 colliderStart = GetPointWorldPosition(i);
+            Vector2 colliderEnd = GetPointWorldPosition(j);
+            Vector2 normal = GetWorldNormal(i);
 
             Vector3 testIntersect = Vector3.zero;
             bool validIntersection = LineIntersections.IntersectLineLine(lineStart.x, lineEnd.x, colliderStart.x, colliderEnd.x, lineStart.y, lineEnd.y, colliderStart.y, colliderEnd.y, out testIntersect);
@@ -78,16 +71,18 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
             {
                 float testDistance = Vector2.Distance(lineStart, testIntersect);
 
-                float dot = Vector2.Dot((lineEnd - lineStart).normalized, colliderStart.normal);
+                float dot = Vector2.Dot((lineEnd - lineStart).normalized, normal);
 
-                if (testDistance < minDistance &&
-                    dot < 0)
+                if (
+                    testDistance < minDistance 
+                    && dot < 0
+                    )
                 {
                     result = true;
                     minDistance = testDistance;
 
                     float intersectDistance = Vector2.Distance(lineStart, testIntersect) / Vector2.Distance(lineStart, lineEnd);
-                    intersectionResult.Init(testIntersect, colliderStart.normal, intersectDistance, true);
+                    intersectionResult.Init(testIntersect, normal, intersectDistance, true);
                 }
             }
         }
@@ -97,128 +92,44 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
 
     private void OnEnable()
     {
-        if (Application.isPlaying)
-            LineCollisionScene.Instance.RegisterLineCollider(this);
-        previousPosition = transform.position;
+        LineCollisionScene.Instance.RegisterLineCollider(this);
     }
 
     protected void OnDisable()
     {
         // Do not access the singleton if the scene is being destroyed.
-        if (Application.isPlaying && gameObject.scene.isLoaded)
+        if (gameObject.scene.isLoaded)
             LineCollisionScene.Instance.RemoveLineCollider(this);
     }
 
-#if UNITY_EDITOR
     protected void OnDrawGizmos()
     {
-        if (!visibleInEditor && !visibleInGame) return;
-        else if (SceneView.currentDrawingSceneView == null && !visibleInGame) return;
-        else if(SceneView.currentDrawingSceneView != null && !visibleInEditor) return;
+        if (!appearance.visibleInEditor && !appearance.visibleInGame) return;
+        else if (SceneView.currentDrawingSceneView == null && !appearance.visibleInGame) return;
+        else if (SceneView.currentDrawingSceneView != null && !appearance.visibleInEditor) return;
 
-        Color useColor = isSelected ? selectedColor : defaultColor;
-        Gizmos.color = useColor;
-        for (int i = 0; i < numPoints; i++)
+        Color displayColor = isSelected ? appearance.selectedColor : appearance.deselectedColor;
+
+        for (int i = 0; i < NumPoints; i++)
         {
-            LinePoint point = GetPoint(i);
+            Vector3 point = GetPointWorldPosition(i);
 
-            Gizmos.DrawIcon(point.position, "point", false, useColor);
+            Gizmos.DrawIcon(point, "point", false, displayColor);
         }
 
-        for (int p1 = 0, p2 = 1; p2 < numPoints; p1++, p2++)
+        for (int p1 = 0, p2 = 1; p2 < NumPoints; p1++, p2++)
         {
-            LinePoint lineStart = GetPoint(p1);
-            LinePoint lineEnd = GetPoint(p2);
+            Vector3 lineStart = GetPointWorldPosition(p1);
+            Vector3 lineEnd = GetPointWorldPosition(p2);
+            Vector3 normal = GetWorldNormal(p1);
 
-            Gizmos.color = useColor;
-            Gizmos.DrawLine(lineStart.position, lineEnd.position);
+            Gizmos.color = displayColor;
+            Gizmos.DrawLine(lineStart, lineEnd);
+
+            Vector3 normalStart = (lineStart + lineEnd) / 2;
 
             Gizmos.color = Color.white;
-            Vector2 normalStart = (lineStart.position + lineEnd.position) / 2;
-            Gizmos.DrawLine(normalStart, normalStart + worldPoints[p1].normal * normalLength);
+            Gizmos.DrawLine(normalStart, normalStart + normal * appearance.normalLength);
         }
-    }
-#endif
-
-    protected void OnValidate()
-    {
-        if (worldPoints.Count != numPoints)
-            InitializePoint();
-        else
-            SanitizePoints();
-    }
-
-    protected void InitializePoint()
-    {
-        if (numPoints == 0 && worldPoints.Count > 0)
-        {
-            worldPoints[0].position = transform.position;
-        }
-
-        for (int p0 = numPoints - 2, p1 = numPoints - 1, p2 = numPoints; p2 < worldPoints.Count; p0++, p1++, p2++)
-        {
-            if(p1 < 0) continue;
-
-            Vector2 deltaPosition = Vector2.zero;
-
-            if (p0 >= 0)
-            {
-                deltaPosition = (worldPoints[p1].position - worldPoints[p0].position).normalized;
-            }
-
-            if (deltaPosition.magnitude <= .1f)
-                deltaPosition = Vector2.right;
-
-            SetPointWorldPosition(p2, worldPoints[p1].position + deltaPosition);
-            //worldPoints[p2].position = worldPoints[p1].position + deltaPosition;
-            SetNormal(p1);
-        }
-
-        numPoints = worldPoints.Count;
-    }
-
-    private void SanitizePoints()
-    {
-        for(int i = 0; i < numPoints; i++)
-        {
-            SetNormal(i);  
-        }
-    }
-
-    protected void SetNormal(int index)
-    {
-        LinePoint p1 = worldPoints[index];
-
-        if (index + 1 < worldPoints.Count)
-        {
-            LinePoint p2 = worldPoints[index + 1];
-
-            p1.normal = Quaternion.Euler(0, 0, 90) * (p2.position - p1.position).normalized;
-        }
-        else
-        {
-            p1.normal = Vector3.up;
-        }
-
-        if (Vector2.Dot(p1.normal, Vector2.up) < 0)
-        {
-            p1.normal = -1 * p1.normal;
-        }
-    }
-
-    public void Update()
-    {
-        if (previousPosition != transform.position)
-        {
-            Vector2 deltaPosition = transform.position - previousPosition;
-            for (int i = 0; i < numPoints; i++)
-            {
-                //worldPoints[i].position = worldPoints[i].position + deltaPosition;
-                SetPointWorldPosition(i, worldPoints[i].position + deltaPosition);
-            }
-        }
-
-        previousPosition = transform.position;
     }
 }
-
