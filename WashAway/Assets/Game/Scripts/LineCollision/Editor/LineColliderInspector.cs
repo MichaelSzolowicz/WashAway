@@ -1,4 +1,3 @@
-using System.Drawing.Printing;
 using UnityEditor;
 using UnityEngine;
 
@@ -59,7 +58,6 @@ public class LineColliderInspector : Editor
         if (!serializedObject.ApplyModifiedProperties()) return;
 
         int newNumPoints = points.arraySize;
-
         for (int i = numPoints; i < newNumPoints; i++)
         {
             Vector2 newPointPosition = Vector3.zero;

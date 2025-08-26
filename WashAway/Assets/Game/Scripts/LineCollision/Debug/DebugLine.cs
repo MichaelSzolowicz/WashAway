@@ -20,13 +20,13 @@ public class DebugLine : MonoBehaviour
         if(thisLineCollider.NumPoints < 2) return; 
 
         lineCollidersInScene = FindObjectsOfType<LineCollider>();
-        bool foundIntersect = false;
 
+        bool foundIntersect = false;
         for (int i = 0; i < lineCollidersInScene.Length; i++)
         {
             LineCollider testCollider = lineCollidersInScene[i];
 
-            if(testCollider != thisLineCollider)
+            if (testCollider != thisLineCollider)
             {
                 LineIntersectionResult result = new LineIntersectionResult();
                 bool intersect = testCollider.IntersectLine(thisLineCollider.GetPointWorldPosition(0), thisLineCollider.GetPointWorldPosition(1), out result);
@@ -37,12 +37,7 @@ public class DebugLine : MonoBehaviour
 
                     Vector3 start = result.intersectPosition;
                     start.z = transform.position.z;
-                    Vector3 end = start + result.surfaceNormal;
-                    Debug.DrawLine(start, end, Color.magenta);
-                }
-                else
-                {
-
+                    Debug.DrawLine(start, start + result.surfaceNormal, Color.magenta);
                 }
             }
         }

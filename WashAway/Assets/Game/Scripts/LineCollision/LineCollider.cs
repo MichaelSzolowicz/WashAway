@@ -8,9 +8,7 @@ using UnityEngine;
 /// </summary>
 public class LineCollider : MonoBehaviour, ILineColliderInterface
 {
-    [SerializeField] public List<LinePoint> points = new List<LinePoint>();
-    public int NumPoints { get { return points.Count; } }
-
+    // Internal class
     [System.Serializable]
     private class LineColliderAppearance
     {
@@ -25,15 +23,21 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
             deselectedColor = Color.grey;
             selectedColor = Color.yellow;
             normalLength = .25f;
-            visibleInGame = true;   
+            visibleInGame = true;
             visibleInEditor = true;
         }
     }
 
+    // Points
+    [SerializeField] public List<LinePoint> points = new List<LinePoint>();
+    public int NumPoints { get { return points.Count; } }
+
+    // Appearance config
     [SerializeField] private LineColliderAppearance appearance;
     public Color DeselectedColor { get { return appearance.deselectedColor; } set { appearance.deselectedColor = value; } }
     public Color SelectedColor { get { return appearance.selectedColor; } set { appearance.selectedColor = value; } }
 
+    // Selection state
     private bool isSelected = false;
     public bool IsSelected { get { return isSelected; } set { isSelected = value; } }
 
@@ -69,8 +73,10 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
 
                 float dot = Vector2.Dot((lineEnd - lineStart).normalized, normal);
 
-                if (testDistance < minDistance &&
-                    dot < 0)
+                if (
+                    testDistance < minDistance 
+                    && dot < 0
+                    )
                 {
                     result = true;
                     minDistance = testDistance;
