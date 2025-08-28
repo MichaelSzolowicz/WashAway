@@ -37,7 +37,7 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
     public Color DeselectedColor { get { return appearance.deselectedColor; } set { appearance.deselectedColor = value; } }
     public Color SelectedColor { get { return appearance.selectedColor; } set { appearance.selectedColor = value; } }
 
-    // Selection state
+    // Is being viewed in inspector?
     private bool isSelected = false;
     public bool IsSelected { get { return isSelected; } set { isSelected = value; } }
 

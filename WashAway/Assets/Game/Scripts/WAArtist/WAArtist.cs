@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -58,13 +56,11 @@ public class WAArtist : MonoBehaviour
 
     private void Update()
     {
-#if UNITY_EDITOR
         if(Application.isPlaying)
         {
             if (GameState.Paused) return;
             if (GameState.CurrentLevelClear) return;
         }
-#endif
 
         Paint();
     }

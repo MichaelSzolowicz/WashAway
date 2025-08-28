@@ -25,6 +25,5 @@ public class StartScreen : MonoBehaviour
     {
         gameObject.SetActive(false);
         GameState.Paused = false;
-        GameState.StartScreenRead = true;
     }
 }
