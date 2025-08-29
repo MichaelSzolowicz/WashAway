@@ -59,7 +59,11 @@ public class PlatformerMovement : MonoBehaviour
         // Gravity
         verticalVelocity += ACCELERATION_DUE_TO_GRAVITY * Vector3.down * gravityScale * deltaTime;
 
-        CheckGrounded();
+        // Only the Move() function is allowed to determine when we become grounded, this check determines if we are still grounded.
+        if(grounded)
+        {
+            grounded = CheckGrounded();
+        }
 
         CheckJumping();
 
@@ -100,12 +104,11 @@ public class PlatformerMovement : MonoBehaviour
 
     private Vector3 previousPosition = Vector3.zero;
 
-    private void CheckGrounded()
+    private bool CheckGrounded()
     {
         if (isFallingThrough)
         {
-            grounded = false;
-            return;
+            return false;
         }
 
         Vector3 lineStart = transform.position; // + probeDepth * Vector3.up;
@@ -117,11 +120,11 @@ public class PlatformerMovement : MonoBehaviour
             //&& Mathf.Acos(Vector3.Dot(groundIntersection.surfaceNormal, Vector3.up)) * Mathf.Rad2Deg < maxWalkableSlope
             )
         {
-            grounded = true;
+            return true;
         }
         else
         {
-            grounded = false;
+            return false;
         }
     }
 
@@ -228,6 +231,8 @@ public class PlatformerMovement : MonoBehaviour
                 remainingMove = Vector3.ProjectOnPlane(walkVelocity, testIntersection.surfaceNormal).normalized * remainingDistance;
 
                 verticalVelocity = Vector3.zero;
+
+                grounded = true;
             }
             else
             {
