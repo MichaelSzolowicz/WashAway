@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
         levelClearScreen.SetActive(false);
         pauseScreen.SetActive(false);
 
-        startScreen.SetActive(!GameState.FeedbackViewed);
+        //startScreen.SetActive(!GameState.FeedbackViewed);
 
         GameState.onToggleCurrentLevelClear += OnToggleLevelClear;
         GameState.onTogglePause += OnTogglePause;
