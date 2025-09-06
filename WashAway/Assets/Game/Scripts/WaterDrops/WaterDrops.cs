@@ -14,7 +14,10 @@ public class WaterDrops : MonoBehaviour
     private int numEnabledDrops = 0;
     [SerializeField] private float spawnDelay = .5f;
 
-    private float elapsedTime = 0;  
+    private float elapsedTime = 0;
+
+    private bool paused = false;
+    public bool Paused { get { return paused; } set { paused = value; } }
 
     private void Start()
     {
@@ -45,13 +48,11 @@ public class WaterDrops : MonoBehaviour
 
         //drops[0].enabled = true;
         //++numEnabledDrops;
-
-        GameState.onToggleCharacterDead += ResetDrops;
     }
 
     private void Update()
     {
-        if(GameState.Paused) return;
+        if(paused) return;
 
         elapsedTime += Time.deltaTime;
 
@@ -77,10 +78,8 @@ public class WaterDrops : MonoBehaviour
         }
     }
 
-    private void ResetDrops()
+    public void ResetDrops()
     {
-        if(!GameState.CharacterDead) return;
-
         for (int i = 0;i < drops.Count;i++)
         {
             drops[i].gameObject.SetActive(false);
@@ -89,10 +88,5 @@ public class WaterDrops : MonoBehaviour
 
         elapsedTime = 0;
         numEnabledDrops = 0;
-    }
-
-    private void OnDestroy()
-    {
-        GameState.onToggleCharacterDead -= ResetDrops;
     }
 }
