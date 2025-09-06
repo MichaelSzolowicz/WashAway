@@ -21,29 +21,57 @@ public class WaterDrops : MonoBehaviour
 
     private void Start()
     {
+        CreateDrops();
+    }
+
+    private void CreateDrops()
+    {
         for (int i = 0; i < numDrops; i++)
         {
-            string spriteName = "drop" + i;
+            string dropName = "drop" + i;
 
-            GameObject newDrop = new GameObject();
-            newDrop.name = spriteName;
-            newDrop.transform.localScale = transform.localScale;
-            newDrop.transform.position = transform.position;
-            WaterDrop newDropComponent = newDrop.AddComponent<WaterDrop>();
-            drops.Add(newDropComponent);
+            WaterDrop newWaterDrop = CreateWaterDrop(dropName);
+            drops.Add(newWaterDrop);
 
-            PaintedSprite newPaintedSprite = new PaintedSprite();
-            newPaintedSprite.tag = spriteName;
-            newPaintedSprite.sourceTexture = texture;
-            artist.AddLayer(newPaintedSprite);
+            PaintedSprite newPaintedSprite = CreatePaintedSprite(dropName);
             paintedSprites.Add(newPaintedSprite);
 
-            PaintedSpriteConstraint constraint = newDrop.AddComponent<PaintedSpriteConstraint>();
-            constraint.Init(artist, spriteName, pixelsPerMeter, newDrop.transform);
+            BindPaintedSpriteToObject(newWaterDrop.gameObject, dropName);
 
-            newDrop.SetActive(false);
+            // deactivate drop in scene and artist
+            newWaterDrop.gameObject.SetActive(false);
             newPaintedSprite.scale = Vector2.zero;
         }
+    }
+
+    private WaterDrop CreateWaterDrop(string dropName)
+    {
+        GameObject newGameObject = new GameObject();
+
+        newGameObject.name = dropName;
+        newGameObject.transform.position = transform.position;
+        newGameObject.transform.localScale = transform.localScale;
+
+        WaterDrop newWaterDrop = newGameObject.AddComponent<WaterDrop>();
+
+        return newWaterDrop;
+    }
+
+    private PaintedSprite CreatePaintedSprite(string spriteTag)
+    {
+        PaintedSprite newPaintedSprite = new PaintedSprite();
+        
+        newPaintedSprite.tag = spriteTag;
+        newPaintedSprite.sourceTexture = texture;
+        artist.AddLayer(newPaintedSprite);
+
+        return newPaintedSprite;
+    }
+
+    private void BindPaintedSpriteToObject(GameObject targetObject, string paintedSpriteTag)
+    {
+        PaintedSpriteConstraint constraint = targetObject.AddComponent<PaintedSpriteConstraint>();
+        constraint.Init(artist, paintedSpriteTag, pixelsPerMeter, targetObject.transform);
     }
 
     private void Update()
