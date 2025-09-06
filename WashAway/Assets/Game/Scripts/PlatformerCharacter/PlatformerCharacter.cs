@@ -23,6 +23,9 @@ public class PlatformerCharacter : MonoBehaviour
 
         startPosition = platformerMovement.transform.position;
         startFacingLeft = platformerMovement.FacingLeft;
+
+        GameState.onTogglePause += OnPause;
+        GameState.onToggleCurrentLevelClear += OnPause;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -67,5 +70,16 @@ public class PlatformerCharacter : MonoBehaviour
         if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
             platformerMovement.blockInput = false;
         }
+    }
+
+    private void OnPause()
+    {
+        dropSpawner.Paused = GameState.Paused;
+    }
+
+    private void OnDestroy()
+    {
+        GameState.onTogglePause -= OnPause;
+        GameState.onToggleCurrentLevelClear -= OnPause;
     }
 }
