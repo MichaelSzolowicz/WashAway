@@ -31,7 +31,6 @@ public class WaterDrops : MonoBehaviour
             newDrop.transform.position = transform.position;
             WaterDrop newDropComponent = newDrop.AddComponent<WaterDrop>();
             drops.Add(newDropComponent);
-            newDropComponent.Init();
 
             PaintedSprite newPaintedSprite = new PaintedSprite();
             newPaintedSprite.tag = spriteName;
@@ -45,9 +44,6 @@ public class WaterDrops : MonoBehaviour
             newDrop.SetActive(false);
             newPaintedSprite.scale = Vector2.zero;
         }
-
-        //drops[0].enabled = true;
-        //++numEnabledDrops;
     }
 
     private void Update()
@@ -58,8 +54,9 @@ public class WaterDrops : MonoBehaviour
 
         if(elapsedTime >= spawnDelay && numEnabledDrops < numDrops)
         {
-            drops[numEnabledDrops].Reset();
+            drops[numEnabledDrops].ResetLifetime();
             drops[numEnabledDrops].transform.position = transform.position;
+            drops[numEnabledDrops].transform.localScale = transform.localScale;
             drops[numEnabledDrops++].gameObject.SetActive(true);
             elapsedTime = 0;
         }
@@ -72,8 +69,9 @@ public class WaterDrops : MonoBehaviour
 
             if(drop.TimeAlive > dropLifetime)
             {
-                drop.Reset();
+                drop.ResetLifetime();
                 drop.transform.position = transform.position;
+                drop.transform.localScale = transform.localScale;
             }
         }
     }

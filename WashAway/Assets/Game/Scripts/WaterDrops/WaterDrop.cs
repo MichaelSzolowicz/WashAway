@@ -6,9 +6,6 @@ public class WaterDrop : MonoBehaviour
 {
     private const float ACCELERATION_DUE_TO_GRAVITY = 9.8f;
 
-    private Vector3 initialPosition;
-    private Vector3 initialScale;
-    private Quaternion initialRotation;
     private float timeAlive = 0.0f;
 
     private float growTime = 1.1f;
@@ -22,13 +19,6 @@ public class WaterDrop : MonoBehaviour
     public float TimeAlive
     {
         get {  return timeAlive; }
-    }
-
-    public void Init()
-    {
-        initialPosition = transform.position;
-        initialScale = transform.localScale;
-        initialRotation = transform.rotation;
     }
 
     void Update()
@@ -48,12 +38,9 @@ public class WaterDrop : MonoBehaviour
         timeAlive += Time.deltaTime;
     }
 
-    public void Reset()
+    public void ResetLifetime()
     {
         velocity = Vector3.zero;
-        transform.position = initialPosition;
-        transform.localScale = initialScale;
-        transform.rotation = initialRotation;
         timeAlive = 0.0f;
     }
 
