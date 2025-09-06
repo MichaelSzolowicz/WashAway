@@ -17,7 +17,7 @@ public class WaterDrops : MonoBehaviour
     private float elapsedTime = 0;
 
     private bool paused = false;
-    public bool Paused { get { return paused; } set { paused = value; } }
+    public bool Paused { get { return paused; } set { SetPaused(value); } }
 
     private void Start()
     {
@@ -88,5 +88,17 @@ public class WaterDrops : MonoBehaviour
 
         elapsedTime = 0;
         numEnabledDrops = 0;
+    }
+
+    private void SetPaused(bool newPaused)
+    {
+        if (newPaused == paused) return;
+
+        paused = newPaused;
+
+        for (int i = 0; i < drops.Count; i++)
+        {
+            drops[i].Paused = paused;
+        }
     }
 }
