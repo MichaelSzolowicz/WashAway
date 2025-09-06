@@ -435,7 +435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &455501954
 Transform:
   m_ObjectHideFlags: 0
@@ -3199,6 +3199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformerMovement: {fileID: 3786901576584351543}
   followCamera: {fileID: 3321738087648481784}
+  dropSpawner: {fileID: 455501955}
   mask: {fileID: 8400000, guid: db8c7020f14330f4fb57b20d6f6dc07e, type: 2}
   maskGenerator: {fileID: 1602239495}
   pixelsPerMeter: 13.65333
