@@ -16,6 +16,9 @@ public class WaterDrop : MonoBehaviour
     private float growRate = .02f;
     private Vector3 velocity = Vector3.zero;
 
+    private bool paused = false;
+    public bool Paused { get { return paused; } set { paused = value; } }
+
     public float TimeAlive
     {
         get {  return timeAlive; }
@@ -30,8 +33,7 @@ public class WaterDrop : MonoBehaviour
 
     void Update()
     {
-        if (GameState.Paused) return;
-        if (GameState.CurrentLevelClear) return;
+        if (paused) return;
 
         if(timeAlive < growTime)
         {
