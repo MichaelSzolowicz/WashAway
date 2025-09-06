@@ -6,6 +6,7 @@ public class PlatformerCharacter : MonoBehaviour
 {
     [SerializeField] private PlatformerMovement platformerMovement;
     [SerializeField] private FollowCamera followCamera;
+    [SerializeField] private WaterDrops dropSpawner;
     [SerializeField] private RenderTexture mask;
     [SerializeField] private WAArtist maskGenerator;
     [SerializeField] private float pixelsPerMeter;
@@ -26,7 +27,6 @@ public class PlatformerCharacter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
         if (other.gameObject.CompareTag("DamageCauser"))
         {
             Respawn();
@@ -37,6 +37,9 @@ public class PlatformerCharacter : MonoBehaviour
     private void Respawn()
     {
         GameState.CharacterDead = true;
+
+        dropSpawner.ResetDrops();
+
         platformerMovement.transform.position = startPosition;
         platformerMovement.ResetPhysicsState();
         if(platformerMovement.FacingLeft != startFacingLeft)
