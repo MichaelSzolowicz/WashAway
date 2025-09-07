@@ -80,6 +80,8 @@ public class WAArtist : MonoBehaviour
 
         foreach (PaintedSprite layer in layers)
         {
+            if(!layer.enabled) continue;
+
             commandBuffer.Blit(layer.sourceTexture, layerBuffer, scale: layer.scale, offset: layer.offset);
             commandBuffer.Blit(layerBuffer, painting, blendMaterial, 0);
         }

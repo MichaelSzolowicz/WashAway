@@ -21,7 +21,7 @@ public class WaterDrop : MonoBehaviour
         get {  return timeAlive; }
     }
 
-    void Update()
+    private void Update()
     {
         if (paused) return;
 
@@ -38,14 +38,9 @@ public class WaterDrop : MonoBehaviour
         timeAlive += Time.deltaTime;
     }
 
-    public void ResetLifetime()
+    public void RestartMovement()
     {
         velocity = Vector3.zero;
         timeAlive = 0.0f;
-    }
-
-    private void OnDisable()
-    {
-        transform.localScale = Vector3.zero;
     }
 }
