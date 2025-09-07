@@ -61,7 +61,7 @@ public class PaintedSpriteConstraint : MonoBehaviour
         }
     }
 
-    private void UpdateSprite()
+    public void UpdateSprite()
     {
         if (parentTransform == null) return;
         if (artist == null) return;
