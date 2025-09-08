@@ -466,9 +466,11 @@ MonoBehaviour:
   maskGenerator: {fileID: 1602239495}
   pixelsPerMeter: 13.65333
   dropTexture: {fileID: 2800000, guid: 62c352e1bae82474b8986f125d8884ef, type: 3}
-  numDrops: 40
+  numDrops: 19
   dropLifetime: 4
   spawnDelay: 0.2
+  debug:
+    showDropsCount: 0
 --- !u!1 &482255110
 GameObject:
   m_ObjectHideFlags: 0
