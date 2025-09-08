@@ -1,23 +1,21 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DropSpawner : MonoBehaviour
 {
-    [SerializeField] private WAArtist artist;
-    [SerializeField] private Texture texture;
+    [SerializeField] private WAArtist maskGenerator;
+    [SerializeField] private float pixelsPerMeter;
+    [SerializeField] private Texture dropTexture;
     [SerializeField] private int numDrops;
     [SerializeField] private float dropLifetime;
-    [SerializeField] private float pixelsPerMeter;
     [SerializeField] private float spawnDelay = .5f;
 
     private List<Drop> drops = new List<Drop>();
-
     private int numEnabledDrops = 0;
     private float elapsedTime = 0;
 
     private bool paused = false;
-    public bool Paused { get { return paused; } set { SetPaused(value); } }
+    public bool Paused { get { return paused; } set { paused = value; } }
 
     private void Start()
     {
@@ -40,12 +38,12 @@ public class DropSpawner : MonoBehaviour
     private Drop CreateWaterDrop(string dropName)
     {
         PaintedSprite newSprite = new PaintedSprite();
-        newSprite.sourceTexture = texture;
+        newSprite.sourceTexture = dropTexture;
         newSprite.tag = dropName;
 
-        artist.AddLayer(newSprite);
+        maskGenerator.AddLayer(newSprite);
 
-        return new Drop(newSprite, pixelsPerMeter / artist.Size);
+        return new Drop(newSprite, pixelsPerMeter / maskGenerator.Size);
     }
 
     private void ReleaseDrop(int index)
@@ -99,12 +97,5 @@ public class DropSpawner : MonoBehaviour
 
         elapsedTime = 0;
         numEnabledDrops = 0;
-    }
-
-    private void SetPaused(bool newPaused)
-    {
-        if (newPaused == paused) return;
-
-        paused = newPaused;
     }
 }

@@ -463,11 +463,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc05c1b2ecad11409b0dc35dfbcafb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  artist: {fileID: 1602239495}
-  texture: {fileID: 2800000, guid: 62c352e1bae82474b8986f125d8884ef, type: 3}
+  maskGenerator: {fileID: 1602239495}
+  pixelsPerMeter: 13.65333
+  dropTexture: {fileID: 2800000, guid: 62c352e1bae82474b8986f125d8884ef, type: 3}
   numDrops: 40
   dropLifetime: 4
-  pixelsPerMeter: 13.65333
   spawnDelay: 0.2
 --- !u!1 &482255110
 GameObject:

@@ -1,25 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public class Drop
 {
     private const float ACCELERATION_DUE_TO_GRAVITY = 9.8f;
 
+    // config
     private PaintedSprite sprite;
     private float textureTilesPerMeter;
 
-    private float timeAlive = 0.0f;
+    // state
     private bool enabled = false;
 
+    // animation
     private float growTime = 1.1f;
     private float gravityScale = .1f;
     private float growRate = .025f;
     private Vector2 velocity = Vector3.zero;
-
     private Vector2 position;
     private Vector2 scale;
+
+    private float timeAlive = 0.0f;
+    public float TimeAlive { get { return timeAlive; } }
 
     public Drop(PaintedSprite sprite, float textureTilesPerMeter)
     {
@@ -71,5 +72,5 @@ public class Drop
         }
     }
 
-    public float TimeAlive { get { return timeAlive; } }
+
 }
