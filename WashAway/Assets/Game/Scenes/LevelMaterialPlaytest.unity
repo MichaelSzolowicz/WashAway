@@ -275,6 +275,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6020464760165040389, guid: fb2a90ccb856af4459d5dc150af9f528,
+        type: 3}
+      propertyPath: debug.disableStartScreen
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2049,8 +2054,8 @@ MonoBehaviour:
     enabled: 1
   blendShader: Unlit/Blend
   additive: 1
-  clearOnStart: 1
-  clearOnDestroy: 1
+  clearOnStart: 0
+  clearOnDestroy: 0
 --- !u!4 &1605034162
 Transform:
   m_ObjectHideFlags: 0

@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [System.Serializable]
+    private class PlayerDebugConfig
+    {
+        public bool disableStartScreen = false;
+    }
+
     [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject levelClearScreen;
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private GameObject startScreen;
+
+    [Header("")]
+    [SerializeField] private PlayerDebugConfig debug;
 
     private void Start()
     {
@@ -15,7 +24,10 @@ public class Player : MonoBehaviour
         levelClearScreen.SetActive(false);
         pauseScreen.SetActive(false);
 
-        //startScreen.SetActive(!GameState.FeedbackViewed);
+        if(!debug.disableStartScreen)
+        {
+            startScreen.SetActive(!GameState.FeedbackViewed);
+        }
 
         GameState.onToggleCurrentLevelClear += OnToggleLevelClear;
         GameState.onTogglePause += OnTogglePause;
