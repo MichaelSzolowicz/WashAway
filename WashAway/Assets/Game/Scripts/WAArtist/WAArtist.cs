@@ -36,9 +36,7 @@ public class WAArtist : MonoBehaviour
 
         if (clearOnStart)
         {
-            Graphics.SetRenderTarget(painting);
-            commandBuffer.ClearRenderTarget(true, true, Color.clear);
-            Graphics.ExecuteCommandBuffer(commandBuffer);
+            ClearRenderTarget();
         }
     }
 
@@ -109,6 +107,13 @@ public class WAArtist : MonoBehaviour
     public void AddLayer(PaintedSprite layer)
     {
         layers.Add(layer);
+    }
+
+    public void ClearRenderTarget()
+    {
+        Graphics.SetRenderTarget(painting);
+        commandBuffer.ClearRenderTarget(true, true, Color.clear);
+        Graphics.ExecuteCommandBuffer(commandBuffer);
     }
 
     protected void OnDestroy()
