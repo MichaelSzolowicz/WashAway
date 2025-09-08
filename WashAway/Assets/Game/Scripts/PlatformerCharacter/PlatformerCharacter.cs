@@ -61,6 +61,9 @@ public class PlatformerCharacter : MonoBehaviour
             platformerMovement.TurnAround();
         }
         platformerMovement.blockInput = true;
+
+        maskGenerator.ClearRenderTarget();
+
         GameState.CharacterDead = false;
     }
 
