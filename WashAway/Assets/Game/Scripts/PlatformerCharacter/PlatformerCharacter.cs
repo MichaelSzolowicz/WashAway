@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlatformerCharacter : MonoBehaviour
 {
+    [System.Serializable]   
+    private class PlatformerCharacterDebugConfig
+    {
+        public bool disableDamage = false;
+    }
+
     [SerializeField] private PlatformerMovement platformerMovement;
     [SerializeField] private FollowCamera followCamera;
     [SerializeField] private DropSpawner dropSpawner;
@@ -11,6 +17,9 @@ public class PlatformerCharacter : MonoBehaviour
     [SerializeField] private WAArtist maskGenerator;
     [SerializeField] private float pixelsPerMeter;
     [SerializeField] private float blockInputRespawnDuration = .5f;
+
+    [Header("")]
+    [SerializeField] private PlatformerCharacterDebugConfig debug;
 
     private Vector3 startPosition;
     private bool startFacingLeft = false;
@@ -39,6 +48,8 @@ public class PlatformerCharacter : MonoBehaviour
 
     private void Respawn()
     {
+        if (debug.disableDamage) return;
+
         GameState.CharacterDead = true;
 
         dropSpawner.ResetDrops();
