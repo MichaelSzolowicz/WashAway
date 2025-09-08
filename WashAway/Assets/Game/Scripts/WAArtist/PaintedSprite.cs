@@ -7,4 +7,5 @@ public class PaintedSprite
     public Vector2 offset;
     public Vector2 scale;
     public string tag;
+    public bool enabled = true;
 }

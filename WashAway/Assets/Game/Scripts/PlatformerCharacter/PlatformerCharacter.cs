@@ -6,7 +6,7 @@ public class PlatformerCharacter : MonoBehaviour
 {
     [SerializeField] private PlatformerMovement platformerMovement;
     [SerializeField] private FollowCamera followCamera;
-    [SerializeField] private WaterDrops dropSpawner;
+    [SerializeField] private DropSpawner dropSpawner;
     [SerializeField] private RenderTexture mask;
     [SerializeField] private WAArtist maskGenerator;
     [SerializeField] private float pixelsPerMeter;
