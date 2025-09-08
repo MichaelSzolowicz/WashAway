@@ -3149,6 +3149,8 @@ MonoBehaviour:
   maskGenerator: {fileID: 1602239495}
   pixelsPerMeter: 13.65333
   blockInputRespawnDuration: 0.5
+  debug:
+    disableDamage: 0
 --- !u!1 &4406575686692881645
 GameObject:
   m_ObjectHideFlags: 0
