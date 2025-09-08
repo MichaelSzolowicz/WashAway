@@ -71,6 +71,4 @@ public class Drop
             sprite.enabled = enabled;
         }
     }
-
-
 }

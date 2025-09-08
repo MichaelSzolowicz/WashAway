@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class DropSpawner : MonoBehaviour
 {
+    [System.Serializable]
+    private class DropSpawnerDebugConfig
+    {
+        [SerializeField] public bool showDropsCount = false;
+    }
+
     [SerializeField] private WAArtist maskGenerator;
     [SerializeField] private float pixelsPerMeter;
     [SerializeField] private Texture dropTexture;
@@ -10,9 +16,15 @@ public class DropSpawner : MonoBehaviour
     [SerializeField] private float dropLifetime;
     [SerializeField] private float spawnDelay = .5f;
 
+    [Header("")]
+    [SerializeField] private DropSpawnerDebugConfig debug;
+
     private List<Drop> drops = new List<Drop>();
-    private int numEnabledDrops = 0;
     private float elapsedTime = 0;
+
+    private int numEnabledDrops = 0;
+    private int first = 0;
+    private int next = 0;
 
     private bool paused = false;
     public bool Paused { get { return paused; } set { paused = value; } }
@@ -31,7 +43,7 @@ public class DropSpawner : MonoBehaviour
             Drop newWaterDrop = CreateWaterDrop(dropName);
             drops.Add(newWaterDrop);
 
-            ReleaseDrop(i);
+            newWaterDrop.Enabled = false;
         }
     }
 
@@ -46,45 +58,64 @@ public class DropSpawner : MonoBehaviour
         return new Drop(newSprite, pixelsPerMeter / maskGenerator.Size);
     }
 
-    private void ReleaseDrop(int index)
+    private void ReleaseFirstDrop()
     {
-        Drop drop = drops[index];
-        drop.Enabled = false;
+        drops[first].Enabled = false;
+
+        first = WrapIndex(++first);
+
+        numEnabledDrops--;
     }
 
-    private void SpawnDrop(int index)
+    private void SpawnNextDrop()
     {
-        Drop drop = drops[index];
+        if (drops[next].Enabled) return;
+        
+        Drop drop = drops[next];
         drop.Enabled = true;
         drop.ResetAnimation();
         drop.SetWorldPositionScale(transform.position, transform.localScale);
+
+        next = WrapIndex(++next);
+
+        numEnabledDrops++;
     }
 
     private void Update()
     {
         if (paused) return;
+        if (drops.Count == 0) return;    
 
         elapsedTime += Time.deltaTime;
 
-        if (elapsedTime >= spawnDelay && numEnabledDrops < numDrops)
+        if (elapsedTime >= spawnDelay)
         {
-            SpawnDrop(numEnabledDrops);
-            numEnabledDrops++;
+            SpawnNextDrop();
             elapsedTime = 0;
         }
 
-        for (int i = 0; i < drops.Count; i++)
+        int i = first;
+        Drop nextDrop = drops[i];
+        while(nextDrop.Enabled)
         {
-            Drop drop = drops[i];
+            nextDrop.Update(Time.deltaTime);
 
-            if (!drop.Enabled) break;
+            i = WrapIndex(++i);
 
-            drop.Update(Time.deltaTime);
+            if (i == first) break;
 
-            if (drop.TimeAlive > dropLifetime)
-            {
-                SpawnDrop(i);
-            }
+            nextDrop = drops[i];
+        }
+
+        if (drops[first].TimeAlive > dropLifetime)
+        {
+            // If / when you need to change this so the drops decide when they are dead,
+            // keep the list sorted by alive and dead drops then poll the alive drops
+            // each update and swap their position in the array you dont increase time 
+            // spent in update. Or add an on death callback to each drop and skip update entirely.
+            // Or just search the entire array when you need to spawn a new one. This 
+            // would be fine if the array is small enough and / or you spawn them infrequently.
+            ReleaseFirstDrop();
         }
     }
 
@@ -92,10 +123,30 @@ public class DropSpawner : MonoBehaviour
     {
         for (int i = 0; i < drops.Count; i++)
         {
-            ReleaseDrop(i);
+            drops[i].Enabled = false;
         }
 
         elapsedTime = 0;
+        first = 0;
+        next = 0;
         numEnabledDrops = 0;
+    }
+
+    private void OnGUI()
+    {
+        if (debug.showDropsCount)
+        {
+            GUILayout.Label("num drops: " + numEnabledDrops);
+        }
+    }
+
+    private int WrapIndex(int index)
+    {
+        if(index >= drops.Count)
+        {
+            index = 0;
+        }
+
+        return index;
     }
 }
