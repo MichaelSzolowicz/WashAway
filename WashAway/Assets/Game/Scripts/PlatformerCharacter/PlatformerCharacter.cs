@@ -11,11 +11,8 @@ public class PlatformerCharacter : MonoBehaviour
     }
 
     [SerializeField] private PlatformerMovement platformerMovement;
-    [SerializeField] private FollowCamera followCamera;
     [SerializeField] private DropSpawner dropSpawner;
-    [SerializeField] private RenderTexture mask;
     [SerializeField] private WAArtist maskGenerator;
-    [SerializeField] private float blockInputRespawnDuration = .5f;
 
     [Header("")]
     [SerializeField] private PlatformerCharacterDebugConfig debug;
@@ -77,7 +74,7 @@ public class PlatformerCharacter : MonoBehaviour
 
             float x = (platformerMovement.transform.localPosition.x * maskGenerator.InverseWidthMeters) + .5f;
             float y = (platformerMovement.transform.localPosition.y * maskGenerator.InverseWidthMeters) + .5f;
-            pixelReader.ReadPixelAsync(mask, 0, (int)(x*mask.width), 1, (int)(y*mask.height), 1);
+            pixelReader.ReadPixelAsync(maskGenerator.TargetRenderTexture, 0, (int)(x*maskGenerator.TargetRenderTexture.width), 1, (int)(y*maskGenerator.TargetRenderTexture.height), 1);
         }
 
         if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {

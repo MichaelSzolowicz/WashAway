@@ -22,22 +22,9 @@ public class WAArtist : MonoBehaviour
     protected CommandBuffer commandBuffer;
     protected Material blendMaterial;
 
-    public int Size 
-    { 
-        get 
-        { 
-            if(painting == null) return 0;
-            return painting.width; 
-        } 
-    }
+    public float InverseWidthMeters { get { return 1 / paintingWidthMeters; } }
 
-    public float InverseWidthMeters
-    {
-        get
-        {
-            return 1 / paintingWidthMeters;
-        }
-    }
+    public Texture TargetRenderTexture { get { return painting; } }
 
     private void OnValidate()
     {
