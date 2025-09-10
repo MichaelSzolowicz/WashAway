@@ -75,8 +75,8 @@ public class PlatformerCharacter : MonoBehaviour
                 Respawn();
             }
 
-            float x = (platformerMovement.transform.localPosition.x * maskGenerator.InverseWidth) + .5f;
-            float y = (platformerMovement.transform.localPosition.y * maskGenerator.InverseWidth) + .5f;
+            float x = (platformerMovement.transform.localPosition.x * maskGenerator.InverseWidthMeters) + .5f;
+            float y = (platformerMovement.transform.localPosition.y * maskGenerator.InverseWidthMeters) + .5f;
             pixelReader.ReadPixelAsync(mask, 0, (int)(x*mask.width), 1, (int)(y*mask.height), 1);
         }
 

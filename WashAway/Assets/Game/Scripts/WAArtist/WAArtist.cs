@@ -31,7 +31,7 @@ public class WAArtist : MonoBehaviour
         } 
     }
 
-    public float InverseWidth
+    public float InverseWidthMeters
     {
         get
         {
