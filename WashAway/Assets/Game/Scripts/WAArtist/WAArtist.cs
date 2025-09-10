@@ -5,13 +5,19 @@ using UnityEngine.Rendering;
 [ExecuteAlways]
 public class WAArtist : MonoBehaviour
 {
+    [Header("Target Painting")]
     [SerializeField] protected RenderTexture painting;
-    [SerializeField] public List<PaintedSprite> layers = new List<PaintedSprite>();
+    [SerializeField] protected float paintingWidthMeters = 1;
+
+    [Header("Render Settings")]
     [SerializeField] protected string blendShader = "Unlit/Blend";
     [SerializeField] protected bool additive = false;
     [SerializeField] protected bool clearOnStart = false;
     [SerializeField] protected bool clearOnDestroy = false;
- 
+
+    [Header("")]
+    [SerializeField] private List<PaintedSprite> layers = new List<PaintedSprite>();
+
     protected RenderTexture layerBuffer;
     protected CommandBuffer commandBuffer;
     protected Material blendMaterial;
@@ -25,8 +31,18 @@ public class WAArtist : MonoBehaviour
         } 
     }
 
+    public float InverseWidth
+    {
+        get
+        {
+            return 1 / paintingWidthMeters;
+        }
+    }
+
     private void OnValidate()
     {
+        if (paintingWidthMeters <= 0) paintingWidthMeters = 1;
+
         Init();
     }
 
