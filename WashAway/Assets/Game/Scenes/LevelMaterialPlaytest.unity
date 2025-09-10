@@ -372,12 +372,12 @@ PrefabInstance:
     - target: {fileID: 5597261600302132309, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.285
+      value: -0.931
       objectReference: {fileID: 0}
     - target: {fileID: 5597261600302132309, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.433
+      value: 0.034
       objectReference: {fileID: 0}
     - target: {fileID: 5597261600302132309, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
@@ -440,7 +440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &455501954
 Transform:
   m_ObjectHideFlags: 0
@@ -469,7 +469,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maskGenerator: {fileID: 1602239495}
-  pixelsPerMeter: 13.65333
   dropTexture: {fileID: 2800000, guid: 62c352e1bae82474b8986f125d8884ef, type: 3}
   numDrops: 19
   dropLifetime: 4
@@ -1129,6 +1128,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 869928631}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &923848152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 923848153}
+  m_Layer: 0
+  m_Name: ==== Debug ====
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &923848153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923848152}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1009085572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9167772340916446629, guid: 67a6eb9d4bb9dd544851a9f32629db4c,
@@ -2109,32 +2139,32 @@ PrefabInstance:
     - target: {fileID: 3826867948518708505, guid: 3077d2f3c19ac4645a6df3cef5cb6f79,
         type: 3}
       propertyPath: points.Array.data[0].normal.x
-      value: 0.81344414
+      value: 0.26422915
       objectReference: {fileID: 0}
     - target: {fileID: 3826867948518708505, guid: 3077d2f3c19ac4645a6df3cef5cb6f79,
         type: 3}
       propertyPath: points.Array.data[0].normal.y
-      value: 0.581643
+      value: 0.96445984
       objectReference: {fileID: 0}
     - target: {fileID: 3826867948518708505, guid: 3077d2f3c19ac4645a6df3cef5cb6f79,
         type: 3}
       propertyPath: points.Array.data[1].position.x
-      value: 4.8972015
+      value: 4.0552425
       objectReference: {fileID: 0}
     - target: {fileID: 3826867948518708505, guid: 3077d2f3c19ac4645a6df3cef5cb6f79,
         type: 3}
       propertyPath: points.Array.data[1].position.y
-      value: -6.848874
+      value: -1.1109982
       objectReference: {fileID: 0}
     - target: {fileID: 5305638340184347731, guid: 3077d2f3c19ac4645a6df3cef5cb6f79,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.22
+      value: -15.05
       objectReference: {fileID: 0}
     - target: {fileID: 5305638340184347731, guid: 3077d2f3c19ac4645a6df3cef5cb6f79,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.45
+      value: -16.2
       objectReference: {fileID: 0}
     - target: {fileID: 5305638340184347731, guid: 3077d2f3c19ac4645a6df3cef5cb6f79,
         type: 3}
@@ -2180,11 +2210,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DebugLine
-      objectReference: {fileID: 0}
-    - target: {fileID: 8707451766315553967, guid: 3077d2f3c19ac4645a6df3cef5cb6f79,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3150,11 +3175,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformerMovement: {fileID: 3786901576584351543}
-  followCamera: {fileID: 3321738087648481784}
   dropSpawner: {fileID: 455501955}
-  mask: {fileID: 8400000, guid: db8c7020f14330f4fb57b20d6f6dc07e, type: 2}
   maskGenerator: {fileID: 1602239495}
-  blockInputRespawnDuration: 0.5
   debug:
     disableDamage: 0
 --- !u!1 &4406575686692881645
@@ -3353,4 +3375,5 @@ SceneRoots:
   - {fileID: 842701442}
   - {fileID: 482255111}
   - {fileID: 808391051}
+  - {fileID: 923848153}
   - {fileID: 1648402983}
