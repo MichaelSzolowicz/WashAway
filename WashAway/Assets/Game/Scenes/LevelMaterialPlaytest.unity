@@ -2001,11 +2001,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   painting: {fileID: 8400000, guid: db8c7020f14330f4fb57b20d6f6dc07e, type: 2}
-  layers: []
+  paintingWidthMeters: 75
   blendShader: Unlit/AdditiveBlend
   additive: 1
   clearOnStart: 1
   clearOnDestroy: 1
+  layers: []
 --- !u!1 &1605034160
 GameObject:
   m_ObjectHideFlags: 0
@@ -2036,6 +2037,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   painting: {fileID: 8400000, guid: 4574782045e44584bbdf245003051dd2, type: 2}
+  paintingWidthMeters: 75
+  blendShader: Unlit/Blend
+  additive: 1
+  clearOnStart: 0
+  clearOnDestroy: 0
   layers:
   - sourceTexture: {fileID: 2800000, guid: 8c3d75b60e9b23547ba13ecb88cc69c4, type: 3}
     offset: {x: 0, y: 0}
@@ -2043,7 +2049,7 @@ MonoBehaviour:
     tag: 
     enabled: 1
   - sourceTexture: {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
-    offset: {x: -23.106447, y: -23.373047}
+    offset: {x: -23.273333, y: -22.966667}
     scale: {x: 100, y: 100}
     tag: Character
     enabled: 1
@@ -2052,10 +2058,6 @@ MonoBehaviour:
     scale: {x: 1, y: 1}
     tag: 
     enabled: 1
-  blendShader: Unlit/Blend
-  additive: 1
-  clearOnStart: 0
-  clearOnDestroy: 0
 --- !u!4 &1605034162
 Transform:
   m_ObjectHideFlags: 0
@@ -3108,7 +3110,7 @@ GameObject:
   - component: {fileID: 1201838256934671315}
   - component: {fileID: 8927672096232717910}
   m_Layer: 6
-  m_Name: PlatformerMovment
+  m_Name: PlatformerMovement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3152,7 +3154,6 @@ MonoBehaviour:
   dropSpawner: {fileID: 455501955}
   mask: {fileID: 8400000, guid: db8c7020f14330f4fb57b20d6f6dc07e, type: 2}
   maskGenerator: {fileID: 1602239495}
-  pixelsPerMeter: 13.65333
   blockInputRespawnDuration: 0.5
   debug:
     disableDamage: 0
@@ -3313,7 +3314,7 @@ Transform:
   m_GameObject: {fileID: 3712603451436517613}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.8, y: -19.6, z: 0}
+  m_LocalPosition: {x: -19.67, y: -19.9, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3335,7 +3336,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentTransform: {fileID: 8927672096232717909}
   artist: {fileID: 1605034161}
-  pixelsPerMeter: 54.6
   paintedSpriteTag: Character
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

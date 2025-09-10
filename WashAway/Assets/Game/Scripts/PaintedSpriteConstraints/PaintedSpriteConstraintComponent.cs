@@ -14,7 +14,6 @@ public class PaintedSpriteConstraintComponent : MonoBehaviour
 {
     [SerializeField] private Transform parentTransform;
     [SerializeField] private WAArtist artist;
-    [SerializeField] private float pixelsPerMeter;
     [SerializeField] private string paintedSpriteTag;
 
     private PaintedSprite paintedSprite;
@@ -57,6 +56,6 @@ public class PaintedSpriteConstraintComponent : MonoBehaviour
         if (artist == null) return;
         if (paintedSprite == null) return;
 
-        PaintedSpriteConstraint.ConstrainSpriteToWorldPositionScale(transform.localPosition, transform.localScale, pixelsPerMeter / artist.Size, out paintedSprite.offset, out paintedSprite.scale);
+        PaintedSpriteConstraint.ConstrainSpriteToWorldPositionScale(transform.localPosition, transform.localScale, artist.InverseWidthMeters, out paintedSprite.offset, out paintedSprite.scale);
     }
 }
