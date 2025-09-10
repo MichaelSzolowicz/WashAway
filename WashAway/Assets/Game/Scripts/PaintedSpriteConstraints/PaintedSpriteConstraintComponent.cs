@@ -56,6 +56,6 @@ public class PaintedSpriteConstraintComponent : MonoBehaviour
         if (artist == null) return;
         if (paintedSprite == null) return;
 
-        PaintedSpriteConstraint.ConstrainSpriteToWorldPositionScale(transform.localPosition, transform.localScale, artist.InverseWidth, out paintedSprite.offset, out paintedSprite.scale);
+        PaintedSpriteConstraint.ConstrainSpriteToWorldPositionScale(transform.localPosition, transform.localScale, artist.InverseWidthMeters, out paintedSprite.offset, out paintedSprite.scale);
     }
 }
