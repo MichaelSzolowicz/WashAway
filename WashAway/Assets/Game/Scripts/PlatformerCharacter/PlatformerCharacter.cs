@@ -15,7 +15,6 @@ public class PlatformerCharacter : MonoBehaviour
     [SerializeField] private DropSpawner dropSpawner;
     [SerializeField] private RenderTexture mask;
     [SerializeField] private WAArtist maskGenerator;
-    [SerializeField] private float pixelsPerMeter;
     [SerializeField] private float blockInputRespawnDuration = .5f;
 
     [Header("")]
@@ -76,8 +75,8 @@ public class PlatformerCharacter : MonoBehaviour
                 Respawn();
             }
 
-            float x = (platformerMovement.transform.localPosition.x * pixelsPerMeter / maskGenerator.Size) + .5f;
-            float y = (platformerMovement.transform.localPosition.y * pixelsPerMeter / maskGenerator.Size) + .5f;
+            float x = (platformerMovement.transform.localPosition.x * maskGenerator.InverseWidth) + .5f;
+            float y = (platformerMovement.transform.localPosition.y * maskGenerator.InverseWidth) + .5f;
             pixelReader.ReadPixelAsync(mask, 0, (int)(x*mask.width), 1, (int)(y*mask.height), 1);
         }
 
