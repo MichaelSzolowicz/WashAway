@@ -10,7 +10,6 @@ public class DropSpawner : MonoBehaviour
     }
 
     [SerializeField] private WAArtist maskGenerator;
-    [SerializeField] private float pixelsPerMeter;
     [SerializeField] private Texture dropTexture;
     [SerializeField] private int numDrops;
     [SerializeField] private float dropLifetime;
@@ -55,7 +54,7 @@ public class DropSpawner : MonoBehaviour
 
         maskGenerator.AddLayer(newSprite);
 
-        return new Drop(newSprite, pixelsPerMeter / maskGenerator.Size);
+        return new Drop(newSprite, maskGenerator.InverseWidthMeters);
     }
 
     private void ReleaseFirstDrop()
