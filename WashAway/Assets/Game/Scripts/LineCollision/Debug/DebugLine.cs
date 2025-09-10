@@ -15,6 +15,12 @@ public class DebugLine : MonoBehaviour
         thisLineCollider = GetComponent<LineCollider>();
     }
 
+    private void Start()
+    {
+        if(Application.isPlaying)
+            LineCollisionScene.Instance.RemoveLineCollider(thisLineCollider);
+    }
+
     public void Update()
     {
         if(thisLineCollider.NumPoints < 2) return; 
