@@ -836,9 +836,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4248487411455644778, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
+      propertyPath: probeHeight
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248487411455644778, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
       propertyPath: maskGenerator
       value: 
       objectReference: {fileID: 1028499049}
+    - target: {fileID: 4248487411455644778, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: debug.showProbes
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4248487411455644778, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: debug.disableDamage
@@ -867,7 +877,7 @@ PrefabInstance:
     - target: {fileID: 7355948826698857873, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: numDrops
-      value: 64
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 7355948826698857873, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
@@ -877,7 +887,7 @@ PrefabInstance:
     - target: {fileID: 7355948826698857873, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: spawnDelay
-      value: 0.12
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 7355948826698857873, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
