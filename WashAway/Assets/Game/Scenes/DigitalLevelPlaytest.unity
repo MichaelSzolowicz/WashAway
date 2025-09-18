@@ -1271,7 +1271,7 @@ MonoBehaviour:
     tag: 
     enabled: 1
   - sourceTexture: {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
-    offset: {x: -1.3833332, y: -7.0499973}
+    offset: {x: -48.38333, y: -7.0499973}
     scale: {x: 50, y: 50}
     tag: Character
     enabled: 1
@@ -1400,6 +1400,11 @@ PrefabInstance:
       propertyPath: debug.disableDamage
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4248487411455644778, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: debug.startFacingLeft
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4406575685451234514, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_Name
@@ -1408,7 +1413,7 @@ PrefabInstance:
     - target: {fileID: 6603370332572647833, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.870001
+      value: 14.33
       objectReference: {fileID: 0}
     - target: {fileID: 6603370332572647833, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
@@ -1498,7 +1503,7 @@ PrefabInstance:
     - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.87
+      value: 14.33
       objectReference: {fileID: 0}
     - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
