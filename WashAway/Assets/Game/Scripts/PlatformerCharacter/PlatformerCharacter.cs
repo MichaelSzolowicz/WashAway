@@ -9,6 +9,7 @@ public class PlatformerCharacter : MonoBehaviour
     {
         public bool disableDamage = false;
         public bool showProbes = false;
+        public bool startFacingLeft = false;
     }
 
     [SerializeField] private PlatformerMovement platformerMovement;
@@ -34,6 +35,8 @@ public class PlatformerCharacter : MonoBehaviour
 
         GameState.onTogglePause += OnPause;
         GameState.onToggleCurrentLevelClear += OnPause;
+
+        if (debug.startFacingLeft && !platformerMovement.FacingLeft) { platformerMovement.TurnAround(); }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
