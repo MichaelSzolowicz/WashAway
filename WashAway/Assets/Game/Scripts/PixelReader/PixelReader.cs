@@ -11,6 +11,8 @@ public class PixelReader
 
     public void ReadPixelAsync(Texture src, int mipIndex, int x, int width, int y, int height, int z = 0, int depth = 1)
     {
+        if (x < 0 || x >= src.width || y < 0 || y >= src.height) return;
+
         available = false;
         AsyncGPUReadback.Request(src, mipIndex, x, width, y, height, z, depth, OnCompleteReadback);
     }
