@@ -87,7 +87,9 @@ public class PlatformerCharacter : MonoBehaviour
 
             float x = (platformerMovement.transform.localPosition.x * maskGenerator.InverseWidthMeters) + .5f;
             float y = ((platformerMovement.transform.localPosition.y + probeHeight) * maskGenerator.InverseWidthMeters) + .5f;
-            pixelReader.ReadPixelAsync(maskGenerator.TargetRenderTexture, 0, (int)(x*maskGenerator.TargetRenderTexture.width), 1, (int)(y*maskGenerator.TargetRenderTexture.height), 1);
+
+            if(x <= 1 && x >= 0 && y<= 1 && y>=0)
+                pixelReader.ReadPixelAsync(maskGenerator.TargetRenderTexture, 0, (int)(x*maskGenerator.TargetRenderTexture.width), 1, (int)(y*maskGenerator.TargetRenderTexture.height), 1);
         }
 
         if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
