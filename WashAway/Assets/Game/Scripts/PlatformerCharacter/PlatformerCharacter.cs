@@ -8,11 +8,15 @@ public class PlatformerCharacter : MonoBehaviour
     private class PlatformerCharacterDebugConfig
     {
         public bool disableDamage = false;
+        public bool showProbes = false;
+        public bool startFacingLeft = false;
     }
 
     [SerializeField] private PlatformerMovement platformerMovement;
     [SerializeField] private DropSpawner dropSpawner;
     [SerializeField] private WAArtist maskGenerator;
+
+    [SerializeField] private float probeHeight = .5f;
 
     [Header("")]
     [SerializeField] private PlatformerCharacterDebugConfig debug;
@@ -31,6 +35,8 @@ public class PlatformerCharacter : MonoBehaviour
 
         GameState.onTogglePause += OnPause;
         GameState.onToggleCurrentLevelClear += OnPause;
+
+        if (debug.startFacingLeft && !platformerMovement.FacingLeft) { platformerMovement.TurnAround(); }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -72,8 +78,16 @@ public class PlatformerCharacter : MonoBehaviour
                 Respawn();
             }
 
+            if (debug.showProbes)
+            {
+                Vector3 probePos = platformerMovement.transform.position;
+                probePos.y += probeHeight;
+                Debug.DrawLine(probePos, probePos + Vector3.back, Color.red, Time.deltaTime * 2);
+            }
+
             float x = (platformerMovement.transform.localPosition.x * maskGenerator.InverseWidthMeters) + .5f;
-            float y = (platformerMovement.transform.localPosition.y * maskGenerator.InverseWidthMeters) + .5f;
+            float y = ((platformerMovement.transform.localPosition.y + probeHeight) * maskGenerator.InverseWidthMeters) + .5f;
+
             pixelReader.ReadPixelAsync(maskGenerator.TargetRenderTexture, 0, (int)(x*maskGenerator.TargetRenderTexture.width), 1, (int)(y*maskGenerator.TargetRenderTexture.height), 1);
         }
 
