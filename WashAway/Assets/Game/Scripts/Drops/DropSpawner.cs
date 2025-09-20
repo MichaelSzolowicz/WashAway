@@ -135,7 +135,9 @@ public class DropSpawner : MonoBehaviour
     {
         if (debug.showDropsCount)
         {
+            GUILayout.BeginVertical();
             GUILayout.Label("num drops: " + numEnabledDrops);
+            GUILayout.EndVertical();
         }
     }
 

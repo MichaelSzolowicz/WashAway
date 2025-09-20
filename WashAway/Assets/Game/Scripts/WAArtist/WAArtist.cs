@@ -24,7 +24,7 @@ public class WAArtist : MonoBehaviour
 
     public float InverseWidthMeters { get { return 1 / paintingWidthMeters; } }
 
-    public Texture TargetRenderTexture { get { return painting; } }
+    public RenderTexture TargetRenderTexture { get { return painting; } }
 
     private void OnValidate()
     {
