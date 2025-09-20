@@ -50,7 +50,7 @@ MonoBehaviour:
   - position: {x: 1, y: 0}
     normal: {x: 0, y: 0}
   appearance:
-    deselectedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    deselectedColor: {r: 1, g: 0.39558372, b: 0, a: 1}
     selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     normalLength: 0.25
     visibleInGame: 1
