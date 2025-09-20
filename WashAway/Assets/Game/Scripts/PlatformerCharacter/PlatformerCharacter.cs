@@ -26,6 +26,9 @@ public class PlatformerCharacter : MonoBehaviour
 
     private PixelReader pixelReader;
 
+    private bool showMaskPercent = false;
+    private float maskPercent = 0;
+
     private void Start()
     {
         pixelReader = new PixelReader();
@@ -43,7 +46,8 @@ public class PlatformerCharacter : MonoBehaviour
     {
         if (other.gameObject.CompareTag("DamageCauser"))
         {
-            Respawn();
+            //Respawn();
+            OnDeath();
             print(name + " on trigger enter 2d.");
         }
     }
@@ -69,13 +73,28 @@ public class PlatformerCharacter : MonoBehaviour
         GameState.CharacterDead = false;
     }
 
+    private void OnDeath()
+    {
+        GameState.Paused = true;
+
+        MaskPercentCalculator calc = new MaskPercentCalculator(ShowMaskPercent);
+        calc.RequestPercentCleared(maskGenerator.TargetRenderTexture);
+    }
+
+    private void ShowMaskPercent(float percent)
+    {
+        maskPercent = percent;
+        showMaskPercent = true;
+    }
+
     private void Update()
     {
         if (pixelReader.Available)
         {
             if (pixelReader.result.a >= 255 / 2)
             {
-                Respawn();
+                //Respawn();
+                OnDeath();
             }
 
             if (debug.showProbes)
@@ -105,5 +124,16 @@ public class PlatformerCharacter : MonoBehaviour
     {
         GameState.onTogglePause -= OnPause;
         GameState.onToggleCurrentLevelClear -= OnPause;
+    }
+
+    private void OnGUI()
+    {
+        if(showMaskPercent)
+        {
+            GUILayout.BeginVertical();
+            GUILayout.Space(20);
+            GUILayout.Label("mask percent: " + maskPercent);
+            GUILayout.EndVertical();
+        }
     }
 }
