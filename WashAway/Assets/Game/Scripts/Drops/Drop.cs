@@ -12,9 +12,9 @@ public class Drop
     private bool enabled = false;
 
     // animation
-    private float growTime = 6;
+    private float growTime = 3;
     private float gravityScale = .6f;
-    private float growRate = .02f;
+    private float growRate = .04f;
     private Vector2 velocity = Vector3.zero;
     private Vector2 position;
     private Vector2 scale;
