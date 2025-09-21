@@ -48,7 +48,6 @@ public class PlatformerCharacter : MonoBehaviour
         {
             //Respawn();
             OnDeath();
-            print(name + " on trigger enter 2d.");
         }
     }
 
