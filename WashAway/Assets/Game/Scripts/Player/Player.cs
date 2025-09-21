@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private GameObject canvas;
-    [SerializeField] private GameObject levelClearScreen;
     [SerializeField] private PauseScreen pauseScreen;
     [SerializeField] private GameObject startScreen;
 
@@ -27,7 +26,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         canvas.SetActive(true);
-        levelClearScreen.SetActive(false);
         pauseScreen.gameObject.SetActive(false);
 
         if(!debug.disableStartScreen)
@@ -71,7 +69,7 @@ public class Player : MonoBehaviour
     private void OnTogglePause()
     {
         if (startScreen.activeInHierarchy) return;
-        if (levelClearScreen.activeInHierarchy) return;
+        if (pauseScreen.gameObject.activeInHierarchy) return;
 
         if(GameState.Paused)
         {
@@ -99,6 +97,8 @@ public class Player : MonoBehaviour
         {
             pauseScreen.EnableAsDeathScreen(maskPercent, minClearPercent);
         }
+
+        GameState.Paused = true;
     }
 
     private void OnDestroy()
