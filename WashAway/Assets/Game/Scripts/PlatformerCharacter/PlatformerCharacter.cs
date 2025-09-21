@@ -17,6 +17,7 @@ public class PlatformerCharacter : MonoBehaviour
     [SerializeField] private WAArtist maskGenerator;
 
     [SerializeField] private float probeHeight = .5f;
+    [SerializeField] private float deathTime = .5f;
 
     [Header("")]
     [SerializeField] private PlatformerCharacterDebugConfig debug;
@@ -74,6 +75,8 @@ public class PlatformerCharacter : MonoBehaviour
 
     private void OnDeath()
     {
+        if(debug.disableDamage) return;
+
         GameState.CharacterDead = true;
         platformerMovement.enabled = false;
 
@@ -89,14 +92,21 @@ public class PlatformerCharacter : MonoBehaviour
         showMaskPercent = true;
     }
 
+    private float timeSinceLastRead = 0;
+    private float timeInVoid = 0;
+
     private void Update()
     {
         if (pixelReader.Available)
         {
             if (pixelReader.result.a >= 255 / 2)
             {
-                //Respawn();
-                OnDeath();
+                timeInVoid += timeSinceLastRead;
+                
+                if(timeInVoid > deathTime)
+                {
+                    OnDeath();
+                }
             }
 
             if (debug.showProbes)
@@ -110,11 +120,15 @@ public class PlatformerCharacter : MonoBehaviour
             float y = ((platformerMovement.transform.localPosition.y + probeHeight) * maskGenerator.InverseWidthMeters) + .5f;
 
             pixelReader.ReadPixelAsync(maskGenerator.TargetRenderTexture, 0, (int)(x*maskGenerator.TargetRenderTexture.width), 1, (int)(y*maskGenerator.TargetRenderTexture.height), 1);
+
+            timeSinceLastRead = 0;
         }
 
         if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
             platformerMovement.blockInput = false;
         }
+
+        timeSinceLastRead += Time.deltaTime;
     }
 
     private void OnPause()
