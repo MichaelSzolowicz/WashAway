@@ -1453,6 +1453,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3786901577825990408, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: disableFallThrough
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4248487411455644778, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_Enabled
