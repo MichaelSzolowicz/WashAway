@@ -45,6 +45,6 @@ public class MaskPercentCalculator
             }
         }
 
-        onCompleteRequest((float)maskedPixelCount/maskSize);
+        onCompleteRequest((float)maskedPixelCount/maskSize*100);
     }
 }
