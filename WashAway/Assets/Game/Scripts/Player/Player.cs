@@ -55,13 +55,20 @@ public class Player : MonoBehaviour
     {
         if(GameState.CharacterDead)
         {
-            MaskPercentCalculator calc = new MaskPercentCalculator(ShowDeathScreen);
-            calc.RequestPercentCleared(mask);
+            StartCoroutine(ShowDeathScreenWithDelay(4.5f));
         }
         else
         {
             pauseScreen.gameObject.SetActive(false);
         }
+    }
+
+    private IEnumerator ShowDeathScreenWithDelay(float delaySeconds)
+    {
+        yield return new WaitForSeconds(delaySeconds);
+
+        MaskPercentCalculator calc = new MaskPercentCalculator(ShowDeathScreen);
+        calc.RequestPercentCleared(mask);
     }
 
     private void OnTogglePause()
