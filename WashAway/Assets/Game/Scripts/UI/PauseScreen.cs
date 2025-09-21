@@ -10,18 +10,21 @@ public class PauseScreen : MonoBehaviour
 
     public void EnableAsPauseScreen(float maskPercent, float requiredPercent)
     {
+        titleText.color = Color.white;
         titleText.text = "Paused";
         FinishEnable(maskPercent, requiredPercent);
     }
 
     public void EnableAsDeathScreen(float maskPercent, float requiredPercent)
     {
+        titleText.color = Color.red;
         titleText.text = "Try Again";
         FinishEnable(maskPercent, requiredPercent);
     }
 
     public void EnableAsVictoryScreen(float maskPercent, float requiredPercent)
     {
+        titleText.color = Color.yellow;
         titleText.text = "Level Clear";
         FinishEnable(maskPercent, requiredPercent);
     }
