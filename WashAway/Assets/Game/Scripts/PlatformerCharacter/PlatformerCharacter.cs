@@ -79,6 +79,7 @@ public class PlatformerCharacter : MonoBehaviour
 
         GameState.CharacterDead = true;
         platformerMovement.enabled = false;
+        dropSpawner.stopSpawning = true;
 
         //GameState.Paused = true;
 
