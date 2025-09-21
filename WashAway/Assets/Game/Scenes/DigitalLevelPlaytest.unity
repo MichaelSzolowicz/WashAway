@@ -1786,7 +1786,7 @@ PrefabInstance:
     - target: {fileID: 6020464760165040389, guid: fb2a90ccb856af4459d5dc150af9f528,
         type: 3}
       propertyPath: debug.disableStartScreen
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
