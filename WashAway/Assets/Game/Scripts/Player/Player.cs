@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
     private void OnTogglePause()
     {
         if (startScreen.activeInHierarchy) return;
-        if (pauseScreen.gameObject.activeInHierarchy) return;
+        if (GameState.CharacterDead) return;
 
         if(GameState.Paused)
         {
