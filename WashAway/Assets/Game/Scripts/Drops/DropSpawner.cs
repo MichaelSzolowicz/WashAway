@@ -60,6 +60,8 @@ public class DropSpawner : MonoBehaviour
 
     private void ReleaseFirstDrop()
     {
+        if (!drops[first].Enabled) return;
+
         drops[first].Enabled = false;
 
         first = WrapIndex(++first);
