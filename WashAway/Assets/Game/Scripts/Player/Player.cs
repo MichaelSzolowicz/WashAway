@@ -53,8 +53,6 @@ public class Player : MonoBehaviour
 
     private void OnToggleCharacterDead()
     {
-        //levelClearScreen.SetActive(GameState.CurrentLevelClear);
-
         if(GameState.CharacterDead)
         {
             MaskPercentCalculator calc = new MaskPercentCalculator(ShowDeathScreen);
