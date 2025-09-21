@@ -74,10 +74,13 @@ public class PlatformerCharacter : MonoBehaviour
 
     private void OnDeath()
     {
-        GameState.Paused = true;
+        GameState.CharacterDead = true;
+        platformerMovement.enabled = false;
 
-        MaskPercentCalculator calc = new MaskPercentCalculator(ShowMaskPercent);
-        calc.RequestPercentCleared(maskGenerator.TargetRenderTexture);
+        //GameState.Paused = true;
+
+        //MaskPercentCalculator calc = new MaskPercentCalculator(ShowMaskPercent);
+        //calc.RequestPercentCleared(maskGenerator.TargetRenderTexture);
     }
 
     private void ShowMaskPercent(float percent)

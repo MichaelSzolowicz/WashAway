@@ -47,8 +47,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 3180025748353664555}
   levelClearScreen: {fileID: 132203685585981064}
-  pauseScreen: {fileID: 4479623490408556546}
+  pauseScreen: {fileID: 8222101852477814336}
   startScreen: {fileID: 1842475422604863203}
+  mask: {fileID: 0}
+  minClearPercent: 0
+  debug:
+    disableStartScreen: 0
 --- !u!1001 &15502902530792702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -172,18 +176,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 018d0799dd8d48a49893b6c76b578c3a, type: 3}
---- !u!1 &4479623490408556546 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4475947023196615932, guid: 018d0799dd8d48a49893b6c76b578c3a,
-    type: 3}
-  m_PrefabInstance: {fileID: 15502902530792702}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4543936389143851796 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4555494226631471082, guid: 018d0799dd8d48a49893b6c76b578c3a,
     type: 3}
   m_PrefabInstance: {fileID: 15502902530792702}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8222101852477814336 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8227467236324977342, guid: 018d0799dd8d48a49893b6c76b578c3a,
+    type: 3}
+  m_PrefabInstance: {fileID: 15502902530792702}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e4f6680e2170e4180062ffe0703766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2849665552624505375
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1476,7 +1476,7 @@ PrefabInstance:
     - target: {fileID: 4248487411455644778, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: debug.showProbes
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4248487411455644778, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
@@ -1536,7 +1536,7 @@ PrefabInstance:
     - target: {fileID: 7355948826698857873, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: debug.showDropsCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7565704587080158720, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
@@ -1772,6 +1772,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6020464760165040389, guid: fb2a90ccb856af4459d5dc150af9f528,
+        type: 3}
+      propertyPath: mask
+      value: 
+      objectReference: {fileID: 8400000, guid: c5312f82975595d4682572b254358eab, type: 2}
+    - target: {fileID: 6020464760165040389, guid: fb2a90ccb856af4459d5dc150af9f528,
+        type: 3}
+      propertyPath: minClearPercent
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6020464760165040389, guid: fb2a90ccb856af4459d5dc150af9f528,
         type: 3}
