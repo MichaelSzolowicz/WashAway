@@ -31,7 +31,7 @@ public class PauseScreen : MonoBehaviour
 
     private void FinishEnable(float maskPercent, float requiredPercent)
     {
-        maskPercentText.text = maskPercentLabel + maskPercent + " / " + requiredPercent + "%";
+        maskPercentText.text = maskPercentLabel + maskPercent.ToString("0.00") + " / " + requiredPercent + "%";
         gameObject.SetActive(true);
     }
 }
