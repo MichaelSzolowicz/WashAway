@@ -732,12 +732,12 @@ PrefabInstance:
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[0].normal.x
-      value: 0.09033302
+      value: 0.118737906
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[0].normal.y
-      value: 0.9959116
+      value: 0.9929256
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
@@ -762,12 +762,12 @@ PrefabInstance:
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[1].position.x
-      value: 40.127937
+      value: 40.04586
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[1].position.y
-      value: -3.6397562
+      value: -4.7888374
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
@@ -797,7 +797,7 @@ PrefabInstance:
     - target: {fileID: 5597261600302132309, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.29
+      value: -9.04
       objectReference: {fileID: 0}
     - target: {fileID: 5597261600302132309, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
@@ -1883,7 +1883,7 @@ PrefabInstance:
     - target: {fileID: 5597261600302132309, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.0500004
+      value: -2.07
       objectReference: {fileID: 0}
     - target: {fileID: 5597261600302132309, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
@@ -1961,7 +1961,7 @@ PrefabInstance:
     - target: {fileID: 9167772340916446629, guid: 67a6eb9d4bb9dd544851a9f32629db4c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 26
+      value: 21.2
       objectReference: {fileID: 0}
     - target: {fileID: 9167772340916446629, guid: 67a6eb9d4bb9dd544851a9f32629db4c,
         type: 3}
@@ -2190,7 +2190,7 @@ PrefabInstance:
     - target: {fileID: 7355948826698857873, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: debug.showDropsCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7565704587080158720, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
@@ -2331,7 +2331,12 @@ PrefabInstance:
 
 
         You
-        must wash away 90% or more of the level to win.'
+        must wash away 90% or more of the level to win.
+
+
+        Upon dying, the
+        game will pause until all the black circles stop moving then tell if you
+        won.'
       objectReference: {fileID: 0}
     - target: {fileID: 6020464760165040389, guid: fb2a90ccb856af4459d5dc150af9f528,
         type: 3}

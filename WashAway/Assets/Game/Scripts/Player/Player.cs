@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     {
         if (
             Input.GetKeyDown(KeyCode.Escape)
-            && !GameState.CurrentLevelClear
+            && !GameState.CharacterDead
             )
         {
             GameState.Paused = !GameState.Paused;
