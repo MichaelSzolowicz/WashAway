@@ -299,6 +299,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
+      propertyPath: appearance.visibleInGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInEditor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
       propertyPath: points.Array.data[1].position.x
       value: 9.01
       objectReference: {fileID: 0}
@@ -563,6 +573,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
+      propertyPath: appearance.visibleInGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInEditor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
       propertyPath: points.Array.data[0].normal.x
       value: 0.000000059604645
       objectReference: {fileID: 0}
@@ -731,6 +751,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
+      propertyPath: appearance.visibleInGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInEditor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
       propertyPath: points.Array.data[0].normal.x
       value: 0.118737906
       objectReference: {fileID: 0}
@@ -873,6 +903,16 @@ PrefabInstance:
         type: 3}
       propertyPath: points.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInEditor
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
@@ -1124,6 +1164,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
+      propertyPath: appearance.visibleInGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInEditor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
       propertyPath: points.Array.data[0].normal.x
       value: -0.43285426
       objectReference: {fileID: 0}
@@ -1212,6 +1262,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
+      propertyPath: appearance.visibleInGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInEditor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
       propertyPath: points.Array.data[1].position.x
       value: 2.38
       objectReference: {fileID: 0}
@@ -1293,6 +1353,16 @@ PrefabInstance:
         type: 3}
       propertyPath: points.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInEditor
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
@@ -1426,6 +1496,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: House
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInEditor
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
@@ -1612,6 +1692,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
+      propertyPath: appearance.visibleInGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInEditor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
       propertyPath: points.Array.data[0].normal.x
       value: 0.000000059604645
       objectReference: {fileID: 0}
@@ -1786,6 +1876,11 @@ MonoBehaviour:
     scale: {x: 1, y: 1}
     tag: 
     enabled: 1
+  - sourceTexture: {fileID: 2800000, guid: ca4342dae555c9643bb6b0ce3481fdae, type: 3}
+    offset: {x: 0, y: 0}
+    scale: {x: 1, y: 1}
+    tag: 
+    enabled: 1
   - sourceTexture: {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
     offset: {x: -47.483337, y: -3.6499996}
     scale: {x: 50, y: 50}
@@ -1814,6 +1909,16 @@ PrefabInstance:
         type: 3}
       propertyPath: points.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInEditor
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
@@ -2378,6 +2483,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
+      propertyPath: appearance.visibleInGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInEditor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
       propertyPath: points.Array.data[0].normal.x
       value: 0.000000059604645
       objectReference: {fileID: 0}
@@ -2737,6 +2852,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
+      propertyPath: appearance.visibleInGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInEditor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
       propertyPath: points.Array.data[0].normal.x
       value: 0.000000059604645
       objectReference: {fileID: 0}
@@ -2943,6 +3068,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
+      propertyPath: appearance.visibleInGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInEditor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
       propertyPath: points.Array.data[0].normal.x
       value: 0.000000059604645
       objectReference: {fileID: 0}
@@ -3133,6 +3268,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
+      propertyPath: appearance.visibleInGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInEditor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
       propertyPath: points.Array.data[0].normal.x
       value: 0.000000059604645
       objectReference: {fileID: 0}
@@ -3243,6 +3388,16 @@ PrefabInstance:
         type: 3}
       propertyPath: points.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
+        type: 3}
+      propertyPath: appearance.visibleInEditor
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
