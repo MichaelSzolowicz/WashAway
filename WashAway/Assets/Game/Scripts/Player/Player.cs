@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -10,10 +11,14 @@ public class Player : MonoBehaviour
         public bool disableStartScreen = false;
     }
 
+    [Header("UI")]
     [SerializeField] private GameObject canvas;
-    [SerializeField] private GameObject levelClearScreen;
-    [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private PauseScreen pauseScreen;
     [SerializeField] private GameObject startScreen;
+
+    [Header("Level")]
+    [SerializeField] private RenderTexture mask;
+    [SerializeField] private float minClearPercent;
 
     [Header("")]
     [SerializeField] private PlayerDebugConfig debug;
@@ -21,48 +26,89 @@ public class Player : MonoBehaviour
     private void Start()
     {
         canvas.SetActive(true);
-        levelClearScreen.SetActive(false);
-        pauseScreen.SetActive(false);
+        pauseScreen.gameObject.SetActive(false);
 
         if(!debug.disableStartScreen)
         {
             startScreen.SetActive(!GameState.FeedbackViewed);
         }
 
-        GameState.onToggleCurrentLevelClear += OnToggleLevelClear;
+        GameState.onToggleCharacterDead += OnToggleCharacterDead;
         GameState.onTogglePause += OnTogglePause;
 
         GameState.Paused = false;
-        GameState.CurrentLevelClear = false;
+        GameState.CharacterDead = false;
     }
 
     void Update()
     {
         if (
             Input.GetKeyDown(KeyCode.Escape)
-            && !GameState.CurrentLevelClear
+            && !GameState.CharacterDead
             )
         {
             GameState.Paused = !GameState.Paused;
         }
     }
 
-    private void OnToggleLevelClear()
+    private void OnToggleCharacterDead()
     {
-        levelClearScreen.SetActive(GameState.CurrentLevelClear);
+        if(GameState.CharacterDead)
+        {
+            StartCoroutine(ShowDeathScreenWithDelay(4.5f));
+        }
+        else
+        {
+            pauseScreen.gameObject.SetActive(false);
+        }
+    }
+
+    private IEnumerator ShowDeathScreenWithDelay(float delaySeconds)
+    {
+        yield return new WaitForSeconds(delaySeconds);
+
+        MaskPercentCalculator calc = new MaskPercentCalculator(ShowDeathScreen);
+        calc.RequestPercentCleared(mask);
     }
 
     private void OnTogglePause()
     {
         if (startScreen.activeInHierarchy) return;
-        if (levelClearScreen.activeInHierarchy) return;
+        if (GameState.CharacterDead) return;
 
-        pauseScreen.SetActive(GameState.Paused);
+        if(GameState.Paused)
+        {
+            MaskPercentCalculator calc = new MaskPercentCalculator(ShowPauseScreen);
+            calc.RequestPercentCleared(mask);
+        }
+        else
+        {
+            pauseScreen.gameObject.SetActive(false);
+        }
+    }
+
+    private void ShowPauseScreen(float maskPercent)
+    {
+        pauseScreen.EnableAsPauseScreen(maskPercent, minClearPercent);
+    }
+
+    private void ShowDeathScreen(float maskPercent)
+    {
+        if(maskPercent >= minClearPercent)
+        {
+            pauseScreen.EnableAsVictoryScreen(maskPercent, minClearPercent);
+        }
+        else
+        {
+            pauseScreen.EnableAsDeathScreen(maskPercent, minClearPercent);
+        }
+
+        GameState.Paused = true;
     }
 
     private void OnDestroy()
     {
-        GameState.onToggleCurrentLevelClear -= OnToggleLevelClear;
+        GameState.onToggleCharacterDead -= OnToggleCharacterDead;
         GameState.onTogglePause -= OnTogglePause;
     }
 }

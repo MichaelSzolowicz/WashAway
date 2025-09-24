@@ -6,12 +6,20 @@ using UnityEngine.UI;
 public class StartScreen : MonoBehaviour
 {
     [SerializeField] private Button continueButton;
+    [SerializeField] private bool requireFeedback = true;
 
     private void Start()
     {
-        continueButton.interactable = false;
+        if (requireFeedback)
+        {
+            continueButton.interactable = false;
 
-        GameState.onToggleFeedbackViewed += EnableContinueButton;
+            GameState.onToggleFeedbackViewed += EnableContinueButton;
+        }
+        else
+        {
+            GameState.FeedbackViewed = true;
+        }
 
         GameState.Paused = true;
     }

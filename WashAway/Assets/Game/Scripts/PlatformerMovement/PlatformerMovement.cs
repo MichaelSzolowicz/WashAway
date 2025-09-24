@@ -34,6 +34,7 @@ public class PlatformerMovement : MonoBehaviour
     // Test values
     [Header("Test")]
     public int targetFramerate = 30;
+    public bool disableFallThrough = false;
 
     private void Start()
     {
@@ -142,6 +143,8 @@ public class PlatformerMovement : MonoBehaviour
 
     private void CheckFallThrough()
     {
+        if (disableFallThrough) return;
+
         if (
             Input.GetKeyDown(KeyCode.S)
             && grounded
