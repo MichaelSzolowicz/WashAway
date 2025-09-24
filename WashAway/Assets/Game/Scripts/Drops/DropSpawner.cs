@@ -14,6 +14,7 @@ public class DropSpawner : MonoBehaviour
     [SerializeField] private int numDrops;
     [SerializeField] private float dropLifetime;
     [SerializeField] private float spawnDelay = .5f;
+    public bool stopSpawning = false;
 
     [Header("")]
     [SerializeField] private DropSpawnerDebugConfig debug;
@@ -59,6 +60,8 @@ public class DropSpawner : MonoBehaviour
 
     private void ReleaseFirstDrop()
     {
+        if (!drops[first].Enabled) return;
+
         drops[first].Enabled = false;
 
         first = WrapIndex(++first);
@@ -68,6 +71,7 @@ public class DropSpawner : MonoBehaviour
 
     private void SpawnNextDrop()
     {
+        if (stopSpawning) return;
         if (drops[next].Enabled) return;
         
         Drop drop = drops[next];

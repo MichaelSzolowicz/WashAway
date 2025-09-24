@@ -105,8 +105,10 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
     protected void OnDrawGizmos()
     {
         if (!appearance.visibleInEditor && !appearance.visibleInGame) return;
+#if UNITY_EDITOR
         else if (SceneView.currentDrawingSceneView == null && !appearance.visibleInGame) return;
         else if (SceneView.currentDrawingSceneView != null && !appearance.visibleInEditor) return;
+#endif
 
         Color displayColor = isSelected ? appearance.selectedColor : appearance.deselectedColor;
 
