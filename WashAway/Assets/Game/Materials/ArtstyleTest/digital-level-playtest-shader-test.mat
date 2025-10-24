@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Canvas
+  m_Name: digital-level-playtest-shader-test
   m_Shader: {fileID: -6465566751694194690, guid: 740b7262a33657b458039359af2e4683,
     type: 3}
   m_Parent: {fileID: 0}
@@ -110,7 +110,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _mask:
-        m_Texture: {fileID: 2800000, guid: 462f6afdc9bf36b4c8f9f9407fadcd4f, type: 3}
+        m_Texture: {fileID: 8400000, guid: c5312f82975595d4682572b254358eab, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _norm:
@@ -118,7 +118,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _paint_color:
-        m_Texture: {fileID: 2800000, guid: c2c6e8ba25b52b949995e1797f064bf6, type: 3}
+        m_Texture: {fileID: 8400000, guid: 4be692f122c1df640a23a17cedce74e0, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _paint_normal:
