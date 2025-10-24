@@ -12,7 +12,11 @@
     ],
     "m_Keywords": [],
     "m_Dropdowns": [],
-    "m_CategoryData": [],
+    "m_CategoryData": [
+        {
+            "m_Id": "7c8ae8d8a96c40b68c15368313935f59"
+        }
+    ],
     "m_Nodes": [
         {
             "m_Id": "ca4798b2cc1b405faa5574ddb17931d0"
@@ -271,6 +275,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "380d7ccdfb744064915edbcbb9e61bce",
+    "m_Id": 1,
+    "m_DisplayName": "mask",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "mask",
+    "m_StageCapability": 2,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "4a28b16142f541b59449f92485c38633",
     "m_Id": 0,
@@ -414,6 +433,21 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
+    "m_ObjectId": "7c8ae8d8a96c40b68c15368313935f59",
+    "m_Name": "",
+    "m_ChildObjectList": [
+        {
+            "m_Id": "5aedf33918f945af9545be513ee0306c"
+        },
+        {
+            "m_Id": "df886e487d3d4e0eb50672132d272124"
+        }
+    ]
 }
 
 {
@@ -600,7 +634,7 @@
     },
     "m_Slots": [
         {
-            "m_Id": "df26d30f431a47c7b2b20d478511bbbb"
+            "m_Id": "380d7ccdfb744064915edbcbb9e61bce"
         }
     ],
     "synonyms": [],
@@ -651,21 +685,6 @@
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "G",
-    "m_StageCapability": 2,
-    "m_Value": 0.0,
-    "m_DefaultValue": 0.0,
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "df26d30f431a47c7b2b20d478511bbbb",
-    "m_Id": 1,
-    "m_DisplayName": "Out_Vector1",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "OutVector1",
     "m_StageCapability": 2,
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
