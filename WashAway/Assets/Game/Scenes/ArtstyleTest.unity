@@ -628,8 +628,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.5
-  m_Range: 2.8
+  m_Intensity: 1800
+  m_Range: 75
   m_SpotAngle: 57.92715
   m_InnerSpotAngle: 26.480536
   m_CookieSize: 10
@@ -691,7 +691,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 605985401}
   m_LocalEulerAnglesHint: {x: 27.14, y: 34.208, z: 0}
 --- !u!1001 &420396529
 PrefabInstance:
@@ -850,6 +850,39 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 508574035}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &605985400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 605985401}
+  m_Layer: 0
+  m_Name: Lights
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &605985401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605985400}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 30, y: 30, z: 30}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 819516565}
+  - {fileID: 418949685}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &703790936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1077,8 +1110,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.5
-  m_Range: 2.8
+  m_Intensity: 1800
+  m_Range: 75
   m_SpotAngle: 57.92715
   m_InnerSpotAngle: 26.05075
   m_CookieSize: 10
@@ -1140,7 +1173,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 605985401}
   m_LocalEulerAnglesHint: {x: 37.228, y: -34.063, z: -13.651}
 --- !u!1 &1084910688
 GameObject:
@@ -1715,6 +1748,5 @@ SceneRoots:
   - {fileID: 1084910689}
   - {fileID: 396254553}
   - {fileID: 1190629793}
-  - {fileID: 819516565}
-  - {fileID: 418949685}
+  - {fileID: 605985401}
   - {fileID: 1827982504}
