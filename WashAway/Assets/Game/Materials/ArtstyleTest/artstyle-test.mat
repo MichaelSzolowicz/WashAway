@@ -118,7 +118,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _paint_color:
-        m_Texture: {fileID: 2800000, guid: de8c4b2ab0bd82d4f962f4f0c89b1bb3, type: 3}
+        m_Texture: {fileID: 8400000, guid: 6ffbecb8f6045eb44845ab66893986b6, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _paint_normal:
