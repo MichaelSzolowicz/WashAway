@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   painting: {fileID: 8400000, guid: a410dd5b3a1648a4cb3ade84c438f829, type: 2}
-  paintingWidthMeters: 1
+  paintingWidthMeters: 1.08674
   blendShader: Unlit/AdditiveBlend
   additive: 1
   clearOnStart: 1
@@ -714,7 +714,7 @@ PrefabInstance:
     - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.026
       objectReference: {fileID: 0}
     - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
@@ -941,7 +941,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   painting: {fileID: 8400000, guid: 6ffbecb8f6045eb44845ab66893986b6, type: 2}
-  paintingWidthMeters: 1
+  paintingWidthMeters: 1.16634
   blendShader: Unlit/Blend
   additive: 0
   clearOnStart: 0
@@ -953,7 +953,7 @@ MonoBehaviour:
     tag: 
     enabled: 1
   - sourceTexture: {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
-    offset: {x: -24.5, y: -24.5}
+    offset: {x: -25.614597, y: -24.5}
     scale: {x: 50, y: 50}
     tag: Character
     enabled: 1
