@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 3308538828056988551}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 13.789999, y: -12.510002, z: -40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -73,9 +73,9 @@ Transform:
   m_GameObject: {fileID: 3539055361863011401}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -15, y: -26, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8927672094789748330}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -93,9 +93,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maskGenerator: {fileID: 0}
   dropTexture: {fileID: 2800000, guid: 62c352e1bae82474b8986f125d8884ef, type: 3}
-  numDrops: 20
-  dropLifetime: 4
-  spawnDelay: 0.5
+  numDrops: 51
+  dropLifetime: 4.3
+  spawnDelay: 0.1
+  stopSpawning: 0
   debug:
     showDropsCount: 0
 --- !u!1 &3712603452275241170
@@ -109,6 +110,7 @@ GameObject:
   - component: {fileID: 8927672094789748330}
   - component: {fileID: 3786901577825990408}
   - component: {fileID: 1201838256028822508}
+  - component: {fileID: 6238849839377232250}
   m_Layer: 6
   m_Name: PlatformerMovment
   m_TagString: Untagged
@@ -125,9 +127,9 @@ Transform:
   m_GameObject: {fileID: 3712603452275241170}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 13.79, y: -12.51, z: 0}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7565704587080158720}
   m_Father: {fileID: 3216117592984667365}
@@ -149,10 +151,11 @@ MonoBehaviour:
   gravityScale: 5
   brakingScale: 40
   maxWalkableSlope: 30
-  jumpScale: 19
+  jumpScale: 20
   probeDepth: 0.5
   blockInput: 0
   targetFramerate: 0
+  disableFallThrough: 1
 --- !u!61 &1201838256028822508
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -196,8 +199,23 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 25, y: 25}
   m_EdgeRadius: 0
+--- !u!114 &6238849839377232250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3712603452275241170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5202f0e2ecf5f3445bbef410aec033ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentTransform: {fileID: 8927672094789748330}
+  artist: {fileID: 0}
+  paintedSpriteTag: Character
 --- !u!1 &4406575685451234514
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,8 +266,12 @@ MonoBehaviour:
   platformerMovement: {fileID: 3786901577825990408}
   dropSpawner: {fileID: 7355948826698857873}
   maskGenerator: {fileID: 0}
+  probeHeight: 0.4
+  deathTime: 0.1
   debug:
     disableDamage: 0
+    showProbes: 0
+    startFacingLeft: 1
 --- !u!50 &8222318881938983064
 Rigidbody2D:
   serializedVersion: 4
