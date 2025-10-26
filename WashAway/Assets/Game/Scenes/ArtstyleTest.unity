@@ -628,7 +628,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1800
+  m_Intensity: 2340
   m_Range: 75
   m_SpotAngle: 57.92715
   m_InnerSpotAngle: 26.480536
@@ -838,6 +838,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: artstyle-test-canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 95469707f7ee5744fa633cdca031ebad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1110,7 +1115,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1800
+  m_Intensity: 2340
   m_Range: 75
   m_SpotAngle: 57.92715
   m_InnerSpotAngle: 26.05075
@@ -1296,7 +1301,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1190629793
 Transform:
   m_ObjectHideFlags: 0
@@ -1598,7 +1603,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1678792133
 Transform:
   m_ObjectHideFlags: 0
@@ -1782,7 +1787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2046982362
 Transform:
   m_ObjectHideFlags: 0

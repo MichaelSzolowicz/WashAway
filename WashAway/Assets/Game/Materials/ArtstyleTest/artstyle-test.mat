@@ -86,7 +86,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _canvas_color:
-        m_Texture: {fileID: 2800000, guid: eaa24960e040fc744bcebc9851893985, type: 3}
+        m_Texture: {fileID: 2800000, guid: c2c6e8ba25b52b949995e1797f064bf6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _canvas_normal:
@@ -130,7 +130,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _paint_rough:
-        m_Texture: {fileID: 2800000, guid: 3a241e04a162d3d4e94483cd21a0ca63, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4bcf1800a83ea934f913183f6855df87, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _pntNormal:
