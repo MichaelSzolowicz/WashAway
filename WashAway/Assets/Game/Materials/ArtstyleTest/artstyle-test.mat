@@ -110,7 +110,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _mask:
-        m_Texture: {fileID: 8400000, guid: a410dd5b3a1648a4cb3ade84c438f829, type: 2}
+        m_Texture: {fileID: 2800000, guid: 4bcf1800a83ea934f913183f6855df87, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _norm:
@@ -122,11 +122,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _paint_normal:
-        m_Texture: {fileID: 2800000, guid: f4f233e1ce4ee844886dc6e0ef08d04d, type: 3}
+        m_Texture: {fileID: 2800000, guid: bf627547adfbcc54e923de2ade26637d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _paint_rough:
-        m_Texture: {fileID: 2800000, guid: 183557f10a1fcdb4abd8752c222c0eb0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4bcf1800a83ea934f913183f6855df87, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _pntNormal:
