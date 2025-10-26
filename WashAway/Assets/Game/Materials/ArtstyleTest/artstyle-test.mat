@@ -109,8 +109,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _color_map:
+        m_Texture: {fileID: 2800000, guid: 18e3b63b8c9985f429b9f9618fb20dd1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _mask:
-        m_Texture: {fileID: 2800000, guid: 4bcf1800a83ea934f913183f6855df87, type: 3}
+        m_Texture: {fileID: 8400000, guid: a410dd5b3a1648a4cb3ade84c438f829, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _norm:
@@ -126,7 +130,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _paint_rough:
-        m_Texture: {fileID: 2800000, guid: 4bcf1800a83ea934f913183f6855df87, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3a241e04a162d3d4e94483cd21a0ca63, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _pntNormal:
@@ -135,6 +139,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _pntRough:
         m_Texture: {fileID: 2800000, guid: 183557f10a1fcdb4abd8752c222c0eb0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _thickness_map:
+        m_Texture: {fileID: 2800000, guid: 6fcacffde01d4d14c9fac863eb519e58, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
