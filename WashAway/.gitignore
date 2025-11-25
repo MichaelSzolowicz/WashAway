@@ -73,3 +73,13 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Large project files
+*.blend
+*.blend1
+*.kra
+*.kra~
+*.xcf
+Blender/
+GIMP/
+Krita/

@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: shader-test
+  m_Name: artstyle-test
   m_Shader: {fileID: -6465566751694194690, guid: 740b7262a33657b458039359af2e4683,
     type: 3}
   m_Parent: {fileID: 0}
@@ -86,12 +86,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _canvas_color:
-        m_Texture: {fileID: 2800000, guid: eaa24960e040fc744bcebc9851893985, type: 3}
+        m_Texture: {fileID: 2800000, guid: c2c6e8ba25b52b949995e1797f064bf6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _canvas_normal:
         m_Texture: {fileID: 2800000, guid: c5316e55bf5a9f9468688bc5374f32bb, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     - _canvas_rough:
         m_Texture: {fileID: 2800000, guid: f3359c2baa6edc14b93ebf15e073a5ec, type: 3}
@@ -109,8 +109,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _color_map:
+        m_Texture: {fileID: 2800000, guid: 18e3b63b8c9985f429b9f9618fb20dd1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _mask:
-        m_Texture: {fileID: 2800000, guid: 462f6afdc9bf36b4c8f9f9407fadcd4f, type: 3}
+        m_Texture: {fileID: 8400000, guid: a410dd5b3a1648a4cb3ade84c438f829, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _norm:
@@ -118,15 +122,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _paint_color:
-        m_Texture: {fileID: 2800000, guid: c2c6e8ba25b52b949995e1797f064bf6, type: 3}
+        m_Texture: {fileID: 8400000, guid: 6ffbecb8f6045eb44845ab66893986b6, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _paint_normal:
-        m_Texture: {fileID: 2800000, guid: f4f233e1ce4ee844886dc6e0ef08d04d, type: 3}
+        m_Texture: {fileID: 2800000, guid: bf627547adfbcc54e923de2ade26637d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _paint_rough:
-        m_Texture: {fileID: 2800000, guid: 183557f10a1fcdb4abd8752c222c0eb0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4bcf1800a83ea934f913183f6855df87, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _pntNormal:
@@ -135,6 +139,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _pntRough:
         m_Texture: {fileID: 2800000, guid: 183557f10a1fcdb4abd8752c222c0eb0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _thickness_map:
+        m_Texture: {fileID: 2800000, guid: 6fcacffde01d4d14c9fac863eb519e58, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -153,12 +161,9 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _BUILTIN_QueueControl: -1
-    - _BUILTIN_QueueOffset: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
-    - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -184,10 +189,11 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _WorkflowMode: 1
-    - _ZTest: 4
     - _ZWrite: 1
-    - _ZWriteControl: 0
     - _blendFactor: 0
+    - _canvas_edge_1: 0
+    - _canvas_edge_2: 0.75
+    - _canvas_normal_strength: 1.3
     - _cnvMetal: 0
     - _cnvNormStrength: 1
     - _cnvRot: 0
@@ -196,6 +202,7 @@ Material:
     - _mask_offset: 0
     - _met: 0
     - _normStrength: 0.25
+    - _normal_strength: 0.42
     - _offset: 1
     - _pntMetal: 0
     - _pntNormalStrength: -1.06

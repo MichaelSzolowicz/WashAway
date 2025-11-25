@@ -1,3 +1,4 @@
+D:/UnityProjects/WashAway/WashAway/Assets/Game/Textures/ArtstyleTest/test-big-file.png filter=lfs diff=lfs merge=lfs -text
 test-big-file.png filter=lfs diff=lfs merge=lfs -text
 *.png filter=lfs diff=lfs merge=lfs -text
 *.jpg filter=lfs diff=lfs merge=lfs -text

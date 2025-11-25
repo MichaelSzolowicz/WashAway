@@ -1,0 +1,9 @@
+# Large project files
+*.blend
+*.blend1
+*.kra
+*.kra~
+*.xcf
+Blender/
+GIMP/
+Krita/
