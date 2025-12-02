@@ -114,7 +114,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _mask:
-        m_Texture: {fileID: 8400000, guid: a410dd5b3a1648a4cb3ade84c438f829, type: 2}
+        m_Texture: {fileID: 8400000, guid: 77da76232f7124e45b2c753457715c4c, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _norm:
@@ -122,7 +122,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _paint_color:
-        m_Texture: {fileID: 2800000, guid: d98bf1e09f985df4684a1a48cf4a799a, type: 3}
+        m_Texture: {fileID: 8400000, guid: 00c5296113f44b74e91cc79c165553d1, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _paint_normal:
@@ -194,7 +194,7 @@ Material:
     - _canvas_cutoff: 0.2
     - _canvas_edge_1: 0.77
     - _canvas_edge_2: 1
-    - _canvas_normal_strength: 0.44
+    - _canvas_normal_strength: 0.2
     - _cnvMetal: 0
     - _cnvNormStrength: 1
     - _cnvRot: 0
