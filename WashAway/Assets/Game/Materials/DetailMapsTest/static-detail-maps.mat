@@ -192,7 +192,7 @@ Material:
     - _ZWrite: 1
     - _blendFactor: 0
     - _canvas_cutoff: 0.2
-    - _canvas_edge_1: 0.77
+    - _canvas_edge_1: 0.8
     - _canvas_edge_2: 1
     - _canvas_normal_strength: 0.2
     - _cnvMetal: 0

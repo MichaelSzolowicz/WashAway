@@ -160,7 +160,7 @@ MonoBehaviour:
   clearOnStart: 0
   clearOnDestroy: 0
   layers:
-  - sourceTexture: {fileID: 2800000, guid: c334a18aaa6a93843b48d8fb04143657, type: 3}
+  - sourceTexture: {fileID: 2800000, guid: 6e4ad8e8df5505a47b909aa09da2760e, type: 3}
     offset: {x: -0, y: -0}
     scale: {x: 1, y: 1}
     tag: 
