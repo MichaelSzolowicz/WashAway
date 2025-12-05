@@ -1410,7 +1410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a54577d9b76954d9145a60cb26f38e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  painting: {fileID: 8400000, guid: 00c5296113f44b74e91cc79c165553d1, type: 2}
+  painting: {fileID: 8400000, guid: d34c1f3c54863ca41bb2c046fd3e4676, type: 2}
   paintingWidthMeters: 17.19
   blendShader: Unlit/Blend
   additive: 0
