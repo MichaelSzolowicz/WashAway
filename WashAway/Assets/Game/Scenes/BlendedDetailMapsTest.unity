@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a54577d9b76954d9145a60cb26f38e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  painting: {fileID: 8400000, guid: 77da76232f7124e45b2c753457715c4c, type: 2}
+  painting: {fileID: 8400000, guid: 8232384a57f757044a439aefdfacdd89, type: 2}
   paintingWidthMeters: 17.19
   blendShader: Unlit/AdditiveBlend
   additive: 1
@@ -649,7 +649,7 @@ PrefabInstance:
         type: 3}
       propertyPath: mask
       value: 
-      objectReference: {fileID: 8400000, guid: a410dd5b3a1648a4cb3ade84c438f829, type: 2}
+      objectReference: {fileID: 8400000, guid: 8232384a57f757044a439aefdfacdd89, type: 2}
     - target: {fileID: 6020464760165040389, guid: fb2a90ccb856af4459d5dc150af9f528,
         type: 3}
       propertyPath: debug.disableStartScreen
@@ -754,7 +754,7 @@ PrefabInstance:
     - target: {fileID: 3539055361863011401, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3786901577825990408, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
