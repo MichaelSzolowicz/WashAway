@@ -124,67 +124,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &18088524
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 18088526}
-  - component: {fileID: 18088525}
-  m_Layer: 0
-  m_Name: ThicknessGenerator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &18088525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 18088524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3a54577d9b76954d9145a60cb26f38e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  painting: {fileID: 8400000, guid: 2df39ed154b130b4e81f462436dad69f, type: 2}
-  paintingWidthMeters: 17.19
-  blendShader: Unlit/StencilBlend
-  additive: 0
-  clearOnStart: 0
-  clearOnDestroy: 0
-  layers:
-  - sourceTexture: {fileID: 2800000, guid: 6e4ad8e8df5505a47b909aa09da2760e, type: 3}
-    offset: {x: -0, y: -0}
-    scale: {x: 1, y: 1}
-    tag: 
-    enabled: 1
-  - sourceTexture: {fileID: 2800000, guid: 6701f8f464b291e42843f306a4ba8bf3, type: 3}
-    offset: {x: -6.7658525, y: -12.071262}
-    scale: {x: 20, y: 20}
-    tag: Character
-    enabled: 1
---- !u!4 &18088526
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 18088524}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &203525661
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a54577d9b76954d9145a60cb26f38e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  painting: {fileID: 8400000, guid: 8232384a57f757044a439aefdfacdd89, type: 2}
+  painting: {fileID: 8400000, guid: 4afe441e7f554ef469d2074f73a7a56e, type: 2}
   paintingWidthMeters: 17.19
   blendShader: Unlit/AdditiveBlend
   additive: 1
@@ -649,7 +588,7 @@ PrefabInstance:
         type: 3}
       propertyPath: mask
       value: 
-      objectReference: {fileID: 8400000, guid: 8232384a57f757044a439aefdfacdd89, type: 2}
+      objectReference: {fileID: 8400000, guid: 77da76232f7124e45b2c753457715c4c, type: 2}
     - target: {fileID: 6020464760165040389, guid: fb2a90ccb856af4459d5dc150af9f528,
         type: 3}
       propertyPath: debug.disableStartScreen
@@ -754,7 +693,7 @@ PrefabInstance:
     - target: {fileID: 3539055361863011401, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3786901577825990408, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
@@ -781,20 +720,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlatformerCharacter
       objectReference: {fileID: 0}
-    - target: {fileID: 6238849839377232250, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: artist
-      value: 
-      objectReference: {fileID: 1512466920}
     - target: {fileID: 6603370332572647833, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.3500004
+      value: 6.32
       objectReference: {fileID: 0}
     - target: {fileID: 6603370332572647833, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.21
+      value: -6.52
       objectReference: {fileID: 0}
     - target: {fileID: 6603370332572647833, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
@@ -824,27 +758,27 @@ PrefabInstance:
     - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.05
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.05
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.05
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.35
+      value: 6.32
       objectReference: {fileID: 0}
     - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.21
+      value: -6.52
       objectReference: {fileID: 0}
     - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
@@ -859,14 +793,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 703790939}
-    - targetCorrespondingSourceObject: {fileID: 3712603452275241170, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 703790941}
-    - targetCorrespondingSourceObject: {fileID: 3712603452275241170, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 703790940}
   m_SourcePrefab: {fileID: 100100000, guid: f279dfdf7b2b9b844888a94adeed9726, type: 3}
 --- !u!4 &703790937 stripped
 Transform:
@@ -893,37 +819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentTransform: {fileID: 703790937}
-  artist: {fileID: 1057730253}
-  paintedSpriteTag: Character
---- !u!114 &703790940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703790938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5202f0e2ecf5f3445bbef410aec033ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentTransform: {fileID: 703790937}
-  artist: {fileID: 18088525}
-  paintedSpriteTag: Character
---- !u!114 &703790941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703790938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5202f0e2ecf5f3445bbef410aec033ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentTransform: {fileID: 703790937}
-  artist: {fileID: 1333376624}
+  artist: {fileID: 1512466920}
   paintedSpriteTag: Character
 --- !u!1 &819516562
 GameObject:
@@ -1043,67 +939,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 605985401}
   m_LocalEulerAnglesHint: {x: 37.228, y: -34.063, z: -13.651}
---- !u!1 &1057730252
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1057730254}
-  - component: {fileID: 1057730253}
-  m_Layer: 0
-  m_Name: NormalGenerator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1057730253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1057730252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3a54577d9b76954d9145a60cb26f38e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  painting: {fileID: 8400000, guid: f13765c06a5c99844b20407d3baa0a95, type: 2}
-  paintingWidthMeters: 17.19
-  blendShader: Unlit/StencilBlend
-  additive: 0
-  clearOnStart: 0
-  clearOnDestroy: 0
-  layers:
-  - sourceTexture: {fileID: 2800000, guid: 39c2815d60de2794ca0fa490f3e71f83, type: 3}
-    offset: {x: -0, y: -0}
-    scale: {x: 1, y: 1}
-    tag: 
-    enabled: 1
-  - sourceTexture: {fileID: 2800000, guid: 9f90a8bcccb77eb44904a58afb1973eb, type: 3}
-    offset: {x: -6.7658525, y: -12.071262}
-    scale: {x: 20, y: 20}
-    tag: Character
-    enabled: 1
---- !u!4 &1057730254
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1057730252}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1084910688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,7 +1076,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: de7599e19477b9743a0631e2cf1d9704, type: 2}
+      objectReference: {fileID: 2100000, guid: bb24b5106fbace94683469203976efb9, type: 2}
     - target: {fileID: 919132149155446097, guid: f60bac5f60fbc344dbd51d6f31fabcac,
         type: 3}
       propertyPath: m_Name
@@ -1283,67 +1118,6 @@ Transform:
   m_GameObject: {fileID: 1330767343}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1333376623
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1333376625}
-  - component: {fileID: 1333376624}
-  m_Layer: 0
-  m_Name: RoughGenerator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1333376624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1333376623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3a54577d9b76954d9145a60cb26f38e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  painting: {fileID: 8400000, guid: be3f7ac055ec7fb4aba9c86f4def3e8e, type: 2}
-  paintingWidthMeters: 17.19
-  blendShader: Unlit/StencilBlend
-  additive: 0
-  clearOnStart: 0
-  clearOnDestroy: 0
-  layers:
-  - sourceTexture: {fileID: 2800000, guid: 4f9b8c4fad0d5a247afe4f9691202c01, type: 3}
-    offset: {x: -0, y: -0}
-    scale: {x: 1, y: 1}
-    tag: 
-    enabled: 1
-  - sourceTexture: {fileID: 2800000, guid: 8345375baea39a74da0fa47f1f6c5ff4, type: 3}
-    offset: {x: -6.7658525, y: -12.071262}
-    scale: {x: 20, y: 20}
-    tag: Character
-    enabled: 1
---- !u!4 &1333376625
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1333376623}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1410,7 +1184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a54577d9b76954d9145a60cb26f38e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  painting: {fileID: 8400000, guid: d34c1f3c54863ca41bb2c046fd3e4676, type: 2}
+  painting: {fileID: 8400000, guid: e4b8e6fa657644f449aa6edacadf9355, type: 2}
   paintingWidthMeters: 17.19
   blendShader: Unlit/Blend
   additive: 0
@@ -1423,8 +1197,8 @@ MonoBehaviour:
     tag: 
     enabled: 1
   - sourceTexture: {fileID: 2800000, guid: 0593ba1b0ed9eed42b42e15f39bbace4, type: 3}
-    offset: {x: -6.7658525, y: -12.071262}
-    scale: {x: 20, y: 20}
+    offset: {x: -28.421856, y: -3.5236578}
+    scale: {x: 33.333336, y: 33.333336}
     tag: Character
     enabled: 1
 --- !u!4 &1512466921
@@ -1785,9 +1559,6 @@ SceneRoots:
   - {fileID: 1678792133}
   - {fileID: 703790936}
   - {fileID: 1512466921}
-  - {fileID: 1057730254}
-  - {fileID: 1333376625}
-  - {fileID: 18088526}
   - {fileID: 371351473}
   - {fileID: 1084910689}
   - {fileID: 396254553}
