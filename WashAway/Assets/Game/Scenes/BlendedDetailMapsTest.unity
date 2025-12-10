@@ -166,10 +166,10 @@ MonoBehaviour:
     scale: {x: 1, y: 1}
     tag: 
     enabled: 1
-  - _paintedTextureHook: {fileID: -5762620417281301400, guid: 8a1dd15806b06ce4fae4ab663b09de7f,
+  - _paintedTextureHook: {fileID: 7066498197901680348, guid: ff366406933d81b4bbcdc972fd01bb0c,
       type: 3}
-    offset: {x: -6.7658525, y: -12.071262}
-    scale: {x: 20, y: 20}
+    offset: {x: -3.3209152, y: -6.1108866}
+    scale: {x: 10.517459, y: 10.517459}
     tag: Character
     enabled: 1
 --- !u!4 &18088526
@@ -756,7 +756,7 @@ PrefabInstance:
     - target: {fileID: 3539055361863011401, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3786901577825990408, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
@@ -832,17 +832,17 @@ PrefabInstance:
     - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.05
+      value: 0.09508
       objectReference: {fileID: 0}
     - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.05
+      value: 0.09508
       objectReference: {fileID: 0}
     - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.05
+      value: 0.09508
       objectReference: {fileID: 0}
     - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
@@ -1093,10 +1093,10 @@ MonoBehaviour:
     scale: {x: 1, y: 1}
     tag: 
     enabled: 1
-  - _paintedTextureHook: {fileID: -5762620417281301400, guid: 2db18abfc267fa14e8eaaf10a4b1d3e3,
+  - _paintedTextureHook: {fileID: 7066498197901680348, guid: 1094ede60dee5294293313404cc53ba0,
       type: 3}
-    offset: {x: -6.7658525, y: -12.071262}
-    scale: {x: 20, y: 20}
+    offset: {x: -3.3209152, y: -6.1108866}
+    scale: {x: 10.517459, y: 10.517459}
     tag: Character
     enabled: 1
 --- !u!4 &1057730254
@@ -1341,10 +1341,10 @@ MonoBehaviour:
     scale: {x: 1, y: 1}
     tag: 
     enabled: 1
-  - _paintedTextureHook: {fileID: -5762620417281301400, guid: 56af97231e6436246a52e7995c8bc7b5,
+  - _paintedTextureHook: {fileID: 7066498197901680348, guid: 681067a6ea260a34b94c3a837c4520d7,
       type: 3}
-    offset: {x: -6.7658525, y: -12.071262}
-    scale: {x: 20, y: 20}
+    offset: {x: -3.3209152, y: -6.1108866}
+    scale: {x: 10.517459, y: 10.517459}
     tag: Character
     enabled: 1
 --- !u!4 &1333376625
@@ -1435,10 +1435,10 @@ MonoBehaviour:
     scale: {x: 1, y: 1}
     tag: 
     enabled: 1
-  - _paintedTextureHook: {fileID: -5762620417281301400, guid: 50cc3ad9a0b9c2147b9b99d0689015ee,
+  - _paintedTextureHook: {fileID: 7066498197901680348, guid: 39748c837f74ca144b1cc92cadb1f737,
       type: 3}
-    offset: {x: -6.7658525, y: -12.071262}
-    scale: {x: 20, y: 20}
+    offset: {x: -3.3209152, y: -6.1108866}
+    scale: {x: 10.517459, y: 10.517459}
     tag: Character
     enabled: 1
 --- !u!4 &1512466921
