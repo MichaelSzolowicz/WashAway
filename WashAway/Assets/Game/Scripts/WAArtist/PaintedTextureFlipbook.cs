@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PaintedTextureFlipbook : MonoBehaviour, IPaintedTextureHook
+public class PaintedTextureFlipbook : PaintedTextureHook
 {
     [SerializeField] private List<Texture> sourceTextures = new List<Texture>();
 
-    public Texture GetTexture()
+    public override Texture GetTexture()
     {
         return sourceTextures[0];
     }

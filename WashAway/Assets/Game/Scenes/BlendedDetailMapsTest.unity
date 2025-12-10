@@ -160,12 +160,14 @@ MonoBehaviour:
   clearOnStart: 0
   clearOnDestroy: 0
   layers:
-  - sourceTexture: {fileID: 2800000, guid: 6e4ad8e8df5505a47b909aa09da2760e, type: 3}
+  - _paintedTextureHook: {fileID: -5762620417281301400, guid: c27fb3645bd451840af85b907583c7d4,
+      type: 3}
     offset: {x: -0, y: -0}
     scale: {x: 1, y: 1}
     tag: 
     enabled: 1
-  - sourceTexture: {fileID: 2800000, guid: 6701f8f464b291e42843f306a4ba8bf3, type: 3}
+  - _paintedTextureHook: {fileID: -5762620417281301400, guid: 8a1dd15806b06ce4fae4ab663b09de7f,
+      type: 3}
     offset: {x: -6.7658525, y: -12.071262}
     scale: {x: 20, y: 20}
     tag: Character
@@ -754,7 +756,7 @@ PrefabInstance:
     - target: {fileID: 3539055361863011401, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3786901577825990408, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
@@ -801,6 +803,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -7
       objectReference: {fileID: 0}
+    - target: {fileID: 7355948826698857873, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: dropTexture
+      value: 
+      objectReference: {fileID: -5762620417281301400, guid: dcfc87a59e384574d85016af629e8433,
+        type: 3}
     - target: {fileID: 7355948826698857873, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: maskGenerator
@@ -1079,12 +1087,14 @@ MonoBehaviour:
   clearOnStart: 0
   clearOnDestroy: 0
   layers:
-  - sourceTexture: {fileID: 2800000, guid: 39c2815d60de2794ca0fa490f3e71f83, type: 3}
+  - _paintedTextureHook: {fileID: -5762620417281301400, guid: 7f0e8eb388ba2b64cacbf80d6c00b26c,
+      type: 3}
     offset: {x: -0, y: -0}
     scale: {x: 1, y: 1}
     tag: 
     enabled: 1
-  - sourceTexture: {fileID: 2800000, guid: 9f90a8bcccb77eb44904a58afb1973eb, type: 3}
+  - _paintedTextureHook: {fileID: -5762620417281301400, guid: 2db18abfc267fa14e8eaaf10a4b1d3e3,
+      type: 3}
     offset: {x: -6.7658525, y: -12.071262}
     scale: {x: 20, y: 20}
     tag: Character
@@ -1325,12 +1335,14 @@ MonoBehaviour:
   clearOnStart: 0
   clearOnDestroy: 0
   layers:
-  - sourceTexture: {fileID: 2800000, guid: 4f9b8c4fad0d5a247afe4f9691202c01, type: 3}
+  - _paintedTextureHook: {fileID: -5762620417281301400, guid: 44b2c7b1764fedd47a3ade1b9f83b88c,
+      type: 3}
     offset: {x: -0, y: -0}
     scale: {x: 1, y: 1}
     tag: 
     enabled: 1
-  - sourceTexture: {fileID: 2800000, guid: 8345375baea39a74da0fa47f1f6c5ff4, type: 3}
+  - _paintedTextureHook: {fileID: -5762620417281301400, guid: 56af97231e6436246a52e7995c8bc7b5,
+      type: 3}
     offset: {x: -6.7658525, y: -12.071262}
     scale: {x: 20, y: 20}
     tag: Character
@@ -1417,12 +1429,14 @@ MonoBehaviour:
   clearOnStart: 0
   clearOnDestroy: 0
   layers:
-  - sourceTexture: {fileID: 2800000, guid: d98bf1e09f985df4684a1a48cf4a799a, type: 3}
+  - _paintedTextureHook: {fileID: -5762620417281301400, guid: 9a60c673c66c57d42bdfc3d0224fee33,
+      type: 3}
     offset: {x: -0, y: -0}
     scale: {x: 1, y: 1}
     tag: 
     enabled: 1
-  - sourceTexture: {fileID: 2800000, guid: 0593ba1b0ed9eed42b42e15f39bbace4, type: 3}
+  - _paintedTextureHook: {fileID: -5762620417281301400, guid: 50cc3ad9a0b9c2147b9b99d0689015ee,
+      type: 3}
     offset: {x: -6.7658525, y: -12.071262}
     scale: {x: 20, y: 20}
     tag: Character
