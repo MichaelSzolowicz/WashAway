@@ -3,10 +3,10 @@ using UnityEngine;
 [System.Serializable]
 public class PaintedSprite
 {
-    [SerializeField] private PaintedTextureHook _paintedTextureHook;
+    [SerializeField] public PaintedTextureHook paintedTextureHook;
 
     public Texture sourceTexture { 
-        get { return _paintedTextureHook.GetTexture(); }
+        get { return paintedTextureHook.GetTexture(); }
     }
 
     public Vector2 offset;
@@ -16,6 +16,6 @@ public class PaintedSprite
 
     public PaintedSprite(PaintedTextureHook paintedTextureHook)
     {
-        _paintedTextureHook = paintedTextureHook;
+        this.paintedTextureHook = paintedTextureHook;
     }
 }

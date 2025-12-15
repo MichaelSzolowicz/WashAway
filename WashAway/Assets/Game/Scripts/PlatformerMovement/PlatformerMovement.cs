@@ -12,6 +12,11 @@ public class PlatformerMovement : MonoBehaviour
     [SerializeField] private float brakingScale = 1;
     [SerializeField, Range(0f, 90f)] private float maxWalkableSlope;
 
+    public float walkSpeed
+    {
+        get { return walkVelocity.magnitude; }
+    }
+
     [Header("Jumping")]
     [SerializeField] private float jumpScale = 1;
 
