@@ -190,7 +190,9 @@ public class PlatformerMovement : MonoBehaviour
 
     public void TurnAround()
     {
-        transform.Rotate(new Vector3(0, 180));
+        Vector3 mirrored = transform.localScale;
+        mirrored.x = -mirrored.x;
+        transform.localScale = mirrored;
         facingLeft = !facingLeft;
     }
 
