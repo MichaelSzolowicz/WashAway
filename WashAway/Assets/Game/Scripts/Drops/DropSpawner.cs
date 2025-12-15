@@ -10,7 +10,7 @@ public class DropSpawner : MonoBehaviour
     }
 
     [SerializeField] private WAArtist maskGenerator;
-    [SerializeField] private Texture dropTexture;
+    [SerializeField] private PaintedTextureHook dropTexture;
     [SerializeField] private int numDrops;
     [SerializeField] private float dropLifetime;
     [SerializeField] private float spawnDelay = .5f;
@@ -49,8 +49,7 @@ public class DropSpawner : MonoBehaviour
 
     private Drop CreateWaterDrop(string dropName)
     {
-        PaintedSprite newSprite = new PaintedSprite();
-        newSprite.sourceTexture = dropTexture;
+        PaintedSprite newSprite = new PaintedSprite(dropTexture);
         newSprite.tag = dropName;
 
         maskGenerator.AddLayer(newSprite);

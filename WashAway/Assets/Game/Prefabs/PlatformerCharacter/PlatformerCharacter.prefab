@@ -92,7 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maskGenerator: {fileID: 0}
-  dropTexture: {fileID: 2800000, guid: 62c352e1bae82474b8986f125d8884ef, type: 3}
+  dropTexture: {fileID: -5762620417281301400, guid: dcfc87a59e384574d85016af629e8433,
+    type: 3}
   numDrops: 51
   dropLifetime: 4.3
   spawnDelay: 0.1

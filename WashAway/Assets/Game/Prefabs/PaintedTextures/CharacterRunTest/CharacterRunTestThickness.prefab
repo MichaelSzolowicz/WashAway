@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2108683936276193979
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6528067672702696007}
+  - component: {fileID: 7066498197901680348}
+  m_Layer: 0
+  m_Name: CharacterRunTestThickness
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6528067672702696007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108683936276193979}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7066498197901680348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108683936276193979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dee81889dc8a204c90f4975bdddb58f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceTextures:
+  - {fileID: 2800000, guid: 5acb71ceca4e86044a903b911609e759, type: 3}
+  - {fileID: 2800000, guid: 6e5bcd78a7492694194e6b9480a49c5d, type: 3}
+  - {fileID: 2800000, guid: 071bf97a6082bce44a36b6fa86e8a678, type: 3}
+  - {fileID: 2800000, guid: a68c42c42e55cd646bdb1782fd546b2e, type: 3}
+  - {fileID: 2800000, guid: 0cd3060fa69b2274c8b3ce791f8ca133, type: 3}
+  - {fileID: 2800000, guid: a640fe3a1ad6253428f0bddd086b9d6b, type: 3}
+  - {fileID: 2800000, guid: 35cc5b0a570c1e84bacc43cd4f37e950, type: 3}
+  - {fileID: 2800000, guid: 3513c444db7488946b1125f2eaabe549, type: 3}
+  - {fileID: 2800000, guid: aba96b8284bf26441b1aa975edca22ab, type: 3}
+  - {fileID: 2800000, guid: 0cb1baee2df28034fb8f557e5e8985f1, type: 3}
+  - {fileID: 2800000, guid: 70df90dc040cb8c48ab0a9ae8da75acd, type: 3}
+  - {fileID: 2800000, guid: 86c17320dc7e1d94b9f6a5808eff2737, type: 3}
+  - {fileID: 2800000, guid: f6ae0a4a4f4fee64eb0e6d2bd7ffdc70, type: 3}
+  frequency: 12
