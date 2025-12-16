@@ -55,7 +55,7 @@ public class WAArtist : MonoBehaviour
         blendMaterial = new Material(Shader.Find(blendShader));
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if(Application.isPlaying)
         {
