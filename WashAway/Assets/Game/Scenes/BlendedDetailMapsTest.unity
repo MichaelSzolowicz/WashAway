@@ -944,7 +944,7 @@ MonoBehaviour:
   artist: {fileID: 1057730253}
   paintedSpriteTag: Character
   paintedSprite:
-    paintedTextureHook: {fileID: -5762620417281301400, guid: 56af97231e6436246a52e7995c8bc7b5,
+    paintedTextureHook: {fileID: -5762620417281301400, guid: 2db18abfc267fa14e8eaaf10a4b1d3e3,
       type: 3}
     offset: {x: -3.3209152, y: -6.1108866}
     scale: {x: 10.517459, y: 10.517459}
@@ -1211,7 +1211,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1}
     tag: 
     enabled: 1
-  - paintedTextureHook: {fileID: -5762620417281301400, guid: 56af97231e6436246a52e7995c8bc7b5,
+  - paintedTextureHook: {fileID: -5762620417281301400, guid: 2db18abfc267fa14e8eaaf10a4b1d3e3,
       type: 3}
     offset: {x: -3.3209152, y: -6.1108866}
     scale: {x: 10.517459, y: 10.517459}
