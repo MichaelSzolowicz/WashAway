@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Scales a texture by transform's x,y local scale and offsets the texture
-/// to be centered on transform's x,y local position. Works in texture space,
+/// Scales a texture by transform's x,y position local scale the texture
+/// to be centered on transform's x,y position. Works in texture space,
 /// does not account for UV space or the transform of any object the artist's resulting texture might
 /// be applied to. For best results, make sure the UV layout of the object receiving 
 /// the artist's resulting texture is right side up and the object faces the viewing camera.
@@ -56,6 +56,6 @@ public class PaintedSpriteConstraintComponent : MonoBehaviour
         if (artist == null) return;
         if (paintedSprite == null) return;
 
-        PaintedSpriteConstraint.ConstrainSpriteToWorldPositionScale(transform.localPosition, transform.localScale, artist.InverseWidthMeters, out paintedSprite.offset, out paintedSprite.scale);
+        PaintedSpriteConstraint.ConstrainSpriteToWorldPositionScale(transform.position, transform.localScale, artist.InverseWidthMeters, out paintedSprite.offset, out paintedSprite.scale);
     }
 }
