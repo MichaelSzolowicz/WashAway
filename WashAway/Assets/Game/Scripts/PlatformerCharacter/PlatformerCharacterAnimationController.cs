@@ -21,6 +21,8 @@ public class PlatformerCharacterAnimationController : MonoBehaviour
     [SerializeField] private PaintedTextureHook _runRough;
     [SerializeField] private PaintedTextureHook _runThickness;
 
+    private bool _prevFacingLeft = false;
+
     private enum State
     {
         Idle,
@@ -52,5 +54,15 @@ public class PlatformerCharacterAnimationController : MonoBehaviour
             default:
                 break;
         }
+
+        // This assumes that all the constraints are on the same object,
+        // but the contraint / wartist system will be obsolete soon anyway.
+        if(_platformerMovement.FacingLeft != _prevFacingLeft)
+        {
+            Vector3 mirrored = _constraintColor.transform.localScale;
+            mirrored.x = -mirrored.x;
+            _constraintColor.transform.localScale = mirrored;
+        }
+        _prevFacingLeft = _platformerMovement.FacingLeft;
     }
 }

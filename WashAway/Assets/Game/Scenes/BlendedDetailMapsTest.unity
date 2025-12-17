@@ -168,8 +168,8 @@ MonoBehaviour:
     enabled: 1
   - paintedTextureHook: {fileID: -5762620417281301400, guid: 8a1dd15806b06ce4fae4ab663b09de7f,
       type: 3}
-    offset: {x: -3.3209152, y: -6.1108866}
-    scale: {x: 10.517459, y: 10.517459}
+    offset: {x: -4.4243746, y: -5.5994763}
+    scale: {x: 10, y: 10}
     tag: Character
     enabled: 1
 --- !u!4 &18088526
@@ -695,362 +695,6 @@ Transform:
   - {fileID: 418949685}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &703790936
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3216117592984667365, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3216117592984667365, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3216117592984667365, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3216117592984667365, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3216117592984667365, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3216117592984667365, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3216117592984667365, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3216117592984667365, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3216117592984667365, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3216117592984667365, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3539055361863011401, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3786901577825990408, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: jumpScale
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3786901577825990408, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: gravityScale
-      value: 1.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3786901577825990408, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: maxWalkSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4248487411455644778, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: maskGenerator
-      value: 
-      objectReference: {fileID: 371351472}
-    - target: {fileID: 4406575685451234514, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_Name
-      value: PlatformerCharacter
-      objectReference: {fileID: 0}
-    - target: {fileID: 6238849839377232250, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: artist
-      value: 
-      objectReference: {fileID: 1512466920}
-    - target: {fileID: 6238849839377232250, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: paintedSprite.tag
-      value: Character
-      objectReference: {fileID: 0}
-    - target: {fileID: 6238849839377232250, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: paintedSprite.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6238849839377232250, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: paintedSprite.scale.x
-      value: 10.517459
-      objectReference: {fileID: 0}
-    - target: {fileID: 6238849839377232250, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: paintedSprite.scale.y
-      value: 10.517459
-      objectReference: {fileID: 0}
-    - target: {fileID: 6238849839377232250, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: paintedSprite.offset.x
-      value: -3.3209152
-      objectReference: {fileID: 0}
-    - target: {fileID: 6238849839377232250, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: paintedSprite.offset.y
-      value: -6.1108866
-      objectReference: {fileID: 0}
-    - target: {fileID: 6238849839377232250, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: paintedSprite.paintedTextureHook
-      value: 
-      objectReference: {fileID: -5762620417281301400, guid: 50cc3ad9a0b9c2147b9b99d0689015ee,
-        type: 3}
-    - target: {fileID: 6603370332572647833, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.3500004
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603370332572647833, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603370332572647833, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7355948826698857873, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: dropTexture
-      value: 
-      objectReference: {fileID: -5762620417281301400, guid: dcfc87a59e384574d85016af629e8433,
-        type: 3}
-    - target: {fileID: 7355948826698857873, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: maskGenerator
-      value: 
-      objectReference: {fileID: 371351472}
-    - target: {fileID: 7565704587080158720, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 7565704587080158720, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 7565704587080158720, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.09508
-      objectReference: {fileID: 0}
-    - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.09508
-      objectReference: {fileID: 0}
-    - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.09508
-      objectReference: {fileID: 0}
-    - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3712603452275241170, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 703790945}
-    - targetCorrespondingSourceObject: {fileID: 3712603452275241170, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 703790939}
-    - targetCorrespondingSourceObject: {fileID: 3712603452275241170, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 703790941}
-    - targetCorrespondingSourceObject: {fileID: 3712603452275241170, guid: f279dfdf7b2b9b844888a94adeed9726,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 703790940}
-  m_SourcePrefab: {fileID: 100100000, guid: f279dfdf7b2b9b844888a94adeed9726, type: 3}
---- !u!4 &703790937 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8927672094789748330, guid: f279dfdf7b2b9b844888a94adeed9726,
-    type: 3}
-  m_PrefabInstance: {fileID: 703790936}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &703790938 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3712603452275241170, guid: f279dfdf7b2b9b844888a94adeed9726,
-    type: 3}
-  m_PrefabInstance: {fileID: 703790936}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &703790939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703790938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5202f0e2ecf5f3445bbef410aec033ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentTransform: {fileID: 703790937}
-  artist: {fileID: 1057730253}
-  paintedSpriteTag: Character
-  paintedSprite:
-    paintedTextureHook: {fileID: -5762620417281301400, guid: 2db18abfc267fa14e8eaaf10a4b1d3e3,
-      type: 3}
-    offset: {x: -3.3209152, y: -6.1108866}
-    scale: {x: 10.517459, y: 10.517459}
-    tag: Character
-    enabled: 1
---- !u!114 &703790940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703790938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5202f0e2ecf5f3445bbef410aec033ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentTransform: {fileID: 703790937}
-  artist: {fileID: 18088525}
-  paintedSpriteTag: Character
-  paintedSprite:
-    paintedTextureHook: {fileID: -5762620417281301400, guid: 8a1dd15806b06ce4fae4ab663b09de7f,
-      type: 3}
-    offset: {x: -3.3209152, y: -6.1108866}
-    scale: {x: 10.517459, y: 10.517459}
-    tag: Character
-    enabled: 1
---- !u!114 &703790941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703790938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5202f0e2ecf5f3445bbef410aec033ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentTransform: {fileID: 703790937}
-  artist: {fileID: 1333376624}
-  paintedSpriteTag: Character
-  paintedSprite:
-    paintedTextureHook: {fileID: -5762620417281301400, guid: 56af97231e6436246a52e7995c8bc7b5,
-      type: 3}
-    offset: {x: -3.3209152, y: -6.1108866}
-    scale: {x: 10.517459, y: 10.517459}
-    tag: Character
-    enabled: 1
---- !u!114 &703790942 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6238849839377232250, guid: f279dfdf7b2b9b844888a94adeed9726,
-    type: 3}
-  m_PrefabInstance: {fileID: 703790936}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703790938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5202f0e2ecf5f3445bbef410aec033ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &703790944 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3786901577825990408, guid: f279dfdf7b2b9b844888a94adeed9726,
-    type: 3}
-  m_PrefabInstance: {fileID: 703790936}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703790938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c8efe9b3ad5d8f499308fda1c0d152f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &703790945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703790938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 243c7ddcd628eb94ba33716caaefffc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _platformerMovement: {fileID: 703790944}
-  _constraintColor: {fileID: 703790942}
-  _constraintNormal: {fileID: 703790939}
-  _constraintRough: {fileID: 703790941}
-  _constraintThickness: {fileID: 703790940}
-  _idleColor: {fileID: -5762620417281301400, guid: 50cc3ad9a0b9c2147b9b99d0689015ee,
-    type: 3}
-  _idleNormal: {fileID: -5762620417281301400, guid: 2db18abfc267fa14e8eaaf10a4b1d3e3,
-    type: 3}
-  _idleRough: {fileID: -5762620417281301400, guid: 56af97231e6436246a52e7995c8bc7b5,
-    type: 3}
-  _idleThickness: {fileID: -5762620417281301400, guid: 8a1dd15806b06ce4fae4ab663b09de7f,
-    type: 3}
-  _runColor: {fileID: 7066498197901680348, guid: 39748c837f74ca144b1cc92cadb1f737,
-    type: 3}
-  _runNormal: {fileID: 7066498197901680348, guid: 1094ede60dee5294293313404cc53ba0,
-    type: 3}
-  _runRough: {fileID: 7066498197901680348, guid: 681067a6ea260a34b94c3a837c4520d7,
-    type: 3}
-  _runThickness: {fileID: 7066498197901680348, guid: ff366406933d81b4bbcdc972fd01bb0c,
-    type: 3}
 --- !u!1 &819516562
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,8 +857,8 @@ MonoBehaviour:
     enabled: 1
   - paintedTextureHook: {fileID: -5762620417281301400, guid: 2db18abfc267fa14e8eaaf10a4b1d3e3,
       type: 3}
-    offset: {x: -3.3209152, y: -6.1108866}
-    scale: {x: 10.517459, y: 10.517459}
+    offset: {x: -4.4243746, y: -5.5994763}
+    scale: {x: 10, y: 10}
     tag: Character
     enabled: 1
 --- !u!4 &1057730254
@@ -1461,8 +1105,8 @@ MonoBehaviour:
     enabled: 1
   - paintedTextureHook: {fileID: -5762620417281301400, guid: 56af97231e6436246a52e7995c8bc7b5,
       type: 3}
-    offset: {x: -3.3209152, y: -6.1108866}
-    scale: {x: 10.517459, y: 10.517459}
+    offset: {x: -4.4243746, y: -5.5994763}
+    scale: {x: 10, y: 10}
     tag: Character
     enabled: 1
 --- !u!4 &1333376625
@@ -1555,8 +1199,8 @@ MonoBehaviour:
     enabled: 1
   - paintedTextureHook: {fileID: -5762620417281301400, guid: 50cc3ad9a0b9c2147b9b99d0689015ee,
       type: 3}
-    offset: {x: -3.3209152, y: -6.1108866}
-    scale: {x: 10.517459, y: 10.517459}
+    offset: {x: -4.4243746, y: -5.5994763}
+    scale: {x: 10, y: 10}
     tag: Character
     enabled: 1
 --- !u!4 &1512466921
@@ -1907,6 +1551,536 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &7511596523600562168
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 588384246701114923, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: maskGenerator
+      value: 
+      objectReference: {fileID: 371351472}
+    - target: {fileID: 668904153724623405, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: artist
+      value: 
+      objectReference: {fileID: 18088525}
+    - target: {fileID: 668904153724623405, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.tag
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 668904153724623405, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 668904153724623405, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 668904153724623405, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 668904153724623405, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.x
+      value: -49.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 668904153724623405, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.y
+      value: -49.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 668904153724623405, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.paintedTextureHook
+      value: 
+      objectReference: {fileID: -5762620417281301400, guid: 8a1dd15806b06ce4fae4ab663b09de7f,
+        type: 3}
+    - target: {fileID: 1245460972322751341, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: artist
+      value: 
+      objectReference: {fileID: 1512466920}
+    - target: {fileID: 1245460972322751341, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.tag
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 1245460972322751341, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1245460972322751341, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1245460972322751341, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1245460972322751341, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.x
+      value: -4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1245460972322751341, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.y
+      value: -4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1245460972322751341, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.paintedTextureHook
+      value: 
+      objectReference: {fileID: -5762620417281301400, guid: 50cc3ad9a0b9c2147b9b99d0689015ee,
+        type: 3}
+    - target: {fileID: 2215857780740436947, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: artist
+      value: 
+      objectReference: {fileID: 18088525}
+    - target: {fileID: 2215857780740436947, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.tag
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 2215857780740436947, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2215857780740436947, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2215857780740436947, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2215857780740436947, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.x
+      value: -4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2215857780740436947, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.y
+      value: -4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2215857780740436947, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.paintedTextureHook
+      value: 
+      objectReference: {fileID: -5762620417281301400, guid: 8a1dd15806b06ce4fae4ab663b09de7f,
+        type: 3}
+    - target: {fileID: 2243456581053570867, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: m_Name
+      value: PlatformerCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692462169652633792, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: maskGenerator
+      value: 
+      objectReference: {fileID: 371351472}
+    - target: {fileID: 4046716402494474579, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: artist
+      value: 
+      objectReference: {fileID: 1333376624}
+    - target: {fileID: 4046716402494474579, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.tag
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046716402494474579, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046716402494474579, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046716402494474579, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046716402494474579, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.x
+      value: -49.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046716402494474579, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.y
+      value: -49.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046716402494474579, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.paintedTextureHook
+      value: 
+      objectReference: {fileID: -5762620417281301400, guid: 56af97231e6436246a52e7995c8bc7b5,
+        type: 3}
+    - target: {fileID: 5197125133267075847, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: artist
+      value: 
+      objectReference: {fileID: 18088525}
+    - target: {fileID: 5197125133267075847, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.tag
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197125133267075847, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197125133267075847, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197125133267075847, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197125133267075847, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197125133267075847, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197125133267075847, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.paintedTextureHook
+      value: 
+      objectReference: {fileID: -5762620417281301400, guid: 8a1dd15806b06ce4fae4ab663b09de7f,
+        type: 3}
+    - target: {fileID: 6376766763562574576, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: artist
+      value: 
+      objectReference: {fileID: 1057730253}
+    - target: {fileID: 6376766763562574576, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.tag
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376766763562574576, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376766763562574576, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376766763562574576, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376766763562574576, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.x
+      value: -49.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376766763562574576, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.y
+      value: -49.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376766763562574576, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.paintedTextureHook
+      value: 
+      objectReference: {fileID: -5762620417281301400, guid: 2db18abfc267fa14e8eaaf10a4b1d3e3,
+        type: 3}
+    - target: {fileID: 6459417878100477142, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: artist
+      value: 
+      objectReference: {fileID: 1057730253}
+    - target: {fileID: 6459417878100477142, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.tag
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 6459417878100477142, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6459417878100477142, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6459417878100477142, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6459417878100477142, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.x
+      value: -4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6459417878100477142, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.y
+      value: -4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6459417878100477142, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.paintedTextureHook
+      value: 
+      objectReference: {fileID: -5762620417281301400, guid: 2db18abfc267fa14e8eaaf10a4b1d3e3,
+        type: 3}
+    - target: {fileID: 6520919502666531725, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520919502666531725, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520919502666531725, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520919502666531725, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520919502666531725, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520919502666531725, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520919502666531725, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520919502666531725, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520919502666531725, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520919502666531725, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481403120218619247, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: artist
+      value: 
+      objectReference: {fileID: 1512466920}
+    - target: {fileID: 8481403120218619247, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.tag
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481403120218619247, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481403120218619247, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481403120218619247, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481403120218619247, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.x
+      value: -49.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481403120218619247, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.y
+      value: -49.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481403120218619247, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.paintedTextureHook
+      value: 
+      objectReference: {fileID: -5762620417281301400, guid: 50cc3ad9a0b9c2147b9b99d0689015ee,
+        type: 3}
+    - target: {fileID: 8701540463484371692, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: artist
+      value: 
+      objectReference: {fileID: 1333376624}
+    - target: {fileID: 8701540463484371692, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.tag
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701540463484371692, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701540463484371692, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701540463484371692, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701540463484371692, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.x
+      value: -4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701540463484371692, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.y
+      value: -4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701540463484371692, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.paintedTextureHook
+      value: 
+      objectReference: {fileID: -5762620417281301400, guid: 56af97231e6436246a52e7995c8bc7b5,
+        type: 3}
+    - target: {fileID: 8940741080919852057, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: artist
+      value: 
+      objectReference: {fileID: 1057730253}
+    - target: {fileID: 8940741080919852057, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.tag
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940741080919852057, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940741080919852057, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940741080919852057, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940741080919852057, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.x
+      value: -4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940741080919852057, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.y
+      value: -4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940741080919852057, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.paintedTextureHook
+      value: 
+      objectReference: {fileID: -5762620417281301400, guid: 2db18abfc267fa14e8eaaf10a4b1d3e3,
+        type: 3}
+    - target: {fileID: 9066755194765263612, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: artist
+      value: 
+      objectReference: {fileID: 1333376624}
+    - target: {fileID: 9066755194765263612, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.tag
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066755194765263612, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066755194765263612, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066755194765263612, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.scale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066755194765263612, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066755194765263612, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.offset.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066755194765263612, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.paintedTextureHook
+      value: 
+      objectReference: {fileID: -5762620417281301400, guid: 56af97231e6436246a52e7995c8bc7b5,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 4277809673539476050, guid: f279dfdf7b2b9b844888a94adeed9726, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f279dfdf7b2b9b844888a94adeed9726, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1915,7 +2089,7 @@ SceneRoots:
   - {fileID: 1420628521}
   - {fileID: 420396529}
   - {fileID: 1678792133}
-  - {fileID: 703790936}
+  - {fileID: 7511596523600562168}
   - {fileID: 1512466921}
   - {fileID: 1057730254}
   - {fileID: 1333376625}
