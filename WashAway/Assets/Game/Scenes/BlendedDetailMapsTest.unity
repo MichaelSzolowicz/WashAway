@@ -168,7 +168,7 @@ MonoBehaviour:
     enabled: 1
   - paintedTextureHook: {fileID: -5762620417281301400, guid: 8a1dd15806b06ce4fae4ab663b09de7f,
       type: 3}
-    offset: {x: -4.5, y: -6.128854}
+    offset: {x: -4.569808, y: -6.2219315}
     scale: {x: 10, y: 10}
     tag: Character
     enabled: 1
@@ -725,6 +725,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2309636661306900115, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
+      propertyPath: _paintedSprite.tag
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 2309636661306900115, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
       propertyPath: paintedSprite.enabled
       value: 1
       objectReference: {fileID: 0}
@@ -737,6 +742,11 @@ PrefabInstance:
         type: 3}
       propertyPath: paintedSprite.scale.y
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2309636661306900115, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2309636661306900115, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
@@ -754,15 +764,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -5762620417281301400, guid: 50cc3ad9a0b9c2147b9b99d0689015ee,
         type: 3}
+    - target: {fileID: 2309636661306900115, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.paintedTextureHook
+      value: 
+      objectReference: {fileID: -5762620417281301400, guid: 50cc3ad9a0b9c2147b9b99d0689015ee,
+        type: 3}
     - target: {fileID: 3216117592984667365, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 3216117592984667365, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.8
+      value: 2.96
       objectReference: {fileID: 0}
     - target: {fileID: 3216117592984667365, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
@@ -821,6 +837,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3681983531383800315, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
+      propertyPath: _paintedSprite.tag
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681983531383800315, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
       propertyPath: paintedSprite.enabled
       value: 1
       objectReference: {fileID: 0}
@@ -836,6 +857,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3681983531383800315, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
+      propertyPath: _paintedSprite.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681983531383800315, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
       propertyPath: paintedSprite.offset.x
       value: -4.5
       objectReference: {fileID: 0}
@@ -847,6 +873,12 @@ PrefabInstance:
     - target: {fileID: 3681983531383800315, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: paintedSprite.paintedTextureHook
+      value: 
+      objectReference: {fileID: -5762620417281301400, guid: 56af97231e6436246a52e7995c8bc7b5,
+        type: 3}
+    - target: {fileID: 3681983531383800315, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.paintedTextureHook
       value: 
       objectReference: {fileID: -5762620417281301400, guid: 56af97231e6436246a52e7995c8bc7b5,
         type: 3}
@@ -897,6 +929,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8674212744983055626, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
+      propertyPath: _paintedSprite.tag
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 8674212744983055626, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
       propertyPath: paintedSprite.enabled
       value: 1
       objectReference: {fileID: 0}
@@ -909,6 +946,11 @@ PrefabInstance:
         type: 3}
       propertyPath: paintedSprite.scale.y
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8674212744983055626, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8674212744983055626, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
@@ -926,6 +968,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -5762620417281301400, guid: 8a1dd15806b06ce4fae4ab663b09de7f,
         type: 3}
+    - target: {fileID: 8674212744983055626, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.paintedTextureHook
+      value: 
+      objectReference: {fileID: -5762620417281301400, guid: 8a1dd15806b06ce4fae4ab663b09de7f,
+        type: 3}
     - target: {fileID: 9193642745187630615, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: artist
@@ -934,6 +982,11 @@ PrefabInstance:
     - target: {fileID: 9193642745187630615, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: paintedSprite.tag
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193642745187630615, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.tag
       value: Character
       objectReference: {fileID: 0}
     - target: {fileID: 9193642745187630615, guid: f279dfdf7b2b9b844888a94adeed9726,
@@ -953,6 +1006,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193642745187630615, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
+      propertyPath: _paintedSprite.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193642745187630615, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
       propertyPath: paintedSprite.offset.x
       value: -4.5
       objectReference: {fileID: 0}
@@ -964,6 +1022,12 @@ PrefabInstance:
     - target: {fileID: 9193642745187630615, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: paintedSprite.paintedTextureHook
+      value: 
+      objectReference: {fileID: -5762620417281301400, guid: 2db18abfc267fa14e8eaaf10a4b1d3e3,
+        type: 3}
+    - target: {fileID: 9193642745187630615, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: _paintedSprite.paintedTextureHook
       value: 
       objectReference: {fileID: -5762620417281301400, guid: 2db18abfc267fa14e8eaaf10a4b1d3e3,
         type: 3}
@@ -1134,7 +1198,7 @@ MonoBehaviour:
     enabled: 1
   - paintedTextureHook: {fileID: -5762620417281301400, guid: 2db18abfc267fa14e8eaaf10a4b1d3e3,
       type: 3}
-    offset: {x: -4.5, y: -6.128854}
+    offset: {x: -4.569808, y: -6.2219315}
     scale: {x: 10, y: 10}
     tag: Character
     enabled: 1
@@ -1382,7 +1446,7 @@ MonoBehaviour:
     enabled: 1
   - paintedTextureHook: {fileID: -5762620417281301400, guid: 56af97231e6436246a52e7995c8bc7b5,
       type: 3}
-    offset: {x: -4.5, y: -6.128854}
+    offset: {x: -4.569808, y: -6.2219315}
     scale: {x: 10, y: 10}
     tag: Character
     enabled: 1
@@ -1549,7 +1613,7 @@ MonoBehaviour:
     enabled: 1
   - paintedTextureHook: {fileID: -5762620417281301400, guid: 50cc3ad9a0b9c2147b9b99d0689015ee,
       type: 3}
-    offset: {x: -4.5, y: -6.128854}
+    offset: {x: -4.569808, y: -6.2219315}
     scale: {x: 10, y: 10}
     tag: Character
     enabled: 1
