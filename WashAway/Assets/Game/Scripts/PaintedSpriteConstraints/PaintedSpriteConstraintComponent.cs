@@ -16,7 +16,9 @@ public class PaintedSpriteConstraintComponent : MonoBehaviour
     [SerializeField] private WAArtist artist;
     [SerializeField] private string paintedSpriteTag;
 
-    public PaintedSprite paintedSprite;
+    [SerializeField] private PaintedSprite _paintedSprite;
+
+    public PaintedSprite paintedSprite { get { return _paintedSprite; } set { _paintedSprite = value; } }
 
     private void OnValidate()
     {
