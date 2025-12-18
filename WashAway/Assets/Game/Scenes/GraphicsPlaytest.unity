@@ -262,12 +262,12 @@ PrefabInstance:
     - target: {fileID: 6520919502666531725, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.3
+      value: -11.9
       objectReference: {fileID: 0}
     - target: {fileID: 6520919502666531725, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -18.6
+      value: -7.45
       objectReference: {fileID: 0}
     - target: {fileID: 6520919502666531725, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
@@ -781,7 +781,7 @@ MonoBehaviour:
     enabled: 1
   - paintedTextureHook: {fileID: -5762620417281301400, guid: 50cc3ad9a0b9c2147b9b99d0689015ee,
       type: 3}
-    offset: {x: -6.421577, y: -1.926343}
+    offset: {x: -5.5550265, y: -7.9651217}
     scale: {x: 25, y: 25}
     tag: Character
     enabled: 1
