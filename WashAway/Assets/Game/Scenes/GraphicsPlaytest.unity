@@ -1825,6 +1825,7 @@ MonoBehaviour:
   lineCollider: {fileID: 335574842}
   constraint: {fileID: 416116461}
   runAnim: {fileID: 4405114551135590711, guid: c8f1acb7992071d4d94717463ed5a656, type: 3}
+  startRunningDelay: 0.5
 --- !u!4 &1388554284
 Transform:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class WorkmanController : MonoBehaviour
     [SerializeField] private GameObject lineCollider;
     [SerializeField] private PaintedSpriteConstraintComponent constraint;
     [SerializeField] private PaintedTextureHook runAnim;
+    [SerializeField] private float startRunningDelay = .5f;
 
     private bool destinationReached = false;
 
@@ -23,6 +24,8 @@ public class WorkmanController : MonoBehaviour
         lineCollider.SetActive(false);
 
         constraint.paintedSprite.paintedTextureHook = runAnim;
+
+        yield return new WaitForSeconds(startRunningDelay);
 
         while (!destinationReached)
         {
