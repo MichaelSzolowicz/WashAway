@@ -826,6 +826,12 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &335574842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 456194792071843299, guid: a24c74f079b360e49a5ae68a911ec448,
+    type: 3}
+  m_PrefabInstance: {fileID: 1936325475}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &416116459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1816,6 +1822,7 @@ MonoBehaviour:
   workman: {fileID: 1388554284}
   moveTo: {fileID: 1088183538}
   speed: 5
+  lineCollider: {fileID: 335574842}
 --- !u!4 &1388554284
 Transform:
   m_ObjectHideFlags: 0

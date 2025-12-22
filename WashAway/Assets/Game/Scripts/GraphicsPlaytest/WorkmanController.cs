@@ -7,6 +7,7 @@ public class WorkmanController : MonoBehaviour
     [SerializeField] private Transform workman;
     [SerializeField] private Transform moveTo;
     [SerializeField] private float speed;
+    [SerializeField] private GameObject lineCollider;
 
     private bool destinationReached = false;
 
@@ -17,6 +18,8 @@ public class WorkmanController : MonoBehaviour
 
     private IEnumerator RunAwayCoroutine()
     {
+        lineCollider.SetActive(false);
+
         while (!destinationReached)
         {
             Vector3 direction = (moveTo.position - workman.position).normalized;
