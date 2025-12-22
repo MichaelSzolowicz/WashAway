@@ -858,7 +858,7 @@ Transform:
   m_GameObject: {fileID: 416116459}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.17000008, y: 0.21000004, z: 0}
+  m_LocalPosition: {x: 0.27, y: 1.38, z: 0}
   m_LocalScale: {x: 0.12495, y: 0.12495, z: 0.12495}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -929,7 +929,7 @@ MonoBehaviour:
     enabled: 1
   - paintedTextureHook: {fileID: 4405114551135590711, guid: 32d1339b8330c044a940a678c00b53e9,
       type: 3}
-    offset: {x: -5.5682855, y: -1.9446522}
+    offset: {x: -5.6445723, y: -2.1475062}
     scale: {x: 8.0032015, y: 8.0032015}
     tag: Worker
     enabled: 1
@@ -1823,6 +1823,8 @@ MonoBehaviour:
   moveTo: {fileID: 1088183538}
   speed: 5
   lineCollider: {fileID: 335574842}
+  constraint: {fileID: 416116461}
+  runAnim: {fileID: 4405114551135590711, guid: c8f1acb7992071d4d94717463ed5a656, type: 3}
 --- !u!4 &1388554284
 Transform:
   m_ObjectHideFlags: 0

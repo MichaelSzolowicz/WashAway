@@ -8,6 +8,8 @@ public class WorkmanController : MonoBehaviour
     [SerializeField] private Transform moveTo;
     [SerializeField] private float speed;
     [SerializeField] private GameObject lineCollider;
+    [SerializeField] private PaintedSpriteConstraintComponent constraint;
+    [SerializeField] private PaintedTextureHook runAnim;
 
     private bool destinationReached = false;
 
@@ -19,6 +21,8 @@ public class WorkmanController : MonoBehaviour
     private IEnumerator RunAwayCoroutine()
     {
         lineCollider.SetActive(false);
+
+        constraint.paintedSprite.paintedTextureHook = runAnim;
 
         while (!destinationReached)
         {
