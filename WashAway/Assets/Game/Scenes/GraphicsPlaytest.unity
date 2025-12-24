@@ -576,92 +576,92 @@ PrefabInstance:
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[0].normal.x
-      value: -0.7989755
+      value: -0.8278183
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[0].normal.y
-      value: 0.6013634
+      value: 0.56099623
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[1].normal.x
-      value: -0.024928171
+      value: 0.01946621
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[1].normal.y
-      value: 0.99968916
+      value: 0.99981046
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[2].normal.x
-      value: 0.8052044
+      value: 0.81060886
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[2].normal.y
-      value: 0.59299725
+      value: 0.5855878
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[3].normal.x
-      value: 0.50999105
+      value: 0.43164325
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[3].normal.y
-      value: 0.8601797
+      value: 0.9020444
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[1].position.x
-      value: 1.3394597
+      value: 1.8823433
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[1].position.y
-      value: 1.7796154
+      value: 2.777627
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[2].position.x
-      value: 2.135604
+      value: 3.2874937
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[2].position.y
-      value: 1.799468
+      value: 2.750269
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[3].position.x
-      value: 3.9533722
+      value: 5.7879434
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[3].position.y
-      value: -0.66879797
+      value: -0.7110162
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[4].position.x
-      value: 6.4941773
+      value: 9.40559
       objectReference: {fileID: 0}
     - target: {fileID: 1481630921498895750, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: points.Array.data[4].position.y
-      value: -2.175213
+      value: -2.44212
       objectReference: {fileID: 0}
     - target: {fileID: 5597261600302132309, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.29
+      value: -5.61
       objectReference: {fileID: 0}
     - target: {fileID: 5597261600302132309, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.17
+      value: 5.34
       objectReference: {fileID: 0}
     - target: {fileID: 5597261600302132309, guid: a24c74f079b360e49a5ae68a911ec448,
         type: 3}
@@ -923,8 +923,8 @@ MonoBehaviour:
     enabled: 1
   - paintedTextureHook: {fileID: 4405114551135590711, guid: 540d42093a86cd34bae91ca41e1034c2,
       type: 3}
-    offset: {x: -1.4376082, y: -2.144602}
-    scale: {x: 4.892779, y: 4.892779}
+    offset: {x: -0.85375816, y: -1.4010379}
+    scale: {x: 3.4184616, y: 3.4184616}
     tag: Piano
     enabled: 1
   - paintedTextureHook: {fileID: 4405114551135590711, guid: 32d1339b8330c044a940a678c00b53e9,
@@ -2198,7 +2198,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.0922863, y: 2.2088459}
+  m_Offset: {x: -1.042908, y: 2.1431103}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2209,7 +2209,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.0002446, y: 7.359534}
+  m_Size: {x: 8.217119, y: 8.900858}
   m_EdgeRadius: 0
 --- !u!1001 &1523352520
 PrefabInstance:
@@ -2807,8 +2807,8 @@ Transform:
   m_GameObject: {fileID: 1892704697}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.51, y: 2.23, z: 0}
-  m_LocalScale: {x: 0.20438282, y: 0.20438282, z: 0.20438282}
+  m_LocalPosition: {x: -1.51, y: 2.95, z: 0}
+  m_LocalScale: {x: 0.29252926, y: 0.29252926, z: 0.29252926}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1491496462}
@@ -3177,7 +3177,7 @@ PrefabInstance:
     - target: {fileID: 6293199750237025571, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6541425518707389569, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
