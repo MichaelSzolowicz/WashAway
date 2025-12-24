@@ -279,7 +279,7 @@ MonoBehaviour:
   dropSpawner: {fileID: 6000926016976205901}
   maskGenerator: {fileID: 0}
   probeHeight: 0.4
-  deathTime: 0.1
+  deathTime: 0
   debug:
     disableDamage: 0
     showProbes: 0

@@ -100,7 +100,7 @@ public class PlatformerCharacter : MonoBehaviour
     {
         if (pixelReader.Available)
         {
-            if (pixelReader.result.a >= 255 / 2)
+            if (pixelReader.result.a >= 255.0f / 2.0f)
             {
                 timeInVoid += timeSinceLastRead;
                 
@@ -117,8 +117,8 @@ public class PlatformerCharacter : MonoBehaviour
                 Debug.DrawLine(probePos, probePos + Vector3.back, Color.red, Time.deltaTime * 2);
             }
 
-            float x = (platformerMovement.transform.localPosition.x * maskGenerator.InverseWidthMeters) + .5f;
-            float y = ((platformerMovement.transform.localPosition.y + probeHeight) * maskGenerator.InverseWidthMeters) + .5f;
+            float x = (platformerMovement.transform.position.x * maskGenerator.InverseWidthMeters) + .5f;
+            float y = ((platformerMovement.transform.position.y + probeHeight) * maskGenerator.InverseWidthMeters) + .5f;
 
             pixelReader.ReadPixelAsync(maskGenerator.TargetRenderTexture, 0, (int)(x*maskGenerator.TargetRenderTexture.width), 1, (int)(y*maskGenerator.TargetRenderTexture.height), 1);
 
