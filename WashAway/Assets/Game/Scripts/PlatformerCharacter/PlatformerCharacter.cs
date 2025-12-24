@@ -106,7 +106,7 @@ public class PlatformerCharacter : MonoBehaviour
                 
                 if(timeInVoid > deathTime)
                 {
-                    //OnDeath();
+                    OnDeath();
                 }
             }
 
