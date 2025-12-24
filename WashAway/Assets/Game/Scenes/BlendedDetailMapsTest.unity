@@ -168,8 +168,8 @@ MonoBehaviour:
     enabled: 1
   - paintedTextureHook: {fileID: -5762620417281301400, guid: 8a1dd15806b06ce4fae4ab663b09de7f,
       type: 3}
-    offset: {x: -4.4243746, y: -5.5994763}
-    scale: {x: 10, y: 10}
+    offset: {x: -13.381618, y: -14.559628}
+    scale: {x: 25, y: 25}
     tag: Character
     enabled: 1
 --- !u!4 &18088526
@@ -857,8 +857,8 @@ MonoBehaviour:
     enabled: 1
   - paintedTextureHook: {fileID: -5762620417281301400, guid: 2db18abfc267fa14e8eaaf10a4b1d3e3,
       type: 3}
-    offset: {x: -4.4243746, y: -5.5994763}
-    scale: {x: 10, y: 10}
+    offset: {x: -13.381618, y: -14.559628}
+    scale: {x: 25, y: 25}
     tag: Character
     enabled: 1
 --- !u!4 &1057730254
@@ -1105,8 +1105,8 @@ MonoBehaviour:
     enabled: 1
   - paintedTextureHook: {fileID: -5762620417281301400, guid: 56af97231e6436246a52e7995c8bc7b5,
       type: 3}
-    offset: {x: -4.4243746, y: -5.5994763}
-    scale: {x: 10, y: 10}
+    offset: {x: -13.381618, y: -14.559628}
+    scale: {x: 25, y: 25}
     tag: Character
     enabled: 1
 --- !u!4 &1333376625
@@ -1199,8 +1199,8 @@ MonoBehaviour:
     enabled: 1
   - paintedTextureHook: {fileID: -5762620417281301400, guid: 50cc3ad9a0b9c2147b9b99d0689015ee,
       type: 3}
-    offset: {x: -4.4243746, y: -5.5994763}
-    scale: {x: 10, y: 10}
+    offset: {x: -13.381618, y: -14.559628}
+    scale: {x: 25, y: 25}
     tag: Character
     enabled: 1
 --- !u!4 &1512466921
@@ -1559,6 +1559,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 60882968727248642, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: artist
+      value: 
+      objectReference: {fileID: 18088525}
     - target: {fileID: 588384246701114923, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: maskGenerator
@@ -1605,6 +1610,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -5762620417281301400, guid: 8a1dd15806b06ce4fae4ab663b09de7f,
         type: 3}
+    - target: {fileID: 1071254493635925378, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071254493635925378, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109295887078084368, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1245460972322751341, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: artist
@@ -1646,6 +1666,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -5762620417281301400, guid: 50cc3ad9a0b9c2147b9b99d0689015ee,
         type: 3}
+    - target: {fileID: 1643844662240497443, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: artist
+      value: 
+      objectReference: {fileID: 1512466920}
+    - target: {fileID: 1643844662240497443, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2215857780740436947, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: artist
@@ -1779,6 +1809,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -5762620417281301400, guid: 8a1dd15806b06ce4fae4ab663b09de7f,
         type: 3}
+    - target: {fileID: 6000926016976205901, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: maskGenerator
+      value: 
+      objectReference: {fileID: 371351472}
+    - target: {fileID: 6293199750237025571, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6376766763562574576, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: artist
@@ -1911,6 +1951,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6541425518707389569, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: maskGenerator
+      value: 
+      objectReference: {fileID: 371351472}
+    - target: {fileID: 6740525206795168766, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: artist
+      value: 
+      objectReference: {fileID: 1057730253}
+    - target: {fileID: 6931489672881794896, guid: f279dfdf7b2b9b844888a94adeed9726,
+        type: 3}
+      propertyPath: artist
+      value: 
+      objectReference: {fileID: 1333376624}
     - target: {fileID: 8481403120218619247, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: artist

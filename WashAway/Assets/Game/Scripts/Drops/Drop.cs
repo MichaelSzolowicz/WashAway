@@ -13,7 +13,7 @@ public class Drop
 
     // animation
     private float growTime = 3;
-    private float gravityScale = .6f;
+    private float gravityScale = 1.2f;
     private float growRate = .04f;
     private Vector2 velocity = Vector3.zero;
     private Vector2 position;
