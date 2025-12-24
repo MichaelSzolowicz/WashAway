@@ -1494,6 +1494,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6020464760165040389, guid: fb2a90ccb856af4459d5dc150af9f528,
         type: 3}
+      propertyPath: deathScreenDelay
+      value: 5.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6020464760165040389, guid: fb2a90ccb856af4459d5dc150af9f528,
+        type: 3}
       propertyPath: debug.disableStartScreen
       value: 1
       objectReference: {fileID: 0}
@@ -3182,7 +3187,7 @@ PrefabInstance:
     - target: {fileID: 6541425518707389569, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: debug.disableDamage
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

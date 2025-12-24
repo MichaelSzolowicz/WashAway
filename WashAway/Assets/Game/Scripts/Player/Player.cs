@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     [Header("Level")]
     [SerializeField] private RenderTexture mask;
     [SerializeField] private float minClearPercent;
+    [SerializeField] private float deathScreenDelay = 5.4f;
 
     [Header("")]
     [SerializeField] private PlayerDebugConfig debug;
@@ -55,7 +56,7 @@ public class Player : MonoBehaviour
     {
         if(GameState.CharacterDead)
         {
-            StartCoroutine(ShowDeathScreenWithDelay(4.5f));
+            StartCoroutine(ShowDeathScreenWithDelay(deathScreenDelay));
         }
         else
         {
