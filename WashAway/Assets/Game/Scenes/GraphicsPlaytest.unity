@@ -921,8 +921,8 @@ Transform:
   m_GameObject: {fileID: 416116459}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.27, y: 1.38, z: 0}
-  m_LocalScale: {x: 0.12495, y: 0.12495, z: 0.12495}
+  m_LocalPosition: {x: 0.61, y: -1.35, z: 0}
+  m_LocalScale: {x: 0.21996264, y: 0.21996264, z: 0.21996264}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1388554284}
@@ -990,10 +990,10 @@ MonoBehaviour:
     scale: {x: 3.4184616, y: 3.4184616}
     tag: Piano
     enabled: 1
-  - paintedTextureHook: {fileID: 4405114551135590711, guid: 32d1339b8330c044a940a678c00b53e9,
+  - paintedTextureHook: {fileID: -5762620417281301400, guid: f29421a436a04b345bdf809b86f69ee1,
       type: 3}
-    offset: {x: -5.6445723, y: -2.1475062}
-    scale: {x: 8.0032015, y: 8.0032015}
+    offset: {x: -3.0239165, y: -0.7350451}
+    scale: {x: 4.5462265, y: 4.5462265}
     tag: Worker
     enabled: 1
   - paintedTextureHook: {fileID: -5762620417281301400, guid: 50cc3ad9a0b9c2147b9b99d0689015ee,
@@ -2221,8 +2221,11 @@ MonoBehaviour:
   speed: 5
   lineCollider: {fileID: 335574842}
   constraint: {fileID: 416116461}
-  runAnim: {fileID: 4405114551135590711, guid: c8f1acb7992071d4d94717463ed5a656, type: 3}
-  startRunningDelay: 0.5
+  reactionAnim: {fileID: -5762620417281301400, guid: 0e2c92f6f53a4a848a780f8558f45a53,
+    type: 3}
+  runAnim: {fileID: -7489328864190412133, guid: df1bbf3063c3c8e4b8546a201a63789d,
+    type: 3}
+  reactionDelay: 0.5
 --- !u!4 &1388554284
 Transform:
   m_ObjectHideFlags: 0
@@ -3917,7 +3920,7 @@ PrefabInstance:
     - target: {fileID: 3742417434747206398, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -40
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 6000926016976205901, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
@@ -3947,7 +3950,7 @@ PrefabInstance:
     - target: {fileID: 6293199750237025571, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6541425518707389569, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
