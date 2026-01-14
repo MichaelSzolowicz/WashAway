@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 751726394621500273}
   - component: {fileID: -7489328864190412133}
   m_Layer: 0
-  m_Name: graphics-playtest-workman-run-color
+  m_Name: graphics-playtest-workman-run-thickness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sourceTextures:
-  - {fileID: 2800000, guid: 7a74dc91ba91f0c47889c1d9c040d6cd, type: 3}
-  - {fileID: 2800000, guid: 9f11c4366d0f02d4780fa40c032a2ab5, type: 3}
+  - {fileID: 2800000, guid: e9849985419745a4b8bad62409d5cfdd, type: 3}
+  - {fileID: 2800000, guid: 00f3c9adc781bfc4fa3f543ffaad0502, type: 3}
   frequency: 6

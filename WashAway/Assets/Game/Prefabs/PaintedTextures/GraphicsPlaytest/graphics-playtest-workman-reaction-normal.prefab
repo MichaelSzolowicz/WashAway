@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 751726394621500273}
-  - component: {fileID: -7489328864190412133}
+  - component: {fileID: -5762620417281301400}
   m_Layer: 0
-  m_Name: graphics-playtest-workman-run-color
+  m_Name: graphics-playtest-workman-reaction-normal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-7489328864190412133
+--- !u!114 &-5762620417281301400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,10 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9116856733876702811}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dee81889dc8a204c90f4975bdddb58f, type: 3}
+  m_Script: {fileID: 11500000, guid: 946da02d2404c6e4bb55eb6b7166eb53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sourceTextures:
-  - {fileID: 2800000, guid: 7a74dc91ba91f0c47889c1d9c040d6cd, type: 3}
-  - {fileID: 2800000, guid: 9f11c4366d0f02d4780fa40c032a2ab5, type: 3}
-  frequency: 6
+  sourceTexture: {fileID: 2800000, guid: 576dc96052ef1ed489c6a1b8e17d7dc6, type: 3}

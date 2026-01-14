@@ -905,6 +905,9 @@ GameObject:
   m_Component:
   - component: {fileID: 416116460}
   - component: {fileID: 416116461}
+  - component: {fileID: 416116464}
+  - component: {fileID: 416116463}
+  - component: {fileID: 416116462}
   m_Layer: 0
   m_Name: Constraint
   m_TagString: Untagged
@@ -941,6 +944,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentTransform: {fileID: 879533865}
   artist: {fileID: 478996407}
+  paintedSpriteTag: Worker
+--- !u!114 &416116462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416116459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5202f0e2ecf5f3445bbef410aec033ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentTransform: {fileID: 879533865}
+  artist: {fileID: 689438930}
+  paintedSpriteTag: Worker
+--- !u!114 &416116463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416116459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5202f0e2ecf5f3445bbef410aec033ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentTransform: {fileID: 879533865}
+  artist: {fileID: 1694578283}
+  paintedSpriteTag: Worker
+--- !u!114 &416116464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416116459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5202f0e2ecf5f3445bbef410aec033ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentTransform: {fileID: 879533865}
+  artist: {fileID: 1418995398}
   paintedSpriteTag: Worker
 --- !u!1 &478996406
 GameObject:
@@ -1270,6 +1318,12 @@ MonoBehaviour:
     offset: {x: -0.79080987, y: -1.1492448}
     scale: {x: 3.4184616, y: 3.4184616}
     tag: Piano
+    enabled: 1
+  - paintedTextureHook: {fileID: -5762620417281301400, guid: 1ce0488666bf9bf46baf3d63db7f1077,
+      type: 3}
+    offset: {x: -3.0239165, y: -0.7350451}
+    scale: {x: 4.5462265, y: 4.5462265}
+    tag: Worker
     enabled: 1
   - paintedTextureHook: {fileID: -5762620417281301400, guid: 8a1dd15806b06ce4fae4ab663b09de7f,
       type: 3}
@@ -2220,10 +2274,25 @@ MonoBehaviour:
   moveTo: {fileID: 1088183538}
   speed: 5
   lineCollider: {fileID: 335574842}
-  constraint: {fileID: 416116461}
-  reactionAnim: {fileID: -5762620417281301400, guid: 0e2c92f6f53a4a848a780f8558f45a53,
+  colorConstraint: {fileID: 416116461}
+  colorReactionAnim: {fileID: -5762620417281301400, guid: 0e2c92f6f53a4a848a780f8558f45a53,
     type: 3}
-  runAnim: {fileID: -7489328864190412133, guid: df1bbf3063c3c8e4b8546a201a63789d,
+  colorRunAnim: {fileID: -7489328864190412133, guid: df1bbf3063c3c8e4b8546a201a63789d,
+    type: 3}
+  normalConstraint: {fileID: 416116464}
+  normalReactionAnim: {fileID: -5762620417281301400, guid: 4277af70cddff1842a2c4cef6b218eec,
+    type: 3}
+  normalRunAnim: {fileID: -7489328864190412133, guid: 5074198cd76601f4485f27295dc617bd,
+    type: 3}
+  roughConstraint: {fileID: 416116463}
+  roughReactionAnim: {fileID: -5762620417281301400, guid: 20bd578f94b5a8840a4e8e9b9a59d2cb,
+    type: 3}
+  roughRunAnim: {fileID: -7489328864190412133, guid: 1b097a36d28cfa64a82a60a095771791,
+    type: 3}
+  thicknessConstraint: {fileID: 416116462}
+  thicknessReactionAnim: {fileID: -5762620417281301400, guid: 0387665b2c1aeb74ba3c6c39d6833763,
+    type: 3}
+  thicknessRunAnim: {fileID: -7489328864190412133, guid: c45cdf6ee95da87428e578f364489205,
     type: 3}
   reactionDelay: 0.5
 --- !u!4 &1388554284
@@ -2290,6 +2359,12 @@ MonoBehaviour:
     offset: {x: -0.79080987, y: -1.1492448}
     scale: {x: 3.4184616, y: 3.4184616}
     tag: Piano
+    enabled: 1
+  - paintedTextureHook: {fileID: -5762620417281301400, guid: 3d8a8a59d739fac45a1cd83210b67562,
+      type: 3}
+    offset: {x: -3.0239165, y: -0.7350451}
+    scale: {x: 4.5462265, y: 4.5462265}
+    tag: Worker
     enabled: 1
   - paintedTextureHook: {fileID: -5762620417281301400, guid: 2db18abfc267fa14e8eaaf10a4b1d3e3,
       type: 3}
@@ -3114,6 +3189,12 @@ MonoBehaviour:
     offset: {x: -0.79080987, y: -1.1492448}
     scale: {x: 3.4184616, y: 3.4184616}
     tag: Piano
+    enabled: 1
+  - paintedTextureHook: {fileID: -5762620417281301400, guid: 652644ca12f0a4c4eb4ef0ff1f2cf4b7,
+      type: 3}
+    offset: {x: -3.0239165, y: -0.7350451}
+    scale: {x: 4.5462265, y: 4.5462265}
+    tag: Worker
     enabled: 1
   - paintedTextureHook: {fileID: -5762620417281301400, guid: 56af97231e6436246a52e7995c8bc7b5,
       type: 3}
@@ -3950,7 +4031,7 @@ PrefabInstance:
     - target: {fileID: 6293199750237025571, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6541425518707389569, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
