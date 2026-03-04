@@ -8,9 +8,29 @@ public class WorkmanController : MonoBehaviour
     [SerializeField] private Transform moveTo;
     [SerializeField] private float speed;
     [SerializeField] private GameObject lineCollider;
-    [SerializeField] private PaintedSpriteConstraintComponent constraint;
-    [SerializeField] private PaintedTextureHook runAnim;
-    [SerializeField] private float startRunningDelay = .5f;
+
+    [Header("Color")]
+    [SerializeField] private PaintedSpriteConstraintComponent colorConstraint;
+    [SerializeField] private PaintedTextureHook colorReactionAnim;
+    [SerializeField] private PaintedTextureHook colorRunAnim;
+
+    [Header("normal")]
+    [SerializeField] private PaintedSpriteConstraintComponent normalConstraint;
+    [SerializeField] private PaintedTextureHook normalReactionAnim;
+    [SerializeField] private PaintedTextureHook normalRunAnim;
+
+    [Header("rough")]
+    [SerializeField] private PaintedSpriteConstraintComponent roughConstraint;
+    [SerializeField] private PaintedTextureHook roughReactionAnim;
+    [SerializeField] private PaintedTextureHook roughRunAnim;
+
+    [Header("thickness")]
+    [SerializeField] private PaintedSpriteConstraintComponent thicknessConstraint;
+    [SerializeField] private PaintedTextureHook thicknessReactionAnim;
+    [SerializeField] private PaintedTextureHook thicknessRunAnim;
+
+
+    [SerializeField] private float reactionDelay = .5f;
 
     private bool destinationReached = false;
 
@@ -23,9 +43,17 @@ public class WorkmanController : MonoBehaviour
     {
         lineCollider.SetActive(false);
 
-        constraint.paintedSprite.paintedTextureHook = runAnim;
+        colorConstraint.paintedSprite.paintedTextureHook = colorReactionAnim;
+        normalConstraint.paintedSprite.paintedTextureHook = normalReactionAnim;
+        roughConstraint.paintedSprite.paintedTextureHook = roughReactionAnim;
+        thicknessConstraint.paintedSprite.paintedTextureHook = thicknessReactionAnim;
 
-        yield return new WaitForSeconds(startRunningDelay);
+        yield return new WaitForSeconds(reactionDelay);
+
+        colorConstraint.paintedSprite.paintedTextureHook = colorRunAnim;
+        normalConstraint.paintedSprite.paintedTextureHook = normalRunAnim;
+        roughConstraint.paintedSprite.paintedTextureHook = roughRunAnim;
+        thicknessConstraint.paintedSprite.paintedTextureHook = thicknessRunAnim;
 
         while (!destinationReached)
         {
