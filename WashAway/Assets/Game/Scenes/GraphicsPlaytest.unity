@@ -4021,7 +4021,7 @@ PrefabInstance:
     - target: {fileID: 6000926016976205901, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
       propertyPath: debug.showDropsCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6015254013343490962, guid: f279dfdf7b2b9b844888a94adeed9726,
         type: 3}
