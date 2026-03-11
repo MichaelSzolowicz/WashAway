@@ -26,7 +26,7 @@ public class ButtonUtilities : MonoBehaviour
 
     public void Feedback()
     {
-        Application.OpenURL("https://forms.gle/5LddnxPTrpeaMCUbA");
+        Application.OpenURL("https://forms.gle/ReGNfhq8tFtD8uiH7");
         GameState.FeedbackViewed = true;
     }
 }
