@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 [CustomEditor(typeof(WASprite))]
 public class WASpriteEditor : Editor
@@ -71,14 +68,14 @@ public class WASpriteEditor : Editor
 
         foreach (string path in DragAndDrop.paths)
         {
-            if(MatchPathToSpriteProperty(path, out layer, out spriteProperty))
+            if(PathMatchesSprite(path, out layer, out spriteProperty))
             {
-                LoadSpriteFromPath(path, layer, spriteProperty);
+                UpdateSpriteUsingPath(path, layer, spriteProperty);
             }
         }
     }
 
-    private bool MatchPathToSpriteProperty(string path, out string layer, out SerializedProperty spriteProperty)
+    private bool PathMatchesSprite(string path, out string layer, out SerializedProperty spriteProperty)
     {
         layer = "";
         string filename = "";
@@ -87,8 +84,12 @@ public class WASpriteEditor : Editor
 
         while (spriteProperty.NextVisible(true))
         {
-            layer = spriteProperty.name.Length >= 6 ? spriteProperty.name.Substring(0, spriteProperty.name.Length - SPRITE.Length) : "";
+            layer = spriteProperty.name.Length >= SPRITE.Length ? 
+                spriteProperty.name.Substring(0, spriteProperty.name.Length - SPRITE.Length) :
+                "";
             filename = Path.GetFileNameWithoutExtension(path);
+
+            //TODO: Strip numbers from end of filename so animated sprites can be supported.
 
             if (filename.Length >= layer.Length && filename.Substring(filename.Length - layer.Length) == layer)
             {
@@ -100,7 +101,7 @@ public class WASpriteEditor : Editor
         return false;
     }
 
-    private void LoadSpriteFromPath(string path, string layer, SerializedProperty spriteProperty)
+    private void UpdateSpriteUsingPath(string path, string layer, SerializedProperty spriteProperty)
     {
         Sprite newValue = AssetDatabase.LoadAssetAtPath<Sprite>(path);
         if (newValue == null)
@@ -109,23 +110,8 @@ public class WASpriteEditor : Editor
             return;
         }
 
-        string rendererPropertyName = layer + RENDERER;
-        SerializedProperty rendererProperty = serializedObject.FindProperty(rendererPropertyName);
-        if (rendererProperty == null)
-        {
-            Debug.LogError("No serialized property \"" + layer + SPRITE + "\" found on serialized object \"" + serializedObject.targetObject.name + "\"");
-            return;
-        }
-
         spriteProperty.objectReferenceValue = newValue;
-        if (rendererProperty.objectReferenceValue == null)
-        {
-            CreateRenderer(rendererProperty, newValue);
-        }
-        else
-        {
-            rendererProperty.objectReferenceValue = newValue;
-        }
+        UpdateSprite(layer, newValue);
     }
 
     private void HandleSprite(SerializedProperty spriteProperty)
@@ -139,6 +125,11 @@ public class WASpriteEditor : Editor
         if (oldValue == newValue) return;
 
         string layer = spriteProperty.name.Substring(0, spriteProperty.name.Length - SPRITE.Length);
+        UpdateSprite(layer, (Sprite)newValue);
+    }
+
+    private void UpdateSprite(string layer, Sprite newValue)
+    {
         string rendererPropertyName = layer + RENDERER;
 
         SerializedProperty rendererProperty = serializedObject.FindProperty(rendererPropertyName);
@@ -148,12 +139,12 @@ public class WASpriteEditor : Editor
             return;
         }
 
-        SpriteRenderer rendererComponent = (SpriteRenderer)rendererProperty.objectReferenceValue;
-
-        if(rendererComponent != null)
+        if (rendererProperty.objectReferenceValue != null)
         {
             // Case: renderer already set up, safe to assign sprite.
-            rendererComponent.sprite = (Sprite)newValue;
+            SerializedObject so = new SerializedObject(rendererProperty.objectReferenceValue);
+            so.FindProperty("m_Sprite").objectReferenceValue = newValue;
+            so.ApplyModifiedProperties();
             return;
         }
 
@@ -171,6 +162,7 @@ public class WASpriteEditor : Editor
         string layer = rendererObjectName.Substring(0, rendererObjectName.Length - RENDERER.Length);
 
         GameObject rendererObject = new GameObject(rendererObjectName);
+        Undo.RegisterCreatedObjectUndo(rendererObject, "Created Renderer Object");
 
         rendererObject.layer = LayerMask.NameToLayer(layer);
 
@@ -185,10 +177,11 @@ public class WASpriteEditor : Editor
 
             GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabAssetPath);
             GameObject instance = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
+            Undo.RegisterCreatedObjectUndo(instance, "Created instance");
 
             rendererObject.transform.SetParent(instance.transform, false);
 
-            PrefabUtility.ApplyPrefabInstance(instance, InteractionMode.AutomatedAction);
+            PrefabUtility.ApplyPrefabInstance(instance, InteractionMode.UserAction);
             DestroyImmediate(instance);
 
             // Link renderer to wasprite
