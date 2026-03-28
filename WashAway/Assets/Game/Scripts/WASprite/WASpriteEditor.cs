@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
@@ -28,7 +29,7 @@ public class WASpriteEditor : Editor
 
         while (nextProperty.NextVisible(false))
         {
-            string checkSubname = nextProperty.name.Length >= 6 ? 
+            string checkSubname = nextProperty.name.Length >= SPRITE.Length ? 
                 nextProperty.name.Substring(nextProperty.name.Length - SPRITE.Length, SPRITE.Length) : 
                 nextProperty.name;
 
@@ -48,7 +49,62 @@ public class WASpriteEditor : Editor
 
     private void HandleMultiSprite()
     {
+        Rect multiSpriteField = EditorGUILayout.GetControlRect();
+        GUI.Box(multiSpriteField, "Auto assign sprites");
 
+        Event evt = Event.current;
+
+        if(evt.type == EventType.DragUpdated)
+        {
+            DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
+            return;
+        }
+
+        if (evt.type != EventType.DragPerform) return;
+
+        if (!multiSpriteField.Contains(evt.mousePosition)) return;
+
+        DragAndDrop.AcceptDrag();
+
+        foreach (string path in DragAndDrop.paths)
+        {
+            var nextProperty = serializedObject.GetIterator();
+            nextProperty.Next(true);
+
+            Debug.Log(path);
+
+            while (nextProperty.NextVisible(true))
+            {
+                string layer = nextProperty.name.Length >= 6 ? nextProperty.name.Substring(0, nextProperty.name.Length - SPRITE.Length) : "";
+                
+                string filename = Path.GetFileNameWithoutExtension(path);
+
+                if(filename.Length >= layer.Length && filename.Substring(filename.Length - layer.Length) == layer)
+                {
+                    string rendererPropertyName = layer + RENDERER;
+
+                    SerializedProperty rendererProperty = serializedObject.FindProperty(rendererPropertyName);
+                    if (rendererProperty == null)
+                    {
+                        Debug.LogError("No serialized property \"" + layer + SPRITE + "\" found on serialized object \"" + serializedObject.targetObject.name + "\"");
+                        continue;
+                    }
+
+                    Sprite newValue = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+                    if(newValue == null)
+                    {
+                        Debug.LogWarning("Could not load sprite asset at path \"" + path + "\"");
+                    }
+
+                    nextProperty.objectReferenceValue = newValue;
+
+                    if(rendererProperty.objectReferenceValue == null)
+                    {
+                        CreateRenderer(rendererProperty, newValue);
+                    }
+                }
+            }
+        }
     }
 
     private void HandleSprite(SerializedProperty spriteProperty)
