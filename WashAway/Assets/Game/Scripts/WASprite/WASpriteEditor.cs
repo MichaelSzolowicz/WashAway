@@ -66,44 +66,65 @@ public class WASpriteEditor : Editor
 
         DragAndDrop.AcceptDrag();
 
+        SerializedProperty spriteProperty;
+        string layer;
+
         foreach (string path in DragAndDrop.paths)
         {
-            var nextProperty = serializedObject.GetIterator();
-            nextProperty.Next(true);
-
-            Debug.Log(path);
-
-            while (nextProperty.NextVisible(true))
+            if(MatchPathToSpriteProperty(path, out layer, out spriteProperty))
             {
-                string layer = nextProperty.name.Length >= 6 ? nextProperty.name.Substring(0, nextProperty.name.Length - SPRITE.Length) : "";
-                
-                string filename = Path.GetFileNameWithoutExtension(path);
-
-                if(filename.Length >= layer.Length && filename.Substring(filename.Length - layer.Length) == layer)
-                {
-                    string rendererPropertyName = layer + RENDERER;
-
-                    SerializedProperty rendererProperty = serializedObject.FindProperty(rendererPropertyName);
-                    if (rendererProperty == null)
-                    {
-                        Debug.LogError("No serialized property \"" + layer + SPRITE + "\" found on serialized object \"" + serializedObject.targetObject.name + "\"");
-                        continue;
-                    }
-
-                    Sprite newValue = AssetDatabase.LoadAssetAtPath<Sprite>(path);
-                    if(newValue == null)
-                    {
-                        Debug.LogWarning("Could not load sprite asset at path \"" + path + "\"");
-                    }
-
-                    nextProperty.objectReferenceValue = newValue;
-
-                    if(rendererProperty.objectReferenceValue == null)
-                    {
-                        CreateRenderer(rendererProperty, newValue);
-                    }
-                }
+                LoadSpriteFromPath(path, layer, spriteProperty);
             }
+        }
+    }
+
+    private bool MatchPathToSpriteProperty(string path, out string layer, out SerializedProperty spriteProperty)
+    {
+        layer = "";
+        string filename = "";
+        spriteProperty = serializedObject.GetIterator();
+        spriteProperty.Next(true);
+
+        while (spriteProperty.NextVisible(true))
+        {
+            layer = spriteProperty.name.Length >= 6 ? spriteProperty.name.Substring(0, spriteProperty.name.Length - SPRITE.Length) : "";
+            filename = Path.GetFileNameWithoutExtension(path);
+
+            if (filename.Length >= layer.Length && filename.Substring(filename.Length - layer.Length) == layer)
+            {
+                return true;
+            }
+        }
+
+        spriteProperty = null;
+        return false;
+    }
+
+    private void LoadSpriteFromPath(string path, string layer, SerializedProperty spriteProperty)
+    {
+        Sprite newValue = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+        if (newValue == null)
+        {
+            Debug.LogWarning("Could not load sprite asset at path \"" + path + "\"");
+            return;
+        }
+
+        string rendererPropertyName = layer + RENDERER;
+        SerializedProperty rendererProperty = serializedObject.FindProperty(rendererPropertyName);
+        if (rendererProperty == null)
+        {
+            Debug.LogError("No serialized property \"" + layer + SPRITE + "\" found on serialized object \"" + serializedObject.targetObject.name + "\"");
+            return;
+        }
+
+        spriteProperty.objectReferenceValue = newValue;
+        if (rendererProperty.objectReferenceValue == null)
+        {
+            CreateRenderer(rendererProperty, newValue);
+        }
+        else
+        {
+            rendererProperty.objectReferenceValue = newValue;
         }
     }
 
