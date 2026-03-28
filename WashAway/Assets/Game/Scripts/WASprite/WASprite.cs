@@ -9,8 +9,10 @@ public class WASprite : MonoBehaviour
     [SerializeField] private Sprite roughSprite;
     [SerializeField] private Sprite thickSprite;
 
-    [SerializeField, HideInInspector] private SpriteRenderer colorRenderer;
-    [SerializeField, HideInInspector] private SpriteRenderer normalRenderer;
-    [SerializeField, HideInInspector] private SpriteRenderer roughRenderer;
-    [SerializeField, HideInInspector] private SpriteRenderer thickRenderer;
+    // TODO: visible for testing purpose, should be hidden in inspector.
+    [SerializeField] private SpriteRenderer colorRenderer;
+    [SerializeField] private SpriteRenderer normalRenderer;
+    [SerializeField] private SpriteRenderer roughRenderer;
+    [SerializeField] private SpriteRenderer thickRenderer;
+
 }
