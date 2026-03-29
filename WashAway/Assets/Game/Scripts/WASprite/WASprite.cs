@@ -11,11 +11,10 @@ public class WASprite : MonoBehaviour
     [SerializeField] private Sprite roughSprite;
     [SerializeField] private Sprite thickSprite;
 
-    // TODO: visible for testing purpose, should be hidden in inspector.
-    [SerializeField] private SpriteRenderer colorRenderer;
-    [SerializeField] private SpriteRenderer normalRenderer;
-    [SerializeField] private SpriteRenderer roughRenderer;
-    [SerializeField] private SpriteRenderer thickRenderer;
+    [SerializeField, HideInInspector] private SpriteRenderer colorRenderer;
+    [SerializeField, HideInInspector] private SpriteRenderer normalRenderer;
+    [SerializeField, HideInInspector] private SpriteRenderer roughRenderer;
+    [SerializeField, HideInInspector] private SpriteRenderer thickRenderer;
 
     private void OnEnable()
     {
@@ -36,11 +35,5 @@ public class WASprite : MonoBehaviour
 
         renderer.gameObject.layer = LayerMask.NameToLayer(layer);
         renderer.sprite = sprite;
-    }
-
-
-    private void OnValidate()
-    {
-        Debug.Log("Validate");
     }
 }

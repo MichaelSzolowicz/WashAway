@@ -59,32 +59,32 @@ public class WASpriteEditor : Editor
 
         GUI.Box(multiSpriteField, "Auto assign sprites");
 
-        Event evt = Event.current;
+        Event currentEvent = Event.current;
 
-        if(evt.type == EventType.DragUpdated)
+        if(currentEvent.type == EventType.DragUpdated)
         {
             DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
             return;
         }
 
-        if (evt.type != EventType.DragPerform) return;
+        if (currentEvent.type != EventType.DragPerform) return;
 
-        if (!multiSpriteField.Contains(evt.mousePosition)) return;
+        if (!multiSpriteField.Contains(currentEvent.mousePosition)) return;
 
         DragAndDrop.AcceptDrag();
 
         foreach (string path in DragAndDrop.paths)
         {
-            UpdateSpriteUsingPath(path);
+            TryLoadSpriteLayerFromPath(path);
         }
     }
 
-    private void UpdateSpriteUsingPath(string path)
+    private void TryLoadSpriteLayerFromPath(string path)
     {
         string layer = "";
         SerializedProperty spriteProperty;
 
-        if (!PathMatchesSpriteLayer(path, out layer, out spriteProperty)) return;
+        if (!FindSpritePropertyByPathSuffix(path, out layer, out spriteProperty)) return;
 
         Sprite newValue = AssetDatabase.LoadAssetAtPath<Sprite>(path);
         if (newValue == null)
@@ -94,30 +94,34 @@ public class WASpriteEditor : Editor
         }
 
         spriteProperty.objectReferenceValue = newValue;
-        UpdateSprite(layer, newValue);
+
+        UpdateRendererByLayer(layer, newValue);
     }
 
-    private bool PathMatchesSpriteLayer(string path, out string layer, out SerializedProperty spriteProperty)
+    private bool FindSpritePropertyByPathSuffix(string path, out string layer, out SerializedProperty serializedProperty)
     {
-        layer = "";
-        spriteProperty = serializedObject.GetIterator();
-        spriteProperty.Next(true);
+        string filename = Path.GetFileNameWithoutExtension(path);
 
-        while (spriteProperty.NextVisible(true))
+        layer = "";
+
+        serializedProperty = serializedObject.GetIterator();
+        serializedProperty.Next(true);
+
+        while (serializedProperty.NextVisible(true))
         {
-            layer = spriteProperty.name.Length >= SPRITE.Length ? 
-                spriteProperty.name.Substring(0, spriteProperty.name.Length - SPRITE.Length) : "";
-            string filename = Path.GetFileNameWithoutExtension(path);
+            layer = serializedProperty.name.Length >= SPRITE.Length ?
+                serializedProperty.name.Substring(0, serializedProperty.name.Length - SPRITE.Length) : "";
 
             // TODO: Strip non-alphabetic characters from end of filename so animated sprites can be supported.
 
-            if (filename.Length >= layer.Length && filename.Substring(filename.Length - layer.Length) == layer)
+            if (filename.Length >= layer.Length && 
+                filename.Substring(filename.Length - layer.Length) == layer)
             {
                 return true;
             }
         }
 
-        spriteProperty = null;
+        serializedProperty = null;
         return false;
     }
 
@@ -132,10 +136,11 @@ public class WASpriteEditor : Editor
         if (oldValue == newValue) return;
 
         string layer = spriteProperty.name.Substring(0, spriteProperty.name.Length - SPRITE.Length);
-        UpdateSprite(layer, (Sprite)newValue);
+
+        UpdateRendererByLayer(layer, (Sprite)newValue);
     }
 
-    private void UpdateSprite(string layer, Sprite newValue)
+    private void UpdateRendererByLayer(string layer, Sprite newValue)
     {
         string rendererPropertyName = layer + RENDERER;
 
@@ -169,9 +174,8 @@ public class WASpriteEditor : Editor
         string layer = rendererObjectName.Substring(0, rendererObjectName.Length - RENDERER.Length);
 
         GameObject rendererObject = new GameObject(rendererObjectName);
-        Undo.RegisterCreatedObjectUndo(rendererObject, "Created Renderer Object");
-
         rendererObject.layer = LayerMask.NameToLayer(layer);
+        Undo.RegisterCreatedObjectUndo(rendererObject, "Created Renderer Object");
 
         SpriteRenderer rendererComponent = rendererObject.AddComponent<SpriteRenderer>();
         rendererComponent.sprite = newValue;
