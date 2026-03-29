@@ -7,14 +7,13 @@ public class WASpriteEditor : Editor
 {
     private const string SPRITE = "Sprite";
     private const string RENDERER = "Renderer";
+    private const string RENDERER_SPRITE_PROPERTY = "m_Sprite";
 
     private WASprite waSprite;
 
     private void OnEnable()
     {
         waSprite = (WASprite)target;
-
-        waSprite.UpdateAllRenderers();
     }
 
     public override void OnInspectorGUI()
@@ -28,15 +27,15 @@ public class WASpriteEditor : Editor
         var nextProperty = serializedObject.GetIterator();
         nextProperty.Next(true);
 
-        while (nextProperty.NextVisible(false))
+        while (nextProperty.Next(false))
         {
-            checkSubname = nextProperty.name.Length >= SPRITE.Length ? 
-                nextProperty.name.Substring(nextProperty.name.Length - SPRITE.Length, SPRITE.Length) : 
+            checkSubname = nextProperty.name.Length >= RENDERER.Length ? 
+                nextProperty.name.Substring(nextProperty.name.Length - RENDERER.Length, RENDERER.Length) : 
                 nextProperty.name;
 
-            if (checkSubname == SPRITE)
+            if (checkSubname == RENDERER)
             {
-                HandleSprite(nextProperty);
+                HandleRendererProperty(nextProperty);
                 continue;
             }
 
@@ -51,6 +50,41 @@ public class WASpriteEditor : Editor
         }
 
         serializedObject.ApplyModifiedProperties();
+    }
+
+    private void HandleRendererProperty(SerializedProperty serializedProperty)
+    {
+        // Data validation
+        if (serializedProperty == null) return;
+
+        if(serializedProperty.objectReferenceValue == null)
+        {
+            CreateRenderer(serializedProperty, null);
+        }
+
+        SpriteRenderer rendererComp = serializedProperty.objectReferenceValue as SpriteRenderer;
+        if(rendererComp == null)
+        {
+            Debug.Log("Could not convert Serialized Property \"" + serializedProperty.name + "\" Object Reference Value to type \"" + typeof(SpriteRenderer).Name + "\"");
+            return;
+        }
+
+        // Sprite field
+        SerializedObject serializedRendererComp = new SerializedObject(rendererComp);
+
+        SerializedProperty spriteProperty = serializedRendererComp.FindProperty(RENDERER_SPRITE_PROPERTY);
+        if (spriteProperty == null)
+        {
+            Debug.Log("Could not find Serialized Property \"" + RENDERER_SPRITE_PROPERTY + "\" on Serialized Object \"" + rendererComp.name + "\"");
+            return;
+        }
+
+        GUIContent label = new GUIContent(serializedProperty.name);
+
+        EditorGUILayout.PropertyField(spriteProperty, label);
+
+        serializedRendererComp.ApplyModifiedProperties();
+
     }
 
     private void HandleMultiSprite()
@@ -82,20 +116,37 @@ public class WASpriteEditor : Editor
     private void TryLoadSpriteLayerFromPath(string path)
     {
         string layer = "";
-        SerializedProperty spriteProperty;
+        string renderer = "";
+        string fileSuffix = "";
+        string filename = Path.GetFileNameWithoutExtension(path);
+        
 
-        if (!FindSpritePropertyByPathSuffix(path, out layer, out spriteProperty)) return;
+        SerializedProperty serializedProperty = serializedObject.GetIterator();
+        serializedProperty.Next(true);
 
-        Sprite newValue = AssetDatabase.LoadAssetAtPath<Sprite>(path);
-        if (newValue == null)
+        while(serializedProperty.Next(true))
         {
-            Debug.LogWarning("Could not load sprite asset at path \"" + path + "\"");
-            return;
+            layer = serializedProperty.name.Length >= RENDERER.Length ?
+                serializedProperty.name.Substring(0, serializedProperty.name.Length - RENDERER.Length) : "";
+
+            renderer = serializedProperty.name.Length >= RENDERER.Length ?
+                serializedProperty.name.Substring(serializedProperty.name.Length - RENDERER.Length) : "";
+
+            fileSuffix = filename.Length >= layer.Length ? filename.Substring(filename.Length - layer.Length) : "";
+
+            if (renderer == RENDERER &&
+                fileSuffix == layer)
+            {
+                Sprite newValue = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+                if (newValue == null)
+                {
+                    Debug.LogWarning("Could not load sprite asset at path \"" + path + "\"");
+                    return;
+                }
+
+                UpdateRendererByLayer(layer, newValue);
+            }
         }
-
-        spriteProperty.objectReferenceValue = newValue;
-
-        UpdateRendererByLayer(layer, newValue);
     }
 
     private bool FindSpritePropertyByPathSuffix(string path, out string layer, out SerializedProperty serializedProperty)
@@ -125,6 +176,7 @@ public class WASpriteEditor : Editor
         return false;
     }
 
+    /*
     private void HandleSprite(SerializedProperty spriteProperty)
     {
         Object oldValue = spriteProperty.objectReferenceValue;
@@ -139,6 +191,7 @@ public class WASpriteEditor : Editor
 
         UpdateRendererByLayer(layer, (Sprite)newValue);
     }
+    */
 
     private void UpdateRendererByLayer(string layer, Sprite newValue)
     {
