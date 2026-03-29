@@ -13,6 +13,8 @@ public class WASpriteEditor : Editor
     private void OnEnable()
     {
         waSprite = (WASprite)target;
+
+        waSprite.UpdateAllRenderers();
     }
 
     public override void OnInspectorGUI()
@@ -21,19 +23,26 @@ public class WASpriteEditor : Editor
 
         HandleMultiSprite();
 
+        string checkSubname = "";
+
         var nextProperty = serializedObject.GetIterator();
         nextProperty.Next(true);
 
         while (nextProperty.NextVisible(false))
         {
-            string checkSubname = nextProperty.name.Length >= SPRITE.Length ? 
+            checkSubname = nextProperty.name.Length >= SPRITE.Length ? 
                 nextProperty.name.Substring(nextProperty.name.Length - SPRITE.Length, SPRITE.Length) : 
                 nextProperty.name;
 
-            switch(checkSubname)
+            if (checkSubname == SPRITE)
             {
-                case SPRITE:
-                    HandleSprite(nextProperty); 
+                HandleSprite(nextProperty);
+                continue;
+            }
+
+            switch (nextProperty.name)
+            {
+                case "m_Script":
                     break;
                 default:
                     EditorGUILayout.PropertyField(nextProperty);
@@ -47,6 +56,7 @@ public class WASpriteEditor : Editor
     private void HandleMultiSprite()
     {
         Rect multiSpriteField = EditorGUILayout.GetControlRect();
+
         GUI.Box(multiSpriteField, "Auto assign sprites");
 
         Event evt = Event.current;
@@ -63,46 +73,19 @@ public class WASpriteEditor : Editor
 
         DragAndDrop.AcceptDrag();
 
-        SerializedProperty spriteProperty;
-        string layer;
-
         foreach (string path in DragAndDrop.paths)
         {
-            if(PathMatchesSprite(path, out layer, out spriteProperty))
-            {
-                UpdateSpriteUsingPath(path, layer, spriteProperty);
-            }
+            UpdateSpriteUsingPath(path);
         }
     }
 
-    private bool PathMatchesSprite(string path, out string layer, out SerializedProperty spriteProperty)
+    private void UpdateSpriteUsingPath(string path)
     {
-        layer = "";
-        string filename = "";
-        spriteProperty = serializedObject.GetIterator();
-        spriteProperty.Next(true);
+        string layer = "";
+        SerializedProperty spriteProperty;
 
-        while (spriteProperty.NextVisible(true))
-        {
-            layer = spriteProperty.name.Length >= SPRITE.Length ? 
-                spriteProperty.name.Substring(0, spriteProperty.name.Length - SPRITE.Length) :
-                "";
-            filename = Path.GetFileNameWithoutExtension(path);
+        if (!PathMatchesSpriteLayer(path, out layer, out spriteProperty)) return;
 
-            //TODO: Strip numbers from end of filename so animated sprites can be supported.
-
-            if (filename.Length >= layer.Length && filename.Substring(filename.Length - layer.Length) == layer)
-            {
-                return true;
-            }
-        }
-
-        spriteProperty = null;
-        return false;
-    }
-
-    private void UpdateSpriteUsingPath(string path, string layer, SerializedProperty spriteProperty)
-    {
         Sprite newValue = AssetDatabase.LoadAssetAtPath<Sprite>(path);
         if (newValue == null)
         {
@@ -112,6 +95,30 @@ public class WASpriteEditor : Editor
 
         spriteProperty.objectReferenceValue = newValue;
         UpdateSprite(layer, newValue);
+    }
+
+    private bool PathMatchesSpriteLayer(string path, out string layer, out SerializedProperty spriteProperty)
+    {
+        layer = "";
+        spriteProperty = serializedObject.GetIterator();
+        spriteProperty.Next(true);
+
+        while (spriteProperty.NextVisible(true))
+        {
+            layer = spriteProperty.name.Length >= SPRITE.Length ? 
+                spriteProperty.name.Substring(0, spriteProperty.name.Length - SPRITE.Length) : "";
+            string filename = Path.GetFileNameWithoutExtension(path);
+
+            // TODO: Strip non-alphabetic characters from end of filename so animated sprites can be supported.
+
+            if (filename.Length >= layer.Length && filename.Substring(filename.Length - layer.Length) == layer)
+            {
+                return true;
+            }
+        }
+
+        spriteProperty = null;
+        return false;
     }
 
     private void HandleSprite(SerializedProperty spriteProperty)
