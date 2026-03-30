@@ -1,7 +1,11 @@
 using System.IO;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// Gives direct access to Sprite properties of Sprite Renderer components referenced by WASprite.
+/// </summary>
 [CustomEditor(typeof(WASprite))]
 public class WASpriteEditor : Editor
 {
@@ -23,9 +27,8 @@ public class WASpriteEditor : Editor
         AutoAssignField();
 
         var nextProperty = serializedObject.GetIterator();
-        nextProperty.Next(true);
 
-        while (nextProperty.NextVisible(false))
+        while (nextProperty.NextVisible(true))
         {
             HandleProperty(nextProperty);
         }
@@ -33,8 +36,15 @@ public class WASpriteEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 
+    /// <summary>
+    /// Checks for properties which need special handling, otherwise uuses default property field.
+    /// </summary>
+    /// <param name="serializedProperty">Serialized Property to check.</param>
     private void HandleProperty(SerializedProperty serializedProperty)
     {
+        // Would likely be preferable to use a property drawer here. Would require renderer properties
+        // to be explicitly declared for this purpose, and might support built in attributes like Header.
+        // Could I even include a layer string in the wrapper class so the layer is explicitly declared as well?
         string checkSubName = serializedProperty.name.Length >= RENDERER.Length ?
             serializedProperty.name.Substring(serializedProperty.name.Length - RENDERER.Length) : serializedProperty.name;
 
@@ -49,6 +59,10 @@ public class WASpriteEditor : Editor
         EditorGUILayout.PropertyField(serializedProperty);
     }
 
+    /// <summary>
+    /// Draw a field for the Sprite property of the Sprite Renderer referenced by serialized property.
+    /// </summary>
+    /// <param name="serializedProperty"></param>
     private void HandleRendererProperty(SerializedProperty serializedProperty)
     {
         // Data validation
@@ -66,7 +80,6 @@ public class WASpriteEditor : Editor
             return;
         }
 
-        // Sprite field
         SerializedObject serializedRendererComp = new SerializedObject(rendererComp);
 
         SerializedProperty spriteProperty = serializedRendererComp.FindProperty(RENDERER_SPRITE_PROPERTY);
@@ -76,14 +89,20 @@ public class WASpriteEditor : Editor
             return;
         }
 
-        GUIContent label = new GUIContent(serializedProperty.name);
+        // Header field
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField(rendererComp.gameObject.name, EditorStyles.boldLabel);
 
-        EditorGUILayout.PropertyField(spriteProperty, label);
+        // Sprite property field
+        EditorGUILayout.PropertyField(spriteProperty);
 
         serializedRendererComp.ApplyModifiedProperties();
 
     }
 
+    /// <summary>
+    /// Draws a field the user can drag and drop multiple sprites to. 
+    /// </summary>
     private void AutoAssignField()
     {
         Rect multiSpriteField = EditorGUILayout.GetControlRect();
@@ -110,6 +129,11 @@ public class WASpriteEditor : Editor
         }
     }
 
+    /// <summary>
+    /// Tries to automatically assign sprites to the correct Sprite Renderers by matching the end
+    /// of the dragged asset file name to a render layer (eg Color, Normal, etc.).
+    /// </summary>
+    /// <param name="path"></param>
     private void TryLoadSpriteLayerFromPath(string path)
     {
         string layer = "";
@@ -117,7 +141,6 @@ public class WASpriteEditor : Editor
         string fileSuffix = "";
         string filename = Path.GetFileNameWithoutExtension(path);
         
-
         SerializedProperty serializedProperty = serializedObject.GetIterator();
         serializedProperty.Next(true);
 
@@ -146,50 +169,12 @@ public class WASpriteEditor : Editor
         }
     }
 
-    private bool FindSpritePropertyByPathSuffix(string path, out string layer, out SerializedProperty serializedProperty)
-    {
-        string filename = Path.GetFileNameWithoutExtension(path);
-
-        layer = "";
-
-        serializedProperty = serializedObject.GetIterator();
-        serializedProperty.Next(true);
-
-        while (serializedProperty.NextVisible(true))
-        {
-            layer = serializedProperty.name.Length >= SPRITE.Length ?
-                serializedProperty.name.Substring(0, serializedProperty.name.Length - SPRITE.Length) : "";
-
-            // TODO: Strip non-alphabetic characters from end of filename so animated sprites can be supported.
-
-            if (filename.Length >= layer.Length && 
-                filename.Substring(filename.Length - layer.Length) == layer)
-            {
-                return true;
-            }
-        }
-
-        serializedProperty = null;
-        return false;
-    }
-
-    /*
-    private void HandleSprite(SerializedProperty spriteProperty)
-    {
-        Object oldValue = spriteProperty.objectReferenceValue;
-
-        EditorGUILayout.PropertyField(spriteProperty);
-
-        Object newValue = spriteProperty.objectReferenceValue;
-
-        if (oldValue == newValue) return;
-
-        string layer = spriteProperty.name.Substring(0, spriteProperty.name.Length - SPRITE.Length);
-
-        UpdateRendererByLayer(layer, (Sprite)newValue);
-    }
-    */
-
+    /// <summary>
+    /// Tries to locate a renderer property matching layer, then assigns a new sprite to it.
+    /// Creates a new renderer if the property object reference value is null.
+    /// </summary>
+    /// <param name="layer"></param>
+    /// <param name="newValue"></param>
     private void UpdateRendererByLayer(string layer, Sprite newValue)
     {
         string rendererPropertyName = layer + RENDERER;
@@ -214,6 +199,12 @@ public class WASpriteEditor : Editor
         CreateRenderer(rendererProperty, (Sprite)newValue);
     }
 
+    /// <summary>
+    /// Create a new object with a Sprite Renderer and assign it to rendererProperty.
+    /// Tries to automatically deduce layer from rendererProperty name.
+    /// </summary>
+    /// <param name="rendererProperty"></param>
+    /// <param name="newValue"></param>
     private void CreateRenderer(SerializedProperty rendererProperty, Sprite newValue)
     {
         // TODO: Should implement search for already exisitng child objects?

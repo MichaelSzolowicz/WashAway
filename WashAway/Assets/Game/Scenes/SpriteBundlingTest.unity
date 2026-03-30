@@ -396,17 +396,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 991fb54dd711d4d49bfd53fc5602948c,
+      objectReference: {fileID: 21300000, guid: 7b5e745ecfd23874dad4e2722089fbd6,
         type: 3}
     - target: {fileID: 2843870207940079182, guid: 221d5e29d61e67f45ad2b2b02e219c2f,
         type: 3}
       propertyPath: m_Name
       value: WASpriteTest
-      objectReference: {fileID: 0}
-    - target: {fileID: 4252084023278482403, guid: 221d5e29d61e67f45ad2b2b02e219c2f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5762788459576103973, guid: 221d5e29d61e67f45ad2b2b02e219c2f,
         type: 3}
@@ -420,11 +415,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 6d5c34f90f6c3c044a5e7c1ae5e2185b,
         type: 3}
-    - target: {fileID: 6449797295970096732, guid: 221d5e29d61e67f45ad2b2b02e219c2f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6524213636543688176, guid: 221d5e29d61e67f45ad2b2b02e219c2f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -473,11 +463,6 @@ PrefabInstance:
     - target: {fileID: 6524213636543688176, guid: 221d5e29d61e67f45ad2b2b02e219c2f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8134487652113182179, guid: 221d5e29d61e67f45ad2b2b02e219c2f,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
