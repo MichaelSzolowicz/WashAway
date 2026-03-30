@@ -20,36 +20,33 @@ public class WASpriteEditor : Editor
     {
         serializedObject.Update();
 
-        HandleMultiSprite();
-
-        string checkSubname = "";
+        AutoAssignField();
 
         var nextProperty = serializedObject.GetIterator();
         nextProperty.Next(true);
 
-        while (nextProperty.Next(false))
+        while (nextProperty.NextVisible(false))
         {
-            checkSubname = nextProperty.name.Length >= RENDERER.Length ? 
-                nextProperty.name.Substring(nextProperty.name.Length - RENDERER.Length, RENDERER.Length) : 
-                nextProperty.name;
-
-            if (checkSubname == RENDERER)
-            {
-                HandleRendererProperty(nextProperty);
-                continue;
-            }
-
-            switch (nextProperty.name)
-            {
-                case "m_Script":
-                    break;
-                default:
-                    EditorGUILayout.PropertyField(nextProperty);
-                    break;
-            }
+            HandleProperty(nextProperty);
         }
 
         serializedObject.ApplyModifiedProperties();
+    }
+
+    private void HandleProperty(SerializedProperty serializedProperty)
+    {
+        string checkSubName = serializedProperty.name.Length >= RENDERER.Length ?
+            serializedProperty.name.Substring(serializedProperty.name.Length - RENDERER.Length) : serializedProperty.name;
+
+        if(checkSubName == RENDERER)
+        {
+            HandleRendererProperty(serializedProperty);
+            return;
+        }
+
+        if (serializedProperty.name == "m_Script") return;
+
+        EditorGUILayout.PropertyField(serializedProperty);
     }
 
     private void HandleRendererProperty(SerializedProperty serializedProperty)
@@ -87,7 +84,7 @@ public class WASpriteEditor : Editor
 
     }
 
-    private void HandleMultiSprite()
+    private void AutoAssignField()
     {
         Rect multiSpriteField = EditorGUILayout.GetControlRect();
 
