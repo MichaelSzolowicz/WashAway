@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEditor;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class WASprite : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer colorRenderer;
-    [SerializeField] private SpriteRenderer normalRenderer;
-    [SerializeField] private SpriteRenderer roughRenderer;
-    [SerializeField] private SpriteRenderer thickRenderer;
+    //[Header("Header")]
+    [SerializeField] private SpriteComponentViewer colorRenderer;
+    [SerializeField] private SpriteComponentViewer normalRenderer;
+    //[Header("Header")]
+    [SerializeField] private SpriteComponentViewer roughRenderer;
+    [SerializeField] private SpriteComponentViewer thickRenderer;
 }

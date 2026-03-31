@@ -24,11 +24,12 @@ public class WASpriteEditor : Editor
     {
         serializedObject.Update();
 
-        AutoAssignField();
+        //AutoAssignField();
 
         var nextProperty = serializedObject.GetIterator();
+        nextProperty.Next(true);
 
-        while (nextProperty.NextVisible(true))
+        while (nextProperty.NextVisible(false))
         {
             HandleProperty(nextProperty);
         }
@@ -45,6 +46,7 @@ public class WASpriteEditor : Editor
         // Would likely be preferable to use a property drawer here. Would require renderer properties
         // to be explicitly declared for this purpose, and might support built in attributes like Header.
         // Could I even include a layer string in the wrapper class so the layer is explicitly declared as well?
+        /*
         string checkSubName = serializedProperty.name.Length >= RENDERER.Length ?
             serializedProperty.name.Substring(serializedProperty.name.Length - RENDERER.Length) : serializedProperty.name;
 
@@ -53,10 +55,18 @@ public class WASpriteEditor : Editor
             HandleRendererProperty(serializedProperty);
             return;
         }
+        */
 
-        if (serializedProperty.name == "m_Script") return;
+        //if (serializedProperty.name == "m_Script") return;
+
+        EditorGUI.BeginChangeCheck();
 
         EditorGUILayout.PropertyField(serializedProperty);
+
+        if (EditorGUI.EndChangeCheck())
+        {
+            Debug.Log(serializedProperty.name);
+        }
     }
 
     /// <summary>
