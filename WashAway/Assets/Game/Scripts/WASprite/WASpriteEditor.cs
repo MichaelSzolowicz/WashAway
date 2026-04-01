@@ -5,14 +5,13 @@ using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 /// <summary>
-/// Gives direct access to Sprite properties of Sprite Renderer components referenced by WASprite.
+/// Attempts to automatically assign sprite assets to renderers by matching the asset file suffix
+/// to a sprite renderer property name.
 /// </summary>
 [CustomEditor(typeof(WASprite))]
 public class WASpriteEditor : Editor
 {
-    private const string SPRITE = "Sprite";
     private const string RENDERER = "Renderer";
-    private const string RENDERER_SPRITE_PROPERTY = "m_Sprite";
 
     private WASprite waSprite;
 
@@ -25,15 +24,23 @@ public class WASpriteEditor : Editor
     {
         serializedObject.Update();
 
-        MultiSpriteField();
-        GUILayout.Space(EditorGUIUtility.singleLineHeight);
-
         var nextProperty = serializedObject.GetIterator();
         nextProperty.Next(true);
 
         while (nextProperty.NextVisible(false))
         {
-            EditorGUILayout.PropertyField(nextProperty);
+            switch (nextProperty.name)
+            {
+                case "m_Script":
+                    EditorGUI.BeginDisabledGroup(true);
+                    EditorGUILayout.PropertyField(nextProperty);
+                    EditorGUI.EndDisabledGroup();
+                    MultiSpriteField();
+                    break;
+                default:
+                    EditorGUILayout.PropertyField(nextProperty);
+                    break;
+            }
         }
 
         serializedObject.ApplyModifiedProperties();
