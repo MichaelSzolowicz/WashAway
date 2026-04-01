@@ -9,6 +9,10 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 [CustomPropertyDrawer(typeof(SpriteComponentViewer))]
 public class SpriteComponentViewerDrawer : PropertyDrawer
 {
+    private const string RENDERER_PROP_NAME = "spriteRenderer";
+    private const string GAME_OBJECT_PROP_NAME = "m_GameObject";
+    private const string SPRITE_PROP_NAME = "m_Sprite";
+    private const string LAYER_PROP_NAME = "m_Layer";
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
@@ -27,13 +31,13 @@ public class SpriteComponentViewerDrawer : PropertyDrawer
     {
         EditorGUI.BeginProperty(position, label, property);
 
-        if (property.FindPropertyRelative("spriteRenderer").objectReferenceValue == null)
+        if (property.FindPropertyRelative(RENDERER_PROP_NAME).objectReferenceValue == null)
         {
             position.height = EditorGUIUtility.singleLineHeight;
 
             position = EditorGUI.PrefixLabel(position, label, EditorStyles.boldLabel);
 
-            EditorGUI.ObjectField(position, property.FindPropertyRelative("spriteRenderer"), GUIContent.none);
+            EditorGUI.ObjectField(position, property.FindPropertyRelative(RENDERER_PROP_NAME), GUIContent.none);
         }
         else
         {
@@ -47,9 +51,9 @@ public class SpriteComponentViewerDrawer : PropertyDrawer
             usePosition.x += usePosition.width;
             usePosition.width = position.width - usePosition.width;
 
-            EditorGUI.ObjectField(usePosition, property.FindPropertyRelative("spriteRenderer"), GUIContent.none);
+            EditorGUI.ObjectField(usePosition, property.FindPropertyRelative(RENDERER_PROP_NAME), GUIContent.none);
 
-            if(EditorGUI.EndChangeCheck() && property.FindPropertyRelative("spriteRenderer").objectReferenceValue == null)
+            if(EditorGUI.EndChangeCheck() && property.FindPropertyRelative(RENDERER_PROP_NAME).objectReferenceValue == null)
             {
                 EditorGUI.EndFoldoutHeaderGroup();
                 return;
@@ -67,18 +71,18 @@ public class SpriteComponentViewerDrawer : PropertyDrawer
             usePosition.x = position.x;
             usePosition.width = position.width;
 
-            SerializedObject serializedSpriteRenderer = new SerializedObject(property.FindPropertyRelative("spriteRenderer").objectReferenceValue);
-            SerializedObject serializedSpriteRendererObject = new SerializedObject(serializedSpriteRenderer.FindProperty("m_GameObject").objectReferenceValue);
+            SerializedObject serializedSpriteRenderer = new SerializedObject(property.FindPropertyRelative(RENDERER_PROP_NAME).objectReferenceValue);
+            SerializedObject serializedSpriteRendererObject = new SerializedObject(serializedSpriteRenderer.FindProperty(GAME_OBJECT_PROP_NAME).objectReferenceValue);
 
-            usePosition = EditorGUI.PrefixLabel(usePosition, new GUIContent(serializedSpriteRendererObject.FindProperty("m_Layer").displayName));
+            usePosition = EditorGUI.PrefixLabel(usePosition, new GUIContent(serializedSpriteRendererObject.FindProperty(LAYER_PROP_NAME).displayName));
             serializedSpriteRendererObject.FindProperty("m_Layer").intValue = EditorGUI.LayerField(usePosition, GUIContent.none, serializedSpriteRendererObject.FindProperty("m_Layer").intValue);
 
             usePosition.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
             usePosition.width = position.width;
             usePosition.x = position.x;
 
-            usePosition = EditorGUI.PrefixLabel(usePosition, new GUIContent(serializedSpriteRenderer.FindProperty("m_Sprite").displayName));
-            EditorGUI.PropertyField(usePosition, serializedSpriteRenderer.FindProperty("m_Sprite"), GUIContent.none);
+            usePosition = EditorGUI.PrefixLabel(usePosition, new GUIContent(serializedSpriteRenderer.FindProperty(SPRITE_PROP_NAME).displayName));
+            EditorGUI.PropertyField(usePosition, serializedSpriteRenderer.FindProperty(SPRITE_PROP_NAME), GUIContent.none);
 
             serializedSpriteRenderer.ApplyModifiedProperties();
             serializedSpriteRendererObject.ApplyModifiedProperties();

@@ -12,6 +12,10 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class WASpriteEditor : Editor
 {
     private const string RENDERER = "Renderer";
+    private const string SCRIPT_PROP_NAME = "m_Script";
+    private const string MULTI_SPRITE_MESSAGE = "Auto Assign Sprites";
+    private const string RENDERER_PROP_NAME = "spriteRenderer";
+    private const string GAME_OBJECT_PROP_NAME = "m_GameObject";
 
     private WASprite waSprite;
 
@@ -31,7 +35,7 @@ public class WASpriteEditor : Editor
         {
             switch (nextProperty.name)
             {
-                case "m_Script":
+                case SCRIPT_PROP_NAME:
                     EditorGUI.BeginDisabledGroup(true);
                     EditorGUILayout.PropertyField(nextProperty);
                     EditorGUI.EndDisabledGroup();
@@ -53,7 +57,7 @@ public class WASpriteEditor : Editor
     {
         Rect multiSpriteField = EditorGUILayout.GetControlRect(true, EditorGUIUtility.singleLineHeight * 1.5f);
 
-        GUI.Box(multiSpriteField, "Auto assign sprites");
+        GUI.Box(multiSpriteField, MULTI_SPRITE_MESSAGE);
 
         Event currentEvent = Event.current;
 
@@ -96,8 +100,8 @@ public class WASpriteEditor : Editor
 
         while(nextProperty.NextVisible(false))
         {
-            if (nextProperty.FindPropertyRelative("spriteRenderer") == null) continue;
-            if (nextProperty.FindPropertyRelative("spriteRenderer").objectReferenceValue == null) continue;
+            if (nextProperty.FindPropertyRelative(RENDERER_PROP_NAME) == null) continue;
+            if (nextProperty.FindPropertyRelative(RENDERER_PROP_NAME).objectReferenceValue == null) continue;
             if (nextProperty.name.Length < RENDERER.Length) continue;
 
             checkPropLayer = nextProperty.name.Substring(0, nextProperty.name.Length - RENDERER.Length);
@@ -140,8 +144,8 @@ public class WASpriteEditor : Editor
 
         int layer = LayerMask.NameToLayer(layerName);
 
-        SerializedObject serializedSpriteRenderer = new SerializedObject(renderer.FindPropertyRelative("spriteRenderer").objectReferenceValue);
-        SerializedObject serializedSpriteRendererObject = new SerializedObject(serializedSpriteRenderer.FindProperty("m_GameObject").objectReferenceValue);
+        SerializedObject serializedSpriteRenderer = new SerializedObject(renderer.FindPropertyRelative(RENDERER_PROP_NAME).objectReferenceValue);
+        SerializedObject serializedSpriteRendererObject = new SerializedObject(serializedSpriteRenderer.FindProperty(GAME_OBJECT_PROP_NAME).objectReferenceValue);
 
         serializedSpriteRenderer.FindProperty("m_Sprite").objectReferenceValue = newSprite;
         serializedSpriteRendererObject.FindProperty("m_Layer").intValue = layer;
