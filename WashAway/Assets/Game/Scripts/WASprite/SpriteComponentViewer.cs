@@ -6,5 +6,10 @@ using UnityEngine;
 [Serializable]
 public class SpriteComponentViewer
 {
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] public SpriteRenderer spriteRenderer;
+
+    public SpriteComponentViewer(SpriteRenderer spriteRenderer)
+    {
+        this.spriteRenderer = spriteRenderer;
+    }
 }

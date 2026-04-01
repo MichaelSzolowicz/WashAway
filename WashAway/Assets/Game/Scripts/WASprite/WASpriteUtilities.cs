@@ -5,15 +5,25 @@ using UnityEngine;
 
 public class WASpriteUtilities
 {
-    private static string SPRITE = "Sprite";
     private static string RENDERER = "Renderer";
-    private static string RENDERER_SPRITE_PROPERTY = "m_Sprite";
 
-    /*
-    public static LayerRenderer CreateRenderer(GameObject root, string layer)
+    public static GameObject CreateWASprite()
     {
-        // TODO: Should implement search for already exisitng child objects?
+        GameObject gameObject = new GameObject("WASprite");
+        Undo.RegisterCreatedObjectUndo(gameObject, "Created " + gameObject.name);
 
+        WASprite waSprite = Undo.AddComponent<WASprite>(gameObject);
+
+        waSprite.colorRenderer = new SpriteComponentViewer(CreateRenderer(gameObject, "Color"));
+        waSprite.normalRenderer = new SpriteComponentViewer(CreateRenderer(gameObject, "Normal"));
+        waSprite.roughRenderer = new SpriteComponentViewer(CreateRenderer(gameObject, "Rough"));
+        waSprite.thickRenderer = new SpriteComponentViewer(CreateRenderer(gameObject, "Thick"));
+
+        return gameObject;
+    }
+
+    public static SpriteRenderer CreateRenderer(GameObject root, string layer)
+    {
         // We will be creating a new object to hold the renderer component.
         string rendererObjectName = char.ToUpper(layer[0]) + layer.Substring(1) + RENDERER;
 
@@ -25,7 +35,9 @@ public class WASpriteUtilities
 
         SpriteRenderer rendererComponent = Undo.AddComponent<SpriteRenderer>(rendererObject);
 
-        // Editing a prefab asset?
+        // This code demonstrates how to add a child to a prefab asset.
+        // Saving in case I want to reference later.
+        /*
         if (PrefabUtility.IsPartOfPrefabAsset(root))
         {
             // Add child object to prefab asset
@@ -43,12 +55,10 @@ public class WASpriteUtilities
             Undo.DestroyObjectImmediate(instance);
         }
         else
-        {
-            // Editing a object in scene
-            rendererObject.transform.SetParent(root.transform, false);
-        }
+        */
 
-        return new LayerRenderer(layer, rendererComponent);
+        Undo.SetTransformParent(rendererObject.transform, root.transform, "Set New Parent");
+
+        return rendererComponent;
     }
-    */
 }

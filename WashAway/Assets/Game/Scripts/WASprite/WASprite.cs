@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class WASprite : MonoBehaviour
 {
-    [SerializeField] private SpriteComponentViewer colorRenderer;
-    [SerializeField] private SpriteComponentViewer normalRenderer;
-    [SerializeField] private SpriteComponentViewer roughRenderer;
-    [SerializeField] private SpriteComponentViewer thickRenderer;
+    [SerializeField] public SpriteComponentViewer colorRenderer;
+    [SerializeField] public SpriteComponentViewer normalRenderer;
+    [SerializeField] public SpriteComponentViewer roughRenderer;
+    [SerializeField] public SpriteComponentViewer thickRenderer;
 }

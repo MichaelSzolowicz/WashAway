@@ -74,8 +74,10 @@ public class SpriteComponentViewerDrawer : PropertyDrawer
             SerializedObject serializedSpriteRenderer = new SerializedObject(property.FindPropertyRelative(RENDERER_PROP_NAME).objectReferenceValue);
             SerializedObject serializedSpriteRendererObject = new SerializedObject(serializedSpriteRenderer.FindProperty(GAME_OBJECT_PROP_NAME).objectReferenceValue);
 
+            EditorGUI.BeginProperty(usePosition, new GUIContent(serializedSpriteRendererObject.FindProperty(LAYER_PROP_NAME).displayName), serializedSpriteRendererObject.FindProperty(LAYER_PROP_NAME));
             usePosition = EditorGUI.PrefixLabel(usePosition, new GUIContent(serializedSpriteRendererObject.FindProperty(LAYER_PROP_NAME).displayName));
-            serializedSpriteRendererObject.FindProperty("m_Layer").intValue = EditorGUI.LayerField(usePosition, GUIContent.none, serializedSpriteRendererObject.FindProperty("m_Layer").intValue);
+            serializedSpriteRendererObject.FindProperty("m_Layer").intValue = EditorGUI.LayerField(usePosition, GUIContent.none, serializedSpriteRendererObject.FindProperty(LAYER_PROP_NAME).intValue);
+            EditorGUI.EndProperty();
 
             usePosition.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
             usePosition.width = position.width;
