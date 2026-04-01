@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using UnityEditor;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
+/// <summary>
+/// Searches the Sprite Renderer referenced by Sprite Component Viewer for relevant properties and exposes them in the inspector.
+/// </summary>
 [CustomPropertyDrawer(typeof(SpriteComponentViewer))]
 public class SpriteComponentViewerDrawer : PropertyDrawer
 {
@@ -74,6 +72,7 @@ public class SpriteComponentViewerDrawer : PropertyDrawer
             SerializedObject serializedSpriteRenderer = new SerializedObject(property.FindPropertyRelative(RENDERER_PROP_NAME).objectReferenceValue);
             SerializedObject serializedSpriteRendererObject = new SerializedObject(serializedSpriteRenderer.FindProperty(GAME_OBJECT_PROP_NAME).objectReferenceValue);
 
+            // EditorGUI.LayerField() does not automatically display overrides, so this is wrapped in EditorGUI.BeginProperty()
             EditorGUI.BeginProperty(usePosition, new GUIContent(serializedSpriteRendererObject.FindProperty(LAYER_PROP_NAME).displayName), serializedSpriteRendererObject.FindProperty(LAYER_PROP_NAME));
             usePosition = EditorGUI.PrefixLabel(usePosition, new GUIContent(serializedSpriteRendererObject.FindProperty(LAYER_PROP_NAME).displayName));
             serializedSpriteRendererObject.FindProperty("m_Layer").intValue = EditorGUI.LayerField(usePosition, GUIContent.none, serializedSpriteRendererObject.FindProperty(LAYER_PROP_NAME).intValue);

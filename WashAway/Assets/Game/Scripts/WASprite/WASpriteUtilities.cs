@@ -7,6 +7,10 @@ public class WASpriteUtilities
 {
     private static string RENDERER = "Renderer";
 
+    /// <summary>
+    /// Safe method to create a WASprite with automatically set up Sprite Renderer children.
+    /// </summary>
+    /// <returns></returns>
     public static GameObject CreateWASprite()
     {
         GameObject gameObject = new GameObject("WASprite");
@@ -22,6 +26,12 @@ public class WASpriteUtilities
         return gameObject;
     }
 
+    /// <summary>
+    /// Safe method to create a new Game Object with a Sprite Renderer component.
+    /// </summary>
+    /// <param name="root">Parent of the new Game Object.</param>
+    /// <param name="layer">Default layer for the Sprite Renderer.</param>
+    /// <returns></returns>
     public static SpriteRenderer CreateRenderer(GameObject root, string layer)
     {
         // We will be creating a new object to hold the renderer component.

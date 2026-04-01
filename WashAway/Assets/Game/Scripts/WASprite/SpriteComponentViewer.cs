@@ -1,8 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Exposes properties on a Sprite Renderer in another component's inspector using Sprite Component Drawer.
+/// </summary>
 [Serializable]
 public class SpriteComponentViewer
 {

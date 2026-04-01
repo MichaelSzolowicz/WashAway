@@ -1,8 +1,6 @@
 using System.IO;
-using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 /// <summary>
 /// Attempts to automatically assign sprite assets to renderers by matching the asset file suffix
