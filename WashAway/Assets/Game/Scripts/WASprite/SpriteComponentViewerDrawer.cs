@@ -27,9 +27,7 @@ public class SpriteComponentViewerDrawer : PropertyDrawer
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        EditorGUI.BeginChangeCheck();
-
-        EditorGUI.BeginProperty(position, label, property);
+         EditorGUI.BeginProperty(position, label, property);
 
         if (property.FindPropertyRelative(RENDERER_PROP_NAME).objectReferenceValue == null)
         {
@@ -74,6 +72,8 @@ public class SpriteComponentViewerDrawer : PropertyDrawer
             SerializedObject serializedSpriteRenderer = new SerializedObject(property.FindPropertyRelative(RENDERER_PROP_NAME).objectReferenceValue);
             SerializedObject serializedSpriteRendererObject = new SerializedObject(serializedSpriteRenderer.FindProperty(GAME_OBJECT_PROP_NAME).objectReferenceValue);
 
+            EditorGUI.BeginChangeCheck();
+
             // EditorGUI.LayerField() does not automatically display overrides, so this is wrapped in EditorGUI.BeginProperty()
             EditorGUI.BeginProperty(usePosition, new GUIContent(serializedSpriteRendererObject.FindProperty(LAYER_PROP_NAME).displayName), serializedSpriteRendererObject.FindProperty(LAYER_PROP_NAME));
             usePosition = EditorGUI.PrefixLabel(usePosition, new GUIContent(serializedSpriteRendererObject.FindProperty(LAYER_PROP_NAME).displayName));
@@ -90,19 +90,18 @@ public class SpriteComponentViewerDrawer : PropertyDrawer
             serializedSpriteRenderer.ApplyModifiedProperties();
             serializedSpriteRendererObject.ApplyModifiedProperties();
 
-            EditorGUI.indentLevel--;
+            if (EditorGUI.EndChangeCheck())
+            {
+                // A component not attached to the inspected object might change, so tell the editor the inspected object changed to.
+                // Ensures prefab instances update immediately when a prefab asset is updated via the project window.
+                if(PrefabUtility.IsPartOfPrefabAsset(property.serializedObject.targetObject)) 
+                    EditorUtility.SetDirty(property.serializedObject.targetObject);
+            }
 
-            PrefabUtility.RecordPrefabInstancePropertyModifications(property.serializedObject.targetObject);
+            EditorGUI.indentLevel--;
         }
 
         EditorGUI.EndFoldoutHeaderGroup();
         EditorGUI.EndProperty();
-
-        if (EditorGUI.EndChangeCheck())
-        {
-            // A component not attached to the inspected object might change, so tell the editor the inspected object changed to.
-            // Ensures prefab instances update immediately when a prefab asset is updated via the project window.
-            EditorUtility.SetDirty(property.serializedObject.targetObject);
-        }
     }
 }

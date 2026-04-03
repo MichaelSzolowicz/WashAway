@@ -54,7 +54,8 @@ public class WASpriteUtilities
             string prefabAssetPath = PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(root);
 
             GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabAssetPath);
-
+                
+            // You might want to look into PrefabUtility.LoadPrefabContents here https://docs.unity3d.com/6000.0/Documentation/ScriptReference/PrefabUtility.LoadPrefabContents.html
             GameObject instance = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
             Undo.RegisterCreatedObjectUndo(instance, "Created Instance");
 

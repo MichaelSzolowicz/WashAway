@@ -1,4 +1,5 @@
 using System.IO;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -29,8 +30,6 @@ public class WASpriteEditor : Editor
         var nextProperty = serializedObject.GetIterator();
         nextProperty.Next(true);
 
-        EditorGUI.BeginChangeCheck();
-
         while (nextProperty.NextVisible(false))
         {
             switch (nextProperty.name)
@@ -45,11 +44,6 @@ public class WASpriteEditor : Editor
                     EditorGUILayout.PropertyField(nextProperty);
                     break;
             }
-        }
-
-        if (EditorGUI.EndChangeCheck())
-        {
-            EditorUtility.SetDirty(target);
         }
 
         serializedObject.ApplyModifiedProperties();
@@ -136,15 +130,14 @@ public class WASpriteEditor : Editor
     }
 
     /// <summary>
-    /// Tries to locate a renderer property matching layer, then assigns a new sprite to it.
-    /// Creates a new renderer if the property object reference value is null.
+    /// Updates serialized sprite renderer sprite and layer to match renderer property name.
     /// </summary>
     /// <param name="layer"></param>
     /// <param name="newValue"></param>
     private void UpdateRenderer(SerializedProperty renderer, Sprite newSprite)
     {
         string layerName = renderer.name.Length >= RENDERER.Length ?
-            renderer.name.Substring(0, renderer.name.Length - RENDERER.Length) : "";
+            renderer.name.Substring(0, renderer.name.Length - RENDERER.Length) : "Default";
         layerName = char.ToUpper(layerName[0]) + layerName.Substring(1).ToLower();
 
         int layer = LayerMask.NameToLayer(layerName);
@@ -160,6 +153,7 @@ public class WASpriteEditor : Editor
 
         // A component not attached to the inspected object changed, so tell the editor the inspected object changed to.
         // Ensures prefab instances update immediately when a prefab asset is updated via the project window.
-        EditorUtility.SetDirty(target);
+        if(PrefabUtility.IsPartOfPrefabAsset(target))
+            EditorUtility.SetDirty(target);
     }
 }
