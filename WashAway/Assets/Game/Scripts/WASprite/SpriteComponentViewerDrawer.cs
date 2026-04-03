@@ -27,6 +27,8 @@ public class SpriteComponentViewerDrawer : PropertyDrawer
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
+        EditorGUI.BeginChangeCheck();
+
         EditorGUI.BeginProperty(position, label, property);
 
         if (property.FindPropertyRelative(RENDERER_PROP_NAME).objectReferenceValue == null)
@@ -89,9 +91,18 @@ public class SpriteComponentViewerDrawer : PropertyDrawer
             serializedSpriteRendererObject.ApplyModifiedProperties();
 
             EditorGUI.indentLevel--;
+
+            PrefabUtility.RecordPrefabInstancePropertyModifications(property.serializedObject.targetObject);
         }
 
         EditorGUI.EndFoldoutHeaderGroup();
         EditorGUI.EndProperty();
+
+        if (EditorGUI.EndChangeCheck())
+        {
+            // A component not attached to the inspected object might change, so tell the editor the inspected object changed to.
+            // Ensures prefab instances update immediately when a prefab asset is updated via the project window.
+            EditorUtility.SetDirty(property.serializedObject.targetObject);
+        }
     }
 }

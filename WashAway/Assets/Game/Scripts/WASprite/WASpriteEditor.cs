@@ -29,6 +29,8 @@ public class WASpriteEditor : Editor
         var nextProperty = serializedObject.GetIterator();
         nextProperty.Next(true);
 
+        EditorGUI.BeginChangeCheck();
+
         while (nextProperty.NextVisible(false))
         {
             switch (nextProperty.name)
@@ -43,6 +45,11 @@ public class WASpriteEditor : Editor
                     EditorGUILayout.PropertyField(nextProperty);
                     break;
             }
+        }
+
+        if (EditorGUI.EndChangeCheck())
+        {
+            EditorUtility.SetDirty(target);
         }
 
         serializedObject.ApplyModifiedProperties();
@@ -150,5 +157,9 @@ public class WASpriteEditor : Editor
 
         serializedSpriteRenderer.ApplyModifiedProperties();
         serializedSpriteRendererObject.ApplyModifiedProperties();
+
+        // A component not attached to the inspected object changed, so tell the editor the inspected object changed to.
+        // Ensures prefab instances update immediately when a prefab asset is updated via the project window.
+        EditorUtility.SetDirty(target);
     }
 }
