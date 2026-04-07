@@ -98,15 +98,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _paint_color:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 8400000, guid: 60acf92083f55504e88790e89361fe22, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _paint_normal:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 8400000, guid: bc7bee220595e754cb16abe1c2a0ac00, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _paint_rtm:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 8400000, guid: f6dc1224bf895b044aec73dba5c6f409, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -158,7 +158,7 @@ Material:
     - _canvas_edge_2: 0
     - _canvas_normal_strength: 1
     - _mask_offset: 0
-    - _paint_normal_strength: 0
+    - _paint_normal_strength: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
