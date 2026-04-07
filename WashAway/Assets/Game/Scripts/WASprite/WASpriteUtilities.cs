@@ -20,8 +20,7 @@ public class WASpriteUtilities
 
         waSprite.colorRenderer = new SpriteComponentViewer(CreateRenderer(gameObject, "Color"));
         waSprite.normalRenderer = new SpriteComponentViewer(CreateRenderer(gameObject, "Normal"));
-        waSprite.roughRenderer = new SpriteComponentViewer(CreateRenderer(gameObject, "Rough"));
-        waSprite.thickRenderer = new SpriteComponentViewer(CreateRenderer(gameObject, "Thick"));
+        waSprite.rtmRenderer = new SpriteComponentViewer(CreateRenderer(gameObject, "Rtm"));
 
         return gameObject;
     }
