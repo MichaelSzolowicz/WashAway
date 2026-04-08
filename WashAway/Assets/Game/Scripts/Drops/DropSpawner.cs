@@ -9,8 +9,7 @@ public class DropSpawner : MonoBehaviour
         [SerializeField] public bool showDropsCount = false;
     }
 
-    [SerializeField] private WAArtist maskGenerator;
-    [SerializeField] private PaintedTextureHook dropTexture;
+    [SerializeField] private Drop dropPrefab;
     [SerializeField] private int numDrops;
     [SerializeField] private float dropLifetime;
     [SerializeField] private float spawnDelay = .5f;
@@ -40,28 +39,20 @@ public class DropSpawner : MonoBehaviour
         {
             string dropName = "drop" + i;
 
-            Drop newWaterDrop = CreateWaterDrop(dropName);
-            drops.Add(newWaterDrop);
+            GameObject newWaterDrop = Instantiate(dropPrefab.gameObject);
+            newWaterDrop.name = dropName;
+            drops.Add(newWaterDrop.GetComponent<Drop>());
 
-            newWaterDrop.Enabled = false;
+            newWaterDrop.SetActive(false);
         }
     }
 
-    private Drop CreateWaterDrop(string dropName)
-    {
-        PaintedSprite newSprite = new PaintedSprite(dropTexture);
-        newSprite.tag = dropName;
-
-        maskGenerator.AddLayer(newSprite);
-
-        return new Drop(newSprite, maskGenerator.InverseWidthMeters);
-    }
 
     private void ReleaseFirstDrop()
     {
-        if (!drops[first].Enabled) return;
+        if (!drops[first].enabled) return;
 
-        drops[first].Enabled = false;
+        drops[first].gameObject.SetActive(false);
 
         first = WrapIndex(++first);
 
@@ -71,12 +62,13 @@ public class DropSpawner : MonoBehaviour
     private void SpawnNextDrop()
     {
         if (stopSpawning) return;
-        if (drops[next].Enabled) return;
+        if (drops[next].gameObject.activeInHierarchy) return;
         
         Drop drop = drops[next];
-        drop.Enabled = true;
-        drop.ResetAnimation();
-        drop.SetWorldPositionScale(transform.position, transform.localScale);
+        drop.gameObject.SetActive(true);
+        //drop.ResetAnimation();
+        drop.transform.position = transform.position;
+        drop.transform.localScale = transform.localScale;
 
         next = WrapIndex(++next);
 
@@ -98,9 +90,9 @@ public class DropSpawner : MonoBehaviour
 
         int i = first;
         Drop nextDrop = drops[i];
-        while(nextDrop.Enabled)
+        while(nextDrop.enabled)
         {
-            nextDrop.Update(Time.deltaTime);
+            nextDrop.Animate(Time.deltaTime);
 
             i = WrapIndex(++i);
 
@@ -125,7 +117,7 @@ public class DropSpawner : MonoBehaviour
     {
         for (int i = 0; i < drops.Count; i++)
         {
-            drops[i].Enabled = false;
+            drops[i].gameObject.SetActive(false);
         }
 
         elapsedTime = 0;

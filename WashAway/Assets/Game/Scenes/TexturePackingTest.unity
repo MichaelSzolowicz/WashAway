@@ -3840,7 +3840,7 @@ Transform:
   m_GameObject: {fileID: 2646307705009233185}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3858,8 +3858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc05c1b2ecad11409b0dc35dfbcafb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maskGenerator: {fileID: 0}
-  dropTexture: {fileID: -5762620417281301400, guid: dcfc87a59e384574d85016af629e8433,
+  dropPrefab: {fileID: 3508902394770092135, guid: e5eb93a81651f3b43bbd93966743cd16,
     type: 3}
   numDrops: 51
   dropLifetime: 4.3
@@ -3897,7 +3896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2966661436731464835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3915,7 +3914,6 @@ MonoBehaviour:
   mask: {fileID: 8400000, guid: f6dc1224bf895b044aec73dba5c6f409, type: 2}
   paintingWidthMeters: 40.96
   deathTime: 0
-  rtmCam: {fileID: 1889395014}
   debug:
     disableDamage: 0
     showProbes: 1
@@ -3962,7 +3960,7 @@ Transform:
   m_GameObject: {fileID: 6098941318818068102}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4029,6 +4027,74 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &8090456380681040124
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1270095730589720527, guid: e5eb93a81651f3b43bbd93966743cd16,
+        type: 3}
+      propertyPath: m_Name
+      value: Drop
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331386195839432036, guid: e5eb93a81651f3b43bbd93966743cd16,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331386195839432036, guid: e5eb93a81651f3b43bbd93966743cd16,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -12.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331386195839432036, guid: e5eb93a81651f3b43bbd93966743cd16,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331386195839432036, guid: e5eb93a81651f3b43bbd93966743cd16,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331386195839432036, guid: e5eb93a81651f3b43bbd93966743cd16,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331386195839432036, guid: e5eb93a81651f3b43bbd93966743cd16,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331386195839432036, guid: e5eb93a81651f3b43bbd93966743cd16,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331386195839432036, guid: e5eb93a81651f3b43bbd93966743cd16,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331386195839432036, guid: e5eb93a81651f3b43bbd93966743cd16,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331386195839432036, guid: e5eb93a81651f3b43bbd93966743cd16,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e5eb93a81651f3b43bbd93966743cd16, type: 3}
 --- !u!50 &8297460436046903146
 Rigidbody2D:
   serializedVersion: 4
@@ -4130,3 +4196,4 @@ SceneRoots:
   - {fileID: 1318733424}
   - {fileID: 35207015}
   - {fileID: 1889395015}
+  - {fileID: 8090456380681040124}
