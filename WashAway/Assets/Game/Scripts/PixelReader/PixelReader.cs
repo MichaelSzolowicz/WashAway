@@ -21,9 +21,12 @@ public class PixelReader
     {
         if(request.hasError)
         {
-            Debug.LogError("Async GPU Readback error detected.");
-            return;
+            Debug.LogError("Async GPU Readback error detected. ");
+            available = true;
+            //return;
         }
+
+        //Debug.Log(request.done);
 
         NativeArray<uint> data = request.GetData<uint>();
 
@@ -33,11 +36,12 @@ public class PixelReader
         }
 
         uint c = data[0];
-        result.b = (byte)(c);
+        result.r = (byte)(c);
         result.g = (byte)(c >> 8);
-        result.r = (byte)(c >> 16);
+        result.b = (byte)(c >> 16);
         result.a = (byte)(c >> 24);
 
         available = true;
     }
 }
+
