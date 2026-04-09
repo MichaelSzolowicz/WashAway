@@ -46,11 +46,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 3180025748353664555}
-  levelClearScreen: {fileID: 132203685585981064}
   pauseScreen: {fileID: 8222101852477814336}
   startScreen: {fileID: 1842475422604863203}
   mask: {fileID: 0}
+  maskChannel: 16
   minClearPercent: 0
+  deathScreenDelay: 5.4
   debug:
     disableStartScreen: 0
 --- !u!1001 &15502902530792702
@@ -455,12 +456,6 @@ PrefabInstance:
 --- !u!224 &67608195169146270 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4555494226631471082, guid: 3c5e58e1457ffd245b05ff08b2f67dfe,
-    type: 3}
-  m_PrefabInstance: {fileID: 4596042817310063220}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &132203685585981064 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4475947023196615932, guid: 3c5e58e1457ffd245b05ff08b2f67dfe,
     type: 3}
   m_PrefabInstance: {fileID: 4596042817310063220}
   m_PrefabAsset: {fileID: 0}

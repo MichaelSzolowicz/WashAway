@@ -304,7 +304,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 20.5
+  orthographic size: 20.47
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2216,7 +2216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1180266693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2533,7 +2533,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 20.5
+  orthographic size: 20.47
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -3348,7 +3348,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 20.5
+  orthographic size: 20.47
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -3517,6 +3517,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1639033992160321412, guid: 977d705c70bbf3d47acbd2e904097d55,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5652787476269987144, guid: 977d705c70bbf3d47acbd2e904097d55,
         type: 3}
       propertyPath: mask
