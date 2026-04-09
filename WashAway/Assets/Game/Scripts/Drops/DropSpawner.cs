@@ -11,7 +11,6 @@ public class DropSpawner : MonoBehaviour
 
     [SerializeField] private Drop dropPrefab;
     [SerializeField] private int numDrops;
-    [SerializeField] private float dropLifetime;
     [SerializeField] private float spawnDelay = .5f;
     public bool stopSpawning = false;
 
@@ -68,7 +67,7 @@ public class DropSpawner : MonoBehaviour
         drop.gameObject.SetActive(true);
         //drop.ResetAnimation();
         drop.transform.position = transform.position;
-        drop.transform.localScale = transform.localScale;
+        drop.transform.localScale = Vector3.zero;
 
         next = WrapIndex(++next);
 
@@ -90,7 +89,7 @@ public class DropSpawner : MonoBehaviour
 
         int i = first;
         Drop nextDrop = drops[i];
-        while(nextDrop.enabled)
+        while(nextDrop.gameObject.activeInHierarchy)
         {
             nextDrop.Animate(Time.deltaTime);
 
@@ -101,7 +100,7 @@ public class DropSpawner : MonoBehaviour
             nextDrop = drops[i];
         }
 
-        if (drops[first].TimeAlive > dropLifetime)
+        if (drops[first].TimeAlive > drops[first].Lifetime)
         {
             // If / when you need to change this so the drops decide when they are dead,
             // keep the list sorted by alive and dead drops then poll the alive drops
@@ -111,19 +110,6 @@ public class DropSpawner : MonoBehaviour
             // would be fine if the array is small enough and / or you spawn them infrequently.
             ReleaseFirstDrop();
         }
-    }
-
-    public void ResetDrops()
-    {
-        for (int i = 0; i < drops.Count; i++)
-        {
-            drops[i].gameObject.SetActive(false);
-        }
-
-        elapsedTime = 0;
-        first = 0;
-        next = 0;
-        numEnabledDrops = 0;
     }
 
     private void OnGUI()

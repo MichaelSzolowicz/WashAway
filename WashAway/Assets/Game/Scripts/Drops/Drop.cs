@@ -17,14 +17,17 @@ public class Drop : MonoBehaviour
     private float timeInCurrentState = 0.0f;
 
     // animation
-    private float spawnDelay = 3.0f;
-    private float growTime = 1;
-    private float gravityScale = 1.2f;
-    private float growRate = .12f;
+    [SerializeField] private GameObject trail;
+    [SerializeField] private float spawnDelay = 3.0f;
+    [SerializeField] private float growTime = 1;
+    [SerializeField] private float fallTime = 1;
+    [SerializeField] private float gravityScale = 1.2f;
+    [SerializeField] private float growRate = 1f;
     private Vector3 velocity = Vector3.zero;
 
     private float timeAlive = 0.0f;
     public float TimeAlive { get { return timeAlive; } }
+    public float Lifetime {  get { return spawnDelay + growTime + fallTime; } } 
 
     private void OnEnable()
     {
@@ -61,7 +64,7 @@ public class Drop : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(true);
+            trail.SetActive(true);
             timeInCurrentState = 0.0f;
             state = State.Growing;
         }
@@ -93,5 +96,6 @@ public class Drop : MonoBehaviour
         timeAlive = 0.0f;
         timeInCurrentState = 0.0f;
         state = State.SpawnDelay;
+        trail.SetActive(false);
     }
 }

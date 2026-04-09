@@ -150,6 +150,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be06c2edc15ae544c83e5ad6d4dfd576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trail: {fileID: 9185631442452072032}
+  spawnDelay: 1
+  growTime: 1
+  fallTime: 1
+  gravityScale: 1.2
+  growRate: 1
 --- !u!1 &2451146240265648380
 GameObject:
   m_ObjectHideFlags: 0

@@ -3861,7 +3861,6 @@ MonoBehaviour:
   dropPrefab: {fileID: 3508902394770092135, guid: e5eb93a81651f3b43bbd93966743cd16,
     type: 3}
   numDrops: 51
-  dropLifetime: 4.3
   spawnDelay: 0.1
   stopSpawning: 0
   debug:
@@ -3915,7 +3914,7 @@ MonoBehaviour:
   paintingWidthMeters: 40.96
   deathTime: 0
   debug:
-    disableDamage: 0
+    disableDamage: 1
     showProbes: 1
     startFacingLeft: 1
 --- !u!4 &4612743568649736956
