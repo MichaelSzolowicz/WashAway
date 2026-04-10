@@ -7,6 +7,5 @@ public class WASprite : MonoBehaviour
 {
     [SerializeField] public SpriteComponentViewer colorRenderer;
     [SerializeField] public SpriteComponentViewer normalRenderer;
-    [SerializeField] public SpriteComponentViewer roughRenderer;
-    [SerializeField] public SpriteComponentViewer thickRenderer;
+    [SerializeField] public SpriteComponentViewer rtmRenderer;
 }

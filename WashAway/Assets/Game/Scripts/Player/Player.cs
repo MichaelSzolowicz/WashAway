@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 
     [Header("Level")]
     [SerializeField] private RenderTexture mask;
+    [SerializeField] private MaskPercentCalculator.Channel maskChannel;
     [SerializeField] private float minClearPercent;
     [SerializeField] private float deathScreenDelay = 5.4f;
 
@@ -69,7 +70,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(delaySeconds);
 
         MaskPercentCalculator calc = new MaskPercentCalculator(ShowDeathScreen);
-        calc.RequestPercentCleared(mask);
+        calc.RequestPercentCleared(mask, maskChannel);
     }
 
     private void OnTogglePause()
@@ -80,7 +81,7 @@ public class Player : MonoBehaviour
         if(GameState.Paused)
         {
             MaskPercentCalculator calc = new MaskPercentCalculator(ShowPauseScreen);
-            calc.RequestPercentCleared(mask);
+            calc.RequestPercentCleared(mask, maskChannel);
         }
         else
         {

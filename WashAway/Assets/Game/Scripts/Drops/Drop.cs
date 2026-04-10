@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Drop
+public class Drop : MonoBehaviour
 {
     private enum State
     {
@@ -12,37 +12,29 @@ public class Drop
 
     private const float ACCELERATION_DUE_TO_GRAVITY = 9.8f;
 
-    // config
-    private PaintedSprite sprite;
-    private float textureTilesPerMeter;
-
     // state
-    private bool enabled = false;
     private State state = State.SpawnDelay;
     private float timeInCurrentState = 0.0f;
 
     // animation
-    private float spawnDelay = 3.0f;
-    private float growTime = 1;
-    private float gravityScale = 1.2f;
-    private float growRate = .12f;
-    private Vector2 velocity = Vector3.zero;
-    private Vector2 position;
-    private Vector2 scale;
+    [SerializeField] private GameObject trail;
+    [SerializeField] private float spawnDelay = 3.0f;
+    [SerializeField] private float growTime = 1;
+    [SerializeField] private float fallTime = 1;
+    [SerializeField] private float gravityScale = 1.2f;
+    [SerializeField] private float growRate = 1f;
+    private Vector3 velocity = Vector3.zero;
 
     private float timeAlive = 0.0f;
     public float TimeAlive { get { return timeAlive; } }
+    public float Lifetime {  get { return spawnDelay + growTime + fallTime; } } 
 
-    public Drop(PaintedSprite sprite, float textureTilesPerMeter)
+    private void OnEnable()
     {
-        this.sprite = sprite;
-        sprite.enabled = false;
-        enabled = true;
-        state = State.SpawnDelay;
-        this.textureTilesPerMeter = textureTilesPerMeter;
+        ResetAnimation();
     }
 
-    public void Update(float deltaTime)
+    public void Animate(float deltaTime)
     {
         if(!enabled) return;
 
@@ -61,8 +53,7 @@ public class Drop
                 break;
         }
 
-        timeAlive += Time.deltaTime;
-        PaintedSpriteConstraint.ConstrainSpriteToWorldPositionScale(position, scale, textureTilesPerMeter, out sprite.offset, out sprite.scale);
+        timeAlive += deltaTime;
     }
 
     private void SpawnDelay()
@@ -73,7 +64,7 @@ public class Drop
         }
         else
         {
-            sprite.enabled = true;
+            trail.SetActive(true);
             timeInCurrentState = 0.0f;
             state = State.Growing;
         }
@@ -81,7 +72,7 @@ public class Drop
 
     private void Growing()
     {
-        scale = scale + growRate * Time.deltaTime * Vector2.one;
+        transform.localScale = transform.localScale + growRate * Time.deltaTime * Vector3.one;
         timeInCurrentState += Time.deltaTime;
 
         if (timeInCurrentState >= growTime)
@@ -93,8 +84,8 @@ public class Drop
     
     private void Falling()
     {
-        velocity += gravityScale * ACCELERATION_DUE_TO_GRAVITY * Time.deltaTime * Vector2.down;
-        position += velocity * Time.deltaTime;
+        velocity += gravityScale * ACCELERATION_DUE_TO_GRAVITY * Time.deltaTime * Vector3.down;
+        transform.position = transform.position + velocity * Time.deltaTime;
 
         timeInCurrentState += Time.deltaTime;
     }
@@ -104,24 +95,7 @@ public class Drop
         velocity = Vector3.zero;
         timeAlive = 0.0f;
         timeInCurrentState = 0.0f;
-        sprite.enabled = false;
         state = State.SpawnDelay;
-    }
-
-    public void SetWorldPositionScale(Vector2 position, Vector2 scale)
-    {
-        this.position = position;
-        this.scale = scale;
-        PaintedSpriteConstraint.ConstrainSpriteToWorldPositionScale(position, scale, textureTilesPerMeter, out sprite.offset, out sprite.scale);
-    }
-
-    public bool Enabled
-    {
-        get { return enabled; }
-        set 
-        { 
-            enabled = value;
-            //sprite.enabled = enabled;
-        }
+        trail.SetActive(false);
     }
 }

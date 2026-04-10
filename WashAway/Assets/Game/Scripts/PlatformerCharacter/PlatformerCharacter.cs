@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlatformerCharacter : MonoBehaviour
@@ -14,10 +15,12 @@ public class PlatformerCharacter : MonoBehaviour
 
     [SerializeField] private PlatformerMovement platformerMovement;
     [SerializeField] private DropSpawner dropSpawner;
-    [SerializeField] private WAArtist maskGenerator;
-
-    [SerializeField] private float probeHeight = .5f;
+    [SerializeField] private RenderTexture mask;
+    [SerializeField] private float paintingWidthMeters;
     [SerializeField] private float deathTime = .5f;
+
+    private float timeSinceLastRead = 0;
+    private float timeInVoid = 0;
 
     [Header("")]
     [SerializeField] private PlatformerCharacterDebugConfig debug;
@@ -40,6 +43,8 @@ public class PlatformerCharacter : MonoBehaviour
         GameState.onTogglePause += OnPause;
         GameState.onToggleCurrentLevelClear += OnPause;
 
+        StartCoroutine(CheckPixel());
+
         if (debug.startFacingLeft && !platformerMovement.FacingLeft) { platformerMovement.TurnAround(); }
     }
 
@@ -47,30 +52,8 @@ public class PlatformerCharacter : MonoBehaviour
     {
         if (other.gameObject.CompareTag("DamageCauser"))
         {
-            //Respawn();
             OnDeath();
         }
-    }
-
-    private void Respawn()
-    {
-        if (debug.disableDamage) return;
-
-        GameState.CharacterDead = true;
-
-        dropSpawner.ResetDrops();
-
-        platformerMovement.transform.position = startPosition;
-        platformerMovement.ResetPhysicsState();
-        if(platformerMovement.FacingLeft != startFacingLeft)
-        {
-            platformerMovement.TurnAround();
-        }
-        platformerMovement.blockInput = true;
-
-        maskGenerator.ClearRenderTarget();
-
-        GameState.CharacterDead = false;
     }
 
     private void OnDeath()
@@ -80,56 +63,46 @@ public class PlatformerCharacter : MonoBehaviour
         GameState.CharacterDead = true;
         platformerMovement.enabled = false;
         dropSpawner.stopSpawning = true;
-
-        //GameState.Paused = true;
-
-        //MaskPercentCalculator calc = new MaskPercentCalculator(ShowMaskPercent);
-        //calc.RequestPercentCleared(maskGenerator.TargetRenderTexture);
     }
 
-    private void ShowMaskPercent(float percent)
+    /// <summary>
+    /// Any pixel reading needs to be done after the first time a camera writes to the render target.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator CheckPixel()
     {
-        maskPercent = percent;
-        showMaskPercent = true;
-    }
-
-    private float timeSinceLastRead = 0;
-    private float timeInVoid = 0;
-
-    private void Update()
-    {
-        if (pixelReader.Available)
+        while (true)
         {
-            if (pixelReader.result.a >= 255.0f / 2.0f)
+            yield return new WaitForEndOfFrame();
+
+            if (pixelReader.Available)
             {
-                timeInVoid += timeSinceLastRead;
-                
-                if(timeInVoid > deathTime)
+                if (pixelReader.result.b >= 255.0f / 2.0f)
                 {
-                    OnDeath();
+                    timeInVoid += timeSinceLastRead;
+
+                    if (timeInVoid > deathTime)
+                    {
+                        OnDeath();
+                    }
                 }
+
+                if (debug.showProbes)
+                {
+                    Vector3 probePos = platformerMovement.transform.position;
+                    Debug.DrawLine(probePos, probePos + Vector3.back, Color.red, Time.deltaTime * 2);
+                }
+
+                float x = (platformerMovement.transform.position.x * 1 / paintingWidthMeters) + .5f;
+                float y = ((platformerMovement.transform.position.y) * 1 / paintingWidthMeters) + .5f;
+
+                pixelReader.ReadPixelAsync(mask, 0, (int)(x * mask.width), 1, (int)(y * mask.height), 1);
+
+                timeSinceLastRead = 0;
             }
 
-            if (debug.showProbes)
-            {
-                Vector3 probePos = platformerMovement.transform.position;
-                probePos.y += probeHeight;
-                Debug.DrawLine(probePos, probePos + Vector3.back, Color.red, Time.deltaTime * 2);
-            }
-
-            float x = (platformerMovement.transform.position.x * maskGenerator.InverseWidthMeters) + .5f;
-            float y = ((platformerMovement.transform.position.y + probeHeight) * maskGenerator.InverseWidthMeters) + .5f;
-
-            pixelReader.ReadPixelAsync(maskGenerator.TargetRenderTexture, 0, (int)(x*maskGenerator.TargetRenderTexture.width), 1, (int)(y*maskGenerator.TargetRenderTexture.height), 1);
-
-            timeSinceLastRead = 0;
+            timeSinceLastRead += Time.deltaTime;
         }
-
-        if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
-            platformerMovement.blockInput = false;
-        }
-
-        timeSinceLastRead += Time.deltaTime;
     }
 
     private void OnPause()

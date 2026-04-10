@@ -9,10 +9,8 @@ public class DropSpawner : MonoBehaviour
         [SerializeField] public bool showDropsCount = false;
     }
 
-    [SerializeField] private WAArtist maskGenerator;
-    [SerializeField] private PaintedTextureHook dropTexture;
+    [SerializeField] private Drop dropPrefab;
     [SerializeField] private int numDrops;
-    [SerializeField] private float dropLifetime;
     [SerializeField] private float spawnDelay = .5f;
     public bool stopSpawning = false;
 
@@ -40,28 +38,20 @@ public class DropSpawner : MonoBehaviour
         {
             string dropName = "drop" + i;
 
-            Drop newWaterDrop = CreateWaterDrop(dropName);
-            drops.Add(newWaterDrop);
+            GameObject newWaterDrop = Instantiate(dropPrefab.gameObject);
+            newWaterDrop.name = dropName;
+            drops.Add(newWaterDrop.GetComponent<Drop>());
 
-            newWaterDrop.Enabled = false;
+            newWaterDrop.SetActive(false);
         }
     }
 
-    private Drop CreateWaterDrop(string dropName)
-    {
-        PaintedSprite newSprite = new PaintedSprite(dropTexture);
-        newSprite.tag = dropName;
-
-        maskGenerator.AddLayer(newSprite);
-
-        return new Drop(newSprite, maskGenerator.InverseWidthMeters);
-    }
 
     private void ReleaseFirstDrop()
     {
-        if (!drops[first].Enabled) return;
+        if (!drops[first].enabled) return;
 
-        drops[first].Enabled = false;
+        drops[first].gameObject.SetActive(false);
 
         first = WrapIndex(++first);
 
@@ -71,12 +61,13 @@ public class DropSpawner : MonoBehaviour
     private void SpawnNextDrop()
     {
         if (stopSpawning) return;
-        if (drops[next].Enabled) return;
+        if (drops[next].gameObject.activeInHierarchy) return;
         
         Drop drop = drops[next];
-        drop.Enabled = true;
-        drop.ResetAnimation();
-        drop.SetWorldPositionScale(transform.position, transform.localScale);
+        drop.gameObject.SetActive(true);
+        //drop.ResetAnimation();
+        drop.transform.position = transform.position;
+        drop.transform.localScale = Vector3.zero;
 
         next = WrapIndex(++next);
 
@@ -98,9 +89,9 @@ public class DropSpawner : MonoBehaviour
 
         int i = first;
         Drop nextDrop = drops[i];
-        while(nextDrop.Enabled)
+        while(nextDrop.gameObject.activeInHierarchy)
         {
-            nextDrop.Update(Time.deltaTime);
+            nextDrop.Animate(Time.deltaTime);
 
             i = WrapIndex(++i);
 
@@ -109,7 +100,7 @@ public class DropSpawner : MonoBehaviour
             nextDrop = drops[i];
         }
 
-        if (drops[first].TimeAlive > dropLifetime)
+        if (drops[first].TimeAlive > drops[first].Lifetime)
         {
             // If / when you need to change this so the drops decide when they are dead,
             // keep the list sorted by alive and dead drops then poll the alive drops
@@ -119,19 +110,6 @@ public class DropSpawner : MonoBehaviour
             // would be fine if the array is small enough and / or you spawn them infrequently.
             ReleaseFirstDrop();
         }
-    }
-
-    public void ResetDrops()
-    {
-        for (int i = 0; i < drops.Count; i++)
-        {
-            drops[i].Enabled = false;
-        }
-
-        elapsedTime = 0;
-        first = 0;
-        next = 0;
-        numEnabledDrops = 0;
     }
 
     private void OnGUI()

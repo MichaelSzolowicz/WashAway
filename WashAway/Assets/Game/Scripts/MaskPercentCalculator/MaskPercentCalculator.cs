@@ -5,16 +5,26 @@ using UnityEngine.Rendering;
 
 public class MaskPercentCalculator
 {
+    public enum Channel
+    {
+        R = 0,
+        G = 8,
+        B = 16,
+        A = 24
+    }
+
     private Action<float> onCompleteRequest;
     private int maskSize = 0;
+    private Channel channel;    
 
     public MaskPercentCalculator(Action<float> onCompleteRequest)
     {
         this.onCompleteRequest = onCompleteRequest;
     }
 
-    public void RequestPercentCleared(RenderTexture mask)
+    public void RequestPercentCleared(RenderTexture mask, Channel channel = Channel.R)
     {
+        this.channel = channel;
         maskSize = mask.width * mask.height;
         AsyncGPUReadback.Request(mask, 0, 0, mask.width, 0, mask.height, 0, 1, OnCompletePercentRequest);
     }
@@ -37,9 +47,9 @@ public class MaskPercentCalculator
         int maskedPixelCount = 0;
         for (int i = 0; i < data.Length; i++)
         {
-            uint alpha = (byte)(data[i] >> 24);
+            uint c = (byte)(data[i] >> (int)channel);
 
-            if(alpha > 255 / 2)
+            if(c != 0)
             {
                 maskedPixelCount++;
             }
