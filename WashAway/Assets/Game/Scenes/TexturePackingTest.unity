@@ -1585,6 +1585,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2054537952751850218, guid: fb2a90ccb856af4459d5dc150af9f528,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4936465184634054338, guid: fb2a90ccb856af4459d5dc150af9f528,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3531,6 +3536,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlatformerCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817794920962587896, guid: 977d705c70bbf3d47acbd2e904097d55,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8488811474550265701, guid: 977d705c70bbf3d47acbd2e904097d55,
         type: 3}
