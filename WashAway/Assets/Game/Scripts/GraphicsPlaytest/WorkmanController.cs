@@ -8,26 +8,8 @@ public class WorkmanController : MonoBehaviour
     [SerializeField] private Transform moveTo;
     [SerializeField] private float speed;
     [SerializeField] private GameObject lineCollider;
-
-    [Header("Color")]
-    [SerializeField] private PaintedSpriteConstraintComponent colorConstraint;
-    [SerializeField] private PaintedTextureHook colorReactionAnim;
-    [SerializeField] private PaintedTextureHook colorRunAnim;
-
-    [Header("normal")]
-    [SerializeField] private PaintedSpriteConstraintComponent normalConstraint;
-    [SerializeField] private PaintedTextureHook normalReactionAnim;
-    [SerializeField] private PaintedTextureHook normalRunAnim;
-
-    [Header("rough")]
-    [SerializeField] private PaintedSpriteConstraintComponent roughConstraint;
-    [SerializeField] private PaintedTextureHook roughReactionAnim;
-    [SerializeField] private PaintedTextureHook roughRunAnim;
-
-    [Header("thickness")]
-    [SerializeField] private PaintedSpriteConstraintComponent thicknessConstraint;
-    [SerializeField] private PaintedTextureHook thicknessReactionAnim;
-    [SerializeField] private PaintedTextureHook thicknessRunAnim;
+    [SerializeField] private SpriteRenderer workmanRenderer;
+    [SerializeField] private Sprite runAnim;
 
 
     [SerializeField] private float reactionDelay = .5f;
@@ -41,19 +23,13 @@ public class WorkmanController : MonoBehaviour
 
     private IEnumerator RunAwayCoroutine()
     {
-        lineCollider.SetActive(false);
-
-        colorConstraint.paintedSprite.paintedTextureHook = colorReactionAnim;
-        normalConstraint.paintedSprite.paintedTextureHook = normalReactionAnim;
-        roughConstraint.paintedSprite.paintedTextureHook = roughReactionAnim;
-        thicknessConstraint.paintedSprite.paintedTextureHook = thicknessReactionAnim;
+        if(lineCollider != null) 
+            lineCollider.SetActive(false);
 
         yield return new WaitForSeconds(reactionDelay);
 
-        colorConstraint.paintedSprite.paintedTextureHook = colorRunAnim;
-        normalConstraint.paintedSprite.paintedTextureHook = normalRunAnim;
-        roughConstraint.paintedSprite.paintedTextureHook = roughRunAnim;
-        thicknessConstraint.paintedSprite.paintedTextureHook = thicknessRunAnim;
+        if(runAnim != null) 
+            workmanRenderer.sprite = runAnim;
 
         while (!destinationReached)
         {
