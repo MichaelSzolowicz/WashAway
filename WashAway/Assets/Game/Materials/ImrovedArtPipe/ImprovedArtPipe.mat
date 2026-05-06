@@ -102,7 +102,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _paint_normal:
-        m_Texture: {fileID: 8400000, guid: bc7bee220595e754cb16abe1c2a0ac00, type: 2}
+        m_Texture: {fileID: 8400000, guid: 92ea9827753f0974b806cd8647724b9f, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _paint_rtm:
@@ -156,9 +156,9 @@ Material:
     - _ZWrite: 1
     - _canvas_edge_1: 1.04
     - _canvas_edge_2: 0.7
-    - _canvas_normal_strength: 0.5
+    - _canvas_normal_strength: 1
     - _mask_offset: 0
-    - _paint_normal_strength: 0.2
+    - _paint_normal_strength: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
