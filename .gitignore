@@ -5,7 +5,8 @@
 *.kra~
 *.xcf
 *.pur
-Blender/
-GIMP/
-Krita/
-PureRef/
+*.png~
+*.pixi
+
+# Local folders
+Local/
