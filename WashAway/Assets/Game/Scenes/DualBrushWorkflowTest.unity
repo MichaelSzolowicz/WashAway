@@ -595,7 +595,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 394308514}
-  - component: {fileID: 394308513}
   - component: {fileID: 394308515}
   m_Layer: 8
   m_Name: NormalRenderer
@@ -604,7 +603,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!212 &394308513
+--- !u!4 &394308514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394308512}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.063, z: 0}
+  m_LocalScale: {x: 1, y: 0.9969, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 881193692}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &394308515
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -624,7 +638,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73ae0f9d0d6665b499824d8366ba67c8, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -656,33 +670,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &394308514
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394308512}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 881193692}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &394308515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394308512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69d8055ac1fe8b84a835f714b0ed4525, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &549006842
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,7 +680,6 @@ GameObject:
   m_Component:
   - component: {fileID: 549006844}
   - component: {fileID: 549006843}
-  - component: {fileID: 549006845}
   m_Layer: 7
   m_Name: ColorRenderer
   m_TagString: Untagged
@@ -768,18 +754,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 881193692}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &549006845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549006842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69d8055ac1fe8b84a835f714b0ed4525, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &564987765
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,8 +872,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DappleShaderTest (Instance)
-  m_Shader: {fileID: -6465566751694194690, guid: ccff03f65c01086448be8629aa1cfaaa,
-    type: 3}
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -916,6 +889,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -1030,6 +1007,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - PixelSnap: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -1044,6 +1022,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _ENUM: 0
+    - _EnableExternalAlpha: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -1069,6 +1048,8 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _canvasPosition: {r: 0, g: 0, b: 0, a: 0}
     - _spritePosition: {r: 0, g: 0, b: 0, a: 0}
@@ -1325,7 +1306,7 @@ MonoBehaviour:
   colorRenderer:
     spriteRenderer: {fileID: 549006843}
   normalRenderer:
-    spriteRenderer: {fileID: 394308513}
+    spriteRenderer: {fileID: 394308515}
   rtmRenderer:
     spriteRenderer: {fileID: 1982178724}
 --- !u!4 &881193692
@@ -1665,7 +1646,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b0c9c8f2a95064d43ac9f2061d4c5d68, type: 2}
+      objectReference: {fileID: 2100000, guid: 2d711db0351cd03448725c5dadaad535, type: 2}
     - target: {fileID: -5754084199372789682, guid: f60bac5f60fbc344dbd51d6f31fabcac,
         type: 3}
       propertyPath: m_Mesh
@@ -1784,7 +1765,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 22.32508
+  orthographic size: 20.47
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1912,7 +1893,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 22.32508
+  orthographic size: 20.47
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2420,7 +2401,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 22.32508
+  orthographic size: 20.47
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
