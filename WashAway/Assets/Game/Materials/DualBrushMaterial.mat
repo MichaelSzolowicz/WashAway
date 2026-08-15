@@ -85,7 +85,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _dappleColor:
-        m_Texture: {fileID: 2800000, guid: ad48d79a2b4f9604e91a304f68f744b6, type: 3}
+        m_Texture: {fileID: 2800000, guid: dcbf4e234a6548944ae4bebcfe1356d3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _dapplePattern:
@@ -153,7 +153,12 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - _canvasNormalStrength: 0.183
+    - _dappleOffset: 0.056
+    - _enableDapple: 1
     - _maskOffset: 0
+    - _paintNormalStrength: 0.768
+    - _paintSmoothOffset: -0.411
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
