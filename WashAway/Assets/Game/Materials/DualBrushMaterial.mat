@@ -154,7 +154,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _canvasNormalStrength: 0.252
-    - _dappleOffset: 0.817
+    - _dappleOffset: 0.888
     - _enableDapple: 1
     - _maskOffset: 0
     - _paintNormalStrength: 0.304
