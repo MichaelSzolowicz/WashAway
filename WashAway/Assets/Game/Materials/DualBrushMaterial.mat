@@ -162,7 +162,7 @@ Material:
     - _enableDapple: 1
     - _maskOffset: 0
     - _paintNormalStrength: 1
-    - _paintSmoothOffset: -0.521
+    - _paintSmoothOffset: -0.309
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
