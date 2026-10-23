@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DropTrail : MonoBehaviour
@@ -7,24 +5,42 @@ public class DropTrail : MonoBehaviour
     [SerializeField] private MeshFilter meshFilter;
     [SerializeField] private int width = 1;
     [SerializeField] private int height = 1;
+    [SerializeField, Range(0.0f, 1.0f)] private float animationTime = 1.0f;
 
     private Mesh mesh;
-
-    private GUILayoutOption[] options;
+    private MaterialPropertyBlock propertyBlock;
+    private new Renderer renderer;
 
     private void OnValidate()
     {
-        if(mesh == null)
+        // This can be moved to an editor script if you need to optimize by
+        // only running these functions when the corresponding values are modified.
+        RebuildMesh();
+        BuildPropertyBlock();
+    }
+
+    private void BuildPropertyBlock()
+    {
+        if (propertyBlock == null)
         {
-            mesh = new Mesh();
-            //meshFilter.sharedMesh = mesh;
+            propertyBlock = new MaterialPropertyBlock();
+        }
+        if(renderer == null)
+        {
+            renderer = GetComponent<Renderer>();
         }
 
-        RebuildMesh();
+        propertyBlock.SetFloat("_AnimationTime", animationTime);
+        renderer.SetPropertyBlock(propertyBlock);
     }
 
     public void RebuildMesh()
     {
+        if (mesh == null)
+        {
+            mesh = new Mesh();
+        }
+
         Vector3[] vertices = new Vector3[4];
 
         vertices[0].x = 0.5f * -width;
