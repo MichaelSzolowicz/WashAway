@@ -47,7 +47,7 @@ Shader "Unlit/TrailShader"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float4 col = float4(1, 0, 0, 1);
+                float4 col = float4(1, 1, 1, 1);
                 col.w = step(1 - i.uv.y, _AnimationTime);
 
                 return col;
