@@ -13,6 +13,8 @@ public class DropTrail : MonoBehaviour
 
     private void OnValidate()
     {
+        MeshRenderer renderer = GetComponent<MeshRenderer>();
+        renderer.sortingLayerName = "Trails";
         // This can be moved to an editor script if you need to optimize by
         // only running these functions when the corresponding values are modified.
         RebuildMesh();
