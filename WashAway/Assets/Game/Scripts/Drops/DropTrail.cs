@@ -68,6 +68,7 @@ public class DropTrail : MonoBehaviour
         mesh.vertices = vertices;
         mesh.uv = uvs;
         mesh.triangles = triangles;
+        mesh.RecalculateBounds();
 
         // Prevents meshFilter.shardedMesh generating a warning.
         Invoke("ApplyMesh", 0);
