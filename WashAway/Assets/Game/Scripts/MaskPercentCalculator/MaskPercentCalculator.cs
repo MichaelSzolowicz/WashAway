@@ -49,7 +49,7 @@ public class MaskPercentCalculator
         {
             uint c = (byte)(data[i] >> (int)channel);
 
-            if(c != 0)
+            if(c == 0)
             {
                 maskedPixelCount++;
             }
