@@ -11,6 +11,12 @@ public class DropTrail : MonoBehaviour
     private MaterialPropertyBlock propertyBlock;
     private new Renderer renderer;
 
+    private void Start()
+    {
+        RebuildMesh();
+        BuildPropertyBlock();
+    }
+
     private void OnValidate()
     {
         MeshRenderer renderer = GetComponent<MeshRenderer>();
@@ -71,7 +77,10 @@ public class DropTrail : MonoBehaviour
         mesh.RecalculateBounds();
 
         // Prevents meshFilter.shardedMesh generating a warning.
-        Invoke("ApplyMesh", 0);
+        if (!Application.isPlaying)
+            Invoke("ApplyMesh", 0);
+        else
+            ApplyMesh();
     }
 
     private void ApplyMesh()
