@@ -69,4 +69,11 @@ public class DropTrail : MonoBehaviour
 
         meshFilter.mesh = mesh;
     }
+
+    public void UpdateAnimation(float normalizedTime)
+    {
+        animationTime = normalizedTime;
+        propertyBlock.SetFloat("_AnimationTime", normalizedTime);
+        renderer.SetPropertyBlock(propertyBlock);
+    }
 }

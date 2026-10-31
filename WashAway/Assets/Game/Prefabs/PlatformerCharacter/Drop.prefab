@@ -315,6 +315,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 470958617113171917}
+  - component: {fileID: 49258932968415813}
   - component: {fileID: 5282424550972780414}
   - component: {fileID: 1061964220490480177}
   - component: {fileID: 4646433973630568314}
@@ -341,6 +342,20 @@ Transform:
   - {fileID: 6397930304791505538}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &49258932968415813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7339489756428077482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41825b5e49ef7b44db83dd814f48bc84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropTrail: {fileID: 5282424550972780414}
+  dropAnimator: {fileID: 2374422272225823219}
 --- !u!114 &5282424550972780414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,8 +369,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   width: 1
-  height: 7
-  animationTime: 1
+  height: 20
+  animationTime: 0
 --- !u!33 &1061964220490480177
 MeshFilter:
   m_ObjectHideFlags: 0
