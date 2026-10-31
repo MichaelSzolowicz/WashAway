@@ -353,7 +353,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ae3dbbaeb10e040bf9d52361a915d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshFilter: {fileID: 1061964220490480177}
   width: 1
   height: 7
   animationTime: 1

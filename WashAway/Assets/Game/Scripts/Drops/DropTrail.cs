@@ -1,54 +1,37 @@
+using UnityEditor;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class DropTrail : MonoBehaviour
 {
-    [SerializeField] private MeshFilter meshFilter;
     [SerializeField] private int width = 1;
     [SerializeField] private int height = 1;
     [SerializeField, Range(0.0f, 1.0f)] private float animationTime = 1.0f;
 
+    private MeshFilter meshFilter;
     private Mesh mesh;
     private MaterialPropertyBlock propertyBlock;
     private new Renderer renderer;
 
     private void Start()
     {
-        RebuildMesh();
+        // Build mesh and property block do not modify any serialized values, so it is safe to call them in edit mode.
+        // Changes will be discarded and rebuilt.
+        BuildMeshData();
         BuildPropertyBlock();
     }
 
-    private void OnValidate()
+    public void BuildPropertyBlock()
     {
-        MeshRenderer renderer = GetComponent<MeshRenderer>();
-        renderer.sortingLayerName = "Trails";
-        // This can be moved to an editor script if you need to optimize by
-        // only running these functions when the corresponding values are modified.
-        RebuildMesh();
-        BuildPropertyBlock();
-    }
-
-    private void BuildPropertyBlock()
-    {
-        if (propertyBlock == null)
-        {
-            propertyBlock = new MaterialPropertyBlock();
-        }
-        if(renderer == null)
-        {
-            renderer = GetComponent<Renderer>();
-        }
+        if (propertyBlock == null) propertyBlock = new MaterialPropertyBlock();
+        if(renderer == null) renderer = GetComponent<Renderer>();
 
         propertyBlock.SetFloat("_AnimationTime", animationTime);
         renderer.SetPropertyBlock(propertyBlock);
     }
 
-    public void RebuildMesh()
+    public void BuildMeshData()
     {
-        if (mesh == null)
-        {
-            mesh = new Mesh();
-        }
-
         Vector3[] vertices = new Vector3[4];
 
         vertices[0].x = 0.5f * -width;
@@ -71,20 +54,19 @@ public class DropTrail : MonoBehaviour
             uvs[i] = new Vector2((vertices[i].x + 0.5f * width) / width, (vertices[i].y + height) / height);
         }
 
+        if (mesh == null) mesh = new Mesh();
+
         mesh.vertices = vertices;
         mesh.uv = uvs;
         mesh.triangles = triangles;
         mesh.RecalculateBounds();
 
-        // Prevents meshFilter.shardedMesh generating a warning.
-        if (!Application.isPlaying)
-            Invoke("ApplyMesh", 0);
-        else
-            ApplyMesh();
-    }
+        if (meshFilter == null)
+        {
+            meshFilter = GetComponent<MeshFilter>();
+            if (meshFilter == null) meshFilter = gameObject.AddComponent<MeshFilter>();
+        }
 
-    private void ApplyMesh()
-    {
-        meshFilter.sharedMesh = mesh;
+        meshFilter.mesh = mesh;
     }
 }
