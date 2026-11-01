@@ -856,7 +856,7 @@ PrefabInstance:
         type: 3}
       propertyPath: dropPrefab
       value: 
-      objectReference: {fileID: 7339489756428077482, guid: f086987b1ffe0114f99469660149d328,
+      objectReference: {fileID: 6032446320375886068, guid: f086987b1ffe0114f99469660149d328,
         type: 3}
     - target: {fileID: 3631067913228181872, guid: 977d705c70bbf3d47acbd2e904097d55,
         type: 3}
