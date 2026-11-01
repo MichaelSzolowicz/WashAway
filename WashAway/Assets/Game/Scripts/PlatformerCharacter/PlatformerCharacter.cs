@@ -11,6 +11,8 @@ public class PlatformerCharacter : MonoBehaviour
         public bool disableDamage = false;
         public bool showProbes = false;
         public bool startFacingLeft = false;
+        public bool showMaskValue = false;
+        public bool showMaskPosition = false;
     }
 
     [SerializeField] private PlatformerMovement platformerMovement;
@@ -30,8 +32,9 @@ public class PlatformerCharacter : MonoBehaviour
 
     private PixelReader pixelReader;
 
-    private bool showMaskPercent = false;
-    private float maskPercent = 0;
+    private float maskValue = 0;
+    private int maskPixelX = 0;
+    private int maskPixelY = 0; 
 
     private void Start()
     {
@@ -77,7 +80,9 @@ public class PlatformerCharacter : MonoBehaviour
 
             if (pixelReader.Available)
             {
-                if (pixelReader.result.b >= 255.0f / 2.0f)
+                maskValue = pixelReader.result.r;
+
+                if (maskValue <= 0)
                 {
                     timeInVoid += timeSinceLastRead;
 
@@ -93,10 +98,13 @@ public class PlatformerCharacter : MonoBehaviour
                     Debug.DrawLine(probePos, probePos + Vector3.back, Color.red, Time.deltaTime * 2);
                 }
 
-                float x = (platformerMovement.transform.position.x * 1 / paintingWidthMeters) + .5f;
-                float y = ((platformerMovement.transform.position.y) * 1 / paintingWidthMeters) + .5f;
+                float u = (platformerMovement.transform.position.x * 1 / paintingWidthMeters) + .5f;
+                float v = ((platformerMovement.transform.position.y) * 1 / paintingWidthMeters) + .5f;
 
-                pixelReader.ReadPixelAsync(mask, 0, (int)(x * mask.width), 1, (int)(y * mask.height), 1);
+                maskPixelX = (int)(u * mask.width);
+                maskPixelY = (int)(v * mask.height);
+
+                pixelReader.ReadPixelAsync(mask, 0, maskPixelX, 1, maskPixelY, 1);
 
                 timeSinceLastRead = 0;
             }
@@ -118,12 +126,11 @@ public class PlatformerCharacter : MonoBehaviour
 
     private void OnGUI()
     {
-        if(showMaskPercent)
-        {
-            GUILayout.BeginVertical();
-            GUILayout.Space(20);
-            GUILayout.Label("mask percent: " + maskPercent);
-            GUILayout.EndVertical();
-        }
+        GUILayout.BeginVertical();
+        if (debug.showMaskValue)
+            GUILayout.Label("mask value: " + maskValue);
+        if(debug.showMaskPosition)
+            GUILayout.Label("mask position: (" + maskPixelX + ", " + maskPixelY + ")");
+        GUILayout.EndVertical();
     }
 }
