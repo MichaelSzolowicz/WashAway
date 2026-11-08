@@ -6,6 +6,7 @@ using UnityEngine;
 /// Scene representation of a set of points that can be traced for intersection.
 /// Responsible for adding itself to LineIntersectionScene to be traced against in intersection tests.
 /// </summary>
+[ExecuteInEditMode]
 public class LineCollider : MonoBehaviour, ILineColliderInterface
 {
     // Internal class
@@ -29,7 +30,7 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
     }
 
     // Points
-    [SerializeField] public List<LinePoint> points = new List<LinePoint>();
+    [SerializeField] private List<LinePoint> points = new List<LinePoint>();
     public int NumPoints { get { return points.Count; } }
 
     // Appearance config
@@ -40,6 +41,11 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
     // Is being viewed in inspector?
     private bool isSelected = false;
     public bool IsSelected { get { return isSelected; } set { isSelected = value; } }
+
+    // Delegates
+    public delegate void OnUpdatePoints();
+    public event OnUpdatePoints onUpdatePoints;
+    public void InvokeOnUpdatePoints() { if(onUpdatePoints != null) onUpdatePoints(); }
 
     public Vector3 GetPointWorldPosition(int index)
     {
@@ -93,6 +99,15 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
     private void OnEnable()
     {
         LineCollisionScene.Instance.RegisterLineCollider(this);
+    }
+
+    private void Update()
+    {
+        if(transform.hasChanged)
+        {
+            if(onUpdatePoints != null) onUpdatePoints();
+            transform.hasChanged = false;
+        }
     }
 
     protected void OnDisable()

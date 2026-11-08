@@ -26,12 +26,13 @@ public class LineColliderInspector : Editor
         var it = serializedObject.GetIterator();
         it.Next(true);
 
+        bool dirtyPoints = false;
         while (it.NextVisible(false))
         {
             switch (it.name)
             {
                 case "points":
-                    HandlePoints(it);
+                    dirtyPoints = HandlePoints(it);
                     break;
                 case "m_Script":
                     GUI.enabled = false;
@@ -45,17 +46,19 @@ public class LineColliderInspector : Editor
         }
 
         serializedObject.ApplyModifiedProperties();
+
+        if(dirtyPoints) lineCollider.InvokeOnUpdatePoints();
     }
 
-    private void HandlePoints(SerializedProperty points)
+    private bool HandlePoints(SerializedProperty points)
     {
-        if (targets.Length != 1) return;
+        if (targets.Length != 1) return false;
 
         int numPoints = points.arraySize;
 
         EditorGUILayout.PropertyField(points);
 
-        if (!serializedObject.ApplyModifiedProperties()) return;
+        if (!serializedObject.ApplyModifiedProperties()) return false;
 
         int newNumPoints = points.arraySize;
         for (int i = numPoints; i < newNumPoints; i++)
@@ -80,6 +83,8 @@ public class LineColliderInspector : Editor
         }
 
         SanitizePoints(points);
+
+        return true;
     }
 
     private void OnSceneGUI()
@@ -103,6 +108,8 @@ public class LineColliderInspector : Editor
                 position.vector2Value = newPosition - lineCollider.transform.position;
                 SanitizePoint(points, i);
                 slc.ApplyModifiedProperties();
+
+                lineCollider.InvokeOnUpdatePoints();
             }
         }
     }
