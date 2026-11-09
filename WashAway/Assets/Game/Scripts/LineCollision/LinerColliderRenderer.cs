@@ -7,20 +7,31 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class LinerColliderRenderer : MonoBehaviour
 {
-    [SerializeField] private LineRenderer lineRenderer;
+    private LineRenderer lineRenderer;
     private LineCollider lineCollider;
 
     private void OnEnable()
     {
-        lineRenderer = GetComponent<LineRenderer>();
-        lineCollider = GetComponent<LineCollider>();
-
+        UpdateLineRenderer();
         lineCollider.onUpdatePoints += UpdateLineRenderer;
+    }
+
+    private void Update()
+    {
+        if(lineCollider == null || lineRenderer == null)
+        {
+            UpdateLineRenderer();
+        }
+        if (transform.hasChanged)
+        {
+            UpdateLineRenderer();
+            transform.hasChanged = false;
+        }
     }
 
     private void UpdateLineRenderer()
     {
-        if (lineRenderer == null) return;
+        if(!HasRequiredComponents()) return;
 
         Vector3[] points = new Vector3[lineCollider.NumPoints];
         for (int i = 0; i < points.Length; i++)
@@ -30,6 +41,13 @@ public class LinerColliderRenderer : MonoBehaviour
 
         lineRenderer.positionCount = points.Length;
         lineRenderer.SetPositions(points);
+    }
+
+    private bool HasRequiredComponents()
+    {
+        if (lineRenderer == null) lineRenderer = GetComponent<LineRenderer>();
+        if (lineCollider == null) lineCollider = GetComponent<LineCollider>();
+        return lineRenderer && lineCollider;
     }
 
     private void OnDisable()

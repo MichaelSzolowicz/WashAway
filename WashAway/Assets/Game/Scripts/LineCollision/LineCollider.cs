@@ -100,15 +100,6 @@ public class LineCollider : MonoBehaviour, ILineColliderInterface
         LineCollisionScene.Instance.RegisterLineCollider(this);
     }
 
-    private void Update()
-    {
-        if(transform.hasChanged)
-        {
-            if(onUpdatePoints != null) onUpdatePoints();
-            transform.hasChanged = false;
-        }
-    }
-
     protected void OnDisable()
     {
         // Do not access the singleton if the scene is being destroyed.
