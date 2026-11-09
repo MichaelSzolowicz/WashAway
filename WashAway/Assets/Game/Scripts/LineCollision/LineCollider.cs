@@ -6,7 +6,6 @@ using UnityEngine;
 /// Scene representation of a set of points that can be traced for intersection.
 /// Responsible for adding itself to LineIntersectionScene to be traced against in intersection tests.
 /// </summary>
-[ExecuteInEditMode]
 public class LineCollider : MonoBehaviour, ILineColliderInterface
 {
     // Internal class
